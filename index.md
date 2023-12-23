@@ -4,7 +4,7 @@ These are slides, code and links to videos related to the use of the `R` program
 
 On the [GitHub version](https://github.com/julien-arino/R-for-modellers/) of the page, you have access to all the files. You can also download the entire repository by clicking the buttons on the left. (You can also of course clone this repo, but you will need to do that from the GitHub version of the site.)
 
-Feel free to use the material in these slides or in the folders. If you find this useful, I will be happy to know. Slides are produced mostly using [Marp](https://marp.app/), with a few using other systems ($\LaTeX$, Sweave, Rmarkdown, etc.).
+Feel free to use the material in these slides or in the folders. If you find this useful, I will be happy to know. Slides are produced mostly using [Marp](https://marp.app/), with a few using other systems (\LaTeX, Sweave, Rmarkdown, etc.).
 
 ### Slides
 
