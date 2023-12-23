@@ -1,11 +1,11 @@
 ---
 marp: true
-title: Practicum - Introduction to R. Collecting data. Solving ODEs in R
-description: Julien Arino - 3MC Course Epidemiological Modelling - Practicum 01 - Introduction to R. Collecting data. Solving ODEs in R
+title: R for modellers - Lecture 01 - Introduction to R. Installing R
+description: Julien Arino - Lecture 01 - R for modellers - Introduction to R. Installing R.
 theme: default
 paginate: false
 math: mathjax
-size: 4K
+size: 16:9
 ---
 
 <style>
@@ -31,9 +31,7 @@ size: 4K
 </style>
 
 <!-- _backgroundImage: "linear-gradient(to top, #85110d, 3%, white)" -->
-# Practicum 01 - Introduction to R. Collecting data. Solving ODEs in R
-
-4 April 2022
+# Lecture 01 - Introduction to R. Installing R
 
 Julien Arino [![width:32px](https://raw.githubusercontent.com/julien-arino/presentations/main/FIGS/icons/email-round.png)](mailto:Julien.Arino@umanitoba.ca) [![width:32px](https://raw.githubusercontent.com/julien-arino/presentations/main/FIGS/icons/world-wide-web.png)](https://julien-arino.github.io/) [![width:32px](https://raw.githubusercontent.com/julien-arino/presentations/main/FIGS/icons/github-icon.png)](https://github.com/julien-arino)
 
@@ -43,8 +41,6 @@ University of Manitoba*
 <div style = "font-size:18px; margin-top:-10px; padding-bottom:30px;"></div>
 
 Canadian Centre for Disease Modelling
-Canadian COVID-19 Mathematical Modelling Task Force
-NSERC-PHAC EID Modelling Consortium (CANMOD, MfPH, OMNI/RÉUNIS)
 
 <div style = "text-align: justify; position: relative; bottom: -5%; font-size:18px;">
 * The University of Manitoba campuses are located on original lands of Anishinaabeg, Cree, Oji-Cree, Dakota and Dene peoples, and on the homeland of the Métis Nation.</div>
