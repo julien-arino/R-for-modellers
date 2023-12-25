@@ -3,9 +3,10 @@ marp: true
 title: R for modellers - Lecture 01 - Introduction to R. Installing R
 description: Julien Arino - Lecture 01 - R for modellers - Introduction to R. Installing R.
 theme: default
-paginate: false
+class: invert
 math: mathjax
-size: 16:9
+paginate: false
+size: 4:3
 ---
 
 <style>
@@ -47,7 +48,7 @@ Canadian Centre for Disease Modelling
 
 ---
 
-<!-- _backgroundImage: "radial-gradient(white,80%,#f1c40f)" -->
+<!-- _backgroundImage: "radial-gradient(red,30%,black)" -->
 # Outline
 
 - Foreword: the R language
@@ -360,7 +361,7 @@ There is still a loop, but you can split this list, use it on different machines
 
 ---
 
-<!-- _backgroundImage: "linear-gradient(to bottom, #f1c40f, 20%, white)" -->
+<!-- _backgroundImage: "linear-gradient(to bottom, red, black)" -->
 # <!--fit-->Dealing with data
 
 - Example: population of South Africa

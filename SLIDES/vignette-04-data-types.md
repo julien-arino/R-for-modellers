@@ -1,11 +1,12 @@
 ---
 marp: true
-title: R for modellers - Lecture 01 - Introduction to R. Installing R
-description: Julien Arino - Lecture 01 - R for modellers - Introduction to R. Installing R.
+title: Vignette 04 - Data types
+description: Julien Arino - R for modellers - Vignette 04 - Data types.
 theme: default
-paginate: false
+class: invert
 math: mathjax
-size: 16:9
+paginate: false
+size: 4:3
 ---
 
 <style>
@@ -47,7 +48,7 @@ Canadian Centre for Disease Modelling
 
 ---
 
-<!-- _backgroundImage: "radial-gradient(white,80%,#f1c40f)" -->
+<!-- _backgroundImage: "radial-gradient(red,30%,black)" -->
 # Outline
 
 - Foreword: the R language

@@ -8,7 +8,9 @@ Feel free to use the material in these slides or in the folders. If you find thi
 
 ### Slides
 
-Please note that the slides here are inherently a work in progress. I will be updating them from time to time to reflect a better understanding of the material, new packages, etc. Also note that the order of the "lectures" is, for the most part, not really relevant and is included mostly for my convenience.
+Please note that the slides here are inherently a work in progress. I will be updating them from time to time to reflect a better understanding of the material, new packages, etc. 
+Contrary to other courses I have posted, these are small snapshots meant to illustrate a technique, so slide sets and videos vary greatly in length.
+Also note that the order of the "lectures" is, for the most part, not really relevant and is included mostly for my convenience.
 
 <ul>
 {% for file in site.static_files %}
