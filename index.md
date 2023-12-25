@@ -20,8 +20,8 @@ Also note that the order of the "lectures" is, for the most part, not really rel
         {% if file.path contains 'pdf' %}
           <li><a href="https://julien-arino.github.io/R-for-modellers/SLIDES/{{ file.basename }}.pdf">{{ file.basename }}</a></li>
         {% endif %}
-        {% if file.path contains 'html' %}
-          <li><a href="https://julien-arino.github.io/R-for-modellers/SLIDES/{{ file.basename }}.html">{{ file.basename }}</a></li>
+        {% if file.path contains 'md' %}
+          <li><a href="https://julien-arino.github.io/R-for-modellers/SLIDES/{{ file.basename }}.html">{{ file.title }}</a></li>
         {% endif %}
       {% endunless %}
     {% endif %}
