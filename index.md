@@ -18,7 +18,7 @@ Also note that the order of the "lectures" is, for the most part, not really rel
     {% if file.path contains 'vignette' %}
       {% if file.path contains 'pdf' or file.path contains 'html' %}
         {% unless file.path contains 'FIGS' %}
-          <li><a href="https://julien-arino.github.io/R-for-modellers/SLIDES/{{ file.basename }}.pdf">{{ file.basename }}</a></li>
+          <li><a href="https://julien-arino.github.io/R-for-modellers/SLIDES/{{ file.basename }}.{{file.extension}}">{{ file.basename }}.{{ file.extension }}</a></li>
         {% endunless %}
       {% endif %}
     {% endif %}
