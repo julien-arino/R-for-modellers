@@ -15,7 +15,7 @@ Also note that the order of the "lectures" is, for the most part, not really rel
 <ul>
 {% for file in site.static_files %}
   {% if file.path contains 'SLIDES' %}
-    {% if file.path contains 'lecture' %}
+    {% if file.path contains 'vignette' %}
       {% if file.path contains 'pdf' %}
         {% unless file.path contains 'FIGS' %}
           <li><a href="https://julien-arino.github.io/R-for-modellers/SLIDES/{{ file.basename }}.pdf">{{ file.basename }}</a></li>
