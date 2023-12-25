@@ -16,11 +16,14 @@ Also note that the order of the "lectures" is, for the most part, not really rel
 {% for file in site.static_files %}
   {% if file.path contains 'SLIDES' %}
     {% if file.path contains 'vignette' %}
-      {% if file.path contains 'pdf' or file.path contains 'html' %}
-        {% unless file.path contains 'FIGS' %}
-          <li><a href="https://julien-arino.github.io/R-for-modellers/SLIDES/{{ file.basename }}.{{file.extension}}">{{ file.basename }}.{{ file.extension }}</a></li>
-        {% endunless %}
-      {% endif %}
+      {% unless file.path contains 'FIGS' %}
+        {% if file.path contains 'pdf' %}
+          <li><a href="https://julien-arino.github.io/R-for-modellers/SLIDES/{{ file.basename }}.pdf">{{ file.basename }}</a></li>
+        {% endif %}
+        {% if file.path contains 'html' %}
+          <li><a href="https://julien-arino.github.io/R-for-modellers/SLIDES/{{ file.basename }}.html">{{ file.basename }}</a></li>
+        {% endif %}
+      {% endunless %}
     {% endif %}
   {% endif %}
 {% endfor %}
