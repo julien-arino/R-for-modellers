@@ -73,6 +73,23 @@ Canadian Centre for Disease Modelling
 
 ---
 
+# History of `R`
+
+```R
+> install.packages("rversions")
+> library(rversions)
+> tail(r_versions())
+    version                date              nickname
+128   4.2.1 2022-06-23 07:05:33     Funny-Looking Kid
+129   4.2.2 2022-10-31 08:05:54 Innocent and Trusting
+130   4.2.3 2023-03-15 08:06:01      Shortstop Beagle
+131   4.3.0 2023-04-21 07:06:14      Already Tomorrow
+132   4.3.1 2023-06-16 07:06:07         Beagle Scouts
+133   4.3.2 2023-10-31 08:07:42             Eye Holes
+```
+
+---
+
 # Development environments
 
 - Terminal version, not very friendly
@@ -104,7 +121,7 @@ Canadian Centre for Disease Modelling
 
 ---
 
-# Similar to matlab..
+# Similar to matlab and Python..
 
 .. with some differences, of course! Otherwise, where would the fun be? ;)
 
