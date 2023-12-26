@@ -31,7 +31,8 @@ size: 4:3
   }
 </style>
 
-<!-- _backgroundImage: "linear-gradient(to top, #85110d, 3%, white)" -->
+<!-- backgroundColor: black -->
+<!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
 # Vignette 09 - Data wrangling
 
 Julien Arino [![width:32px](https://raw.githubusercontent.com/julien-arino/presentations/main/FIGS/icons/email-round.png)](mailto:Julien.Arino@umanitoba.ca) [![width:32px](https://raw.githubusercontent.com/julien-arino/presentations/main/FIGS/icons/world-wide-web.png)](https://julien-arino.github.io/) [![width:32px](https://raw.githubusercontent.com/julien-arino/presentations/main/FIGS/icons/github-icon.png)](https://github.com/julien-arino)
