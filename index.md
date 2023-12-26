@@ -21,7 +21,7 @@ Also note that the order of the vignettes is, for the most part, not really rele
           <li><a href="https://julien-arino.github.io/R-for-modellers/SLIDES/{{ file.basename }}.pdf">{{ file.basename }}</a></li>
         {% endif %}
         {% if file.path contains 'html' %}
-          <li><a href="https://julien-arino.github.io/R-for-modellers/SLIDES/{{ file.basename }}.html">{{ file.title }}</a></li>
+          <li><a href="https://julien-arino.github.io/R-for-modellers/SLIDES/{{ file.basename }}.html">{{ file.basename }}</a></li>
         {% endif %}
       {% endunless %}
     {% endif %}
