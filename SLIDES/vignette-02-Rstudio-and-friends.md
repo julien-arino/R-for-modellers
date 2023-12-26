@@ -52,32 +52,89 @@ Canadian Centre for Disease Modelling
 <!-- _backgroundImage: "radial-gradient(red,30%,black)" -->
 # Outline
 
-- Foreword: the R language
-- Programming in R
-- Dealing with data
-- Solving ODE numerically
+- RStudio
+- RStudio server
+- Sweave
+- RMarkdown
+- Q
+- Shiny
+- Shiny server
 
 ---
 
 <!-- _backgroundImage: "linear-gradient(to bottom, red, black)" -->
-# <!--fit-->Foreword: the R language
+# <!--fit-->RStudio
 
 ---
 
-# Development environments
+# RStudio
 
-- Use IDEs:
-    - [RStudio](https://www.rstudio.com/products/rstudio/) has become the reference
-    - [RKWard](https://invent.kde.org/education/rkward) is useful if you are for instance using an ARM processor (Raspberry Pi, some Chromebooks..)
-- Integrate into jupyter notebooks
+[RStudio](https://www.rstudio.com/products/rstudio/) has become the reference
 
 ---
 
-# Going further
+<!-- _backgroundImage: "linear-gradient(to bottom, red, black)" -->
+# <!--fit-->RStudio server
+
+---
+
+# RStudio server
 
 - [RStudio server](https://www.rstudio.com/products/rstudio/#rstudio-server): run RStudio on a Linux server and connect via a web interface
-- Shiny: easily create an interactive web site running R code
-- [Shiny server](https://www.rstudio.com/products/shiny/shiny-server/): run Shiny apps on a Linux server
-- Rmarkdown: markdown that incorporates R commands. Useful for generating reports in html or pdf, can make slides as well..
+
+---
+
+<!-- _backgroundImage: "linear-gradient(to bottom, red, black)" -->
+# <!--fit-->Sweave
+
+---
+
+# Sweave
+
 - RSweave: LaTeX incorporating R commands. Useful for generating reports. Not used as much as Rmarkdown these days
+
+---
+
+<!-- _backgroundImage: "linear-gradient(to bottom, red, black)" -->
+# <!--fit-->RMarkdown
+
+---
+
+# RMarkdown
+
+- Rmarkdown: markdown that incorporates R commands. Useful for generating reports in html or pdf, can make slides as well..
+
+---
+
+<!-- _backgroundImage: "linear-gradient(to bottom, red, black)" -->
+# <!--fit-->Q
+
+---
+
+# Q
+
+- Promoted as next-gen version of Sweave/RMarkdown
+- Will confess that I have not yet seen why switch
+
+---
+
+<!-- _backgroundImage: "linear-gradient(to bottom, red, black)" -->
+# <!--fit-->Shiny
+
+---
+
+# Shiny
+
+- Shiny: easily create an interactive web site running R code
+
+---
+
+<!-- _backgroundImage: "linear-gradient(to bottom, red, black)" -->
+# <!--fit-->Shiny server
+
+---
+
+# Shiny server
+
+- [Shiny server](https://www.rstudio.com/products/shiny/shiny-server/): run Shiny apps on a Linux server
 
