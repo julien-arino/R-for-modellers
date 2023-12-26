@@ -64,14 +64,55 @@ Failure to use the "user friendly" method presented later will result in loss of
 - Installing a package
 - Loading a package
 - Be friendly to others!
+- Updating packages
 
 ---
 
-<!-- _backgroundImage: "linear-gradient(to bottom, #f1c40f, 20%, white)" -->
+<!-- _backgroundImage: "linear-gradient(to bottom, red, black)" -->
 # <!--fit-->Packages (a.k.a. libraries)
 
 ---
 
+*Packages* (also called *libraries*) extend `R` by providing functions or data that is useful in particular contexts
+
+Allow to avoid "bloating", since the `R` core remains relatively light and you only install the additional content you need
+
+---
+
+# CRAN is the main source for packages
+
+```R
+> paste(nrow(available.packages()),"on",Sys.Date())
+[1] "20240 on 2023-12-26"
+```
+
+---
+
+# There are also packages not on CRAN
+
+- For instance, packages on GitHub
+- Sometimes packages get removed from CRAN, although the latest versions are typically still available
+- Installation is a little different (detailed later)
+
+---
+
+<!-- _backgroundImage: "linear-gradient(to bottom, red, black)" -->
+# <!--fit-->Installing a package
+
+---
+
+# From CRAN
+
+`install.packages()`
+
+---
+
+<!-- _backgroundImage: "linear-gradient(to bottom, red, black)" -->
+# <!--fit-->Loading a package
+
+---
+
+<!-- _backgroundImage: "linear-gradient(to bottom, red, black)" -->
 # <!--fit-->Be friendly to others!
 
 ---
@@ -88,8 +129,21 @@ In this case, it will be annoying to them if you trigger an installation of the 
 
 ---
 
-So the way to proceed is to test whether the library is installed
+So the way to proceed is to **test** whether the library is installed
 
-If it is, load it
+- If it is, load it
+- If it is not, install it then load it
 
-If it is not, install it then load it
+```R
+if (!require(package_name)) {
+    install.packages("package_name")
+    library(package_name)
+}
+```
+> `require` is designed for use inside other functions; it returns `FALSE` and gives a warning (rather than an error as `library()` does by default) if the package does not exist.
+
+---
+
+<!-- _backgroundImage: "linear-gradient(to bottom, red, black)" -->
+# <!--fit-->Updating packages
+
