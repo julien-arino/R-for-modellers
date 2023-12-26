@@ -6,11 +6,11 @@ On the [GitHub version](https://github.com/julien-arino/R-for-modellers/) of the
 
 Feel free to use the material in these slides or in the folders. If you find this useful, I will be happy to know. Slides are produced mostly using [Marp](https://marp.app/), with a few using other systems (\LaTeX, Sweave, Rmarkdown, etc.).
 
-### Slides
+### "Vignettes"
 
 Please note that the slides here are inherently a work in progress. I will be updating them from time to time to reflect a better understanding of the material, new packages, etc. 
-Contrary to other courses I have posted, these are small snapshots meant to illustrate a technique, so slide sets and videos vary greatly in length.
-Also note that the order of the "lectures" is, for the most part, not really relevant and is included mostly for my convenience.
+Contrary to other courses I have posted, these are small snapshots ("vignettes") meant to illustrate a technique, so slide sets and videos vary greatly in length.
+Also note that the order of the vignettes is, for the most part, not really relevant.
 
 <ul>
 {% for file in site.static_files %}
@@ -20,6 +20,20 @@ Also note that the order of the "lectures" is, for the most part, not really rel
         {% if file.path contains 'pdf' %}
           <li><a href="https://julien-arino.github.io/R-for-modellers/SLIDES/{{ file.basename }}.pdf">{{ file.basename }}</a></li>
         {% endif %}
+        {% if file.path contains 'html' %}
+          <li><a href="https://julien-arino.github.io/R-for-modellers/SLIDES/{{ file.basename }}.html">{{ file.title }}</a></li>
+        {% endif %}
+      {% endunless %}
+    {% endif %}
+  {% endif %}
+{% endfor %}
+</ul>
+
+<ul>
+{% for file in site.pages %}
+  {% if file.path contains 'SLIDES' %}
+    {% if file.path contains 'vignette' %}
+      {% unless file.path contains 'FIGS' %}
         {% if file.path contains 'md' %}
           <li><a href="https://julien-arino.github.io/R-for-modellers/SLIDES/{{ file.basename }}.html">{{ file.title }}</a></li>
         {% endif %}
@@ -28,5 +42,6 @@ Also note that the order of the "lectures" is, for the most part, not really rel
   {% endif %}
 {% endfor %}
 </ul>
+
 
 At present, there are no videos. I will be recording videos when time permits, probably in early 2024.
