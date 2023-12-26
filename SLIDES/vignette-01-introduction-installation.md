@@ -1,7 +1,7 @@
 ---
 marp: true
-title: Vignette 01 - Introduction to R. Installing R
-description: Julien Arino - R for modellers - Vignette 01 - Introduction to R. Installing R.
+title: Vignette 01 - Introduction to and installation of R
+description: Julien Arino - R for modellers - Vignette 01 - Introduction to and installation of R.
 theme: default
 class: invert
 math: mathjax
@@ -33,7 +33,7 @@ size: 4:3
 
 <!-- backgroundColor: black -->
 <!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
-# Vignette 01 - Introduction to R. Installing R
+# Vignette 01 <br> Introduction to & installation of ![width:50px](https://raw.githubusercontent.com/julien-arino/R-for-modellers/main/assets/img/Rlogo.svg)
 
 Julien Arino [![width:32px](https://raw.githubusercontent.com/julien-arino/presentations/main/FIGS/icons/email-round.png)](mailto:Julien.Arino@umanitoba.ca) [![width:32px](https://raw.githubusercontent.com/julien-arino/presentations/main/FIGS/icons/world-wide-web.png)](https://julien-arino.github.io/) [![width:32px](https://raw.githubusercontent.com/julien-arino/presentations/main/FIGS/icons/github-icon.png)](https://github.com/julien-arino)
 
@@ -52,17 +52,17 @@ Canadian Centre for Disease Modelling
 <!-- _backgroundImage: "radial-gradient(red,30%,black)" -->
 # Outline
 
-- Foreword: the `R` language
-- Installing `R`
+- Foreword: the ![width:32px](https://raw.githubusercontent.com/julien-arino/R-for-modellers/main/assets/img/Rlogo.svg) language
+- Installing ![width:32px](https://raw.githubusercontent.com/julien-arino/R-for-modellers/main/assets/img/Rlogo.svg)
 
 ---
 
 <!-- _backgroundImage: "linear-gradient(to bottom, red, black)" -->
-# <!--fit-->Foreword: the R language
+# <!--fit-->Foreword: the ![width:40px](https://raw.githubusercontent.com/julien-arino/R-for-modellers/main/assets/img/Rlogo.svg) language
 
 ---
 
-# <!--fit-->R was originally for stats but is now much more
+# <!--fit-->![width:40px](https://raw.githubusercontent.com/julien-arino/R-for-modellers/main/assets/img/Rlogo.svg) was originally for stats but is now much more
 
 - Open source version of S
 - Appeared in 1993
@@ -73,7 +73,7 @@ Canadian Centre for Disease Modelling
 
 ---
 
-# History of `R`
+# History of ![width:50px](https://raw.githubusercontent.com/julien-arino/R-for-modellers/main/assets/img/Rlogo.svg)
 
 ```R
 > install.packages("rversions")
@@ -90,7 +90,7 @@ Canadian Centre for Disease Modelling
 
 ---
 
-# R is a scripted language
+# ![width:50px](https://raw.githubusercontent.com/julien-arino/R-for-modellers/main/assets/img/Rlogo.svg) is a scripted language
 
 - Interactive
 - Allows you to work in real time
@@ -106,7 +106,7 @@ Canadian Centre for Disease Modelling
 ---
 
 <!-- _backgroundImage: "linear-gradient(to bottom, red, black)" -->
-# <!--fit-->Installing `R`
+# <!--fit-->Installing ![width:40px](https://raw.githubusercontent.com/julien-arino/R-for-modellers/main/assets/img/Rlogo.svg)
 
 ---
 
