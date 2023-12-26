@@ -56,9 +56,23 @@ Canadian Centre for Disease Modelling
 - RStudio server
 - Sweave
 - RMarkdown
-- Q
+- Quarto
 - Shiny
 - Shiny server
+
+---
+
+# Posit
+
+- [Posit](https://posit.co/) was formerly called `RStudio`, like their main product
+
+- Did a lot of development for `R`, still do even on the open source side of things
+
+- For-profit company, sells "pro" versions of its open source products
+
+- IMOBO: in the process of moving to the "dark side", trying to ram "pro" versions down your throat
+
+- You can completely exist without using the pro versions, though, don't worry!
 
 ---
 
@@ -69,7 +83,8 @@ Canadian Centre for Disease Modelling
 
 # RStudio
 
-[RStudio](https://www.rstudio.com/products/rstudio/) has become the reference
+- [RStudio](https://posit.co/products/open-source/rstudio/) has become the reference IDE for `R`
+- [Download link](https://posit.co/download/rstudio-desktop/), since the main download links appear broken
 
 ---
 
@@ -80,7 +95,9 @@ Canadian Centre for Disease Modelling
 
 # RStudio server
 
-- [RStudio server](https://www.rstudio.com/products/rstudio/#rstudio-server): run RStudio on a Linux server and connect via a web interface
+- [RStudio server](https://posit.co/products/open-source/rstudio-server/): run RStudio on a Linux server and connect via a web interface
+- [Download link](https://posit.co/download/rstudio-server/), since the main download links appear broken
+- Note that as far as I can tell, there is no mechanism to auto-update RStudio-server, so you will have to program something or check the site regularly..
 
 ---
 
@@ -107,11 +124,11 @@ Canadian Centre for Disease Modelling
 ---
 
 <!-- _backgroundImage: "linear-gradient(to bottom, red, black)" -->
-# <!--fit-->Q
+# <!--fit-->Quarto
 
 ---
 
-# Q
+# Quarto
 
 - Promoted as next-gen version of Sweave/RMarkdown
 - Will confess that I have not yet seen why switch
@@ -136,5 +153,7 @@ Canadian Centre for Disease Modelling
 
 # Shiny server
 
-- [Shiny server](https://www.rstudio.com/products/shiny/shiny-server/): run Shiny apps on a Linux server
+- [Shiny server](https://posit.co/products/open-source/shinyserver/): run Shiny apps on a Linux server
+- Useful for instance if you have a Linux VM running somewhere
+- 
 
