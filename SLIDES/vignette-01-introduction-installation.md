@@ -52,8 +52,8 @@ Canadian Centre for Disease Modelling
 <!-- _backgroundImage: "radial-gradient(red,30%,black)" -->
 # Outline
 
-- Foreword: the R language
-- Programming in R
+- Foreword: the `R` language
+- Installing `R`
 
 ---
 
@@ -90,28 +90,6 @@ Canadian Centre for Disease Modelling
 
 ---
 
-# Development environments
-
-- Terminal version, not very friendly
-- Nicer terminal: [radian](https://github.com/randy3k/radian)
-- Execute R scripts by using `Rscript name_of_script.R`. Useful to run code in `cron`, for instance
-- Use IDEs:
-    - [RStudio](https://www.rstudio.com/products/rstudio/) has become the reference
-    - [RKWard](https://invent.kde.org/education/rkward) is useful if you are for instance using an ARM processor (Raspberry Pi, some Chromebooks..)
-- Integrate into jupyter notebooks
-
----
-
-# Going further
-
-- [RStudio server](https://www.rstudio.com/products/rstudio/#rstudio-server): run RStudio on a Linux server and connect via a web interface
-- Shiny: easily create an interactive web site running R code
-- [Shiny server](https://www.rstudio.com/products/shiny/shiny-server/): run Shiny apps on a Linux server
-- Rmarkdown: markdown that incorporates R commands. Useful for generating reports in html or pdf, can make slides as well..
-- RSweave: LaTeX incorporating R commands. Useful for generating reports. Not used as much as Rmarkdown these days
-
----
-
 # R is a scripted language
 
 - Interactive
@@ -144,4 +122,20 @@ To install, select your OS from the main page
 
 Often, the version on your distribution is not the most up to date
 
-Instructions are on CRAN about setting things up so you have the latest version
+Instructions are on CRAN about setting things up so you have the latest version. For instance,
+
+- [Debian](https://cran.r-project.org/bin/linux/debian/#secure-apt)
+- [Ubuntu](https://cran.r-project.org/bin/linux/ubuntu/)
+
+---
+
+# Development environments
+
+- Terminal version, not very friendly
+- Nicer terminal: [radian](https://github.com/randy3k/radian)
+- Execute R scripts by using `Rscript name_of_script.R`. Useful to run code in `cron`, for instance
+- Integrate into jupyter notebooks
+- Use IDEs:
+    - [RStudio](https://www.rstudio.com/products/rstudio/) has become the reference (see [Vignette 02](https://julien-arino.github.io/R-for-modellers/SLIDES/vignette-02-Rstudio-and-friends.html))
+    - [RKWard](https://invent.kde.org/education/rkward) is useful if you are for instance using an ARM processor (Raspberry Pi, some Chromebooks..)
+
