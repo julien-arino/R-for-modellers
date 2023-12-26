@@ -1,6 +1,6 @@
 ---
 marp: true
-title: Lecture 11 - Solving DDE
+title: Vignette 11 - Solving DDE in R
 description: Julien Arino - R for modellers - Lecture 10 - Solving delay differential equations (DDE) in R
 theme: default
 class: invert
@@ -19,7 +19,7 @@ size: 4:3
 <!-- backgroundColor: black -->
 <!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
 
-# Lecture 10 - Solving ODE
+# Vignette 11 - Solving DDE in R
 
 Julien Arino [![width:32px](https://raw.githubusercontent.com/julien-arino/presentations/main/FIGS/icons/email-round.png)](mailto:Julien.Arino@umanitoba.ca) [![width:32px](https://raw.githubusercontent.com/julien-arino/presentations/main/FIGS/icons/world-wide-web.png)](https://julien-arino.github.io/) [![width:32px](https://raw.githubusercontent.com/julien-arino/presentations/main/FIGS/icons/github-icon.png)](https://github.com/julien-arino)
 
