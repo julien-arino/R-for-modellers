@@ -1,7 +1,7 @@
 ---
 marp: true
-title: Lecture 10 - Solving ODE
-description: Julien Arino - R for modellers - Lecture 10 - Solving ordinary differential equations (ODE) in R
+title: Vignette 10 - Solving ODE
+description: Julien Arino - R for modellers - Vignette 10 - Solving ordinary differential equations (ODE) in R
 theme: default
 class: invert
 math: mathjax
@@ -19,7 +19,7 @@ size: 4:3
 <!-- backgroundColor: black -->
 <!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
 
-# Lecture 10 - Solving ODE
+# Lecture 10 - Solving ODE in R
 
 Julien Arino [![width:32px](https://raw.githubusercontent.com/julien-arino/presentations/main/FIGS/icons/email-round.png)](mailto:Julien.Arino@umanitoba.ca) [![width:32px](https://raw.githubusercontent.com/julien-arino/presentations/main/FIGS/icons/world-wide-web.png)](https://julien-arino.github.io/) [![width:32px](https://raw.githubusercontent.com/julien-arino/presentations/main/FIGS/icons/github-icon.png)](https://github.com/julien-arino)
 

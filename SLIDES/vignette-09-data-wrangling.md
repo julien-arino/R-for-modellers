@@ -1,7 +1,7 @@
 ---
 marp: true
-title: R for modellers - Lecture 01 - Introduction to R. Installing R
-description: Julien Arino - Lecture 01 - R for modellers - Introduction to R. Installing R.
+title: Vignette 09 - Data wrangling
+description: Julien Arino - R for modellers - Data wrangling.
 theme: default
 class: invert
 math: mathjax
@@ -32,7 +32,7 @@ size: 4:3
 </style>
 
 <!-- _backgroundImage: "linear-gradient(to top, #85110d, 3%, white)" -->
-# Lecture 01 - Introduction to R. Installing R
+# Vignette 09 - Data wrangling
 
 Julien Arino [![width:32px](https://raw.githubusercontent.com/julien-arino/presentations/main/FIGS/icons/email-round.png)](mailto:Julien.Arino@umanitoba.ca) [![width:32px](https://raw.githubusercontent.com/julien-arino/presentations/main/FIGS/icons/world-wide-web.png)](https://julien-arino.github.io/) [![width:32px](https://raw.githubusercontent.com/julien-arino/presentations/main/FIGS/icons/github-icon.png)](https://github.com/julien-arino)
 

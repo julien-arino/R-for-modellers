@@ -1,7 +1,7 @@
 ---
 marp: true
-title: R for modellers - Lecture 01 - Introduction to R. Installing R
-description: Julien Arino - Lecture 01 - R for modellers - Introduction to R. Installing R.
+title: Vignette 06 - apply, lapply and friends
+description: Julien Arino - R for modellers - Vignette 06 - apply, lapply and friends.
 theme: default
 class: invert
 math: mathjax

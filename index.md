@@ -13,23 +13,6 @@ Contrary to other courses I have posted, these are small snapshots ("vignettes")
 Also note that the order of the vignettes is, for the most part, not really relevant.
 
 <ul>
-{% for file in site.static_files %}
-  {% if file.path contains 'SLIDES' %}
-    {% if file.path contains 'vignette' %}
-      {% unless file.path contains 'FIGS' %}
-        {% if file.path contains 'pdf' %}
-          <li><a href="https://julien-arino.github.io/R-for-modellers/SLIDES/{{ file.basename }}.pdf">{{ file.basename }}</a></li>
-        {% endif %}
-        {% if file.path contains 'html' %}
-          <li><a href="https://julien-arino.github.io/R-for-modellers/SLIDES/{{ file.basename }}.html">{{ file.basename }}</a></li>
-        {% endif %}
-      {% endunless %}
-    {% endif %}
-  {% endif %}
-{% endfor %}
-</ul>
-
-<ul>
 {% for file in site.pages %}
   {% if file.path contains 'SLIDES' %}
     {% if file.path contains 'vignette' %}
