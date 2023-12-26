@@ -62,7 +62,7 @@ Canadian Centre for Disease Modelling
 
 ---
 
-# R was originally for stats but is now much more
+# <!--fit-->R was originally for stats but is now much more
 
 - Open source version of S
 - Appeared in 1993
@@ -130,3 +130,18 @@ Canadian Centre for Disease Modelling
 <!-- _backgroundImage: "linear-gradient(to bottom, red, black)" -->
 # <!--fit-->Installing `R`
 
+---
+
+# The main location - CRAN
+
+The [Comprehensive R Archive Network](https://cran.r-project.org/) or CRAN is where to go for all official things `R`
+
+To install, select your OS from the main page
+
+---
+
+# A note for Linux users
+
+Often, the version on your distribution is not the most up to date
+
+Instructions are on CRAN about setting things up so you have the latest version
