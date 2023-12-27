@@ -121,6 +121,19 @@ It is not required to use quotation marks, e.g., `library(ggplot2)`
 
 ---
 
+# Loading several packages
+
+To load several packages with a single command, you need to use a loop and the option `character.only = TRUE`
+
+```R
+required_packages = c("ggplot2", "dplyr")
+for (p in required_packages) {
+  library(p, character.only = TRUE)
+}
+```
+
+---
+
 <!-- _backgroundImage: "linear-gradient(to bottom, red, black)" -->
 <a id="sec:friendly"></a>
 # <!--fit-->Be friendly to others!
@@ -151,6 +164,20 @@ if (!require(package_name)) {
 }
 ```
 > `require` is designed for use inside other functions; it returns `FALSE` and gives a warning (rather than an error as `library()` does by default) if the package does not exist.
+
+---
+
+# Example using several libraries
+
+```R
+required_packages = c("ggplot2", "dplyr")
+for (p in required_packages) {
+  if (!require(p, character.only = TRUE)) {
+    install.packages(p)
+    library(p, character.only = TRUE)
+  }
+}
+```
 
 ---
 
