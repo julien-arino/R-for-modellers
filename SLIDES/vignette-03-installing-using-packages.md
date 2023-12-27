@@ -51,7 +51,7 @@ Canadian Centre for Disease Modelling
 
 # <!--fit-->Note - Required reading/watching for MATH 2740 students
 
-If you are a student in the University of Manitoba's Mathematics of Data Science course (MATH 2740), this is **required** reading/watching
+If you are a student in the University of Manitoba's Mathematics of Data Science course (MATH 2740), this is **required** reading & watching
 
 Failure to use the ["friendly" method](#sec:friendly) will result in loss of marks in your `R` assignments!
 
