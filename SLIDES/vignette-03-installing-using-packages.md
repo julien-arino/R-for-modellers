@@ -121,6 +121,23 @@ You can also use the package [githubinstall](https://cran.r-project.org/web/pack
 
 ---
 
+```R
+> library(githubinstall)
+> githubinstall("xkcd")
+Select a number or, hit 0 to cancel. 
+
+1: DanHenebery/Rxkcd  
+2: EDiLD/xkcd2        
+
+Selection: 2
+Suggestion:
+ - EDiLD/xkcd2  NA
+Do you want to install the package (Y/n)?  
+Downloading GitHub repo EDiLD/xkcd2@master
+```
+
+---
+
 <!-- _backgroundImage: "linear-gradient(to bottom, red, black)" -->
 <a id="sec:loading"></a>
 # <!--fit-->Loading a package
