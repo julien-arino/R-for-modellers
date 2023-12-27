@@ -27,6 +27,6 @@ update.packages(ask = FALSE, checkBuilt = TRUE, Ncpus = 6)
 install.packages( 
   lib  = lib <- .libPaths()[1],
   pkgs = as.data.frame(installed.packages(lib), 
-                       stringsAsFactors=FALSE)$Package,
+                       stringsAsFactors = FALSE)$Package,
   type = 'source'
 )
