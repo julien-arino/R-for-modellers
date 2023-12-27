@@ -245,3 +245,19 @@ Packages are stored by default in your home folder under the current major versi
 When the major version changes, you therefore need to do something with all your current packages..
 
 There is no planned mechanisms for doing this
+
+Easiest: export list of libraries in the previous version, then install all of them
+
+---
+
+Set `lib` to be previous R version, say, 4.2:
+
+```R
+lib = "/home/jarino/x86_64-pc-linux-gnu-library/4.2"
+```
+
+then get list of packages
+
+```R
+installed_packages = as.data.frame(installed.packages(lib))$Package
+```

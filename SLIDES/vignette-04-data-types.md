@@ -52,10 +52,10 @@ Canadian Centre for Disease Modelling
 <!-- _backgroundImage: "radial-gradient(red,30%,black)" -->
 # Outline
 
-- Foreword: the R language
-- Programming in R
-- Dealing with data
-- Solving ODE numerically
+- [Assignment](#assignment)
+- [Lists](#lists)
+- [Vectors](#vectors)
+- [Matrices](#matrices)
 
 ---
 
