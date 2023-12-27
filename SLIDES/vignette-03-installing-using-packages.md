@@ -83,8 +83,10 @@ Packages allow to avoid "bloating", since the `R` core remains relatively light 
 # CRAN is the main source for packages
 
 ```R
-> paste(nrow(available.packages()),"on",Sys.Date())
-[1] "20240 on 2023-12-26"
+> paste(nrow(available.packages()),
++       "packages on CRAN on",
++       Sys.Date())
+[1] "20240 packages on CRAN on 2023-12-27"
 ```
 
 ---
@@ -115,9 +117,11 @@ Use the command `install.packages()`
 
 ---
 
+# Loading a package
+
 Once a package is installed, you load it with the command `library()`
 
-It is not required to use quotation marks, e.g., `library(ggplot2)`
+No need to use quotation marks: `library(ggplot2)`
 
 ---
 
@@ -185,3 +189,30 @@ for (p in required_packages) {
 <a id="sec:updating"></a>
 # <!--fit-->Updating packages
 
+---
+
+# Using RStudio
+
+---
+
+# From the R command line
+
+```R
+update.packages(ask = FALSE, checkBuilt = TRUE, Ncpus = 6)
+```
+
+- `ask = FALSE`: do not ask for confirmation
+- `checkBuilt = TRUE`: check with which version of `R` the package was built and call package *old* if this is a earlier major version (e.g., built with 4.2 when the current is 4.3)
+- `Ncpus = 6`: run compilations (if needed) using that many threads
+
+---
+
+# Packages and `R` major versions
+
+Packages are stored by default in your home folder under the current major version of `R` (currently 4.3)
+
+```
+~/R/x86_64-pc-linux-gnu-library/4.3/
+```
+
+When the major version changes, you therefore need to do something with all your current packages...
