@@ -74,9 +74,9 @@ Failure to use the ["friendly" method](#sec:friendly) will result in loss of mar
 
 ---
 
-*Packages* (also called *libraries*) extend `R` by providing functions or data that is useful in particular contexts
+*Packages* (or *libraries*) extend `R` by providing functions or data that is useful in particular contexts
 
-Allow to avoid "bloating", since the `R` core remains relatively light and you only install the additional content you need
+Packages allow to avoid "bloating", since the `R` core remains relatively light and you only install the additional content you need
 
 ---
 
@@ -105,13 +105,19 @@ Allow to avoid "bloating", since the `R` core remains relatively light and you o
 
 # From CRAN
 
-`install.packages()`
+Use the command `install.packages()`
 
 ---
 
 <!-- _backgroundImage: "linear-gradient(to bottom, red, black)" -->
 <a id="sec:loading"></a>
 # <!--fit-->Loading a package
+
+---
+
+Once a package is installed, you load it with the command `library()`
+
+It is not required to use quotation marks, e.g., `library(ggplot2)`
 
 ---
 
