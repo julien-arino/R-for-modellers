@@ -63,13 +63,13 @@ Canadian Centre for Disease Modelling
 
 Two ways:
 
-```
+```R
 X <- 10
 ```
 
 or
 
-```
+```R
 X = 10
 ```
 
@@ -86,9 +86,6 @@ L <- list()
 L$a <- 10
 L$b <- 3
 L[["another_name"]] <- "Plouf plouf"
-```
-
-```R
 > L[1]
 $a
 [1] 10
