@@ -53,7 +53,7 @@ Canadian Centre for Disease Modelling
 
 If you are a student in the University of Manitoba's Mathematics of Data Science course (MATH 2740), this is **required** reading/watching
 
-Failure to use the "friendly" method presented later will result in loss of marks in your `R` assignments!
+Failure to use the ["friendly" method](#sec:friendly) will result in loss of marks in your `R` assignments!
 
 ---
 
@@ -61,10 +61,10 @@ Failure to use the "friendly" method presented later will result in loss of mark
 # Outline
 
 - [Packages (a.k.a. libraries)](#sec:packages)
-- Installing a package
-- Loading a package
-- Be friendly to others!
-- Updating packages
+- [Installing a package](#sec:installing)
+- [Loading a package](#sec:loading)
+- [Be friendly to others!](#sec:friendly)
+- [Updating packages](#sec:updating)
 
 ---
 
@@ -98,6 +98,7 @@ Allow to avoid "bloating", since the `R` core remains relatively light and you o
 ---
 
 <!-- _backgroundImage: "linear-gradient(to bottom, red, black)" -->
+<a id="sec:installing"></a>
 # <!--fit-->Installing a package
 
 ---
@@ -109,11 +110,13 @@ Allow to avoid "bloating", since the `R` core remains relatively light and you o
 ---
 
 <!-- _backgroundImage: "linear-gradient(to bottom, red, black)" -->
+<a id="sec:loading"></a>
 # <!--fit-->Loading a package
 
 ---
 
 <!-- _backgroundImage: "linear-gradient(to bottom, red, black)" -->
+<a id="sec:friendly"></a>
 # <!--fit-->Be friendly to others!
 
 ---
@@ -146,5 +149,6 @@ if (!require(package_name)) {
 ---
 
 <!-- _backgroundImage: "linear-gradient(to bottom, red, black)" -->
+<a id="sec:updating"></a>
 # <!--fit-->Updating packages
 
