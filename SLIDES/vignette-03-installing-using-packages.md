@@ -111,6 +111,16 @@ Use the command `install.packages()`
 
 ---
 
+# From GitHub
+
+Some packages are only on GitHub; others have their latest (testing) version on GitHub and a stable version on CRAN
+
+Need to use the `devtools` or `remotes` packages (maybe prefer `devtools`)
+
+You can also use the package [githubinstall](https://cran.r-project.org/web/packages/githubinstall/vignettes/githubinstall.html)
+
+---
+
 <!-- _backgroundImage: "linear-gradient(to bottom, red, black)" -->
 <a id="sec:loading"></a>
 # <!--fit-->Loading a package
@@ -215,4 +225,6 @@ Packages are stored by default in your home folder under the current major versi
 ~/R/x86_64-pc-linux-gnu-library/4.3/
 ```
 
-When the major version changes, you therefore need to do something with all your current packages...
+When the major version changes, you therefore need to do something with all your current packages..
+
+There is no planned mechanisms for doing this
