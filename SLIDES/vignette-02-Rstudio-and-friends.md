@@ -39,8 +39,8 @@ Canadian Centre for Disease Modelling
 
 - [RStudio](#rstudio)
 - [RStudio server](#rstudio-server)
-- [Sweave](#sweave)
 - [RMarkdown](#rmarkdown)
+- [Sweave](#sweave)
 - [Quarto](#quarto)
 - [Shiny](#shiny)
 - [Shiny server](#shiny-server)
@@ -87,6 +87,19 @@ Canadian Centre for Disease Modelling
 ---
 
 <!-- _backgroundImage: "linear-gradient(to bottom, red, black)" -->
+# <!--fit-->RMarkdown
+
+---
+
+# RMarkdown
+
+- Rmarkdown: markdown that incorporates R commands
+- Useful for generating reports in html, pdf or doc, can make slides as well..
+- See [Vignette 13](https://julien-arino.github.io/R-for-modellers/SLIDES/vignette-13-RMarkdown.html)
+
+---
+
+<!-- _backgroundImage: "linear-gradient(to bottom, red, black)" -->
 # <!--fit-->Sweave
 
 ---
@@ -95,19 +108,9 @@ Canadian Centre for Disease Modelling
 
 - Sweave: LaTeX incorporating R commands
 - Useful for generating pdf reports
-- Not used as much as Rmarkdown these days, probably because Rmarkdown allow output also in html and doc
+- Not used as much as Rmarkdown these days, probably because Rmarkdown allows output also in html and doc
 - If you have a whole document to typeset using LaTeX, then still the best option
-
----
-
-<!-- _backgroundImage: "linear-gradient(to bottom, red, black)" -->
-# <!--fit-->RMarkdown
-
----
-
-# RMarkdown
-
-- Rmarkdown: markdown that incorporates R commands. Useful for generating reports in html or pdf, can make slides as well..
+- See [Vignette 14](https://julien-arino.github.io/R-for-modellers/SLIDES/vignette-14-Sweave.html)
 
 ---
 
@@ -120,6 +123,7 @@ Canadian Centre for Disease Modelling
 
 - Promoted as next-gen version of Sweave/RMarkdown
 - Will confess that I have not yet seen why switch
+- See [Vignette 15](https://julien-arino.github.io/R-for-modellers/SLIDES/vignette-15-Quarto.html)
 
 ---
 
@@ -131,6 +135,7 @@ Canadian Centre for Disease Modelling
 # Shiny
 
 - Shiny: easily create an interactive web site running R code
+- See [Vignette 16](https://julien-arino.github.io/R-for-modellers/SLIDES/vignette-16-Shiny.html)
 
 ---
 
@@ -144,4 +149,5 @@ Canadian Centre for Disease Modelling
 - [Shiny server](https://posit.co/products/open-source/shinyserver/): run Shiny apps on a Linux server
 - Useful for instance if you have a Linux VM running somewhere
 - See, e.g., my instance [here](https://daytah-or-dahtah.ovh:3838/)
+- See [Vignette 17](https://julien-arino.github.io/R-for-modellers/SLIDES/vignette-17-Shiny-server.html)
 
