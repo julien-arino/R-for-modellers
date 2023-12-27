@@ -10,21 +10,6 @@ size: 4:3
 ---
 
 <style>
-  .theorem {
-    text-align:justify;
-    background-color:#16a085;
-    border-radius:20px;
-    padding:10px 20px 10px 20px;
-    box-shadow: 0px 1px 5px #999;  margin-bottom: 10px;
-  }
-  .definition {
-    text-align:justify;
-    background-color:#ededde;
-    border-radius:20px;
-    padding:10px 20px 10px 20px;
-    box-shadow: 0px 1px 5px #999;
-    margin-bottom: 10px;
-  }
   img[alt~="center"] {
     display: block;
     margin: 0 auto;
@@ -132,6 +117,20 @@ Then `x+1` gives
 [1]  2  3  4  5  6  7  8  9 10 11
  ```
 i.e., adds 1 to all entries in the vector
+
+---
+
+# Use `seq` to make more complex sequences
+
+```R
+> x = seq(from = 2, to = 10, by = 1.25)
+> x
+[1] 2.00 3.25 4.50 5.75 7.00 8.25 9.50
+> y = seq(from = 2, to = 100, length.out = 10)
+> y
+ [1]   2.00000  12.88889  23.77778  34.66667  45.55556  56.44444
+ [7]  67.33333  78.22222  89.11111 100.00000
+```
 
 ---
 
