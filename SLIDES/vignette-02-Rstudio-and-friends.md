@@ -93,7 +93,10 @@ Canadian Centre for Disease Modelling
 
 # Sweave
 
-- RSweave: LaTeX incorporating R commands. Useful for generating reports. Not used as much as Rmarkdown these days
+- Sweave: LaTeX incorporating R commands
+- Useful for generating pdf reports
+- Not used as much as Rmarkdown these days, probably because Rmarkdown allow output also in html and doc
+- If you have a whole document to typeset using LaTeX, then still the best option
 
 ---
 
