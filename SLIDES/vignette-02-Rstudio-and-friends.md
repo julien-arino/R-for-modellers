@@ -39,11 +39,11 @@ Canadian Centre for Disease Modelling
 
 - [RStudio](#rstudio)
 - [RStudio server](#rstudio-server)
-- Sweave
-- RMarkdown
-- Quarto
-- Shiny
-- Shiny server
+- [Sweave](#sweave)
+- [RMarkdown](#rmarkdown)
+- [Quarto](#quarto)
+- [Shiny](#shiny)
+- [Shiny server](#shiny-server)
 
 ---
 
@@ -140,5 +140,5 @@ Canadian Centre for Disease Modelling
 
 - [Shiny server](https://posit.co/products/open-source/shinyserver/): run Shiny apps on a Linux server
 - Useful for instance if you have a Linux VM running somewhere
-- 
+- See, e.g., my instance [here](https://daytah-or-dahtah.ovh:3838/)
 
