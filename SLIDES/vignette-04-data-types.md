@@ -81,14 +81,14 @@ First version is preferred by R purists.. I don't really care
 
 A very useful data structure, quite flexible and versatile. Empty list: `L <- list()`. Convenient for things like parameters. For instance
 
-```
+```R
 L <- list()
 L$a <- 10
 L$b <- 3
 L[["another_name"]] <- "Plouf plouf"
 ```
 
-```
+```R
 > L[1]
 $a
 [1] 10
@@ -106,7 +106,7 @@ $a
 
 # Vectors
 
-```
+```R
 x = 1:10
 y <- c(x, 12)
 > y
@@ -122,16 +122,32 @@ Note that in `z`, since the first two entries are characters, the added entry is
 
 ---
 
+# Vector operations
+
+Say you write `x=1:10`, i.e., make the vector
+```R
+> x
+[1]  1  2  3  4  5  6  7  8  9 10
+```
+Then `x+1` gives
+```R
+> x+1
+[1]  2  3  4  5  6  7  8  9 10 11
+ ```
+i.e., adds 1 to all entries in the vector
+
+---
+
 # Matrices
 
 Matrix (or vector) of zeros
-```
+```R
 A <- mat.or.vec(nr = 2, nc = 3)
 ```
 
 Matrix with prescribed entries
 
-```
+```R
 B <- matrix(c(1,2,3,4), nr = 2, nc = 2)
 > B
      [,1] [,2]
@@ -154,24 +170,6 @@ Probably the biggest annoyance in R compared to other languages
 
 - The notation `A*B` is the *Hadamard product* $A\circ B$ (what would be denoted `A.*B` in matlab), not the standard matrix multiplication
 - Matrix multiplication is written `A %*% B`
-
----
-
-# Vector operations
-
-Vector addition is also frustrating. Say you write `x=1:10`, i.e., make the vector
-```
-> x
- [1]  1  2  3  4  5  6  7  8  9 10
-```
-Then `x+1` gives
-```
-> x+1
- [1]  2  3  4  5  6  7  8  9 10 11
- ```
- i.e., adds 1 to all entries in the vector
-
- Beware of this in particular when addressing sets of indices in lists, vectors or matrices
 
 ---
 
