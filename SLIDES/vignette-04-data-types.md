@@ -41,7 +41,7 @@ Canadian Centre for Disease Modelling
 - [Lists](#lists)
 - [Vectors](#vectors)
 - [Matrices](#matrices)
-- [Data frames](#data)
+- [Data frames](#data-frames)
 
 ---
 
