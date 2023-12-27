@@ -53,14 +53,14 @@ Canadian Centre for Disease Modelling
 
 If you are a student in the University of Manitoba's Mathematics of Data Science course (MATH 2740), this is **required** reading/watching
 
-Failure to use the "user friendly" method presented later will result in loss of marks in your `R` assignments!
+Failure to use the "friendly" method presented later will result in loss of marks in your `R` assignments!
 
 ---
 
 <!-- _backgroundImage: "radial-gradient(red,30%,black)" -->
 # Outline
 
-- Packages (a.k.a. libraries)
+- [Packages (a.k.a. libraries)](#sec:packages)
 - Installing a package
 - Loading a package
 - Be friendly to others!
@@ -69,6 +69,7 @@ Failure to use the "user friendly" method presented later will result in loss of
 ---
 
 <!-- _backgroundImage: "linear-gradient(to bottom, red, black)" -->
+<a id="sec:packages"></a>
 # <!--fit-->Packages (a.k.a. libraries)
 
 ---
