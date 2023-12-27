@@ -10,21 +10,6 @@ size: 4:3
 ---
 
 <style>
-  .theorem {
-    text-align:justify;
-    background-color:#16a085;
-    border-radius:20px;
-    padding:10px 20px 10px 20px;
-    box-shadow: 0px 1px 5px #999;  margin-bottom: 10px;
-  }
-  .definition {
-    text-align:justify;
-    background-color:#ededde;
-    border-radius:20px;
-    padding:10px 20px 10px 20px;
-    box-shadow: 0px 1px 5px #999;
-    margin-bottom: 10px;
-  }
   img[alt~="center"] {
     display: block;
     margin: 0 auto;
@@ -33,7 +18,7 @@ size: 4:3
 
 <!-- backgroundColor: black -->
 <!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
-# Vignette 02 - RStudio and friends
+# Vignette 02<br>RStudio and friends
 
 Julien Arino [![width:32px](https://raw.githubusercontent.com/julien-arino/presentations/main/FIGS/icons/email-round.png)](mailto:Julien.Arino@umanitoba.ca) [![width:32px](https://raw.githubusercontent.com/julien-arino/presentations/main/FIGS/icons/world-wide-web.png)](https://julien-arino.github.io/) [![width:32px](https://raw.githubusercontent.com/julien-arino/presentations/main/FIGS/icons/github-icon.png)](https://github.com/julien-arino)
 
@@ -52,8 +37,8 @@ Canadian Centre for Disease Modelling
 <!-- _backgroundImage: "radial-gradient(red,30%,black)" -->
 # Outline
 
-- RStudio
-- RStudio server
+- [RStudio](#rstudio)
+- [RStudio server](#rstudio-server)
 - Sweave
 - RMarkdown
 - Quarto

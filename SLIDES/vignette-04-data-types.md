@@ -121,7 +121,7 @@ i.e., adds 1 to all entries in the vector
 
 ---
 
-# Use `seq` to make more complex sequences
+# <!--fit-->Use `seq` to make more complex sequences
 
 ```R
 > x = seq(from = 2, to = 10, by = 1.25)
