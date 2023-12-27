@@ -41,6 +41,7 @@ Canadian Centre for Disease Modelling
 - [Lists](#lists)
 - [Vectors](#vectors)
 - [Matrices](#matrices)
+- [Data frames](#data)
 
 ---
 
@@ -89,11 +90,11 @@ $a
 # Vectors
 
 ```R
-x = 1:10
-y <- c(x, 12)
+> x = 1:10
+> y <- c(x, 12)
 > y
- [1]  1  2  3  4  5  6  7  8  9 10 12
-z = c("red", "blue")
+[1]  1  2  3  4  5  6  7  8  9 10 12
+> z = c("red", "blue")
 > z
 [1] "red"  "blue"
 z = c(z, 1)
@@ -174,3 +175,6 @@ Probably the biggest annoyance in R compared to other languages
 - R does not have the keyword `end` to access the last entry in a matrix/vector/list..
 - Use `length` (lists or vectors), `nchar` (character chains), `dim` (matrices.. careful, of course returns 2 values)
 
+---
+
+# Data frames
