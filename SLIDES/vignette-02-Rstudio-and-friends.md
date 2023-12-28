@@ -34,7 +34,7 @@ Canadian Centre for Disease Modelling
 
 ---
 
-<!-- _backgroundImage: "radial-gradient(red,30%,black)" -->
+<!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
 # Outline
 
 - [RStudio](#rstudio)
@@ -61,7 +61,7 @@ Canadian Centre for Disease Modelling
 
 ---
 
-<!-- _backgroundImage: "linear-gradient(to bottom, red, black)" -->
+<!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
 # <!--fit-->RStudio
 
 ---
@@ -73,7 +73,7 @@ Canadian Centre for Disease Modelling
 
 ---
 
-<!-- _backgroundImage: "linear-gradient(to bottom, red, black)" -->
+<!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
 # <!--fit-->RStudio server
 
 ---
@@ -86,7 +86,7 @@ Canadian Centre for Disease Modelling
 
 ---
 
-<!-- _backgroundImage: "linear-gradient(to bottom, red, black)" -->
+<!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
 # <!--fit-->RMarkdown
 
 ---
@@ -99,7 +99,7 @@ Canadian Centre for Disease Modelling
 
 ---
 
-<!-- _backgroundImage: "linear-gradient(to bottom, red, black)" -->
+<!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
 # <!--fit-->Sweave
 
 ---
@@ -114,7 +114,7 @@ Canadian Centre for Disease Modelling
 
 ---
 
-<!-- _backgroundImage: "linear-gradient(to bottom, red, black)" -->
+<!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
 # <!--fit-->Quarto
 
 ---
@@ -127,7 +127,7 @@ Canadian Centre for Disease Modelling
 
 ---
 
-<!-- _backgroundImage: "linear-gradient(to bottom, red, black)" -->
+<!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
 # <!--fit-->Shiny
 
 ---
@@ -139,7 +139,7 @@ Canadian Centre for Disease Modelling
 
 ---
 
-<!-- _backgroundImage: "linear-gradient(to bottom, red, black)" -->
+<!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
 # <!--fit-->Shiny server
 
 ---

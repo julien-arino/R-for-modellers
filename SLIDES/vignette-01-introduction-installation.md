@@ -10,21 +10,6 @@ size: 4:3
 ---
 
 <style>
-  .theorem {
-    text-align:justify;
-    background-color:#16a085;
-    border-radius:20px;
-    padding:10px 20px 10px 20px;
-    box-shadow: 0px 1px 5px #999;  margin-bottom: 10px;
-  }
-  .definition {
-    text-align:justify;
-    background-color:#ededde;
-    border-radius:20px;
-    padding:10px 20px 10px 20px;
-    box-shadow: 0px 1px 5px #999;
-    margin-bottom: 10px;
-  }
   img[alt~="center"] {
     display: block;
     margin: 0 auto;
@@ -49,7 +34,7 @@ Canadian Centre for Disease Modelling
 
 ---
 
-<!-- _backgroundImage: "radial-gradient(red,30%,black)" -->
+<!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
 # Outline
 
 - Foreword: the ![width:32px](https://raw.githubusercontent.com/julien-arino/R-for-modellers/main/assets/img/Rlogo.svg) language
@@ -57,7 +42,7 @@ Canadian Centre for Disease Modelling
 
 ---
 
-<!-- _backgroundImage: "linear-gradient(to bottom, red, black)" -->
+<!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
 # <!--fit-->Foreword: the ![width:40px](https://raw.githubusercontent.com/julien-arino/R-for-modellers/main/assets/img/Rlogo.svg) language
 
 ---
@@ -105,7 +90,7 @@ Canadian Centre for Disease Modelling
 
 ---
 
-<!-- _backgroundImage: "linear-gradient(to bottom, red, black)" -->
+<!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
 # <!--fit-->Installing ![width:40px](https://raw.githubusercontent.com/julien-arino/R-for-modellers/main/assets/img/Rlogo.svg)
 
 ---

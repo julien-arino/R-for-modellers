@@ -10,21 +10,6 @@ size: 4:3
 ---
 
 <style>
-  .theorem {
-    text-align:justify;
-    background-color:#16a085;
-    border-radius:20px;
-    padding:10px 20px 10px 20px;
-    box-shadow: 0px 1px 5px #999;  margin-bottom: 10px;
-  }
-  .definition {
-    text-align:justify;
-    background-color:#ededde;
-    border-radius:20px;
-    padding:10px 20px 10px 20px;
-    box-shadow: 0px 1px 5px #999;
-    margin-bottom: 10px;
-  }
   img[alt~="center"] {
     display: block;
     margin: 0 auto;
@@ -57,7 +42,7 @@ Failure to use the ["friendly" method](#sec:friendly) will result in loss of mar
 
 ---
 
-<!-- _backgroundImage: "radial-gradient(red,30%,black)" -->
+<!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
 # Outline
 
 - [Packages (a.k.a. libraries)](#sec:packages)
@@ -68,7 +53,7 @@ Failure to use the ["friendly" method](#sec:friendly) will result in loss of mar
 
 ---
 
-<!-- _backgroundImage: "linear-gradient(to bottom, red, black)" -->
+<!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
 <a id="sec:packages"></a>
 # <!--fit-->Packages (a.k.a. libraries)
 
@@ -80,7 +65,7 @@ Packages allow to avoid "bloating", since the `R` core remains relatively light 
 
 ---
 
-# CRAN is the main source for packages
+# <!--fit-->CRAN is the main source for packages
 
 ```R
 > paste(nrow(available.packages()),
@@ -91,7 +76,7 @@ Packages allow to avoid "bloating", since the `R` core remains relatively light 
 
 ---
 
-# There are also packages not on CRAN
+# <!--fit-->There are also packages not on CRAN
 
 - For instance, packages on GitHub
 - Sometimes packages get removed from CRAN, although the latest versions are typically still available
@@ -99,7 +84,7 @@ Packages allow to avoid "bloating", since the `R` core remains relatively light 
 
 ---
 
-<!-- _backgroundImage: "linear-gradient(to bottom, red, black)" -->
+<!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
 <a id="sec:installing"></a>
 # <!--fit-->Installing a package
 
@@ -138,7 +123,7 @@ Downloading GitHub repo EDiLD/xkcd2@master
 
 ---
 
-<!-- _backgroundImage: "linear-gradient(to bottom, red, black)" -->
+<!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
 <a id="sec:loading"></a>
 # <!--fit-->Loading a package
 
@@ -165,7 +150,7 @@ for (p in required_packages) {
 
 ---
 
-<!-- _backgroundImage: "linear-gradient(to bottom, red, black)" -->
+<!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
 <a id="sec:friendly"></a>
 # <!--fit-->Be friendly to others!
 
@@ -212,7 +197,7 @@ for (p in required_packages) {
 
 ---
 
-<!-- _backgroundImage: "linear-gradient(to bottom, red, black)" -->
+<!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
 <a id="sec:updating"></a>
 # <!--fit-->Updating packages
 
