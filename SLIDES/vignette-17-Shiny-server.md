@@ -34,14 +34,14 @@ Canadian Centre for Disease Modelling
 
 ---
 
-<!-- _backgroundImage: "radial-gradient(red,30%,black)" -->
+<!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
 # Outline
 
 - [Shiny server](#shiny-server)
 
 ---
 
-<!-- _backgroundImage: "linear-gradient(to bottom, red, black)" -->
+<!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
 # <!--fit-->Shiny server
 
 ---

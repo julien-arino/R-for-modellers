@@ -10,20 +10,6 @@ size: 4:3
 ---
 
 <style>
-  .theorem {
-    text-align:justify;
-    background-color:#16a085;
-    border-radius:20px;
-    padding:10px 20px 10px 20px;
-    box-shadow: 0px 1px 5px #999;  margin-bottom: 10px;
-  }
-  .definition {
-    text-align:justify;
-    background-color:#ededde;
-    border-radius:20px;
-    padding:10px 20px 10px 20px;
-    box-shadow: 0px 1px 5px #999;
-    margin-bottom: 10px;
   }
   img[alt~="center"] {
     display: block;
@@ -33,7 +19,7 @@ size: 4:3
 
 <!-- backgroundColor: black -->
 <!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
-# Vignette 08 - Acquiring data
+# Vignette 08<br>Acquiring data
 
 Julien Arino [![width:32px](https://raw.githubusercontent.com/julien-arino/presentations/main/FIGS/icons/email-round.png)](mailto:Julien.Arino@umanitoba.ca) [![width:32px](https://raw.githubusercontent.com/julien-arino/presentations/main/FIGS/icons/world-wide-web.png)](https://julien-arino.github.io/) [![width:32px](https://raw.githubusercontent.com/julien-arino/presentations/main/FIGS/icons/github-icon.png)](https://github.com/julien-arino)
 

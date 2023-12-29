@@ -19,7 +19,7 @@ size: 4:3
 <!-- backgroundColor: black -->
 <!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
 
-# Vignette 12 - Fitting an ODE
+# Vignette 12<br>Fitting an ODE
 
 Julien Arino [![width:32px](https://raw.githubusercontent.com/julien-arino/presentations/main/FIGS/icons/email-round.png)](mailto:Julien.Arino@umanitoba.ca) [![width:32px](https://raw.githubusercontent.com/julien-arino/presentations/main/FIGS/icons/world-wide-web.png)](https://julien-arino.github.io/) [![width:32px](https://raw.githubusercontent.com/julien-arino/presentations/main/FIGS/icons/github-icon.png)](https://github.com/julien-arino)
 
@@ -35,14 +35,14 @@ Canadian Centre for Disease Modelling
 
 ---
 
-<!-- _backgroundImage: "radial-gradient(red,30%,black)" -->
+<!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
 # Outline
 - Principle - Fitting data
 - Example 1 - Kermack McKendrick SIR epidemic model
 
 ---
 
-<!-- _backgroundImage: "linear-gradient(to bottom, red, black)" -->
+<!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
 # Principle - Fitting data
 
 ---

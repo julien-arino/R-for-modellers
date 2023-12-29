@@ -40,14 +40,14 @@ If you are a student in the University of Manitoba's Mathematics of Data Science
 
 ---
 
-<!-- _backgroundImage: "radial-gradient(red,30%,black)" -->
+<!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
 # Outline
 
 - [RMarkdown](#rmarkdown)
 
 ---
 
-<!-- _backgroundImage: "linear-gradient(to bottom, red, black)" -->
+<!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
 # <!--fit-->RMarkdown
 
 ---

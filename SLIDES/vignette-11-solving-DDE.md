@@ -19,7 +19,7 @@ size: 4:3
 <!-- backgroundColor: black -->
 <!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
 
-# Vignette 11 - Solving DDE in R
+# Vignette 11<br>Solving DDE in R
 
 Julien Arino [![width:32px](https://raw.githubusercontent.com/julien-arino/presentations/main/FIGS/icons/email-round.png)](mailto:Julien.Arino@umanitoba.ca) [![width:32px](https://raw.githubusercontent.com/julien-arino/presentations/main/FIGS/icons/world-wide-web.png)](https://julien-arino.github.io/) [![width:32px](https://raw.githubusercontent.com/julien-arino/presentations/main/FIGS/icons/github-icon.png)](https://github.com/julien-arino)
 
@@ -35,7 +35,7 @@ Canadian Centre for Disease Modelling
 
 ---
 
-<!-- _backgroundImage: "radial-gradient(red,30%,black)" -->
+<!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
 # Outline
 
 - The deSolve library
@@ -43,7 +43,7 @@ Canadian Centre for Disease Modelling
 
 ---
 
-<!-- _backgroundImage: "linear-gradient(to bottom, red, black)" -->
+<!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
 # The deSolve library
 
 ---

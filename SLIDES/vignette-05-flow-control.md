@@ -33,7 +33,7 @@ size: 4:3
 
 <!-- backgroundColor: black -->
 <!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
-# Vignette 05 - Flow control
+# Vignette 05<br>Flow control
 
 Julien Arino [![width:32px](https://raw.githubusercontent.com/julien-arino/presentations/main/FIGS/icons/email-round.png)](mailto:Julien.Arino@umanitoba.ca) [![width:32px](https://raw.githubusercontent.com/julien-arino/presentations/main/FIGS/icons/world-wide-web.png)](https://julien-arino.github.io/) [![width:32px](https://raw.githubusercontent.com/julien-arino/presentations/main/FIGS/icons/github-icon.png)](https://github.com/julien-arino)
 
