@@ -1,4 +1,5 @@
-# Example code for Vignette 3: Installing and Using Packages
+# Example code for Vignette 03
+# Installing and using Packages
 
 paste(nrow(available.packages()),
       "packages on CRAN on",

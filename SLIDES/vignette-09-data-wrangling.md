@@ -1,7 +1,7 @@
 ---
 marp: true
 title: Vignette 09 - Data wrangling
-description: Julien Arino - R for modellers - Data wrangling.
+description: Julien Arino - R for modellers - Vignette 09 - Data wrangling.
 theme: default
 class: invert
 math: mathjax
@@ -10,21 +10,6 @@ size: 4:3
 ---
 
 <style>
-  .theorem {
-    text-align:justify;
-    background-color:#16a085;
-    border-radius:20px;
-    padding:10px 20px 10px 20px;
-    box-shadow: 0px 1px 5px #999;  margin-bottom: 10px;
-  }
-  .definition {
-    text-align:justify;
-    background-color:#ededde;
-    border-radius:20px;
-    padding:10px 20px 10px 20px;
-    box-shadow: 0px 1px 5px #999;
-    margin-bottom: 10px;
-  }
   img[alt~="center"] {
     display: block;
     margin: 0 auto;
@@ -33,7 +18,7 @@ size: 4:3
 
 <!-- backgroundColor: black -->
 <!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
-# Vignette 09 - Data wrangling
+# Vignette 09<br>Data wrangling
 
 Julien Arino [![width:32px](https://raw.githubusercontent.com/julien-arino/presentations/main/FIGS/icons/email-round.png)](mailto:Julien.Arino@umanitoba.ca) [![width:32px](https://raw.githubusercontent.com/julien-arino/presentations/main/FIGS/icons/world-wide-web.png)](https://julien-arino.github.io/) [![width:32px](https://raw.githubusercontent.com/julien-arino/presentations/main/FIGS/icons/github-icon.png)](https://github.com/julien-arino)
 
@@ -60,53 +45,163 @@ Canadian Centre for Disease Modelling
 
 ---
 
-# Data wrangling: `dplyr` vs `sqldf`
+# Data wrangling
 
-`dplyr` is part of the `tidyverse` set of libraries. Load `magrittr` and its pipe `%>%`
+Data you acquire is rarely in a format that is immediately useful for your purposes
+
+**Data wrangling** is the process of transforming and mapping data from one "raw" data form into another format to make it more appropriate and valuable for a variety of downstream purposes
+
+---
+
+# <!--fit-->Data wrangling methods: "old school" vs `dplyr` vs `sqldf`
+
+Can go "old school"
+
+`dplyr` is part of the `tidyverse` set of libraries. Loads `magrittr` and its pipe `%>%`
 
 `sqldf` allows to use SQL on dataframes.. interesting alternative if you know SQL
 
 ---
 
+# <!--fit-->3 ways to keep only the data for one country
+
+Let us load some data for SARS-CoV-1 (2003) that I [collected some time back](https://julien-arino.github.io/blog/2014/SARS-data/)
+
 ```R
-library(sqldf)
-library(dplyr)
+github_URL = "https://raw.githubusercontent.com/"
+repo_URL = "julien-arino/datasets/master/"
+file_name = "SARS_data.csv"
+SARS_URL = paste0(github_URL, repo_URL, file_name)
+SARS = read.csv(SARS_URL)
+```
 
-SARS = read.csv("../DATA/SARS-CoV-1_data.csv")
+We want to keep the data for one country (e.g., Canada)
 
-## Three ways to keep only the data for one country
+```R
 ctry = "Canada"
-# The basic one
+```
+
+---
+
+# <!--fit-->Old school: `SARS$country == ctry`
+
+```R
+SARS_selected = SARS[SARS$country == ctry, ]
+```
+`SARS$country == ctry` is a vector of `TRUE` (entries in `SARS$country` which do equal `ctry`) and `FALSE` (entries in `SARS$country` which do not equal `ctry`)
+
+Using this vector as an index for `SARS` keeps only the entries for which the index is `TRUE`
+
+---
+
+# <!--fit-->Old school 2: `which(SARS$country == ctry)`
+
+```R
 idx = which(SARS$country == ctry)
 SARS_selected = SARS[idx,]
-# The sqldf way
-SARS_selected = sqldf(paste0("SELECT * FROM SARS WHERE country = '", 
-                             ctry, "'"))
-# The dplyr way
+```
+
+Same as before, except that here `which` returns the indices of the entries for which `SARS$country == ctry` is `TRUE`, so `idx` takes the form
+```R
+> head(idx)
+[1]  2  9 19 31 44 59
+```
+These are the indices in the original dataframe `SARS` of the entries we want to keep
+
+---
+
+# <!--fit-->Benefits of gathering indices using `which`
+
+We can make different index sets corresponding to different criteria, then combine them using `intersect`, `union` and `setdiff`
+
+For instance, if we want to keep only the entries for which the country is Canada and the date is before 2003-04-30
+
+```R
+idx_CAN = which(SARS$country == ctry)
+idx_date = which(SARS$toDate < "2003-04-30")
+idx_CAN_date = intersect(idx_CAN, idx_date)
+```
+
+---
+
+# Using `sqldf`
+
+```R
+library(sqldf)
+query = paste0("SELECT * ",
+               "FROM SARS ",
+               "WHERE country = '", 
+               ctry, "'")
+SARS_selected = sqldf(query)
+```
+
+---
+
+# Using `dplyr`
+
+```R
+library(dplyr)
 SARS_selected = SARS %>%
   filter(country == ctry)
 ```
 
 ---
 
+Create incidence for the selected country. diff does difference one by one, so one less entry than the vector on which it is being used, thus we pad with a 0
 ```R
-# Create incidence for the selected country. diff does difference one by one,
-# so one less entry than the vector on which it is being used, thus we pad with a 0.
-SARS_selected$incidence = c(0, diff(SARS_selected$totalNumberCases))
-# Keep only positive incidences (discard 0 or negative adjustments)
+SARS_selected$incidence = 
+  c(0, diff(SARS_selected$totalNumberCases))
+```
+Keep only positive incidences (discard 0 or negative adjustments)
+
+```
 SARS_selected = SARS_selected %>%
   filter(incidence > 0)
+```
+---
 
-# Plot the result
-# Before plotting, we need to make the dates column we will use be actual dates..
-SARS_selected$toDate = lubridate::ymd(SARS_selected$toDate)
-EpiCurve(SARS_selected,
-         date = "toDate", period = "day",
-         freq = "incidence",
-         title = "SARS-CoV-1 incidence in Canada in 2003")
+Plot the result. Before plotting, we need to make the dates column we will use be actual dates..
+
+```R
+SARS_selected$toDate = 
+  lubridate::ymd(SARS_selected$toDate)
+```
+
+Select the data columns needed
+
+```R
+SARS_to_plot = SARS_selected %>%
+  select(toDate, incidence)
 ```
 
 ---
 
-![bg contain](https://raw.githubusercontent.com/julien-arino/3MC-course-epidemiological-modelling/main/FIGS/SARS-CoV-1_cases_CAN.png)
+We use a function from `incidence2` to format the data as needed for the plot
+
+```R
+library(incidence2)
+incid = incidence(SARS_to_plot, 
+                  date_index = "toDate", 
+                  counts = "incidence")
+```
+
+---
+
+Finally, we plot using `ggplot2`
+
+```R
+library(ggplot2)
+plot(incid) +
+  labs(fill = "Type") +
+  xlab("Date") + ylab("Incidence") +
+  labs(caption = 
+          sprintf("SARS-CoV-1 incidence in %s", ctry)) +
+  theme(legend.position = "none")
+```
+
+(Note that the following plot uses `+ ggdark::dark_mode()`)
+
+---
+
+![bg contain](FIGS/SARS-CoV-1-Canada.png)
 
