@@ -51,4 +51,51 @@ Canadian Centre for Disease Modelling
 
 <!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
 # Outline
+- [Embarrassingly parallel problems](#embarrassingly-parallel-problems)
+- [Setting up a cluster](#setting-up-a-cluster)
 
+---
+
+<!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
+# <!--fit-->Embarrassingly parallel problems
+
+---
+
+# Embarrassingly parallel problems
+
+Some of the computational tasks we perform are embarrassingly parallel: they can be split into independent sub-tasks that can be run in parallel
+
+For example, independent simulations of a stochastic process or evaluation of the output of a function at different parameter values
+
+These problems are easy to parallelise
+
+---
+
+# Benefits of parallelisation 
+
+- If your task is simple enough, you get a speed-up that is close to the number of cores you have available
+  - If you have 8 threads and are evaluating a function at 8 different parameter values, then the 8 calls can happen simultaneously
+- If your task is more complex, you get a speed-up, but it will be less than the number of cores you have available
+  - There is some overhead associated with parallelisation
+  - Some tasks are already parallelised (e.g. matrix multiplication), which means that you do not get a speed-up if you parallelise them again
+
+---
+
+# Amdahl's law
+
+$$
+  S_{\text{latency}}(s)=
+  \frac {1}{(1-p)+p/s}
+$$
+
+where
+- $S_{\text{latency}}$ is the theoretical speedup of the execution of the whole task
+- $s$ is the speedup of the part of the task that benefits from improved system resources
+- $p$ is the proportion of execution time that the part benefiting from improved resources originally occupied
+
+---
+
+<!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
+# <!--fit-->Setting up a cluster
+
+---

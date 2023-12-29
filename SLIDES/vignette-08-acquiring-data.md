@@ -38,6 +38,7 @@ Canadian Centre for Disease Modelling
 <!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
 # Outline
 - Be "data aware"
+- Data gathering methods
 
 ---
 
@@ -86,7 +87,7 @@ Recent movement (5-10 years): governments (local or higher) create portals where
 ---
 
 <!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
-# <!--fit-->Dealing with data
+# <!--fit-->Data gathering methods
 
 - Example: population of South Africa
 - Example - Dutch Elm Disease
@@ -106,36 +107,9 @@ Recent movement (5-10 years): governments (local or higher) create portals where
 
 - By hand
 - Using programs such as [Engauge Digitizer](http://markummitchell.github.io/engauge-digitizer/) or [g3data](https://github.com/pn2200/g3data)
-- Using APIs
 - Using natural language processing and other web scraping methods
-- Using R or Python packages
-
----
-
-<!-- _backgroundImage: "linear-gradient(to top, #156C26, 1%, black)" -->
-# <!--fit-->Example: population of South Africa
-
----
-
-```R
-library(wbstats)
-pop_data_CTRY <- wb_data(country = "ZAF", indicator = "SP.POP.TOTL",
-                         mrv = 100, return_wide = FALSE)
-y_range = range(pop_data_CTRY$value)
-y_axis <- make_y_axis(y_range)
-png(file = "pop_ZAF.png", 
-    width = 800, height = 400)
-plot(pop_data_CTRY$date, pop_data_CTRY$value * y_axis$factor,
-     xlab = "Year", ylab = "Population", type = "b", lwd = 2,
-     yaxt = "n")
-axis(2, at = y_axis$ticks, labels = y_axis$labels, las = 1)
-dev.off()
-crop_figure("pop_ZAF.png")
-```
-
----
-
-![bg contain](https://raw.githubusercontent.com/julien-arino/3MC-course-epidemiological-modelling/main/FIGS/pop_ZAF.png)
+- Using APIs
+- Using R or Python packages (to interface with APIs)
 
 ---
 
@@ -310,4 +284,32 @@ to_keep = setdiff(to_keep,tree_pairs_roads_intersect)
 ---
 
 ![bg contain](https://raw.githubusercontent.com/julien-arino/3MC-course-epidemiological-modelling/main/FIGS/pairs_postproc_zoom.png)
+
+
+---
+
+<!-- _backgroundImage: "linear-gradient(to top, #156C26, 1%, black)" -->
+# <!--fit-->Example: population of South Africa
+
+---
+
+```R
+library(wbstats)
+pop_data_CTRY <- wb_data(country = "ZAF", indicator = "SP.POP.TOTL",
+                         mrv = 100, return_wide = FALSE)
+y_range = range(pop_data_CTRY$value)
+y_axis <- make_y_axis(y_range)
+png(file = "pop_ZAF.png", 
+    width = 800, height = 400)
+plot(pop_data_CTRY$date, pop_data_CTRY$value * y_axis$factor,
+     xlab = "Year", ylab = "Population", type = "b", lwd = 2,
+     yaxt = "n")
+axis(2, at = y_axis$ticks, labels = y_axis$labels, las = 1)
+dev.off()
+crop_figure("pop_ZAF.png")
+```
+
+---
+
+![bg contain](https://raw.githubusercontent.com/julien-arino/3MC-course-epidemiological-modelling/main/FIGS/pop_ZAF.png)
 
