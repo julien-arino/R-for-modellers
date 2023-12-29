@@ -37,33 +37,21 @@ Canadian Centre for Disease Modelling
 
 <!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
 # Outline
-
+- Be "data aware"
 
 ---
 
 <!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
-# <!--fit-->Dealing with data
-
-- Example: population of South Africa
-- Example - Dutch Elm Disease
-- Data wrangling
-
-
-<div style = "position: relative; bottom: -25%; font-size:20px;">
-
-- JA. [Mathematical epidemiology in a data-rich world](http://dx.doi.org/10.1016/j.idm.2019.12.008). *Infectious Disease Modelling* **5**:161-188 (2020)
-- See also [GitHub repo](https://github.com/julien-arino/modelling-with-data) for that paper
-
-</div>
+# <!--fit-->Be "data aware"
 
 ---
 
-# It is important to be "data aware"
+# Be data aware
 
 - Using R (or Python), it is really easy to grab data from the web, e.g., from Open Data sources
 - More and more locations have an open data policy
 - As a modeller, you do not need to have data everywhere, but you should be aware of the context
-- If you want your work to have an impact, for instance in public health, you cannot be completely disconnected from reality
+- If you want your work to be useful, for instance in public health, you cannot be completely disconnected from reality
 
 ---
 
@@ -97,6 +85,23 @@ Recent movement (5-10 years): governments (local or higher) create portals where
 
 ---
 
+<!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
+# <!--fit-->Dealing with data
+
+- Example: population of South Africa
+- Example - Dutch Elm Disease
+- Data wrangling
+
+
+<div style = "position: relative; bottom: -25%; font-size:20px;">
+
+- JA. [Mathematical epidemiology in a data-rich world](http://dx.doi.org/10.1016/j.idm.2019.12.008). *Infectious Disease Modelling* **5**:161-188 (2020)
+- See also [GitHub repo](https://github.com/julien-arino/modelling-with-data) for that paper
+
+</div>
+
+---
+
 # Data gathering methods
 
 - By hand
@@ -107,12 +112,12 @@ Recent movement (5-10 years): governments (local or higher) create portals where
 
 ---
 
-<!-- _backgroundImage: "linear-gradient(to bottom, #156C26, 20%, white)" -->
-# Example: population of South Africa
+<!-- _backgroundImage: "linear-gradient(to top, #156C26, 1%, black)" -->
+# <!--fit-->Example: population of South Africa
 
 ---
 
-```
+```R
 library(wbstats)
 pop_data_CTRY <- wb_data(country = "ZAF", indicator = "SP.POP.TOTL",
                          mrv = 100, return_wide = FALSE)
@@ -134,7 +139,7 @@ crop_figure("pop_ZAF.png")
 
 ---
 
-<!-- _backgroundImage: "linear-gradient(to bottom, #156C26, 20%, white)" -->
+<!-- _backgroundImage: "linear-gradient(to top, #156C26, 1%, black)" -->
 # Example - Dutch Elm Disease
 
 ---
