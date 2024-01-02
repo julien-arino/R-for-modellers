@@ -139,55 +139,41 @@ R0 = function(p) {
 
 # Create a wrapper function
 
-We create a "wrapper" of the function `R0` that allows to change a subset of the values in `param` (for instance, we may want to change only $\beta$ and $\gamma$)
+We create a "wrapper" of the function `R0`
 
 ```R
-one_run_R0 = function(p, param) {
-  for (pp in names(p))
-    param[[pp]] = p[[pp]]
-  return(R0(param))
+one_run_R0 = function(p) {
+  return(R0(p))
 }
 ```
 
-In more complex problems, this wrapper function is really important and can be much more evolved..
-
----
-
-# Set up parameters
-
-```R
-param = list()
-# Contact parameter
-param$beta = 1e-6
-# Average duration of infection
-param$gamma = 1/4.5 
-# Average lifetime
-param$d = 1/(365.25*80)
-```
+In more complex problems, this wrapper function is really important and can be much more evolved.. It can also take other parameters held constant
 
 ---
 
 # <!--fit-->Set up variations of the parameters
 
-We use the `sensitivity` library to generate sample values of the parameters
+We use the `sensitivity` library to generate sample values of the parameters. The function `parameterSets` takes a list with minimum and maximum values for each parameter and a number of samples to generate, so we first make the list
 
 ```R
-library(sensitivity)
-nb_sims = 10000 # nb of simulations
-param_vary = list()
-for (i in 1:nb_sims) {
-  param_vary[[i]] = list()
-  param_vary[[i]]$beta = runif(1, min = 1e-9, max = 1e-4)
-}
-for (i in (nb_sims+1):(2*nb_sims)) {
-  param_vary[[i]] = list()
-  param_vary[[i]]$S0 = runif(1, min = 1000, max = 100000)
-}
-for (i in (2*nb_sims+1):(3*nb_sims)) {
-  param_vary[[i]] = list()
-  param_vary[[i]]$beta = runif(1, min = 1e-9, max = 1e-4)
-  param_vary[[i]]$S0 = runif(1, min = 1000, max = 100000)
-}
+pars.list = list(
+  beta = c(0.001, 0.5),
+  gamma = c(1/10, 1/2),
+  d = c(1/(100*365.25), 1/(20*365.25)))
+```
+
+---
+
+# <!--fit-->Generate the parameter values sample
+
+```R
+pars.sobol = parameterSets(par.ranges = pars.list, 
+                           samples = nb_sims, 
+                           method = "sobol")
+pars.sobol = as.data.frame(pars.sobol)
+colnames(pars.sobol) = c(pars.df$params)
+# For parLapply, we need to make a list of lists
+pars.sobol = split(pars.sobol, seq(nrow(pars.sobol)))
 ```
 
 ---
@@ -195,9 +181,9 @@ for (i in (2*nb_sims+1):(3*nb_sims)) {
 # Non-parallel version
 
 ```R
-tictoc::tic()
-result = lapply(X = param_vary,
-                FUN = function(x) one_run_R0(x, param))
+tictoc::tic("sequential")
+result = lapply(X = pars.sobol,
+                FUN = one_run_R0)
 tictoc::toc()
 ```
 
@@ -209,7 +195,7 @@ tictoc::toc()
 # Detect number of cores, use all but 1
 no_cores <- parallel::detectCores() - 1
 # Initiate cluster
-tictoc::tic()
+tictoc::tic("cluster")
 cl <- parallel::makeCluster(no_cores)
 # Export needed variables
 parallel::clusterExport(cl,
@@ -217,8 +203,10 @@ parallel::clusterExport(cl,
                 "one_run_R0",
                 "param"))
 # Run computation
-result = parallel::parLapply(cl = cl, X = param_vary,
-                             fun =  function(x) one_run_R0(x, param))
+tictoc::tic("parLapply")
+result = parallel::parLapply(cl = cl, X = pars.sobol,
+                             fun =  one_run_R0)
+tictoc::toc()
 # Stop cluster
 parallel::stopCluster(cl)
 tictoc::toc()
