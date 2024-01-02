@@ -171,7 +171,7 @@ pars.sobol = parameterSets(par.ranges = pars.list,
                            samples = nb_sims, 
                            method = "sobol")
 pars.sobol = as.data.frame(pars.sobol)
-colnames(pars.sobol) = c(pars.df$params)
+colnames(pars.sobol) = names(pars.list)
 # For parLapply, we need to make a list of lists
 pars.sobol = split(pars.sobol, seq(nrow(pars.sobol)))
 ```

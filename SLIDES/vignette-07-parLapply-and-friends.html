@@ -128,7 +128,7 @@ University of Manitoba*</p>
                            samples <span class="hljs-operator">=</span> nb_sims<span class="hljs-punctuation">,</span> 
                            method <span class="hljs-operator">=</span> <span class="hljs-string">&quot;sobol&quot;</span><span class="hljs-punctuation">)</span>
 pars.sobol <span class="hljs-operator">=</span> as.data.frame<span class="hljs-punctuation">(</span>pars.sobol<span class="hljs-punctuation">)</span>
-colnames<span class="hljs-punctuation">(</span>pars.sobol<span class="hljs-punctuation">)</span> <span class="hljs-operator">=</span> <span class="hljs-built_in">c</span><span class="hljs-punctuation">(</span>pars.df<span class="hljs-operator">$</span>params<span class="hljs-punctuation">)</span>
+colnames<span class="hljs-punctuation">(</span>pars.sobol<span class="hljs-punctuation">)</span> <span class="hljs-operator">=</span> <span class="hljs-built_in">names</span><span class="hljs-punctuation">(</span>pars.list<span class="hljs-punctuation">)</span>
 <span class="hljs-comment"># For parLapply, we need to make a list of lists</span>
 pars.sobol <span class="hljs-operator">=</span> split<span class="hljs-punctuation">(</span>pars.sobol<span class="hljs-punctuation">,</span> seq<span class="hljs-punctuation">(</span>nrow<span class="hljs-punctuation">(</span>pars.sobol<span class="hljs-punctuation">)</span><span class="hljs-punctuation">)</span><span class="hljs-punctuation">)</span>
 </code></pre>
