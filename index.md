@@ -28,3 +28,7 @@ Also note that the order of the vignettes is, for the most part, not really rele
 
 
 At present, there are no videos. I will be recording videos when time permits, probably in early 2024.
+
+## Note pour les étudiants francophones
+
+Je prévois de traduire les vignettes en français, mais cela prendra du temps. Si vous avez des questions, n'hésitez pas à me contacter.
