@@ -1,10 +1,8 @@
 ## R for modellers
 
-These are slides, code and links to videos related to the use of the `R` programming language. This information is mainly geared towards mathematical modellers. However, you will also find this useful if you are registered in one of the courses I teach at the University of Manitoba in which I require coding.
+These are slides, code and links to videos related to the use of the `R` programming language. This information is mainly geared towards mathematical modellers but may be useful to others. You will also find this useful if you are registered in one of the courses I teach at the University of Manitoba in which I require `R` coding, with some of the lectures being required reading/viewing in particular for [MATH 2740 (Mathematics of Data Science)](https://julien-arino.github.io/math-of-data-science/) students.
 
-On the [GitHub version](https://github.com/julien-arino/R-for-modellers/) of the page, you have access to all the files. You can also download the entire repository by clicking the buttons on the left. (You can also of course clone this repo, but you will need to do that from the GitHub version of the site.)
-
-Feel free to use the material in these slides or in the folders. If you find this useful, I will be happy to know. Slides are produced mostly using [Marp](https://marp.app/), with a few using other systems (\LaTeX, Sweave, Rmarkdown, etc.).
+All files are available on the [GitHub version](https://github.com/julien-arino/R-for-modellers/) of the page. Feel free to use the material in these slides or in the folders. If you find this useful, I will be happy to know. Slides are produced mostly using [Marp](https://marp.app/), with a few using other systems (LaTeX, Sweave, Rmarkdown, etc.).
 
 ### "Vignettes"
 
@@ -31,4 +29,4 @@ At present, there are no videos. I will be recording videos when time permits, p
 
 ## Note pour les étudiants francophones
 
-Je prévois de traduire les vignettes en français, mais cela prendra du temps. Si vous avez des questions, n'hésitez pas à me contacter.
+Je prévois de traduire les vignettes en français, mais cela prendra du temps. En attendant, si vous avez des questions, n'hésitez pas à me contacter.
