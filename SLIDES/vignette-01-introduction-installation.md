@@ -39,6 +39,7 @@ Canadian Centre for Disease Modelling
 
 - Foreword: the ![width:32px](https://raw.githubusercontent.com/julien-arino/R-for-modellers/main/assets/img/Rlogo.svg) language
 - Installing ![width:32px](https://raw.githubusercontent.com/julien-arino/R-for-modellers/main/assets/img/Rlogo.svg)
+- Running an ![width:32px](https://raw.githubusercontent.com/julien-arino/R-for-modellers/main/assets/img/Rlogo.svg) script from the command line
 
 ---
 
@@ -124,3 +125,18 @@ Instructions are on CRAN about setting things up so you have the latest version.
     - [RStudio](https://www.rstudio.com/products/rstudio/) has become the reference (see [Vignette 02](https://julien-arino.github.io/R-for-modellers/SLIDES/vignette-02-Rstudio-and-friends.html))
     - [RKWard](https://invent.kde.org/education/rkward) is useful if you are for instance using an ARM processor (Raspberry Pi, some Chromebooks..)
 
+---
+
+<!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
+<a id="sec:running"></a>
+# <!--fit-->Running an ![width:40px](https://raw.githubusercontent.com/julien-arino/R-for-modellers/main/assets/img/Rlogo.svg) script from the command line
+
+---
+
+# Why run from the command line?
+
+As indicated, `R` is a scripted language and when run from an `R` console, it is interactive
+
+$\implies$ what you did before is in memory of the session you are working in
+
+This is frequent cause for errors when sharing your code with others

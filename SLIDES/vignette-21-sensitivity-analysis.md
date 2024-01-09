@@ -40,3 +40,11 @@ Canadian Centre for Disease Modelling
 
 - 
 
+---
+
+We saw an example of sensitivity analysis in [Vignette 07](vignette-07-parLapply-and-friends.html)
+
+Here we cover the topic in more detail
+
+**Warning**, though: sensitivity analysis is a vast topic, we don't go into details here. Also, as always in these vignettes, this is about using `R` to perform sensitivity analysis, not about the theory itself...
+
