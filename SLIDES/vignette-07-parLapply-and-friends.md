@@ -195,13 +195,12 @@ tictoc::toc()
 # Detect number of cores, use all but 1
 no_cores <- parallel::detectCores() - 1
 # Initiate cluster
-tictoc::tic("cluster")
+tictoc::tic("whole parallel phase")
 cl <- parallel::makeCluster(no_cores)
 # Export needed variables
 parallel::clusterExport(cl,
-              c("R0",
-                "one_run_R0",
-                "param"))
+                        c("R0",
+                        "one_run_R0"))
 # Run computation
 tictoc::tic("parLapply")
 result = parallel::parLapply(cl = cl, X = pars.sobol,

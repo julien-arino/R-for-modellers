@@ -36,7 +36,7 @@ University of Manitoba*
 # Outline
 
 - What are "vignettes"?
-- What's in these vignettes?
+- What's in my vignettes?
 - Who's this for?
 - Organisation of the vignettes
 - The GitHub repo(sitory)
@@ -52,19 +52,23 @@ University of Manitoba*
 
 ---
 
-In the `R` world, "vignettes" are short illustrative introductions to a topic or package
+In the `R` world, vignettes are short "wordy" introductions to a topic or package
 
 
 They are more user friendly than package manuals or help pages
 
+Example: [deSolve](https://cran.r-project.org/web/packages/deSolve/index.html)
+
 ---
 
 <!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
-# <!--fit-->What's in these vignettes?
+# <!--fit-->What's in my vignettes?
 
 ---
 
-Focus on the type of problems that are relevant to mathematical modellers
+How-to's explaining how to implement some particular problems in `R`
+
+Focus on problems that are relevant to mathematical modellers
 
 ---
 
@@ -75,7 +79,9 @@ Focus on the type of problems that are relevant to mathematical modellers
 
 Modellers interested in using `R` instead of `python`, `matlab`, `mathematica`, `maple`, etc.
 
-Students registered in one of the courses I teach in which I use `R`: some of the vignettes are required reading for you!
+Students in Summer schools or one of the math epi or modelling courses I teach here and there 
+
+Students registered in one of the courses I teach at UM in which I use `R`: some of the vignettes are required reading for you!
 
 ---
 
@@ -86,7 +92,7 @@ Students registered in one of the courses I teach in which I use `R`: some of th
 
 Essentially, there is none! 
 
-I have tried to group similar topics ... sometimes
+I have tried to group similar topics ... with more or less success
 
 ---
 
