@@ -40,6 +40,7 @@ University of Manitoba*
 - Who's this for?
 - Organisation of the vignettes
 - The GitHub repo(sitory)
+- Caveats
 
 ---
 
@@ -55,7 +56,7 @@ University of Manitoba*
 In the `R` world, vignettes are short "wordy" introductions to a topic or package
 
 
-They are more user friendly than package manuals or help pages
+Vignettes are more user friendly than package manuals or help pages, they provide a narrative
 
 Example: [deSolve](https://cran.r-project.org/web/packages/deSolve/index.html)
 
@@ -66,7 +67,7 @@ Example: [deSolve](https://cran.r-project.org/web/packages/deSolve/index.html)
 
 ---
 
-How-to's explaining how to implement some particular problems in `R`
+How-to's explaining how to attack some particular problems in `R`
 
 Focus on problems that are relevant to mathematical modellers
 
@@ -100,4 +101,9 @@ I have tried to group similar topics ... with more or less success
 # <!--fit-->The GitHub repo(sitory)
 
 ---
+
+---
+
+<!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
+# <!--fit-->Caveats
 
