@@ -135,8 +135,38 @@ Instructions are on CRAN about setting things up so you have the latest version.
 
 # Why run from the command line?
 
-As indicated, `R` is a scripted language and when run from an `R` console, it is interactive
+`R` is a scripted language and when run from an `R` console, it is interactive
 
 $\implies$ what you did before is in memory of the session you are working in
 
-This is frequent cause for errors when sharing your code with others
+This is frequent cause for errors when sharing your code with others: some things are defined in your script, others you did in the session but did not copy to the script
+
+---
+
+# Different program options
+
+When you install `R`, you install several programs
+
+- The executable file, which launches the interactive session
+  - In Windows, you get a shortcut to a console version
+- A program called `Rscript` that allows you to run an .. `R` script from your OS' command line
+
+--- 
+
+# <!--fit--> Running a script from the command line
+
+```bash
+Rscript script/path/script_file_name.R
+```
+or, from within the directory
+```bash
+Rscript script_file_name.R
+```
+
+---
+
+# No output by default
+
+Note that contrary to the interactive version, if you want to see an output when running from the command line, you have to force it using commands like `print` or `writeLines`
+
+Figures will also not be displayed, so you may want to save them
