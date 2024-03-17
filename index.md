@@ -15,8 +15,8 @@ Also note that the order of the vignettes is, for the most part, not really rele
   {% if file.path contains 'SLIDES' %}
     {% if file.path contains 'vignette' %}
       {% unless file.path contains 'FIGS' %}
-        {% if file.path contains 'md' %}
-          <li><a href="https://julien-arino.github.io/R-for-modellers/SLIDES/{{ file.name | remove: ".md" }}.html">{{ file.title }}</a></li>
+        {% if file.path contains 'qmd' %}
+          <li><a href="https://julien-arino.github.io/R-for-modellers/SLIDES/{{ file.name | remove: ".qmd" }}.html">{{ file.title }}</a></li>
         {% endif %}
       {% endunless %}
     {% endif %}

@@ -1,60 +1,30 @@
 ---
-marp: true
-title: Vignette 08 - Acquiring data
+vignette-nb: "08"
+title: Acquiring data
 description: Julien Arino - R for modellers - Vignette 08 - Acquiring data.
-theme: default
-class: invert
-math: mathjax
-paginate: false
-size: 4:3
+author: Julien Arino
+institute: University of Manitoba*
+format: 
+  revealjs:
+    theme: night    
+    template-partials:
+      - title-slide.html
+    toc: true
+    toc-depth: 1
+    toc-title: Outline
+    auto-stretch: true
+    progress: false
+    preview-links: true
 ---
 
-<style>
-  }
-  img[alt~="center"] {
-    display: block;
-    margin: 0 auto;
-  }
-</style>
+# Be "data aware"
 
-<!-- backgroundColor: black -->
-<!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
-# Vignette 08<br>Acquiring data
-
-Julien Arino [![width:32px](https://raw.githubusercontent.com/julien-arino/presentations/main/FIGS/icons/email-round.png)](mailto:Julien.Arino@umanitoba.ca) [![width:32px](https://raw.githubusercontent.com/julien-arino/presentations/main/FIGS/icons/world-wide-web.png)](https://julien-arino.github.io/) [![width:32px](https://raw.githubusercontent.com/julien-arino/presentations/main/FIGS/icons/github-icon.png)](https://github.com/julien-arino)
-
-Department of Mathematics
-University of Manitoba*
-
-<div style = "font-size:18px; margin-top:-10px; padding-bottom:30px;"></div>
-
-Canadian Centre for Disease Modelling
-
-<div style = "text-align: justify; position: relative; bottom: -5%; font-size:18px;">
-* The University of Manitoba campuses are located on original lands of Anishinaabeg, Cree, Oji-Cree, Dakota and Dene peoples, and on the homeland of the Métis Nation.</div>
-
----
-
-<!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
-# Outline
-- Be "data aware"
-- Data gathering methods
-
----
-
-<!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
-# <!--fit-->Be "data aware"
-
----
-
-# Be data aware
+## Be data aware
 
 - Using R (or Python), it is really easy to grab data from the web, e.g., from Open Data sources
 - More and more locations have an open data policy
 - As a modeller, you do not need to have data everywhere, but you should be aware of the context
 - If you want your work to be useful, for instance in public health, you cannot be completely disconnected from reality
-
----
 
 # Data is everywhere 
 
@@ -70,9 +40,7 @@ Canadian Centre for Disease Modelling
 - Wide variety of licenses, so beware
 - Wide variety of qualities, so beware
 
----
-
-# Open Data initiatives
+## Open Data initiatives
 
 Recent movement (5-10 years): governments (local or higher) create portals where data are centralised and published
 
@@ -84,10 +52,7 @@ Recent movement (5-10 years): governments (local or higher) create portals where
 - [World Bank](https://data.worldbank.org/)
 - [WHO](https://www.who.int/gho/database/en/)
 
----
-
-<!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
-# <!--fit-->Data gathering methods
+# Data gathering methods
 
 - Example: population of South Africa
 - Example - Dutch Elm Disease
@@ -101,9 +66,7 @@ Recent movement (5-10 years): governments (local or higher) create portals where
 
 </div>
 
----
-
-# Data gathering methods
+## Data gathering methods
 
 - By hand
 - Using programs such as [Engauge Digitizer](http://markummitchell.github.io/engauge-digitizer/) or [g3data](https://github.com/pn2200/g3data)
@@ -111,13 +74,9 @@ Recent movement (5-10 years): governments (local or higher) create portals where
 - Using APIs
 - Using R or Python packages (to interface with APIs)
 
----
-
-<!-- _backgroundImage: "linear-gradient(to top, #156C26, 1%, black)" -->
 # Example - Dutch Elm Disease
 
----
-# Dutch Elm Disease
+## Dutch Elm Disease
 
 - Fungal disease that affects Elms
 - Caused by the fungus *Ophiostoma ulmi* 
@@ -136,9 +95,7 @@ Recent movement (5-10 years): governments (local or higher) create portals where
 
 ![bg contain](https://raw.githubusercontent.com/julien-arino/3MC-course-epidemiological-modelling/main/FIGS/WODTreeMapZoom.png)
 
----
-
-# Getting the tree data
+## Getting the tree data
 
 ```
 allTrees = read.csv("https://data.winnipeg.ca/api/views/hfwk-jp4h/ro
@@ -152,9 +109,7 @@ dim(allTrees)
 15
 ```
 
----
-
-# Let us clean things a little
+## Let us clean things a little
 
 ```
 elms_idx = grep("American Elm", allTrees$Common.Name, ignore.case = TRUE)
@@ -171,9 +126,7 @@ We are left with 54,036 American elms
 
 ![bg contain](https://raw.githubusercontent.com/julien-arino/3MC-course-epidemiological-modelling/main/FIGS/temperature_phase.png)
 
----
-
-# Computation of root systems interactions
+## Computation of root systems interactions
 
 (Needs a relatively large machine here - about 50GB RAM)
 
@@ -181,9 +134,7 @@ We are left with 54,036 American elms
 - Spread of a tree's root system depends on its height (we have diametre at breast height, DBH, for all trees)
 - The way roadways are built, there cannot be contacts between root systems of trees on opposite sides of a street
 
----
-
-# Distances between all trees
+## Distances between all trees
 
 ```
 elms_xy = cbind(elms$X, elms$Y)
@@ -201,9 +152,7 @@ indices_LT_kept = as.data.frame(cbind(indices_LT[idx_D,],
 colnames(indices_LT_kept) = c("i","j","dist")
 ```
 
----
-
-# Create line segments between all pairs of trees
+## Create line segments between all pairs of trees
 
 ```
 tree_locs_orig = cbind(elms_latlon$lon[indices_LT_kept$i],
@@ -227,9 +176,7 @@ tree_pairs = do.call(
 )
 ```
 
----
-
-# A bit of mapping
+## A bit of mapping
 
 ```
 library(tidyverse)
@@ -250,9 +197,7 @@ rivers <- osmdata::opq(bbox = bb_poly) %>%
   osmdata::trim_osmdata (bb_poly)
 ```
 
----
-
-# And we finish easily
+## And we finish easily
 
 - We have the pairs of trees potentially in contact with each other
 - We have the roads and rivers of the city, which is a collection of line segments
@@ -286,10 +231,7 @@ to_keep = setdiff(to_keep,tree_pairs_roads_intersect)
 ![bg contain](https://raw.githubusercontent.com/julien-arino/3MC-course-epidemiological-modelling/main/FIGS/pairs_postproc_zoom.png)
 
 
----
-
-<!-- _backgroundImage: "linear-gradient(to top, #156C26, 1%, black)" -->
-# <!--fit-->Example: population of South Africa
+# Example: population of South Africa
 
 ---
 
