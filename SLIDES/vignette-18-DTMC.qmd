@@ -1,6 +1,7 @@
 ---
-marp: true
-title: Vignette 18 - Discrete Time Markov Chains (DTMC) in R
+vignette-nb: "18"
+title: Discrete Time Markov Chains (DTMC) in R
+long-title: Vignette 18 - Discrete Time Markov Chains (DTMC) in R
 description: Julien Arino - R for modellers - Vignette 18 - Discrete Time Markov Chains (DTMC) in R
 theme: default
 class: invert

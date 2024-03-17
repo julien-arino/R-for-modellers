@@ -1,5 +1,5 @@
 ---
-marp: true
+vignette-nb: "14"
 title: Vignette 14 - Sweave
 description: Julien Arino - R for modellers - Vignette 14 - Sweave.
 theme: default

@@ -1,7 +1,8 @@
 ---
 vignette-nb: "08"
 title: Acquiring data
-description: Julien Arino - R for modellers - Vignette 08 - Acquiring data.
+long-title: Vignette 08 - Acquiring data
+description: Julien Arino - R for modellers - Vignette 08 - Acquiring data
 author: Julien Arino
 institute: University of Manitoba*
 format: 

@@ -1,7 +1,8 @@
 ---
 vignette-nb: "03"
 title: Installing  and loading packages
-description: Julien Arino - R for modellers - Vignette 02 - RStudio and friends.
+long-title: Vignette 03 - Installing  and loading packages
+description: Julien Arino - R for modellers - Vignette 03 - Installing  and loading packages
 author: Julien Arino
 institute: University of Manitoba*
 format: 

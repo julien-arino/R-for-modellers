@@ -1,6 +1,7 @@
 ---
-marp: true
-title: Vignette 21 - Sensitivity analysis in R
+vignette-nb: "21"
+title: Sensitivity analysis in R
+long-title: Vignette 21 - Sensitivity analysis in R
 description: Julien Arino - R for modellers - Vignette 21 - Sensitivity analysis in R
 theme: default
 class: invert

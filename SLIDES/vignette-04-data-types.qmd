@@ -1,7 +1,8 @@
 ---
 vignette-nb: "04"
 title: Data types and simple operations
-description: Julien Arino - R for modellers - Vignette 04 - Data types and simple operations.
+long-title: Vignette 04 - Data types and simple operations
+description: Julien Arino - R for modellers - Vignette 04 - Data types and simple operations
 author: Julien Arino
 institute: University of Manitoba*
 format: 

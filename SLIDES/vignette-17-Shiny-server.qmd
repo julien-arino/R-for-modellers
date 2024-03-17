@@ -1,6 +1,7 @@
 ---
-marp: true
-title: Vignette 17 - Shiny-server
+vignette-nb: "17"
+title: Shiny-server
+long-title: Vignette 17 - Shiny-server
 description: Julien Arino - R for modellers - Vignette 17 - Shiny-server.
 theme: default
 class: invert

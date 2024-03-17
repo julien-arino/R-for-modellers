@@ -1,5 +1,5 @@
 ---
-marp: true
+vignette-nb: "13"
 title: Vignette 13 - RMarkdown
 description: Julien Arino - R for modellers - Vignette 13 - RMarkdown.
 theme: default

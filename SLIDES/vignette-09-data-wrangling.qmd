@@ -1,7 +1,8 @@
 ---
 vignette-nb: "09"
 title: Data wrangling
-description: Julien Arino - R for modellers - Vignette 09 - Data wrangling.
+long-title: Vignette 09 - Data wrangling
+description: Julien Arino - R for modellers - Vignette 09 - Data wrangling
 author: Julien Arino
 institute: University of Manitoba*
 format: 

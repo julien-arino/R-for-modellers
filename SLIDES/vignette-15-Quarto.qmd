@@ -1,6 +1,7 @@
 ---
-marp: true
-title: Vignette 15 - Quarto
+vignette-nb: "15"
+title: Quarto
+long-title: Vignette 15 - Quarto
 description: Julien Arino - R for modellers - Vignette 15 - Quarto.
 theme: default
 class: invert
