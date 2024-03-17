@@ -2,12 +2,20 @@
 vignette-nb: "15"
 title: Quarto
 long-title: Vignette 15 - Quarto
-description: Julien Arino - R for modellers - Vignette 15 - Quarto.
-theme: default
-class: invert
-math: mathjax
-paginate: false
-size: 4:3
+description: Julien Arino - R for modellers - Vignette 15 - Quarto
+author: Julien Arino
+institute: University of Manitoba*
+format: 
+  revealjs:
+    theme: night    
+    template-partials:
+      - title-slide.html
+    toc: true
+    toc-depth: 1
+    toc-title: Outline
+    auto-stretch: true
+    progress: false
+    preview-links: true
 ---
 
 <style>
