@@ -1,0 +1,7 @@
+#!/bin/bash
+
+for file in *.qmd; do
+    quarto render "$file"
+done
+git commit -a -m "update slides"
+git push

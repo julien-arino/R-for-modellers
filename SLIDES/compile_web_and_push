@@ -1,6 +1,0 @@
-#!/bin/bash
-
-rm *.html
-npx @marp-team/marp-cli@latest  --bespoke.progress --html vignette-*.md
-git commit -a -m "update slides"
-git push

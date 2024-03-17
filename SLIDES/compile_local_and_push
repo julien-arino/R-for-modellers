@@ -1,6 +1,0 @@
-#!/bin/bash
-
-rm *.html
-npx marp  --html vignette-*.md
-git commit -a -m "update slides"
-git push
