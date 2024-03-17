@@ -8,7 +8,6 @@ format:
     theme: night    
     template-partials:
       - title-slide.html
-    logo: https://julien-arino.github.io/assets/img/prof_pic.jpg
     toc: true
     toc-depth: 1
     toc-title: Outline

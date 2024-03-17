@@ -1,71 +1,39 @@
 ---
-marp: true
-title: Vignette 03 - Installing  and loading packages
-description: Julien Arino - R for modellers - Vignette 03 - Installing and loading packages.
-theme: default
-class: invert
-math: mathjax
-paginate: false
-size: 4:3
+vignette-nb: "03"
+title: Installing  and loading packages
+description: Julien Arino - R for modellers - Vignette 02 - RStudio and friends.
+author: Julien Arino
+institute: University of Manitoba*
+format: 
+  revealjs:
+    theme: night    
+    template-partials:
+      - title-slide.html
+    toc: true
+    toc-depth: 1
+    toc-title: Outline
+    auto-stretch: true
+    progress: false
+    preview-links: true
 ---
 
-<style>
-  img[alt~="center"] {
-    display: block;
-    margin: 0 auto;
-  }
-</style>
+# Note 
 
-<!-- backgroundColor: black -->
-<!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
-# Vignette 03<br>Installing and loading packages
+**Required reading/watching for MATH 2740 students!**
 
-Julien Arino [![width:32px](https://raw.githubusercontent.com/julien-arino/presentations/main/FIGS/icons/email-round.png)](mailto:Julien.Arino@umanitoba.ca) [![width:32px](https://raw.githubusercontent.com/julien-arino/presentations/main/FIGS/icons/world-wide-web.png)](https://julien-arino.github.io/) [![width:32px](https://raw.githubusercontent.com/julien-arino/presentations/main/FIGS/icons/github-icon.png)](https://github.com/julien-arino)
+- If you are a student in the University of Manitoba's Mathematics of Data Science course (MATH 2740), this is **required** reading & watching
 
-Department of Mathematics
-University of Manitoba*
+- Failure to use the ["friendly" method](#sec:friendly) will result in loss of marks in your `R` assignments!
 
-<div style = "font-size:18px; margin-top:-10px; padding-bottom:30px;"></div>
-
-Canadian Centre for Disease Modelling
-
-<div style = "text-align: justify; position: relative; bottom: -5%; font-size:18px;">
-* The University of Manitoba campuses are located on original lands of Anishinaabeg, Cree, Oji-Cree, Dakota and Dene peoples, and on the homeland of the Métis Nation.</div>
+# Packages (a.k.a. libraries)
 
 ---
 
-# <!--fit-->Note - Required reading/watching for MATH 2740 students
+- *Packages* (or *libraries*) extend `R` by providing functions or data that is useful in particular contexts
 
-If you are a student in the University of Manitoba's Mathematics of Data Science course (MATH 2740), this is **required** reading & watching
+- Packages allow to avoid "bloating", since the `R` core remains relatively light and you only install the additional content you need
 
-Failure to use the ["friendly" method](#sec:friendly) will result in loss of marks in your `R` assignments!
-
----
-
-<!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
-# Outline
-
-- [Packages (a.k.a. libraries)](#sec:packages)
-- [Installing a package](#sec:installing)
-- [Loading a package](#sec:loading)
-- [Be friendly to others!](#sec:friendly)
-- [Updating packages](#sec:updating)
-
----
-
-<!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
-<a id="sec:packages"></a>
-# <!--fit-->Packages (a.k.a. libraries)
-
----
-
-*Packages* (or *libraries*) extend `R` by providing functions or data that is useful in particular contexts
-
-Packages allow to avoid "bloating", since the `R` core remains relatively light and you only install the additional content you need
-
----
-
-# <!--fit-->CRAN is the main source for packages
+## CRAN is the main source for packages
 
 ```R
 > paste(nrow(available.packages()),
@@ -74,29 +42,19 @@ Packages allow to avoid "bloating", since the `R` core remains relatively light 
 [1] "20240 packages on CRAN on 2023-12-27"
 ```
 
----
-
-# <!--fit-->There are also packages not on CRAN
+## There are also packages not on CRAN
 
 - For instance, packages on GitHub
 - Sometimes packages get removed from CRAN, although the latest versions are typically still available
 - Installation is a little different (detailed later)
 
----
+# Installing a package
 
-<!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
-<a id="sec:installing"></a>
-# <!--fit-->Installing a package
-
----
-
-# From CRAN
+## From CRAN
 
 Use the command `install.packages()`
 
----
-
-# From GitHub
+## From GitHub
 
 Some packages are only on GitHub; others have their latest (testing) version on GitHub and a stable version on CRAN
 
@@ -121,23 +79,15 @@ Do you want to install the package (Y/n)?
 Downloading GitHub repo EDiLD/xkcd2@master
 ```
 
----
-
-<!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
-<a id="sec:loading"></a>
-# <!--fit-->Loading a package
-
----
-
 # Loading a package
+
+## Loading a package
 
 Once a package is installed, you load it with the command `library()`
 
 No need to use quotation marks: `library(ggplot2)`
 
----
-
-# Loading several packages
+## Loading several packages
 
 To load several packages with a single command, you need to use a loop and the option `character.only = TRUE`
 
@@ -148,15 +98,9 @@ for (p in required_packages) {
 }
 ```
 
----
+# Be friendly to others!
 
-<!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
-<a id="sec:friendly"></a>
-# <!--fit-->Be friendly to others!
-
----
-
-# <!--fit-->When distributing your code, think of those using it
+## When distributing your code, think of those using it
 
 If you are using a slightly unusual library, it is possible that a person you share your code with does not have that library installed
 
@@ -181,9 +125,7 @@ if (!require(package_name)) {
 ```
 > `require` is designed for use inside other functions; it returns `FALSE` and gives a warning (rather than an error as `library()` does by default) if the package does not exist.
 
----
-
-# Example using several libraries
+## Example using several libraries
 
 ```R
 required_packages = c("ggplot2", "dplyr")
@@ -195,19 +137,11 @@ for (p in required_packages) {
 }
 ```
 
----
+# Updating packages
 
-<!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
-<a id="sec:updating"></a>
-# <!--fit-->Updating packages
+## Using RStudio
 
----
-
-# Using RStudio
-
----
-
-# From the R command line
+## From the R command line
 
 ```R
 update.packages(ask = FALSE, checkBuilt = TRUE, Ncpus = 6)
@@ -217,9 +151,7 @@ update.packages(ask = FALSE, checkBuilt = TRUE, Ncpus = 6)
 - `checkBuilt = TRUE`: check with which version of `R` the package was built and call package *old* if this is a earlier major version (e.g., built with 4.2 when the current is 4.3)
 - `Ncpus = 6`: run compilations (if needed) using that many threads
 
----
-
-# Packages and `R` major versions
+## Packages and `R` major versions
 
 Packages are stored by default in your home folder under the current major version of `R` (currently 4.3)
 

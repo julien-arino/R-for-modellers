@@ -8,7 +8,6 @@ format:
     theme: night    
     template-partials:
       - title-slide.html
-    logo: https://julien-arino.github.io/assets/img/prof_pic.jpg
     toc: true
     toc-depth: 1
     toc-title: Outline
@@ -71,5 +70,5 @@ format:
 
 - Likely to contain typos
 - All the vignettes are not ready yet
-- [Hint: if there is a video for a vignette, it is "more ready"]
+- Hint: if there is a video for a vignette, it is "more ready"
 

@@ -1,52 +1,25 @@
 ---
-marp: true
-title: Vignette 07 - parLapply and friends
+vignette-nb: "07"
+title: parLapply and friends
 description: Julien Arino - R for modellers - Vignette 07 - parLapply and friends.
-theme: default
-class: invert
-math: mathjax
-paginate: false
-size: 4:3
----
-
-<style>
-  img[alt~="center"] {
-    display: block;
-    margin: 0 auto;
-  }
-</style>
-
-<!-- backgroundColor: black -->
-<!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
-# Vignette 07<br>parLapply and friends
-
-Julien Arino [![width:32px](https://raw.githubusercontent.com/julien-arino/presentations/main/FIGS/icons/email-round.png)](mailto:Julien.Arino@umanitoba.ca) [![width:32px](https://raw.githubusercontent.com/julien-arino/presentations/main/FIGS/icons/world-wide-web.png)](https://julien-arino.github.io/) [![width:32px](https://raw.githubusercontent.com/julien-arino/presentations/main/FIGS/icons/github-icon.png)](https://github.com/julien-arino)
-
-Department of Mathematics
-University of Manitoba*
-
-<div style = "font-size:18px; margin-top:-10px; padding-bottom:30px;"></div>
-
-Canadian Centre for Disease Modelling
-
-<div style = "text-align: justify; position: relative; bottom: -5%; font-size:18px;">
-* The University of Manitoba campuses are located on original lands of Anishinaabeg, Cree, Oji-Cree, Dakota and Dene peoples, and on the homeland of the Métis Nation.</div>
-
----
-
-<!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
-# Outline
-- [Embarrassingly parallel problems](#embarrassingly-parallel-problems)
-- [Setting up a cluster on a single machine](#setting-up-a-cluster-on-a-single-machine)
-
----
-
-<!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
-# <!--fit-->Embarrassingly parallel problems
-
+author: Julien Arino
+institute: University of Manitoba*
+format: 
+  revealjs:
+    theme: night    
+    template-partials:
+      - title-slide.html
+    toc: true
+    toc-depth: 1
+    toc-title: Outline
+    auto-stretch: true
+    progress: false
+    preview-links: true
 ---
 
 # Embarrassingly parallel problems
+
+## Embarrassingly parallel problems
 
 Some of the computational tasks we perform are embarrassingly parallel: they can be split into independent sub-tasks that can be run in parallel
 
@@ -54,9 +27,7 @@ For example, independent simulations of a stochastic process or evaluation of th
 
 These problems are easy to parallelise
 
----
-
-# Benefits of parallelisation 
+## Benefits of parallelisation 
 
 - If your task is simple enough, you get a speed-up that is close to the number of cores you have available
   - If you have 8 threads and are evaluating a function at 8 different parameter values, then the 8 calls can happen simultaneously
@@ -64,9 +35,7 @@ These problems are easy to parallelise
   - There is some overhead associated with parallelisation
   - Some tasks are already parallelised (e.g. matrix multiplication), which means that you do not get a speed-up if you parallelise them again
 
----
-
-# Amdahl's law
+## Amdahl's law
 
 $$
   S_{\text{latency}}(s)=
@@ -78,10 +47,7 @@ where
 - $s$ is the speedup of the part of the task that benefits from improved system resources
 - $p$ is the proportion of execution time that the part benefiting from improved resources originally occupied
 
----
-
-<!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
-# <!--fit-->Setting up a cluster on a single machine
+# Setting up a cluster on a single machine
 - [Example 1 - Sensitivity of $\mathcal{R}_0$](#example-1---sensitivity-of)
 
 ---
@@ -91,15 +57,13 @@ where
 - For example, if your laptop has 4 cores/8 threads, you can create a cluster with 2-8 "cores"
 - Each core is a *worker*
 
----
+# Workers need information to work
 
-# <!--fit-->Workers need information to work
+- This is probably the most confusing part about parallel computing (until you think about it)
 
-This is probably the most confusing part about parallel computing (until you think about it)
+- Workers are *separated* `R` instances which receive their work orders from the main `R` instance (the *dispatcher*), so they must be given all the information needed to carry out the work
 
-Workers are *separated* `R` instances which receive their work orders from the main `R` instance (the *dispatcher*), so they must be given all the information needed to carry out the work
-
-This needs to be done prior to the computation, as workers receive minimal information from the dispatcher at runtime...
+- This needs to be done prior to the computation, as workers receive minimal information from the dispatcher at runtime...
 
 ---
 
@@ -108,14 +72,9 @@ This needs to be done prior to the computation, as workers receive minimal infor
 - Initiate cluster with number of cores
 - Make workers aware of info they need to work
 
----
+# Example 1 - Sensitivity of $\mathcal{R}_0$
 
-<!-- _backgroundImage: "linear-gradient(to top, #156C26, 1%, black)" -->
-# <!--fit-->Example 1 - Sensitivity of $\mathcal{R}_0$
-
----
-
-# <!--fit-->Sensitivity of $\mathcal{R}_0$ to changes in parameters
+## Sensitivity of $\mathcal{R}_0$ to changes in parameters
 
 We take the value of $\mathcal{R}_0$ in an SIR model with demography and proportional (standard) incidence
 $$
@@ -135,9 +94,7 @@ R0 = function(p) {
 }
 ```
 
----
-
-# Create a wrapper function
+## Create a wrapper function
 
 We create a "wrapper" of the function `R0`
 
@@ -149,9 +106,7 @@ one_run_R0 = function(p) {
 
 In more complex problems, this wrapper function is really important and can be much more evolved.. It can also take other parameters held constant
 
----
-
-# <!--fit-->Set up variations of the parameters
+## Set up variations of the parameters
 
 We use the `sensitivity` library to generate sample values of the parameters. The function `parameterSets` takes a list with minimum and maximum values for each parameter and a number of samples to generate, so we first make the list
 
@@ -162,9 +117,7 @@ pars.list = list(
   d = c(1/(100*365.25), 1/(20*365.25)))
 ```
 
----
-
-# <!--fit-->Generate the parameter values sample
+## Generate the parameter values sample
 
 ```R
 pars.sobol = parameterSets(par.ranges = pars.list, 
@@ -176,9 +129,7 @@ colnames(pars.sobol) = names(pars.list)
 pars.sobol = split(pars.sobol, seq(nrow(pars.sobol)))
 ```
 
----
-
-# Non-parallel version
+## Non-parallel version
 
 ```R
 tictoc::tic("sequential")
@@ -187,9 +138,7 @@ result = lapply(X = pars.sobol,
 tictoc::toc()
 ```
 
----
-
-# Parallel version
+## Parallel version
 
 ```R
 # Detect number of cores, use all but 1
@@ -211,9 +160,7 @@ parallel::stopCluster(cl)
 tictoc::toc()
 ```
 
----
-
-# Remember Amdahl's law ?
+## Remember Amdahl's law ?
 
 ```R
 nb_sims = 1000
