@@ -3,7 +3,6 @@ vignette-nb: "00"
 title: About these "vignettes"
 author: Julien Arino
 institute: University of Manitoba*
-description: Julien Arino - R for modellers - Vignette 00 - About these "vignettes".
 format: 
   revealjs:
     theme: night    
