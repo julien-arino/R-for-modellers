@@ -1,6 +1,7 @@
 ---
 vignette-nb: "12"
-title: Vignette 12 - Fitting an ODE
+title: Fitting an ODE
+long-title: Vignette 12 - Fitting an ODE
 description: Julien Arino - R for modellers - Lecture 12 - Fitting ordinary differential equations (ODE) to data in R
 author: Julien Arino
 institute: University of Manitoba*
