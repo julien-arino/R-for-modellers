@@ -447,22 +447,22 @@ sapply(X = l, FUN = function(x) length(x$b))</code></pre>
 
 <section id="avoid-parameter-variation-loops-with-expand.grid" class="title-slide slide level1 center">
 <h1>Avoid parameter variation loops with expand.grid</h1>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a><span class="co"># Suppose we want to vary 3 parameters</span></span>
-<span id="cb6-2"><a href=""></a>variations <span class="ot">=</span> <span class="fu">list</span>(</span>
-<span id="cb6-3"><a href=""></a>    <span class="at">p1 =</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">10</span>, <span class="at">length.out =</span> <span class="dv">10</span>),</span>
-<span id="cb6-4"><a href=""></a>    <span class="at">p2 =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">length.out =</span> <span class="dv">10</span>),</span>
-<span id="cb6-5"><a href=""></a>    <span class="at">p3 =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="at">length.out =</span> <span class="dv">10</span>)</span>
-<span id="cb6-6"><a href=""></a>)</span>
-<span id="cb6-7"><a href=""></a></span>
-<span id="cb6-8"><a href=""></a><span class="co"># Create the list</span></span>
-<span id="cb6-9"><a href=""></a>tmp <span class="ot">=</span> <span class="fu">expand.grid</span>(variations)</span>
-<span id="cb6-10"><a href=""></a>PARAMS <span class="ot">=</span> <span class="fu">list</span>()</span>
-<span id="cb6-11"><a href=""></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">dim</span>(tmp)[<span class="dv">1</span>]) {</span>
-<span id="cb6-12"><a href=""></a>    PARAMS[[i]] <span class="ot">=</span> <span class="fu">list</span>()</span>
-<span id="cb6-13"><a href=""></a>    <span class="cf">for</span> (k <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(variations)) {</span>
-<span id="cb6-14"><a href=""></a>        PARAMS[[i]][[<span class="fu">names</span>(variations)[k]]] <span class="ot">=</span> tmp[i, k]     </span>
-<span id="cb6-15"><a href=""></a>    }</span>
-<span id="cb6-16"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># Suppose we want to vary 3 parameters</span></span>
+<span id="cb6-2"><a href="" aria-hidden="true" tabindex="-1"></a>variations <span class="ot">=</span> <span class="fu">list</span>(</span>
+<span id="cb6-3"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="at">p1 =</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">10</span>, <span class="at">length.out =</span> <span class="dv">10</span>),</span>
+<span id="cb6-4"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="at">p2 =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">length.out =</span> <span class="dv">10</span>),</span>
+<span id="cb6-5"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="at">p3 =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="at">length.out =</span> <span class="dv">10</span>)</span>
+<span id="cb6-6"><a href="" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-7"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the list</span></span>
+<span id="cb6-9"><a href="" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">=</span> <span class="fu">expand.grid</span>(variations)</span>
+<span id="cb6-10"><a href="" aria-hidden="true" tabindex="-1"></a>PARAMS <span class="ot">=</span> <span class="fu">list</span>()</span>
+<span id="cb6-11"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">dim</span>(tmp)[<span class="dv">1</span>]) {</span>
+<span id="cb6-12"><a href="" aria-hidden="true" tabindex="-1"></a>    PARAMS[[i]] <span class="ot">=</span> <span class="fu">list</span>()</span>
+<span id="cb6-13"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (k <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(variations)) {</span>
+<span id="cb6-14"><a href="" aria-hidden="true" tabindex="-1"></a>        PARAMS[[i]][[<span class="fu">names</span>(variations)[k]]] <span class="ot">=</span> tmp[i, k]     </span>
+<span id="cb6-15"><a href="" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb6-16"><a href="" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>There is still a loop, but you can split this list, use it on different machines, etc. And can use <code>parLapply</code></p>
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">

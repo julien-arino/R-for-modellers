@@ -489,13 +489,13 @@ Julien Arino <a href="mailto:Julien.Arino@umanitoba.ca"><img src="https://raw.gi
 <section id="ways-to-keep-only-the-data-for-one-country" class="title-slide slide level1 center">
 <h1><!--fit-->3 ways to keep only the data for one country</h1>
 <p>Let us load some data for SARS-CoV-1 (2003) that I <a href="https://julien-arino.github.io/blog/2014/SARS-data/">collected some time back</a></p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a>github_URL <span class="ot">=</span> <span class="st">"https://raw.githubusercontent.com/"</span></span>
-<span id="cb1-2"><a href=""></a>repo_URL <span class="ot">=</span> <span class="st">"julien-arino/datasets/master/"</span></span>
-<span id="cb1-3"><a href=""></a>file_name <span class="ot">=</span> <span class="st">"SARS_data.csv"</span></span>
-<span id="cb1-4"><a href=""></a>SARS_URL <span class="ot">=</span> <span class="fu">paste0</span>(github_URL, repo_URL, file_name)</span>
-<span id="cb1-5"><a href=""></a>SARS <span class="ot">=</span> <span class="fu">read.csv</span>(SARS_URL)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="" aria-hidden="true" tabindex="-1"></a>github_URL <span class="ot">=</span> <span class="st">"https://raw.githubusercontent.com/"</span></span>
+<span id="cb1-2"><a href="" aria-hidden="true" tabindex="-1"></a>repo_URL <span class="ot">=</span> <span class="st">"julien-arino/datasets/master/"</span></span>
+<span id="cb1-3"><a href="" aria-hidden="true" tabindex="-1"></a>file_name <span class="ot">=</span> <span class="st">"SARS_data.csv"</span></span>
+<span id="cb1-4"><a href="" aria-hidden="true" tabindex="-1"></a>SARS_URL <span class="ot">=</span> <span class="fu">paste0</span>(github_URL, repo_URL, file_name)</span>
+<span id="cb1-5"><a href="" aria-hidden="true" tabindex="-1"></a>SARS <span class="ot">=</span> <span class="fu">read.csv</span>(SARS_URL)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>We want to keep the data for one country (e.g., Canada)</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a>ctry <span class="ot">=</span> <span class="st">"Canada"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="" aria-hidden="true" tabindex="-1"></a>ctry <span class="ot">=</span> <span class="st">"Canada"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section class="slide level2">
 
@@ -503,7 +503,7 @@ Julien Arino <a href="mailto:Julien.Arino@umanitoba.ca"><img src="https://raw.gi
 <section>
 <section id="old-school-sarscountry-ctry" class="title-slide slide level1 center">
 <h1><!--fit-->Old school: <code>SARS$country == ctry</code></h1>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a>SARS_selected <span class="ot">=</span> SARS[SARS<span class="sc">$</span>country <span class="sc">==</span> ctry, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="" aria-hidden="true" tabindex="-1"></a>SARS_selected <span class="ot">=</span> SARS[SARS<span class="sc">$</span>country <span class="sc">==</span> ctry, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><code>SARS$country == ctry</code> is a vector of <code>TRUE</code> (entries in <code>SARS$country</code> which do equal <code>ctry</code>) and <code>FALSE</code> (entries in <code>SARS$country</code> which do not equal <code>ctry</code>)</p>
 <p>Using this vector as an index for <code>SARS</code> keeps only the entries for which the index is <code>TRUE</code></p>
 </section>
@@ -513,11 +513,11 @@ Julien Arino <a href="mailto:Julien.Arino@umanitoba.ca"><img src="https://raw.gi
 <section>
 <section id="old-school-2-whichsarscountry-ctry" class="title-slide slide level1 center">
 <h1><!--fit-->Old school 2: <code>which(SARS$country == ctry)</code></h1>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a>idx <span class="ot">=</span> <span class="fu">which</span>(SARS<span class="sc">$</span>country <span class="sc">==</span> ctry)</span>
-<span id="cb4-2"><a href=""></a>SARS_selected <span class="ot">=</span> SARS[idx,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="" aria-hidden="true" tabindex="-1"></a>idx <span class="ot">=</span> <span class="fu">which</span>(SARS<span class="sc">$</span>country <span class="sc">==</span> ctry)</span>
+<span id="cb4-2"><a href="" aria-hidden="true" tabindex="-1"></a>SARS_selected <span class="ot">=</span> SARS[idx,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Same as before, except that here <code>which</code> returns the indices of the entries for which <code>SARS$country == ctry</code> is <code>TRUE</code>, so <code>idx</code> takes the form</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a><span class="sc">&gt;</span> <span class="fu">head</span>(idx)</span>
-<span id="cb5-2"><a href=""></a>[<span class="dv">1</span>]  <span class="dv">2</span>  <span class="dv">9</span> <span class="dv">19</span> <span class="dv">31</span> <span class="dv">44</span> <span class="dv">59</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">head</span>(idx)</span>
+<span id="cb5-2"><a href="" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>]  <span class="dv">2</span>  <span class="dv">9</span> <span class="dv">19</span> <span class="dv">31</span> <span class="dv">44</span> <span class="dv">59</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>These are the indices in the original dataframe <code>SARS</code> of the entries we want to keep</p>
 </section>
 <section class="slide level2">
@@ -528,9 +528,9 @@ Julien Arino <a href="mailto:Julien.Arino@umanitoba.ca"><img src="https://raw.gi
 <h1><!--fit-->Benefits of gathering indices using <code>which</code></h1>
 <p>We can make different index sets corresponding to different criteria, then combine them using <code>intersect</code>, <code>union</code> and <code>setdiff</code></p>
 <p>For instance, if we want to keep only the entries for which the country is Canada and the date is before 2003-04-30</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a>idx_CAN <span class="ot">=</span> <span class="fu">which</span>(SARS<span class="sc">$</span>country <span class="sc">==</span> ctry)</span>
-<span id="cb6-2"><a href=""></a>idx_date <span class="ot">=</span> <span class="fu">which</span>(SARS<span class="sc">$</span>toDate <span class="sc">&lt;</span> <span class="st">"2003-04-30"</span>)</span>
-<span id="cb6-3"><a href=""></a>idx_CAN_date <span class="ot">=</span> <span class="fu">intersect</span>(idx_CAN, idx_date)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="" aria-hidden="true" tabindex="-1"></a>idx_CAN <span class="ot">=</span> <span class="fu">which</span>(SARS<span class="sc">$</span>country <span class="sc">==</span> ctry)</span>
+<span id="cb6-2"><a href="" aria-hidden="true" tabindex="-1"></a>idx_date <span class="ot">=</span> <span class="fu">which</span>(SARS<span class="sc">$</span>toDate <span class="sc">&lt;</span> <span class="st">"2003-04-30"</span>)</span>
+<span id="cb6-3"><a href="" aria-hidden="true" tabindex="-1"></a>idx_CAN_date <span class="ot">=</span> <span class="fu">intersect</span>(idx_CAN, idx_date)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section class="slide level2">
 
@@ -538,12 +538,12 @@ Julien Arino <a href="mailto:Julien.Arino@umanitoba.ca"><img src="https://raw.gi
 <section>
 <section id="using-sqldf" class="title-slide slide level1 center">
 <h1>Using <code>sqldf</code></h1>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a><span class="fu">library</span>(sqldf)</span>
-<span id="cb7-2"><a href=""></a>query <span class="ot">=</span> <span class="fu">paste0</span>(<span class="st">"SELECT * "</span>,</span>
-<span id="cb7-3"><a href=""></a>               <span class="st">"FROM SARS "</span>,</span>
-<span id="cb7-4"><a href=""></a>               <span class="st">"WHERE country = '"</span>, </span>
-<span id="cb7-5"><a href=""></a>               ctry, <span class="st">"'"</span>)</span>
-<span id="cb7-6"><a href=""></a>SARS_selected <span class="ot">=</span> <span class="fu">sqldf</span>(query)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sqldf)</span>
+<span id="cb7-2"><a href="" aria-hidden="true" tabindex="-1"></a>query <span class="ot">=</span> <span class="fu">paste0</span>(<span class="st">"SELECT * "</span>,</span>
+<span id="cb7-3"><a href="" aria-hidden="true" tabindex="-1"></a>               <span class="st">"FROM SARS "</span>,</span>
+<span id="cb7-4"><a href="" aria-hidden="true" tabindex="-1"></a>               <span class="st">"WHERE country = '"</span>, </span>
+<span id="cb7-5"><a href="" aria-hidden="true" tabindex="-1"></a>               ctry, <span class="st">"'"</span>)</span>
+<span id="cb7-6"><a href="" aria-hidden="true" tabindex="-1"></a>SARS_selected <span class="ot">=</span> <span class="fu">sqldf</span>(query)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section class="slide level2">
 
@@ -551,15 +551,15 @@ Julien Arino <a href="mailto:Julien.Arino@umanitoba.ca"><img src="https://raw.gi
 <section>
 <section id="using-dplyr" class="title-slide slide level1 center">
 <h1>Using <code>dplyr</code></h1>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb8-2"><a href=""></a>SARS_selected <span class="ot">=</span> SARS <span class="sc">%&gt;%</span></span>
-<span id="cb8-3"><a href=""></a>  <span class="fu">filter</span>(country <span class="sc">==</span> ctry)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb8-2"><a href="" aria-hidden="true" tabindex="-1"></a>SARS_selected <span class="ot">=</span> SARS <span class="sc">%&gt;%</span></span>
+<span id="cb8-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(country <span class="sc">==</span> ctry)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section class="slide level2">
 
 <p>Create incidence for the selected country. diff does difference one by one, so one less entry than the vector on which it is being used, thus we pad with a 0</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a>SARS_selected<span class="sc">$</span>incidence <span class="ot">=</span> </span>
-<span id="cb9-2"><a href=""></a>  <span class="fu">c</span>(<span class="dv">0</span>, <span class="fu">diff</span>(SARS_selected<span class="sc">$</span>totalNumberCases))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="" aria-hidden="true" tabindex="-1"></a>SARS_selected<span class="sc">$</span>incidence <span class="ot">=</span> </span>
+<span id="cb9-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">0</span>, <span class="fu">diff</span>(SARS_selected<span class="sc">$</span>totalNumberCases))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Keep only positive incidences (discard 0 or negative adjustments)</p>
 <pre><code>SARS_selected = SARS_selected %&gt;%
   filter(incidence &gt; 0)</code></pre>
@@ -567,30 +567,30 @@ Julien Arino <a href="mailto:Julien.Arino@umanitoba.ca"><img src="https://raw.gi
 <section class="slide level2">
 
 <p>Plot the result. Before plotting, we need to make the dates column we will use be actual dates..</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a>SARS_selected<span class="sc">$</span>toDate <span class="ot">=</span> </span>
-<span id="cb11-2"><a href=""></a>  lubridate<span class="sc">::</span><span class="fu">ymd</span>(SARS_selected<span class="sc">$</span>toDate)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="" aria-hidden="true" tabindex="-1"></a>SARS_selected<span class="sc">$</span>toDate <span class="ot">=</span> </span>
+<span id="cb11-2"><a href="" aria-hidden="true" tabindex="-1"></a>  lubridate<span class="sc">::</span><span class="fu">ymd</span>(SARS_selected<span class="sc">$</span>toDate)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Select the data columns needed</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a>SARS_to_plot <span class="ot">=</span> SARS_selected <span class="sc">%&gt;%</span></span>
-<span id="cb12-2"><a href=""></a>  <span class="fu">select</span>(toDate, incidence)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="" aria-hidden="true" tabindex="-1"></a>SARS_to_plot <span class="ot">=</span> SARS_selected <span class="sc">%&gt;%</span></span>
+<span id="cb12-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(toDate, incidence)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section class="slide level2">
 
 <p>We use a function from <code>incidence2</code> to format the data as needed for the plot</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a><span class="fu">library</span>(incidence2)</span>
-<span id="cb13-2"><a href=""></a>incid <span class="ot">=</span> <span class="fu">incidence</span>(SARS_to_plot, </span>
-<span id="cb13-3"><a href=""></a>                  <span class="at">date_index =</span> <span class="st">"toDate"</span>, </span>
-<span id="cb13-4"><a href=""></a>                  <span class="at">counts =</span> <span class="st">"incidence"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(incidence2)</span>
+<span id="cb13-2"><a href="" aria-hidden="true" tabindex="-1"></a>incid <span class="ot">=</span> <span class="fu">incidence</span>(SARS_to_plot, </span>
+<span id="cb13-3"><a href="" aria-hidden="true" tabindex="-1"></a>                  <span class="at">date_index =</span> <span class="st">"toDate"</span>, </span>
+<span id="cb13-4"><a href="" aria-hidden="true" tabindex="-1"></a>                  <span class="at">counts =</span> <span class="st">"incidence"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section class="slide level2">
 
 <p>Finally, we plot using <code>ggplot2</code></p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href=""></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb14-2"><a href=""></a><span class="fu">plot</span>(incid) <span class="sc">+</span></span>
-<span id="cb14-3"><a href=""></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">"Type"</span>) <span class="sc">+</span></span>
-<span id="cb14-4"><a href=""></a>  <span class="fu">xlab</span>(<span class="st">"Date"</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">"Incidence"</span>) <span class="sc">+</span></span>
-<span id="cb14-5"><a href=""></a>  <span class="fu">labs</span>(<span class="at">caption =</span> </span>
-<span id="cb14-6"><a href=""></a>          <span class="fu">sprintf</span>(<span class="st">"SARS-CoV-1 incidence in %s"</span>, ctry)) <span class="sc">+</span></span>
-<span id="cb14-7"><a href=""></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb14-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(incid) <span class="sc">+</span></span>
+<span id="cb14-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">"Type"</span>) <span class="sc">+</span></span>
+<span id="cb14-4"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Date"</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">"Incidence"</span>) <span class="sc">+</span></span>
+<span id="cb14-5"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">caption =</span> </span>
+<span id="cb14-6"><a href="" aria-hidden="true" tabindex="-1"></a>          <span class="fu">sprintf</span>(<span class="st">"SARS-CoV-1 incidence in %s"</span>, ctry)) <span class="sc">+</span></span>
+<span id="cb14-7"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>(Note that the following plot uses <code>+ ggdark::dark_mode()</code>)</p>
 </section>
 <section class="slide level2">

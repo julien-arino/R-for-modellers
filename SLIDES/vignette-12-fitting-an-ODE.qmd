@@ -16,6 +16,7 @@ format:
     auto-stretch: true
     progress: false
     preview-links: true
+    code-line-numbers: false
 ---
 
 # Principle - Fitting data

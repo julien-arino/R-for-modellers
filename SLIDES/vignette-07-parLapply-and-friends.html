@@ -494,84 +494,84 @@ Julien Arino <a href="mailto:Julien.Arino@umanitoba.ca"><img src="https://raw.gi
 <section class="slide level2">
 
 <p>We define the function whose value we want to compute</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a>R0 <span class="ot">=</span> <span class="cf">function</span>(p) {</span>
-<span id="cb1-2"><a href=""></a>  <span class="fu">return</span>(p<span class="sc">$</span>beta<span class="sc">/</span>(p<span class="sc">$</span>gamma<span class="sc">+</span>p<span class="sc">$</span>d))</span>
-<span id="cb1-3"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="" aria-hidden="true" tabindex="-1"></a>R0 <span class="ot">=</span> <span class="cf">function</span>(p) {</span>
+<span id="cb1-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(p<span class="sc">$</span>beta<span class="sc">/</span>(p<span class="sc">$</span>gamma<span class="sc">+</span>p<span class="sc">$</span>d))</span>
+<span id="cb1-3"><a href="" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="create-a-wrapper-function" class="slide level2">
 <h2>Create a wrapper function</h2>
 <p>We create a “wrapper” of the function <code>R0</code></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a>one_run_R0 <span class="ot">=</span> <span class="cf">function</span>(p) {</span>
-<span id="cb2-2"><a href=""></a>  <span class="fu">return</span>(<span class="fu">R0</span>(p))</span>
-<span id="cb2-3"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="" aria-hidden="true" tabindex="-1"></a>one_run_R0 <span class="ot">=</span> <span class="cf">function</span>(p) {</span>
+<span id="cb2-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">R0</span>(p))</span>
+<span id="cb2-3"><a href="" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>In more complex problems, this wrapper function is really important and can be much more evolved.. It can also take other parameters held constant</p>
 </section>
 <section id="set-up-variations-of-the-parameters" class="slide level2">
 <h2>Set up variations of the parameters</h2>
 <p>We use the <code>sensitivity</code> library to generate sample values of the parameters. The function <code>parameterSets</code> takes a list with minimum and maximum values for each parameter and a number of samples to generate, so we first make the list</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a>pars.list <span class="ot">=</span> <span class="fu">list</span>(</span>
-<span id="cb3-2"><a href=""></a>  <span class="at">beta =</span> <span class="fu">c</span>(<span class="fl">0.001</span>, <span class="fl">0.5</span>),</span>
-<span id="cb3-3"><a href=""></a>  <span class="at">gamma =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">10</span>, <span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>),</span>
-<span id="cb3-4"><a href=""></a>  <span class="at">d =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">/</span>(<span class="dv">100</span><span class="sc">*</span><span class="fl">365.25</span>), <span class="dv">1</span><span class="sc">/</span>(<span class="dv">20</span><span class="sc">*</span><span class="fl">365.25</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="" aria-hidden="true" tabindex="-1"></a>pars.list <span class="ot">=</span> <span class="fu">list</span>(</span>
+<span id="cb3-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="at">beta =</span> <span class="fu">c</span>(<span class="fl">0.001</span>, <span class="fl">0.5</span>),</span>
+<span id="cb3-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="at">gamma =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">10</span>, <span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>),</span>
+<span id="cb3-4"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="at">d =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">/</span>(<span class="dv">100</span><span class="sc">*</span><span class="fl">365.25</span>), <span class="dv">1</span><span class="sc">/</span>(<span class="dv">20</span><span class="sc">*</span><span class="fl">365.25</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="generate-the-parameter-values-sample" class="slide level2">
 <h2>Generate the parameter values sample</h2>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a>pars.sobol <span class="ot">=</span> <span class="fu">parameterSets</span>(<span class="at">par.ranges =</span> pars.list, </span>
-<span id="cb4-2"><a href=""></a>                           <span class="at">samples =</span> nb_sims, </span>
-<span id="cb4-3"><a href=""></a>                           <span class="at">method =</span> <span class="st">"sobol"</span>)</span>
-<span id="cb4-4"><a href=""></a>pars.sobol <span class="ot">=</span> <span class="fu">as.data.frame</span>(pars.sobol)</span>
-<span id="cb4-5"><a href=""></a><span class="fu">colnames</span>(pars.sobol) <span class="ot">=</span> <span class="fu">names</span>(pars.list)</span>
-<span id="cb4-6"><a href=""></a><span class="co"># For parLapply, we need to make a list of lists</span></span>
-<span id="cb4-7"><a href=""></a>pars.sobol <span class="ot">=</span> <span class="fu">split</span>(pars.sobol, <span class="fu">seq</span>(<span class="fu">nrow</span>(pars.sobol)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="" aria-hidden="true" tabindex="-1"></a>pars.sobol <span class="ot">=</span> <span class="fu">parameterSets</span>(<span class="at">par.ranges =</span> pars.list, </span>
+<span id="cb4-2"><a href="" aria-hidden="true" tabindex="-1"></a>                           <span class="at">samples =</span> nb_sims, </span>
+<span id="cb4-3"><a href="" aria-hidden="true" tabindex="-1"></a>                           <span class="at">method =</span> <span class="st">"sobol"</span>)</span>
+<span id="cb4-4"><a href="" aria-hidden="true" tabindex="-1"></a>pars.sobol <span class="ot">=</span> <span class="fu">as.data.frame</span>(pars.sobol)</span>
+<span id="cb4-5"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(pars.sobol) <span class="ot">=</span> <span class="fu">names</span>(pars.list)</span>
+<span id="cb4-6"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># For parLapply, we need to make a list of lists</span></span>
+<span id="cb4-7"><a href="" aria-hidden="true" tabindex="-1"></a>pars.sobol <span class="ot">=</span> <span class="fu">split</span>(pars.sobol, <span class="fu">seq</span>(<span class="fu">nrow</span>(pars.sobol)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="non-parallel-version" class="slide level2">
 <h2>Non-parallel version</h2>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a>tictoc<span class="sc">::</span><span class="fu">tic</span>(<span class="st">"sequential"</span>)</span>
-<span id="cb5-2"><a href=""></a>result <span class="ot">=</span> <span class="fu">lapply</span>(<span class="at">X =</span> pars.sobol,</span>
-<span id="cb5-3"><a href=""></a>                <span class="at">FUN =</span> one_run_R0)</span>
-<span id="cb5-4"><a href=""></a>tictoc<span class="sc">::</span><span class="fu">toc</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="" aria-hidden="true" tabindex="-1"></a>tictoc<span class="sc">::</span><span class="fu">tic</span>(<span class="st">"sequential"</span>)</span>
+<span id="cb5-2"><a href="" aria-hidden="true" tabindex="-1"></a>result <span class="ot">=</span> <span class="fu">lapply</span>(<span class="at">X =</span> pars.sobol,</span>
+<span id="cb5-3"><a href="" aria-hidden="true" tabindex="-1"></a>                <span class="at">FUN =</span> one_run_R0)</span>
+<span id="cb5-4"><a href="" aria-hidden="true" tabindex="-1"></a>tictoc<span class="sc">::</span><span class="fu">toc</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="parallel-version" class="slide level2">
 <h2>Parallel version</h2>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a><span class="co"># Detect number of cores, use all but 1</span></span>
-<span id="cb6-2"><a href=""></a>no_cores <span class="ot">&lt;-</span> parallel<span class="sc">::</span><span class="fu">detectCores</span>() <span class="sc">-</span> <span class="dv">1</span></span>
-<span id="cb6-3"><a href=""></a><span class="co"># Initiate cluster</span></span>
-<span id="cb6-4"><a href=""></a>tictoc<span class="sc">::</span><span class="fu">tic</span>(<span class="st">"whole parallel phase"</span>)</span>
-<span id="cb6-5"><a href=""></a>cl <span class="ot">&lt;-</span> parallel<span class="sc">::</span><span class="fu">makeCluster</span>(no_cores)</span>
-<span id="cb6-6"><a href=""></a><span class="co"># Export needed variables</span></span>
-<span id="cb6-7"><a href=""></a>parallel<span class="sc">::</span><span class="fu">clusterExport</span>(cl,</span>
-<span id="cb6-8"><a href=""></a>                        <span class="fu">c</span>(<span class="st">"R0"</span>,</span>
-<span id="cb6-9"><a href=""></a>                        <span class="st">"one_run_R0"</span>))</span>
-<span id="cb6-10"><a href=""></a><span class="co"># Run computation</span></span>
-<span id="cb6-11"><a href=""></a>tictoc<span class="sc">::</span><span class="fu">tic</span>(<span class="st">"parLapply"</span>)</span>
-<span id="cb6-12"><a href=""></a>result <span class="ot">=</span> parallel<span class="sc">::</span><span class="fu">parLapply</span>(<span class="at">cl =</span> cl, <span class="at">X =</span> pars.sobol,</span>
-<span id="cb6-13"><a href=""></a>                             <span class="at">fun =</span>  one_run_R0)</span>
-<span id="cb6-14"><a href=""></a>tictoc<span class="sc">::</span><span class="fu">toc</span>()</span>
-<span id="cb6-15"><a href=""></a><span class="co"># Stop cluster</span></span>
-<span id="cb6-16"><a href=""></a>parallel<span class="sc">::</span><span class="fu">stopCluster</span>(cl)</span>
-<span id="cb6-17"><a href=""></a>tictoc<span class="sc">::</span><span class="fu">toc</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># Detect number of cores, use all but 1</span></span>
+<span id="cb6-2"><a href="" aria-hidden="true" tabindex="-1"></a>no_cores <span class="ot">&lt;-</span> parallel<span class="sc">::</span><span class="fu">detectCores</span>() <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb6-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># Initiate cluster</span></span>
+<span id="cb6-4"><a href="" aria-hidden="true" tabindex="-1"></a>tictoc<span class="sc">::</span><span class="fu">tic</span>(<span class="st">"whole parallel phase"</span>)</span>
+<span id="cb6-5"><a href="" aria-hidden="true" tabindex="-1"></a>cl <span class="ot">&lt;-</span> parallel<span class="sc">::</span><span class="fu">makeCluster</span>(no_cores)</span>
+<span id="cb6-6"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># Export needed variables</span></span>
+<span id="cb6-7"><a href="" aria-hidden="true" tabindex="-1"></a>parallel<span class="sc">::</span><span class="fu">clusterExport</span>(cl,</span>
+<span id="cb6-8"><a href="" aria-hidden="true" tabindex="-1"></a>                        <span class="fu">c</span>(<span class="st">"R0"</span>,</span>
+<span id="cb6-9"><a href="" aria-hidden="true" tabindex="-1"></a>                        <span class="st">"one_run_R0"</span>))</span>
+<span id="cb6-10"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># Run computation</span></span>
+<span id="cb6-11"><a href="" aria-hidden="true" tabindex="-1"></a>tictoc<span class="sc">::</span><span class="fu">tic</span>(<span class="st">"parLapply"</span>)</span>
+<span id="cb6-12"><a href="" aria-hidden="true" tabindex="-1"></a>result <span class="ot">=</span> parallel<span class="sc">::</span><span class="fu">parLapply</span>(<span class="at">cl =</span> cl, <span class="at">X =</span> pars.sobol,</span>
+<span id="cb6-13"><a href="" aria-hidden="true" tabindex="-1"></a>                             <span class="at">fun =</span>  one_run_R0)</span>
+<span id="cb6-14"><a href="" aria-hidden="true" tabindex="-1"></a>tictoc<span class="sc">::</span><span class="fu">toc</span>()</span>
+<span id="cb6-15"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># Stop cluster</span></span>
+<span id="cb6-16"><a href="" aria-hidden="true" tabindex="-1"></a>parallel<span class="sc">::</span><span class="fu">stopCluster</span>(cl)</span>
+<span id="cb6-17"><a href="" aria-hidden="true" tabindex="-1"></a>tictoc<span class="sc">::</span><span class="fu">toc</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="remember-amdahls-law" class="slide level2">
 <h2>Remember Amdahl’s law ?</h2>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a>nb_sims <span class="ot">=</span> <span class="dv">1000</span></span>
-<span id="cb7-2"><a href=""></a>sequential<span class="sc">:</span> <span class="fl">0.015</span> sec elapsed</span>
-<span id="cb7-3"><a href=""></a>parLapply<span class="sc">:</span> <span class="fl">0.096</span> sec elapsed</span>
-<span id="cb7-4"><a href=""></a>cluster<span class="sc">:</span> <span class="fl">1.125</span> sec elapsed</span>
-<span id="cb7-5"><a href=""></a></span>
-<span id="cb7-6"><a href=""></a>nb_sims <span class="ot">=</span> <span class="dv">10000</span></span>
-<span id="cb7-7"><a href=""></a>sequential<span class="sc">:</span> <span class="fl">0.093</span> sec elapsed</span>
-<span id="cb7-8"><a href=""></a>parLapply<span class="sc">:</span> <span class="fl">0.114</span> sec elapsed</span>
-<span id="cb7-9"><a href=""></a>cluster<span class="sc">:</span> <span class="fl">1.034</span> sec elapsed</span>
-<span id="cb7-10"><a href=""></a></span>
-<span id="cb7-11"><a href=""></a>nb_sims <span class="ot">=</span> <span class="fl">1e+05</span></span>
-<span id="cb7-12"><a href=""></a>sequential<span class="sc">:</span> <span class="fl">0.878</span> sec elapsed</span>
-<span id="cb7-13"><a href=""></a>parLapply<span class="sc">:</span> <span class="fl">0.506</span> sec elapsed</span>
-<span id="cb7-14"><a href=""></a>cluster<span class="sc">:</span> <span class="fl">1.416</span> sec elapsed</span>
-<span id="cb7-15"><a href=""></a></span>
-<span id="cb7-16"><a href=""></a>nb_sims <span class="ot">=</span> <span class="fl">1e+06</span></span>
-<span id="cb7-17"><a href=""></a>sequential<span class="sc">:</span> <span class="fl">15.807</span> sec elapsed</span>
-<span id="cb7-18"><a href=""></a>parLapply<span class="sc">:</span> <span class="fl">14.833</span> sec elapsed</span>
-<span id="cb7-19"><a href=""></a>cluster<span class="sc">:</span> <span class="fl">16.881</span> sec elapsed</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="" aria-hidden="true" tabindex="-1"></a>nb_sims <span class="ot">=</span> <span class="dv">1000</span></span>
+<span id="cb7-2"><a href="" aria-hidden="true" tabindex="-1"></a>sequential<span class="sc">:</span> <span class="fl">0.015</span> sec elapsed</span>
+<span id="cb7-3"><a href="" aria-hidden="true" tabindex="-1"></a>parLapply<span class="sc">:</span> <span class="fl">0.096</span> sec elapsed</span>
+<span id="cb7-4"><a href="" aria-hidden="true" tabindex="-1"></a>cluster<span class="sc">:</span> <span class="fl">1.125</span> sec elapsed</span>
+<span id="cb7-5"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="" aria-hidden="true" tabindex="-1"></a>nb_sims <span class="ot">=</span> <span class="dv">10000</span></span>
+<span id="cb7-7"><a href="" aria-hidden="true" tabindex="-1"></a>sequential<span class="sc">:</span> <span class="fl">0.093</span> sec elapsed</span>
+<span id="cb7-8"><a href="" aria-hidden="true" tabindex="-1"></a>parLapply<span class="sc">:</span> <span class="fl">0.114</span> sec elapsed</span>
+<span id="cb7-9"><a href="" aria-hidden="true" tabindex="-1"></a>cluster<span class="sc">:</span> <span class="fl">1.034</span> sec elapsed</span>
+<span id="cb7-10"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="" aria-hidden="true" tabindex="-1"></a>nb_sims <span class="ot">=</span> <span class="fl">1e+05</span></span>
+<span id="cb7-12"><a href="" aria-hidden="true" tabindex="-1"></a>sequential<span class="sc">:</span> <span class="fl">0.878</span> sec elapsed</span>
+<span id="cb7-13"><a href="" aria-hidden="true" tabindex="-1"></a>parLapply<span class="sc">:</span> <span class="fl">0.506</span> sec elapsed</span>
+<span id="cb7-14"><a href="" aria-hidden="true" tabindex="-1"></a>cluster<span class="sc">:</span> <span class="fl">1.416</span> sec elapsed</span>
+<span id="cb7-15"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-16"><a href="" aria-hidden="true" tabindex="-1"></a>nb_sims <span class="ot">=</span> <span class="fl">1e+06</span></span>
+<span id="cb7-17"><a href="" aria-hidden="true" tabindex="-1"></a>sequential<span class="sc">:</span> <span class="fl">15.807</span> sec elapsed</span>
+<span id="cb7-18"><a href="" aria-hidden="true" tabindex="-1"></a>parLapply<span class="sc">:</span> <span class="fl">14.833</span> sec elapsed</span>
+<span id="cb7-19"><a href="" aria-hidden="true" tabindex="-1"></a>cluster<span class="sc">:</span> <span class="fl">16.881</span> sec elapsed</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 

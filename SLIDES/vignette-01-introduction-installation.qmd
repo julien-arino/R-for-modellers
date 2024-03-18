@@ -16,9 +16,10 @@ format:
     auto-stretch: true
     progress: false
     preview-links: true
+    code-line-numbers: false
 ---
 
-# [Foreword: the ![](https://raw.githubusercontent.com/julien-arino/R-for-modellers/main/assets/img/Rlogo.svg){width="10%"} language]{.r-fit-text}
+# [Foreword: the R language]{.r-fit-text}
 
 ---
 
@@ -33,9 +34,9 @@ format:
 
 - Very active community on the web, easy to find solutions (same true of Python, I just prefer R)
 
-## History of ![](https://raw.githubusercontent.com/julien-arino/R-for-modellers/main/assets/img/Rlogo.svg){width="15%"}
+## History of R
 
-```R
+```{.r}
 > install.packages("rversions")
 > library(rversions)
 > tail(r_versions())
@@ -48,7 +49,7 @@ format:
 134   4.3.3 2024-02-29 08:07:53       Angel Food Cake
 ```
 
-## ![](https://raw.githubusercontent.com/julien-arino/R-for-modellers/main/assets/img/Rlogo.svg){width="15%"} is a scripted language
+## R is a scripted language
 
 - Interactive
 - Allows you to work in real time
@@ -59,7 +60,7 @@ format:
 
 .. with some differences, of course! Otherwise, where would the fun be? ;)
 
-# [Installing ![](https://raw.githubusercontent.com/julien-arino/R-for-modellers/main/assets/img/Rlogo.svg){width="15%"}]{.r-fit-text}
+# Installing R
 
 ## The main location - CRAN
 

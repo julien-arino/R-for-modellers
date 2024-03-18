@@ -418,84 +418,84 @@ Julien Arino <a href="mailto:Julien.Arino@umanitoba.ca"><img src="https://raw.gi
 <section id="assignment" class="title-slide slide level1 center">
 <h1>Assignment</h1>
 <p>Two ways:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a>X <span class="ot">&lt;-</span> <span class="dv">10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="dv">10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>or</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a>X <span class="ot">=</span> <span class="dv">10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="" aria-hidden="true" tabindex="-1"></a>X <span class="ot">=</span> <span class="dv">10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>First version is preferred by R purists.. I don’t really care</p>
 </section>
 
 <section id="lists" class="title-slide slide level1 center">
 <h1>Lists</h1>
 <p>A very useful data structure, quite flexible and versatile. Empty list: <code>L &lt;- list()</code>. Convenient for things like parameters. For instance</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a>L <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
-<span id="cb3-2"><a href=""></a>L<span class="sc">$</span>a <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb3-3"><a href=""></a>L<span class="sc">$</span>b <span class="ot">&lt;-</span> <span class="dv">3</span></span>
-<span id="cb3-4"><a href=""></a>L[[<span class="st">"another_name"</span>]] <span class="ot">&lt;-</span> <span class="st">"Plouf plouf"</span></span>
-<span id="cb3-5"><a href=""></a><span class="sc">&gt;</span> L[<span class="dv">1</span>]</span>
-<span id="cb3-6"><a href=""></a><span class="sc">$</span>a</span>
-<span id="cb3-7"><a href=""></a>[<span class="dv">1</span>] <span class="dv">10</span></span>
-<span id="cb3-8"><a href=""></a><span class="sc">&gt;</span> L[[<span class="dv">2</span>]]</span>
-<span id="cb3-9"><a href=""></a>[<span class="dv">1</span>] <span class="dv">3</span></span>
-<span id="cb3-10"><a href=""></a><span class="sc">&gt;</span> L<span class="sc">$</span>a</span>
-<span id="cb3-11"><a href=""></a>[<span class="dv">1</span>] <span class="dv">10</span></span>
-<span id="cb3-12"><a href=""></a><span class="sc">&gt;</span> L[[<span class="st">"b"</span>]]</span>
-<span id="cb3-13"><a href=""></a>[<span class="dv">1</span>] <span class="dv">3</span></span>
-<span id="cb3-14"><a href=""></a><span class="sc">&gt;</span> L<span class="sc">$</span>another_name</span>
-<span id="cb3-15"><a href=""></a>[<span class="dv">1</span>] <span class="st">"Plouf plouf"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="" aria-hidden="true" tabindex="-1"></a>L <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb3-2"><a href="" aria-hidden="true" tabindex="-1"></a>L<span class="sc">$</span>a <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb3-3"><a href="" aria-hidden="true" tabindex="-1"></a>L<span class="sc">$</span>b <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb3-4"><a href="" aria-hidden="true" tabindex="-1"></a>L[[<span class="st">"another_name"</span>]] <span class="ot">&lt;-</span> <span class="st">"Plouf plouf"</span></span>
+<span id="cb3-5"><a href="" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> L[<span class="dv">1</span>]</span>
+<span id="cb3-6"><a href="" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>a</span>
+<span id="cb3-7"><a href="" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">10</span></span>
+<span id="cb3-8"><a href="" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> L[[<span class="dv">2</span>]]</span>
+<span id="cb3-9"><a href="" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">3</span></span>
+<span id="cb3-10"><a href="" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> L<span class="sc">$</span>a</span>
+<span id="cb3-11"><a href="" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">10</span></span>
+<span id="cb3-12"><a href="" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> L[[<span class="st">"b"</span>]]</span>
+<span id="cb3-13"><a href="" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">3</span></span>
+<span id="cb3-14"><a href="" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> L<span class="sc">$</span>another_name</span>
+<span id="cb3-15"><a href="" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"Plouf plouf"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 
 <section>
 <section id="vectors" class="title-slide slide level1 center">
 <h1>Vectors</h1>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a><span class="sc">&gt;</span> x <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
-<span id="cb4-2"><a href=""></a><span class="sc">&gt;</span> y <span class="ot">&lt;-</span> <span class="fu">c</span>(x, <span class="dv">12</span>)</span>
-<span id="cb4-3"><a href=""></a><span class="sc">&gt;</span> y</span>
-<span id="cb4-4"><a href=""></a>[<span class="dv">1</span>]  <span class="dv">1</span>  <span class="dv">2</span>  <span class="dv">3</span>  <span class="dv">4</span>  <span class="dv">5</span>  <span class="dv">6</span>  <span class="dv">7</span>  <span class="dv">8</span>  <span class="dv">9</span> <span class="dv">10</span> <span class="dv">12</span></span>
-<span id="cb4-5"><a href=""></a><span class="sc">&gt;</span> z <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>)</span>
-<span id="cb4-6"><a href=""></a><span class="sc">&gt;</span> z</span>
-<span id="cb4-7"><a href=""></a>[<span class="dv">1</span>] <span class="st">"red"</span>  <span class="st">"blue"</span></span>
-<span id="cb4-8"><a href=""></a>z <span class="ot">=</span> <span class="fu">c</span>(z, <span class="dv">1</span>)</span>
-<span id="cb4-9"><a href=""></a><span class="sc">&gt;</span> z</span>
-<span id="cb4-10"><a href=""></a>[<span class="dv">1</span>] <span class="st">"red"</span>  <span class="st">"blue"</span> <span class="st">"1"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb4-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> y <span class="ot">&lt;-</span> <span class="fu">c</span>(x, <span class="dv">12</span>)</span>
+<span id="cb4-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> y</span>
+<span id="cb4-4"><a href="" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>]  <span class="dv">1</span>  <span class="dv">2</span>  <span class="dv">3</span>  <span class="dv">4</span>  <span class="dv">5</span>  <span class="dv">6</span>  <span class="dv">7</span>  <span class="dv">8</span>  <span class="dv">9</span> <span class="dv">10</span> <span class="dv">12</span></span>
+<span id="cb4-5"><a href="" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> z <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>)</span>
+<span id="cb4-6"><a href="" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> z</span>
+<span id="cb4-7"><a href="" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"red"</span>  <span class="st">"blue"</span></span>
+<span id="cb4-8"><a href="" aria-hidden="true" tabindex="-1"></a>z <span class="ot">=</span> <span class="fu">c</span>(z, <span class="dv">1</span>)</span>
+<span id="cb4-9"><a href="" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> z</span>
+<span id="cb4-10"><a href="" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"red"</span>  <span class="st">"blue"</span> <span class="st">"1"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Note that in <code>z</code>, since the first two entries are characters, the added entry is also a character. Contrary to lists, vectors have all entries of the same type</p>
 </section>
 <section id="vector-operations" class="slide level2">
 <h2>Vector operations</h2>
 <p>Say you write <code>x=1:10</code>, i.e., make the vector</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a><span class="sc">&gt;</span> x</span>
-<span id="cb5-2"><a href=""></a>[<span class="dv">1</span>]  <span class="dv">1</span>  <span class="dv">2</span>  <span class="dv">3</span>  <span class="dv">4</span>  <span class="dv">5</span>  <span class="dv">6</span>  <span class="dv">7</span>  <span class="dv">8</span>  <span class="dv">9</span> <span class="dv">10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x</span>
+<span id="cb5-2"><a href="" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>]  <span class="dv">1</span>  <span class="dv">2</span>  <span class="dv">3</span>  <span class="dv">4</span>  <span class="dv">5</span>  <span class="dv">6</span>  <span class="dv">7</span>  <span class="dv">8</span>  <span class="dv">9</span> <span class="dv">10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Then <code>x+1</code> gives</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a><span class="sc">&gt;</span> x<span class="sc">+</span><span class="dv">1</span></span>
-<span id="cb6-2"><a href=""></a>[<span class="dv">1</span>]  <span class="dv">2</span>  <span class="dv">3</span>  <span class="dv">4</span>  <span class="dv">5</span>  <span class="dv">6</span>  <span class="dv">7</span>  <span class="dv">8</span>  <span class="dv">9</span> <span class="dv">10</span> <span class="dv">11</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x<span class="sc">+</span><span class="dv">1</span></span>
+<span id="cb6-2"><a href="" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>]  <span class="dv">2</span>  <span class="dv">3</span>  <span class="dv">4</span>  <span class="dv">5</span>  <span class="dv">6</span>  <span class="dv">7</span>  <span class="dv">8</span>  <span class="dv">9</span> <span class="dv">10</span> <span class="dv">11</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>i.e., adds 1 to all entries in the vector</p>
 </section></section>
 <section id="use-seq-to-make-more-complex-sequences" class="title-slide slide level1 center">
 <h1>Use <code>seq</code> to make more complex sequences</h1>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a><span class="sc">&gt;</span> x <span class="ot">=</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">2</span>, <span class="at">to =</span> <span class="dv">10</span>, <span class="at">by =</span> <span class="fl">1.25</span>)</span>
-<span id="cb7-2"><a href=""></a><span class="sc">&gt;</span> x</span>
-<span id="cb7-3"><a href=""></a>[<span class="dv">1</span>] <span class="fl">2.00</span> <span class="fl">3.25</span> <span class="fl">4.50</span> <span class="fl">5.75</span> <span class="fl">7.00</span> <span class="fl">8.25</span> <span class="fl">9.50</span></span>
-<span id="cb7-4"><a href=""></a><span class="sc">&gt;</span> y <span class="ot">=</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">2</span>, <span class="at">to =</span> <span class="dv">100</span>, <span class="at">length.out =</span> <span class="dv">10</span>)</span>
-<span id="cb7-5"><a href=""></a><span class="sc">&gt;</span> y</span>
-<span id="cb7-6"><a href=""></a> [<span class="dv">1</span>]   <span class="fl">2.00000</span>  <span class="fl">12.88889</span>  <span class="fl">23.77778</span>  <span class="fl">34.66667</span>  <span class="fl">45.55556</span>  <span class="fl">56.44444</span></span>
-<span id="cb7-7"><a href=""></a> [<span class="dv">7</span>]  <span class="fl">67.33333</span>  <span class="fl">78.22222</span>  <span class="fl">89.11111</span> <span class="fl">100.00000</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="ot">=</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">2</span>, <span class="at">to =</span> <span class="dv">10</span>, <span class="at">by =</span> <span class="fl">1.25</span>)</span>
+<span id="cb7-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x</span>
+<span id="cb7-3"><a href="" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">2.00</span> <span class="fl">3.25</span> <span class="fl">4.50</span> <span class="fl">5.75</span> <span class="fl">7.00</span> <span class="fl">8.25</span> <span class="fl">9.50</span></span>
+<span id="cb7-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> y <span class="ot">=</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">2</span>, <span class="at">to =</span> <span class="dv">100</span>, <span class="at">length.out =</span> <span class="dv">10</span>)</span>
+<span id="cb7-5"><a href="" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> y</span>
+<span id="cb7-6"><a href="" aria-hidden="true" tabindex="-1"></a> [<span class="dv">1</span>]   <span class="fl">2.00000</span>  <span class="fl">12.88889</span>  <span class="fl">23.77778</span>  <span class="fl">34.66667</span>  <span class="fl">45.55556</span>  <span class="fl">56.44444</span></span>
+<span id="cb7-7"><a href="" aria-hidden="true" tabindex="-1"></a> [<span class="dv">7</span>]  <span class="fl">67.33333</span>  <span class="fl">78.22222</span>  <span class="fl">89.11111</span> <span class="fl">100.00000</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 
 <section>
 <section id="matrices" class="title-slide slide level1 center">
 <h1>Matrices</h1>
 <p>Matrix (or vector) of zeros</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a>A <span class="ot">&lt;-</span> <span class="fu">mat.or.vec</span>(<span class="at">nr =</span> <span class="dv">2</span>, <span class="at">nc =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="" aria-hidden="true" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="fu">mat.or.vec</span>(<span class="at">nr =</span> <span class="dv">2</span>, <span class="at">nc =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Matrix with prescribed entries</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a>B <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>), <span class="at">nr =</span> <span class="dv">2</span>, <span class="at">nc =</span> <span class="dv">2</span>)</span>
-<span id="cb9-2"><a href=""></a><span class="sc">&gt;</span> B</span>
-<span id="cb9-3"><a href=""></a>     [,<span class="dv">1</span>] [,<span class="dv">2</span>]</span>
-<span id="cb9-4"><a href=""></a>[<span class="dv">1</span>,]    <span class="dv">1</span>    <span class="dv">3</span></span>
-<span id="cb9-5"><a href=""></a>[<span class="dv">2</span>,]    <span class="dv">2</span>    <span class="dv">4</span></span>
-<span id="cb9-6"><a href=""></a>C <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>), <span class="at">nr =</span> <span class="dv">2</span>, <span class="at">nc =</span> <span class="dv">2</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb9-7"><a href=""></a><span class="sc">&gt;</span> C</span>
-<span id="cb9-8"><a href=""></a>     [,<span class="dv">1</span>] [,<span class="dv">2</span>]</span>
-<span id="cb9-9"><a href=""></a>[<span class="dv">1</span>,]    <span class="dv">1</span>    <span class="dv">2</span></span>
-<span id="cb9-10"><a href=""></a>[<span class="dv">2</span>,]    <span class="dv">3</span>    <span class="dv">4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>), <span class="at">nr =</span> <span class="dv">2</span>, <span class="at">nc =</span> <span class="dv">2</span>)</span>
+<span id="cb9-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> B</span>
+<span id="cb9-3"><a href="" aria-hidden="true" tabindex="-1"></a>     [,<span class="dv">1</span>] [,<span class="dv">2</span>]</span>
+<span id="cb9-4"><a href="" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>,]    <span class="dv">1</span>    <span class="dv">3</span></span>
+<span id="cb9-5"><a href="" aria-hidden="true" tabindex="-1"></a>[<span class="dv">2</span>,]    <span class="dv">2</span>    <span class="dv">4</span></span>
+<span id="cb9-6"><a href="" aria-hidden="true" tabindex="-1"></a>C <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>), <span class="at">nr =</span> <span class="dv">2</span>, <span class="at">nc =</span> <span class="dv">2</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb9-7"><a href="" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> C</span>
+<span id="cb9-8"><a href="" aria-hidden="true" tabindex="-1"></a>     [,<span class="dv">1</span>] [,<span class="dv">2</span>]</span>
+<span id="cb9-9"><a href="" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>,]    <span class="dv">1</span>    <span class="dv">2</span></span>
+<span id="cb9-10"><a href="" aria-hidden="true" tabindex="-1"></a>[<span class="dv">2</span>,]    <span class="dv">3</span>    <span class="dv">4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Remark that here and elsewhere, naming the arguments (e.g., <code>nr = 2</code>) allows to use arguments in any order</p>
 </section>
 <section id="matrix-operations" class="slide level2">

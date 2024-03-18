@@ -632,19 +632,19 @@ to_keep = setdiff(to_keep,tree_pairs_roads_intersect)</code></pre>
 </section>
 <section class="slide level2">
 
-<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href=""></a><span class="fu">library</span>(wbstats)</span>
-<span id="cb10-2"><a href=""></a>pop_data_CTRY <span class="ot">&lt;-</span> <span class="fu">wb_data</span>(<span class="at">country =</span> <span class="st">"ZAF"</span>, <span class="at">indicator =</span> <span class="st">"SP.POP.TOTL"</span>,</span>
-<span id="cb10-3"><a href=""></a>                         <span class="at">mrv =</span> <span class="dv">100</span>, <span class="at">return_wide =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb10-4"><a href=""></a>y_range <span class="ot">=</span> <span class="fu">range</span>(pop_data_CTRY<span class="sc">$</span>value)</span>
-<span id="cb10-5"><a href=""></a>y_axis <span class="ot">&lt;-</span> <span class="fu">make_y_axis</span>(y_range)</span>
-<span id="cb10-6"><a href=""></a><span class="fu">png</span>(<span class="at">file =</span> <span class="st">"pop_ZAF.png"</span>, </span>
-<span id="cb10-7"><a href=""></a>    <span class="at">width =</span> <span class="dv">800</span>, <span class="at">height =</span> <span class="dv">400</span>)</span>
-<span id="cb10-8"><a href=""></a><span class="fu">plot</span>(pop_data_CTRY<span class="sc">$</span>date, pop_data_CTRY<span class="sc">$</span>value <span class="sc">*</span> y_axis<span class="sc">$</span>factor,</span>
-<span id="cb10-9"><a href=""></a>     <span class="at">xlab =</span> <span class="st">"Year"</span>, <span class="at">ylab =</span> <span class="st">"Population"</span>, <span class="at">type =</span> <span class="st">"b"</span>, <span class="at">lwd =</span> <span class="dv">2</span>,</span>
-<span id="cb10-10"><a href=""></a>     <span class="at">yaxt =</span> <span class="st">"n"</span>)</span>
-<span id="cb10-11"><a href=""></a><span class="fu">axis</span>(<span class="dv">2</span>, <span class="at">at =</span> y_axis<span class="sc">$</span>ticks, <span class="at">labels =</span> y_axis<span class="sc">$</span>labels, <span class="at">las =</span> <span class="dv">1</span>)</span>
-<span id="cb10-12"><a href=""></a><span class="fu">dev.off</span>()</span>
-<span id="cb10-13"><a href=""></a><span class="fu">crop_figure</span>(<span class="st">"pop_ZAF.png"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(wbstats)</span>
+<span id="cb10-2"><a href="" aria-hidden="true" tabindex="-1"></a>pop_data_CTRY <span class="ot">&lt;-</span> <span class="fu">wb_data</span>(<span class="at">country =</span> <span class="st">"ZAF"</span>, <span class="at">indicator =</span> <span class="st">"SP.POP.TOTL"</span>,</span>
+<span id="cb10-3"><a href="" aria-hidden="true" tabindex="-1"></a>                         <span class="at">mrv =</span> <span class="dv">100</span>, <span class="at">return_wide =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb10-4"><a href="" aria-hidden="true" tabindex="-1"></a>y_range <span class="ot">=</span> <span class="fu">range</span>(pop_data_CTRY<span class="sc">$</span>value)</span>
+<span id="cb10-5"><a href="" aria-hidden="true" tabindex="-1"></a>y_axis <span class="ot">&lt;-</span> <span class="fu">make_y_axis</span>(y_range)</span>
+<span id="cb10-6"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="at">file =</span> <span class="st">"pop_ZAF.png"</span>, </span>
+<span id="cb10-7"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="at">width =</span> <span class="dv">800</span>, <span class="at">height =</span> <span class="dv">400</span>)</span>
+<span id="cb10-8"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pop_data_CTRY<span class="sc">$</span>date, pop_data_CTRY<span class="sc">$</span>value <span class="sc">*</span> y_axis<span class="sc">$</span>factor,</span>
+<span id="cb10-9"><a href="" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Year"</span>, <span class="at">ylab =</span> <span class="st">"Population"</span>, <span class="at">type =</span> <span class="st">"b"</span>, <span class="at">lwd =</span> <span class="dv">2</span>,</span>
+<span id="cb10-10"><a href="" aria-hidden="true" tabindex="-1"></a>     <span class="at">yaxt =</span> <span class="st">"n"</span>)</span>
+<span id="cb10-11"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="dv">2</span>, <span class="at">at =</span> y_axis<span class="sc">$</span>ticks, <span class="at">labels =</span> y_axis<span class="sc">$</span>labels, <span class="at">las =</span> <span class="dv">1</span>)</span>
+<span id="cb10-12"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span>
+<span id="cb10-13"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">crop_figure</span>(<span class="st">"pop_ZAF.png"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section class="slide level2">
 
