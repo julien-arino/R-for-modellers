@@ -24,23 +24,22 @@ format:
 
 - If you are a student in the University of Manitoba's Mathematics of Data Science course (MATH 2740), this is **required** reading & watching
 
-- Failure to use the ["friendly" method](#be-friendly-to-others) will result in loss of marks in your `R` assignments!
+- In particular, failure to use the ["friendly" method](#be-friendly-to-others) will result in loss of marks in your `R` assignments!
 
 # Packages (a.k.a. libraries)
 
 ---
 
-- *Packages* (or *libraries*) extend `R` by providing functions or data that is useful in particular contexts
+- *Packages* (or *libraries*) extend `R` by providing functions or data that are useful in particular contexts
 
 - Packages allow to avoid "bloating", since the `R` core remains relatively light and you only install the additional content you need
 
 ## [CRAN is the main source for packages]{.r-fit-text}
 
-```R
-> paste(nrow(available.packages()),
-+       "packages on CRAN on",
-+       Sys.Date())
-[1] "20240 packages on CRAN on 2023-12-27"
+```{r count-packages, echo=TRUE}
+paste(nrow(available.packages()),
+      "packages on CRAN on",
+      Sys.Date())
 ```
 
 ## [There are also packages not on CRAN]{.r-fit-text}
@@ -58,6 +57,8 @@ format:
 ```{.r}
 install.packages("deSolve")
 ```
+
+However, do read the section on the ["friendly" method](#be-friendly-to-others)
 
 ## From GitHub
 
@@ -107,13 +108,13 @@ for (p in required_packages) {
 
 ## [When distributing your code, think of those using it]{.r-fit-text}
 
-- If you are using a slightly unusual library, it is possible that a person you share your code with does not have that library installed
+- If you use a slightly unusual library, it is possible that a person you share your code with does not have that library installed
 
-  - In this case, it is nice to them if you spare them having to do the work to install the library
+  - It is nice to them if you spare them having to do the work to install the library
 
 - But it is also possible that they already have the library
 
-  - In this case, it will be annoying to them if you trigger an installation of the library (especially under linux, since there libraries are compiled for installation)
+  - It will be annoying to them if you trigger an installation of the library (especially under linux where libraries are compiled for installation)
 
 ---
 
@@ -146,6 +147,8 @@ for (p in required_packages) {
 
 ## Using RStudio
 
+RStudio has a menu to check if updates are available to libraries and update them if that is the case
+
 ## From the R command line
 
 ```R
@@ -173,7 +176,7 @@ update.packages(ask = FALSE, checkBuilt = TRUE,
 
 ---
 
-Set `lib` to be previous R version, say, 4.2:
+Set `lib` to be previous R version (the one prior to the update), say, 4.2:
 
 ```R
 lib = 
@@ -186,3 +189,5 @@ then get list of packages
 installed_packages = 
   as.data.frame(installed.packages(lib))$Package
 ```
+
+then use the method described earlier

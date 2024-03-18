@@ -422,7 +422,7 @@ Department of Mathematics
 <h2><span class="r-fit-text">Required for MATH 2740 students!</span></h2>
 <ul>
 <li><p>If you are a student in the University of Manitoba’s Mathematics of Data Science course (MATH 2740), this is <strong>required</strong> reading &amp; watching</p></li>
-<li><p>Failure to use the <a href="#/be-friendly-to-others">“friendly” method</a> will result in loss of marks in your <code>R</code> assignments!</p></li>
+<li><p>In particular, failure to use the <a href="#/be-friendly-to-others">“friendly” method</a> will result in loss of marks in your <code>R</code> assignments!</p></li>
 </ul>
 </section>
 <section>
@@ -433,16 +433,20 @@ Department of Mathematics
 <section class="slide level2">
 
 <ul>
-<li><p><em>Packages</em> (or <em>libraries</em>) extend <code>R</code> by providing functions or data that is useful in particular contexts</p></li>
+<li><p><em>Packages</em> (or <em>libraries</em>) extend <code>R</code> by providing functions or data that are useful in particular contexts</p></li>
 <li><p>Packages allow to avoid “bloating”, since the <code>R</code> core remains relatively light and you only install the additional content you need</p></li>
 </ul>
 </section>
 <section id="cran-is-the-main-source-for-packages" class="slide level2">
 <h2><span class="r-fit-text">CRAN is the main source for packages</span></h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">paste</span>(<span class="fu">nrow</span>(<span class="fu">available.packages</span>()),</span>
-<span id="cb1-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>       <span class="st">"packages on CRAN on"</span>,</span>
-<span id="cb1-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>       <span class="fu">Sys.Date</span>())</span>
-<span id="cb1-4"><a href="" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"20240 packages on CRAN on 2023-12-27"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(<span class="fu">nrow</span>(<span class="fu">available.packages</span>()),</span>
+<span id="cb1-2"><a href="" aria-hidden="true" tabindex="-1"></a>      <span class="st">"packages on CRAN on"</span>,</span>
+<span id="cb1-3"><a href="" aria-hidden="true" tabindex="-1"></a>      <span class="fu">Sys.Date</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "20585 packages on CRAN on 2024-03-18"</code></pre>
+</div>
+</div>
 </section>
 <section id="there-are-also-packages-not-on-cran" class="slide level2">
 <h2><span class="r-fit-text">There are also packages not on CRAN</span></h2>
@@ -462,7 +466,8 @@ Department of Mathematics
 <ul>
 <li>Use the command <code>install.packages()</code></li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"deSolve"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"deSolve"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>However, do read the section on the <a href="#/be-friendly-to-others">“friendly” method</a></p>
 </section>
 <section id="from-github" class="slide level2">
 <h2>From GitHub</h2>
@@ -474,18 +479,18 @@ Department of Mathematics
 </section>
 <section id="example-xkcd-style-graphs" class="slide level2">
 <h2>Example: xkcd style graphs</h2>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">library</span>(githubinstall)</span>
-<span id="cb3-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">githubinstall</span>(<span class="st">"xkcd"</span>)</span>
-<span id="cb3-3"><a href="" aria-hidden="true" tabindex="-1"></a>Select a number or, hit <span class="dv">0</span> to cancel. </span>
-<span id="cb3-4"><a href="" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span> DanHenebery<span class="sc">/</span>Rxkcd  </span>
-<span id="cb3-6"><a href="" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">:</span> EDiLD<span class="sc">/</span>xkcd2        </span>
-<span id="cb3-7"><a href="" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="" aria-hidden="true" tabindex="-1"></a>Selection<span class="sc">:</span> <span class="dv">2</span></span>
-<span id="cb3-9"><a href="" aria-hidden="true" tabindex="-1"></a>Suggestion<span class="sc">:</span></span>
-<span id="cb3-10"><a href="" aria-hidden="true" tabindex="-1"></a> <span class="sc">-</span> EDiLD<span class="sc">/</span>xkcd2  <span class="cn">NA</span></span>
-<span id="cb3-11"><a href="" aria-hidden="true" tabindex="-1"></a>Do you want to install the <span class="fu">package</span> (Y<span class="sc">/</span>n)?  </span>
-<span id="cb3-12"><a href="" aria-hidden="true" tabindex="-1"></a>Downloading GitHub repo EDiLD<span class="sc">/</span>xkcd2<span class="sc">@</span>master</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">library</span>(githubinstall)</span>
+<span id="cb4-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">githubinstall</span>(<span class="st">"xkcd"</span>)</span>
+<span id="cb4-3"><a href="" aria-hidden="true" tabindex="-1"></a>Select a number or, hit <span class="dv">0</span> to cancel. </span>
+<span id="cb4-4"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span> DanHenebery<span class="sc">/</span>Rxkcd  </span>
+<span id="cb4-6"><a href="" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">:</span> EDiLD<span class="sc">/</span>xkcd2        </span>
+<span id="cb4-7"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="" aria-hidden="true" tabindex="-1"></a>Selection<span class="sc">:</span> <span class="dv">2</span></span>
+<span id="cb4-9"><a href="" aria-hidden="true" tabindex="-1"></a>Suggestion<span class="sc">:</span></span>
+<span id="cb4-10"><a href="" aria-hidden="true" tabindex="-1"></a> <span class="sc">-</span> EDiLD<span class="sc">/</span>xkcd2  <span class="cn">NA</span></span>
+<span id="cb4-11"><a href="" aria-hidden="true" tabindex="-1"></a>Do you want to install the <span class="fu">package</span> (Y<span class="sc">/</span>n)?  </span>
+<span id="cb4-12"><a href="" aria-hidden="true" tabindex="-1"></a>Downloading GitHub repo EDiLD<span class="sc">/</span>xkcd2<span class="sc">@</span>master</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section></section>
 <section>
 <section id="loading-a-package" class="title-slide slide level1 center">
@@ -502,10 +507,10 @@ Department of Mathematics
 <section id="loading-several-packages" class="slide level2">
 <h2>Loading several packages</h2>
 <p>To load several packages with a single command, you need to use a loop and the option <code>character.only = TRUE</code></p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="" aria-hidden="true" tabindex="-1"></a>required_packages <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"ggplot2"</span>, <span class="st">"dplyr"</span>)</span>
-<span id="cb4-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (p <span class="cf">in</span> required_packages) {</span>
-<span id="cb4-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(p, <span class="at">character.only =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb4-4"><a href="" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="" aria-hidden="true" tabindex="-1"></a>required_packages <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"ggplot2"</span>, <span class="st">"dplyr"</span>)</span>
+<span id="cb5-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (p <span class="cf">in</span> required_packages) {</span>
+<span id="cb5-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(p, <span class="at">character.only =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb5-4"><a href="" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section></section>
 <section>
 <section id="be-friendly-to-others" class="title-slide slide level1 center">
@@ -515,13 +520,13 @@ Department of Mathematics
 <section id="when-distributing-your-code-think-of-those-using-it" class="slide level2">
 <h2><span class="r-fit-text">When distributing your code, think of those using it</span></h2>
 <ul>
-<li><p>If you are using a slightly unusual library, it is possible that a person you share your code with does not have that library installed</p>
+<li><p>If you use a slightly unusual library, it is possible that a person you share your code with does not have that library installed</p>
 <ul>
-<li>In this case, it is nice to them if you spare them having to do the work to install the library</li>
+<li>It is nice to them if you spare them having to do the work to install the library</li>
 </ul></li>
 <li><p>But it is also possible that they already have the library</p>
 <ul>
-<li>In this case, it will be annoying to them if you trigger an installation of the library (especially under linux, since there libraries are compiled for installation)</li>
+<li>It will be annoying to them if you trigger an installation of the library (especially under linux where libraries are compiled for installation)</li>
 </ul></li>
 </ul>
 </section>
@@ -532,23 +537,23 @@ Department of Mathematics
 <li>If it is, load it</li>
 <li>If it is not, install it then load it</li>
 </ul>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(package_name)) {</span>
-<span id="cb5-2"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="fu">install.packages</span>(<span class="st">"package_name"</span>)</span>
-<span id="cb5-3"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="fu">library</span>(package_name)</span>
-<span id="cb5-4"><a href="" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(package_name)) {</span>
+<span id="cb6-2"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="fu">install.packages</span>(<span class="st">"package_name"</span>)</span>
+<span id="cb6-3"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="fu">library</span>(package_name)</span>
+<span id="cb6-4"><a href="" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <blockquote>
 <p><code>require</code> is designed for use inside other functions; it returns <code>FALSE</code> and gives a warning (rather than an error as <code>library()</code> does by default) if the package does not exist.</p>
 </blockquote>
 </section>
 <section id="example-using-several-libraries" class="slide level2">
 <h2>Example using several libraries</h2>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="" aria-hidden="true" tabindex="-1"></a>required_packages <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"ggplot2"</span>, <span class="st">"dplyr"</span>)</span>
-<span id="cb6-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (p <span class="cf">in</span> required_packages) {</span>
-<span id="cb6-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(p, <span class="at">character.only =</span> <span class="cn">TRUE</span>)) {</span>
-<span id="cb6-4"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="fu">install.packages</span>(p)</span>
-<span id="cb6-5"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="fu">library</span>(p, <span class="at">character.only =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb6-6"><a href="" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb6-7"><a href="" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="" aria-hidden="true" tabindex="-1"></a>required_packages <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"ggplot2"</span>, <span class="st">"dplyr"</span>)</span>
+<span id="cb7-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (p <span class="cf">in</span> required_packages) {</span>
+<span id="cb7-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(p, <span class="at">character.only =</span> <span class="cn">TRUE</span>)) {</span>
+<span id="cb7-4"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="fu">install.packages</span>(p)</span>
+<span id="cb7-5"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="fu">library</span>(p, <span class="at">character.only =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb7-6"><a href="" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb7-7"><a href="" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section></section>
 <section>
 <section id="updating-packages" class="title-slide slide level1 center">
@@ -557,11 +562,12 @@ Department of Mathematics
 </section>
 <section id="using-rstudio" class="slide level2">
 <h2>Using RStudio</h2>
+<p>RStudio has a menu to check if updates are available to libraries and update them if that is the case</p>
 </section>
 <section id="from-the-r-command-line" class="slide level2">
 <h2>From the R command line</h2>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">update.packages</span>(<span class="at">ask =</span> <span class="cn">FALSE</span>, <span class="at">checkBuilt =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb7-2"><a href="" aria-hidden="true" tabindex="-1"></a>                <span class="at">Ncpus =</span> <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">update.packages</span>(<span class="at">ask =</span> <span class="cn">FALSE</span>, <span class="at">checkBuilt =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb8-2"><a href="" aria-hidden="true" tabindex="-1"></a>                <span class="at">Ncpus =</span> <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><code>ask = FALSE</code>: do not ask for confirmation</li>
 <li><code>checkBuilt = TRUE</code>: check with which version of <code>R</code> the package was built and call package <em>old</em> if this is a earlier major version (e.g., built with 4.2 when the current is 4.3)</li>
@@ -573,7 +579,7 @@ Department of Mathematics
 <ul>
 <li>Packages are stored by default in your home folder under the current major version of <code>R</code> (currently 4.3)</li>
 </ul>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">~/R/x86_64-pc-linux-gnu-library/4.3/</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">~/R/x86_64-pc-linux-gnu-library/4.3/</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><p>When the major version changes, you therefore need to do something with all your current packages..</p></li>
 <li><p>There is no planned mechanisms for doing this!</p></li>
@@ -582,12 +588,13 @@ Department of Mathematics
 </section>
 <section class="slide level2">
 
-<p>Set <code>lib</code> to be previous R version, say, 4.2:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="" aria-hidden="true" tabindex="-1"></a>lib <span class="ot">=</span> </span>
-<span id="cb9-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="st">"/home/jarino/x86_64-pc-linux-gnu-library/4.2"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Set <code>lib</code> to be previous R version (the one prior to the update), say, 4.2:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="" aria-hidden="true" tabindex="-1"></a>lib <span class="ot">=</span> </span>
+<span id="cb10-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="st">"/home/jarino/x86_64-pc-linux-gnu-library/4.2"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>then get list of packages</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="" aria-hidden="true" tabindex="-1"></a>installed_packages <span class="ot">=</span> </span>
-<span id="cb10-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>(<span class="fu">installed.packages</span>(lib))<span class="sc">$</span>Package</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="" aria-hidden="true" tabindex="-1"></a>installed_packages <span class="ot">=</span> </span>
+<span id="cb11-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>(<span class="fu">installed.packages</span>(lib))<span class="sc">$</span>Package</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>then use the method described earlier</p>
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 
@@ -806,6 +813,44 @@ Department of Mathematics
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {

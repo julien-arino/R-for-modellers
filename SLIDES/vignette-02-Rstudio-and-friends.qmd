@@ -60,7 +60,8 @@ format:
 # Quarto
 
 - Promoted as next-gen version of Sweave/RMarkdown
-- Will confess that I have not yet seen why switch
+- Will confess that I have not yet seen why switch in the general case
+- These Vignettes are created using Quarto and reveal.js
 - See [Vignette 15](https://julien-arino.github.io/R-for-modellers/SLIDES/vignette-15-Quarto.html)
 
 # Shiny
