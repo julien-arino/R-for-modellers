@@ -2,7 +2,7 @@
 vignette-nb: "16"
 title: Shiny
 long-title: Vignette 16 - Shiny
-description: Julien Arino - R for modellers - Vignette 16 - Shiny.
+description-meta: Julien Arino - R for modellers - Vignette 16 - Shiny.
 author: Julien Arino
 institute: University of Manitoba*
 format: 

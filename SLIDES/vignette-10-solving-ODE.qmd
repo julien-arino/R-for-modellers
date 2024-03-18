@@ -2,7 +2,7 @@
 vignette-nb: "10"
 title: Solving ODE in R
 long-title: Vignette 10 - Solving ODE in R
-description: Julien Arino - R for modellers - Vignette 10 - Solving ordinary differential equations (ODE) in R
+description-meta: Julien Arino - R for modellers - Vignette 10 - Solving ordinary differential equations (ODE) in R
 author: Julien Arino
 institute: University of Manitoba*
 format: 

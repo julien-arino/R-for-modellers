@@ -2,7 +2,7 @@
 vignette-nb: "14"
 title: Sweave
 long-title: Vignette 14 - Sweave
-description: Julien Arino - R for modellers - Vignette 14 - Sweave
+description-meta: Julien Arino - R for modellers - Vignette 14 - Sweave
 author: Julien Arino
 institute: University of Manitoba*
 format: 

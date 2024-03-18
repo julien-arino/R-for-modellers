@@ -2,7 +2,7 @@
 vignette-nb: "01"
 title: Introduction to and installation of R
 long-title: Vignette 01 - Introduction to and installation of R
-description: Julien Arino - R for modellers - Vignette 01 - Introduction to and installation of R
+description-meta: Julien Arino - R for modellers - Vignette 01 - Introduction to and installation of R
 author: Julien Arino
 institute: University of Manitoba*
 format: 

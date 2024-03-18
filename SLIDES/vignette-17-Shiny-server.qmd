@@ -2,7 +2,7 @@
 vignette-nb: "17"
 title: Shiny-server
 long-title: Vignette 17 - Shiny-server
-description: Julien Arino - R for modellers - Vignette 17 - Shiny-server
+description-meta: Julien Arino - R for modellers - Vignette 17 - Shiny-server
 author: Julien Arino
 institute: University of Manitoba*
 format: 

@@ -2,7 +2,7 @@
 vignette-nb: "07"
 title: parLapply and friends
 long-title: Vignette 07 - parLapply and friends
-description: Julien Arino - R for modellers - Vignette 07 - parLapply and friends
+description-meta: Julien Arino - R for modellers - Vignette 07 - parLapply and friends
 author: Julien Arino
 institute: University of Manitoba*
 format: 

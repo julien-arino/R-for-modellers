@@ -2,7 +2,7 @@
 vignette-nb: "05"
 title: Flow control
 long-title: Vignette 05 - Flow control
-description: Julien Arino - R for modellers - Vignette 05 - Flow control
+description-meta: Julien Arino - R for modellers - Vignette 05 - Flow control
 author: Julien Arino
 institute: University of Manitoba*
 format: 

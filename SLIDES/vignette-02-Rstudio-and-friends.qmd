@@ -2,7 +2,7 @@
 vignette-nb: "02"
 title: RStudio and friends
 long-title: Vignette 02 - RStudio and friends
-description: Julien Arino - R for modellers - Vignette 02 - RStudio and friends
+description-meta: Julien Arino - R for modellers - Vignette 02 - RStudio and friends
 author: Julien Arino
 institute: University of Manitoba*
 format: 

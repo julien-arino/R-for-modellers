@@ -2,7 +2,7 @@
 vignette-nb: "20"
 title: Stochastic Differential Equations (SDE) in R
 long-title: Vignette 20 - Stochastic Differential Equations (SDE) in R
-description: Julien Arino - R for modellers - Vignette 20 - Stochastic Differential Equations (SDE) in R
+description-meta: Julien Arino - R for modellers - Vignette 20 - Stochastic Differential Equations (SDE) in R
 author: Julien Arino
 institute: University of Manitoba*
 format: 

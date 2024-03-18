@@ -2,7 +2,7 @@
 vignette-nb: "13"
 title: RMarkdown
 long-title: Vignette 13 - RMarkdown
-description: Julien Arino - R for modellers - Vignette 13 - RMarkdown
+description-meta: Julien Arino - R for modellers - Vignette 13 - RMarkdown
 author: Julien Arino
 institute: University of Manitoba*
 format: 

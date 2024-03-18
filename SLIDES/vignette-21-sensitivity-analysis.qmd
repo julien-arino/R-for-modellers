@@ -2,7 +2,7 @@
 vignette-nb: "21"
 title: Sensitivity analysis in R
 long-title: Vignette 21 - Sensitivity analysis in R
-description: Julien Arino - R for modellers - Vignette 21 - Sensitivity analysis in R
+description-meta: Julien Arino - R for modellers - Vignette 21 - Sensitivity analysis in R
 author: Julien Arino
 institute: University of Manitoba*
 format: 

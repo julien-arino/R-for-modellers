@@ -2,7 +2,7 @@
 vignette-nb: "11"
 title: Solving DDE in R
 long-title: Vignette 11 - Solving DDE in R
-description: Julien Arino - R for modellers - Vignette 11 - Solving delay differential equations (DDE) in R
+description-meta: Julien Arino - R for modellers - Vignette 11 - Solving delay differential equations (DDE) in R
 author: Julien Arino
 institute: University of Manitoba*
 format: 

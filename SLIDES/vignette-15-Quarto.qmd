@@ -2,7 +2,7 @@
 vignette-nb: "15"
 title: Quarto
 long-title: Vignette 15 - Quarto
-description: Julien Arino - R for modellers - Vignette 15 - Quarto
+description-meta: Julien Arino - R for modellers - Vignette 15 - Quarto
 author: Julien Arino
 institute: University of Manitoba*
 format: 

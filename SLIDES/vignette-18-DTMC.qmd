@@ -2,7 +2,7 @@
 vignette-nb: "18"
 title: Discrete Time Markov Chains (DTMC) in R
 long-title: Vignette 18 - Discrete Time Markov Chains (DTMC) in R
-description: Julien Arino - R for modellers - Vignette 18 - Discrete Time Markov Chains (DTMC) in R
+description-meta: Julien Arino - R for modellers - Vignette 18 - Discrete Time Markov Chains (DTMC) in R
 author: Julien Arino
 institute: University of Manitoba*
 format: 
