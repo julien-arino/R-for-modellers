@@ -17,6 +17,7 @@ format:
     progress: false
     preview-links: true
     code-line-numbers: false
+    chalkboard: true
 ---
 
 We saw an example of sensitivity analysis in [Vignette 07](vignette-07-parLapply-and-friends.html)

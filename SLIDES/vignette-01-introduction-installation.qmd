@@ -17,6 +17,7 @@ format:
     progress: false
     preview-links: true
     code-line-numbers: false
+    chalkboard: true
 ---
 
 # Foreword: the R language {.r-fit-text}
@@ -73,12 +74,12 @@ format:
 
 ## A note for Linux users
 
-Often, the version on your distribution is not the most up to date
+- Often, the version on your distribution is not the most up to date
 
-Instructions are on CRAN about setting things up so you have the latest version. For instance,
+- Instructions are on CRAN about setting things up so you have the latest version. For instance,
 
-- [Debian](https://cran.r-project.org/bin/linux/debian/#secure-apt)
-- [Ubuntu](https://cran.r-project.org/bin/linux/ubuntu/)
+  - [Debian](https://cran.r-project.org/bin/linux/debian/#secure-apt)
+  - [Ubuntu](https://cran.r-project.org/bin/linux/ubuntu/)
 
 ## Development environments
 
@@ -95,11 +96,11 @@ Instructions are on CRAN about setting things up so you have the latest version.
 
 ## [Why run from the command line?]{.r-fit-text}
 
-`R` is a scripted language and when run from an `R` console, it is interactive
+- `R` is a scripted language and when run from an `R` console, it is interactive
 
-$\implies$ what you did before is in memory of the session you are working in
+- $\implies$ what you did before is in memory of the session you are working in
 
-This is frequent cause for errors when sharing your code with others: some things are defined in your script, others you did in the session but did not copy to the script
+- This is frequent cause for errors when sharing your code with others: some things are defined in your script, others you did in the session but did not copy to the script
 
 ## Different program options
 

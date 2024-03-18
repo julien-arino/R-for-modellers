@@ -99,6 +99,8 @@
   <link href="vignette-01-introduction-installation_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="vignette-01-introduction-installation_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="vignette-01-introduction-installation_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="vignette-01-introduction-installation_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="vignette-01-introduction-installation_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
   <link href="vignette-01-introduction-installation_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
 
@@ -478,11 +480,13 @@ Julien Arino <a href="mailto:Julien.Arino@umanitoba.ca"><img src="https://raw.gi
 </section>
 <section id="a-note-for-linux-users" class="slide level2">
 <h2>A note for Linux users</h2>
-<p>Often, the version on your distribution is not the most up to date</p>
-<p>Instructions are on CRAN about setting things up so you have the latest version. For instance,</p>
+<ul>
+<li><p>Often, the version on your distribution is not the most up to date</p></li>
+<li><p>Instructions are on CRAN about setting things up so you have the latest version. For instance,</p>
 <ul>
 <li><a href="https://cran.r-project.org/bin/linux/debian/#secure-apt">Debian</a></li>
 <li><a href="https://cran.r-project.org/bin/linux/ubuntu/">Ubuntu</a></li>
+</ul></li>
 </ul>
 </section>
 <section id="development-environments" class="slide level2">
@@ -506,9 +510,11 @@ Julien Arino <a href="mailto:Julien.Arino@umanitoba.ca"><img src="https://raw.gi
 </section>
 <section id="why-run-from-the-command-line" class="slide level2">
 <h2><span class="r-fit-text">Why run from the command line?</span></h2>
-<p><code>R</code> is a scripted language and when run from an <code>R</code> console, it is interactive</p>
-<p><span class="math inline">\(\implies\)</span> what you did before is in memory of the session you are working in</p>
-<p>This is frequent cause for errors when sharing your code with others: some things are defined in your script, others you did in the session but did not copy to the script</p>
+<ul>
+<li><p><code>R</code> is a scripted language and when run from an <code>R</code> console, it is interactive</p></li>
+<li><p><span class="math inline">\(\implies\)</span> what you did before is in memory of the session you are working in</p></li>
+<li><p>This is frequent cause for errors when sharing your code with others: some things are defined in your script, others you did in the session but did not copy to the script</p></li>
+</ul>
 </section>
 <section id="different-program-options" class="slide level2">
 <h2>Different program options</h2>
@@ -549,6 +555,7 @@ Julien Arino <a href="mailto:Julien.Arino@umanitoba.ca"><img src="https://raw.gi
   <script src="vignette-01-introduction-installation_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
   <script src="vignette-01-introduction-installation_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
   <script src="vignette-01-introduction-installation_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="vignette-01-introduction-installation_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
   <script src="vignette-01-introduction-installation_files/libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
@@ -569,7 +576,8 @@ Julien Arino <a href="mailto:Julien.Arino@umanitoba.ca"><img src="https://raw.gi
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
-'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true},
 'smaller': false,
  
         // Display controls in the bottom right corner
@@ -740,7 +748,7 @@ Julien Arino <a href="mailto:Julien.Arino@umanitoba.ca"><img src="https://raw.gi
         },
 
         // reveal.js plugins
-        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
 
           RevealMath,
           RevealNotes,

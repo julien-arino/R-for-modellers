@@ -17,6 +17,7 @@ format:
     progress: false
     preview-links: true
     code-line-numbers: false
+    chalkboard: true
 ---
 
 # The deSolve library
