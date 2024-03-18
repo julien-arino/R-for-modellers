@@ -18,45 +18,6 @@ format:
     preview-links: true
 ---
 
-<style>
-  img[alt~="center"] {
-    display: block;
-    margin: 0 auto;
-  }
-</style>
-
-<!-- backgroundColor: black -->
-<!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
-
-# Vignette 11<br>Solving DDE in R
-
-Julien Arino [![width:32px](https://raw.githubusercontent.com/julien-arino/presentations/main/FIGS/icons/email-round.png)](mailto:Julien.Arino@umanitoba.ca) [![width:32px](https://raw.githubusercontent.com/julien-arino/presentations/main/FIGS/icons/world-wide-web.png)](https://julien-arino.github.io/) [![width:32px](https://raw.githubusercontent.com/julien-arino/presentations/main/FIGS/icons/github-icon.png)](https://github.com/julien-arino)
-
-Department of Mathematics
-University of Manitoba*
-
-<div style = "font-size:18px; margin-top:-10px; padding-bottom:30px;"></div>
-
-Canadian Centre for Disease Modelling
-
-<div style = "text-align: justify; position: relative; bottom: -5%; font-size:18px;">
-* The University of Manitoba campuses are located on original lands of Anishinaabeg, Cree, Oji-Cree, Dakota and Dene peoples, and on the homeland of the Métis Nation.</div>
-
----
-
-<!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
-# Outline
-
-- The deSolve library
-- Example - Fitting data
-
----
-
-<!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
-# The deSolve library
-
----
-
 # The deSolve library
 
 - As I have already pointed out, [`deSolve`](https://cran.r-project.org/web/packages/deSolve/index.html):
@@ -68,9 +29,7 @@ Canadian Centre for Disease Modelling
 
 - Refer to the [package help](https://cran.r-project.org/web/packages/deSolve/deSolve.pdf) for details
 
----
-
-# Using deSolve for simple ODEs
+## Using deSolve for simple ODEs
 
 As with more numerical solvers, you need to write a function returning the value of the right hand side of your equation (the vector field) at a given point in phase space, then call this function from the solver
 
@@ -108,9 +67,7 @@ sol <- ode(IC, times, rhs_logistic, params)
 
 In this case, beware of not having a variable and a parameter with the same name..
 
----
-
-# Default method: `lsoda`
+## Default method: `lsoda`
 
 - `lsoda` switches automatically between stiff and nonstiff methods
 
@@ -123,14 +80,9 @@ ode(y, times, func, parms,
 
 - You can even implement your own integration method
 
----
-
-<!-- _backgroundImage: "linear-gradient(to bottom, red, black)" -->
 # Example - Fitting data
 
----
-
-# Example - Fitting data
+## Example - Fitting data
 
 - Note that this is a super simplified version of what to do
 - Much more elaborate procedures exist
@@ -140,9 +92,7 @@ ode(y, times, func, parms,
 - Don't expect anything funky, as I said, this is the baby version
 - Also, keep in mind that any identification procedure is subject to risks due to *identifiability issues*; see, e.g., Roda et al, [Why is it difficult to accurately predict the COVID-19 epidemic?](https://doi.org/10.1016/j.idm.2020.03.001)
 
----
-
-# Principle
+## Principle
 
 - Data is a set $(t_i,y_i)$, $i=1,\ldots,N$, where $t_i\in\mathcal{I}$, some interval
 - Solution to SIR is $(t,x(t))$ for $t\in\mathcal{I}$
@@ -155,9 +105,7 @@ $$
 - So given a point $p$ in (admissible) parameter space, we compute the solution to the ODE, compute $E(p)$
 - Using some minimisation algorithm, we seek a minimum of $E(p)$ by varying $p$
 
----
-
-# What are $y_i$ and $x(t_i)$ here?
+## What are $y_i$ and $x(t_i)$ here?
 
 - In epi data for infectious diseases, we typically have incidence, i.e., number of new cases per unit time
 - In SIR model, this is $\beta SI$ or $\beta SI/N$, so, if using mass action incidence and Euclidean norm
@@ -170,8 +118,6 @@ E(p)=\sum_{i=1}^N
 \left(\beta \frac{S(t_i)I(t_i)}{N}-y_i\right)^2
 $$
 
----
-
-# Implementing in practice
+## Implementing in practice
 
 See the code [practicum_01_fitting.R](https://raw.githubusercontent.com/julien-arino/3MC-course-epidemiological-modelling/main/CODE/practicum_01_fitting.R), which we will go over now

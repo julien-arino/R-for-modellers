@@ -18,48 +18,11 @@ format:
     preview-links: true
 ---
 
-<style>
-  img[alt~="center"] {
-    display: block;
-    margin: 0 auto;
-  }
-</style>
+# Note
 
-<!-- backgroundColor: black -->
-<!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
-# Vignette 13<br>RMarkdown
-
-Julien Arino [![width:32px](https://raw.githubusercontent.com/julien-arino/presentations/main/FIGS/icons/email-round.png)](mailto:Julien.Arino@umanitoba.ca) [![width:32px](https://raw.githubusercontent.com/julien-arino/presentations/main/FIGS/icons/world-wide-web.png)](https://julien-arino.github.io/) [![width:32px](https://raw.githubusercontent.com/julien-arino/presentations/main/FIGS/icons/github-icon.png)](https://github.com/julien-arino)
-
-Department of Mathematics
-University of Manitoba*
-
-<div style = "font-size:18px; margin-top:-10px; padding-bottom:30px;"></div>
-
-Canadian Centre for Disease Modelling
-
-<div style = "text-align: justify; position: relative; bottom: -5%; font-size:18px;">
-* The University of Manitoba campuses are located on original lands of Anishinaabeg, Cree, Oji-Cree, Dakota and Dene peoples, and on the homeland of the Métis Nation.</div>
-
----
-
-# <!--fit-->Note - Required reading/watching for MATH 2740 students
+**Required reading/watching for MATH 2740 students**
 
 If you are a student in the University of Manitoba's Mathematics of Data Science course (MATH 2740), this is **required** reading & watching
-
----
-
-<!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
-# Outline
-
-- [RMarkdown](#rmarkdown)
-
----
-
-<!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
-# <!--fit-->RMarkdown
-
----
 
 # RMarkdown
 
