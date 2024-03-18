@@ -393,81 +393,27 @@
 <section id="title-slide" class="center">
   <h4 class="subtitle">R for modellers - Vignette 11</h4>
   <h1 class="title r-fit-text">Solving DDE in R</h1>
-  <p class="author">Julien Arino</p>
+
+Julien Arino (<a href="mailto:Julien.Arino@umanitoba.ca">julien.arino@umanitoba.ca</a>) <a href="https://github.com/julien-arino"><img src="https://raw.githubusercontent.com/julien-arino/omni-course-part1/main/FIGS/GitHub-Mark-Light-64px.png" alt="" style="width:32px;"></a>
+<a href="https://julien-arino.github.io/"><img src="https://raw.githubusercontent.com/julien-arino/R-for-modellers/main/assets/img/web.png" alt="" style="width:32px;"></a>
+
+
   <p class="institute">University of Manitoba*</p>
 
+<br><br><br><br>
 <div style="text-align: justify; position: relative; bottom: -55%; font-size:18px;">
     * The University of Manitoba campuses are located on original lands of Anishinaabeg, Cree, Oji-Cree, Dakota and Dene peoples, and on the homeland of the Métis Nation.</div>    
 </section><section id="TOC">
 <nav role="doc-toc"> 
 <h2 id="toc-title">Outline</h2>
 <ul>
-<li><a href="#/vignette-11-solving-dde-in-r" id="/toc-vignette-11-solving-dde-in-r">Vignette 11<br>Solving DDE in R</a></li>
-<li><a href="#/outline" id="/toc-outline">Outline</a></li>
 <li><a href="#/the-desolve-library" id="/toc-the-desolve-library">The deSolve library</a></li>
-<li><a href="#/the-desolve-library-1" id="/toc-the-desolve-library-1">The deSolve library</a></li>
-<li><a href="#/using-desolve-for-simple-odes" id="/toc-using-desolve-for-simple-odes">Using deSolve for simple ODEs</a></li>
-<li><a href="#/default-method-lsoda" id="/toc-default-method-lsoda">Default method: <code>lsoda</code></a></li>
 <li><a href="#/example---fitting-data" id="/toc-example---fitting-data">Example - Fitting data</a></li>
-<li><a href="#/example---fitting-data-1" id="/toc-example---fitting-data-1">Example - Fitting data</a></li>
-<li><a href="#/principle" id="/toc-principle">Principle</a></li>
-<li><a href="#/what-are-y_i-and-xt_i-here" id="/toc-what-are-y_i-and-xt_i-here">What are <span class="math inline">\(y_i\)</span> and <span class="math inline">\(x(t_i)\)</span> here?</a></li>
-<li><a href="#/implementing-in-practice" id="/toc-implementing-in-practice">Implementing in practice</a></li>
 </ul>
 </nav>
 </section>
-<section class="slide level2">
-
-<style>
-  img[alt~="center"] {
-    display: block;
-    margin: 0 auto;
-  }
-</style>
-<!-- backgroundColor: black -->
-<!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
-</section>
-<section>
-<section id="vignette-11-solving-dde-in-r" class="title-slide slide level1 center">
-<h1>Vignette 11<br>Solving DDE in R</h1>
-<p>Julien Arino <a href="mailto:Julien.Arino@umanitoba.ca"><img data-src="https://raw.githubusercontent.com/julien-arino/presentations/main/FIGS/icons/email-round.png" alt="width:32px"></a> <a href="https://julien-arino.github.io/"><img data-src="https://raw.githubusercontent.com/julien-arino/presentations/main/FIGS/icons/world-wide-web.png" alt="width:32px"></a> <a href="https://github.com/julien-arino"><img data-src="https://raw.githubusercontent.com/julien-arino/presentations/main/FIGS/icons/github-icon.png" alt="width:32px"></a></p>
-<p>Department of Mathematics University of Manitoba*</p>
-<div style="font-size:18px; margin-top:-10px; padding-bottom:30px;">
-
-</div>
-<p>Canadian Centre for Disease Modelling</p>
-<div style="text-align: justify; position: relative; bottom: -5%; font-size:18px;">
-<ul>
-<li>The University of Manitoba campuses are located on original lands of Anishinaabeg, Cree, Oji-Cree, Dakota and Dene peoples, and on the homeland of the Métis Nation.
-</li></ul></div>
-
-</section>
-<section class="slide level2">
-
-<!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
-</section></section>
-<section>
-<section id="outline" class="title-slide slide level1 center">
-<h1>Outline</h1>
-<ul>
-<li>The deSolve library</li>
-<li>Example - Fitting data</li>
-</ul>
-</section>
-<section class="slide level2">
-
-<!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
-</section></section>
 <section>
 <section id="the-desolve-library" class="title-slide slide level1 center">
-<h1>The deSolve library</h1>
-
-</section>
-<section class="slide level2">
-
-</section></section>
-<section>
-<section id="the-desolve-library-1" class="title-slide slide level1 center">
 <h1>The deSolve library</h1>
 <ul>
 <li><p>As I have already pointed out, <a href="https://cran.r-project.org/web/packages/deSolve/index.html"><code>deSolve</code></a>: &gt; The functions provide an interface to the FORTRAN functions ‘lsoda’, ‘lsodar’, ‘lsode’, ‘lsodes’ of the ‘ODEPACK’ collection, to the FORTRAN functions ‘dvode’, ‘zvode’ and ‘daspk’ and a C-implementation of solvers of the ‘Runge-Kutta’ family with fixed or variable time steps</p></li>
@@ -476,12 +422,8 @@
 <li><p>Refer to the <a href="https://cran.r-project.org/web/packages/deSolve/deSolve.pdf">package help</a> for details</p></li>
 </ul>
 </section>
-<section class="slide level2">
-
-</section></section>
-<section>
-<section id="using-desolve-for-simple-odes" class="title-slide slide level1 center">
-<h1>Using deSolve for simple ODEs</h1>
+<section id="using-desolve-for-simple-odes" class="slide level2">
+<h2>Using deSolve for simple ODEs</h2>
 <p>As with more numerical solvers, you need to write a function returning the value of the right hand side of your equation (the vector field) at a given point in phase space, then call this function from the solver</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a><span class="fu">library</span>(deSolve)</span>
 <span id="cb1-2"><a href=""></a>rhs_logistic <span class="ot">&lt;-</span> <span class="cf">function</span>(t, x, p) {</span>
@@ -511,12 +453,8 @@
 <span id="cb2-11"><a href=""></a>sol <span class="ot">&lt;-</span> <span class="fu">ode</span>(IC, times, rhs_logistic, params)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>In this case, beware of not having a variable and a parameter with the same name..</p>
 </section>
-<section class="slide level2">
-
-</section></section>
-<section>
-<section id="default-method-lsoda" class="title-slide slide level1 center">
-<h1>Default method: <code>lsoda</code></h1>
+<section id="default-method-lsoda" class="slide level2">
+<h2>Default method: <code>lsoda</code></h2>
 <ul>
 <li><p><code>lsoda</code> switches automatically between stiff and nonstiff methods</p></li>
 <li><p>You can also specify other methods: “lsode”, “lsodes”, “lsodar”, “vode”, “daspk”, “euler”, “rk4”, “ode23”, “ode45”, “radau”, “bdf”, “bdf_d”, “adams”, “impAdams” or “impAdams_d” ,“iteration” (the latter for discrete-time systems)</p></li>
@@ -526,22 +464,14 @@
 <ul>
 <li>You can even implement your own integration method</li>
 </ul>
-</section>
-<section class="slide level2">
-
-<!-- _backgroundImage: "linear-gradient(to bottom, red, black)" -->
 </section></section>
 <section>
 <section id="example---fitting-data" class="title-slide slide level1 center">
 <h1>Example - Fitting data</h1>
 
 </section>
-<section class="slide level2">
-
-</section></section>
-<section>
-<section id="example---fitting-data-1" class="title-slide slide level1 center">
-<h1>Example - Fitting data</h1>
+<section id="example---fitting-data-1" class="slide level2">
+<h2>Example - Fitting data</h2>
 <ul>
 <li>Note that this is a super simplified version of what to do</li>
 <li>Much more elaborate procedures exist
@@ -554,12 +484,8 @@
 <li>Also, keep in mind that any identification procedure is subject to risks due to <em>identifiability issues</em>; see, e.g., Roda et al, <a href="https://doi.org/10.1016/j.idm.2020.03.001">Why is it difficult to accurately predict the COVID-19 epidemic?</a></li>
 </ul>
 </section>
-<section class="slide level2">
-
-</section></section>
-<section>
-<section id="principle" class="title-slide slide level1 center">
-<h1>Principle</h1>
+<section id="principle" class="slide level2">
+<h2>Principle</h2>
 <ul>
 <li>Data is a set <span class="math inline">\((t_i,y_i)\)</span>, <span class="math inline">\(i=1,\ldots,N\)</span>, where <span class="math inline">\(t_i\in\mathcal{I}\)</span>, some interval</li>
 <li>Solution to SIR is <span class="math inline">\((t,x(t))\)</span> for <span class="math inline">\(t\in\mathcal{I}\)</span></li>
@@ -572,12 +498,8 @@ E(p) = \sum_{i=1}^N \|x(t_i)-y_i\|
 <li>Using some minimisation algorithm, we seek a minimum of <span class="math inline">\(E(p)\)</span> by varying <span class="math inline">\(p\)</span></li>
 </ul>
 </section>
-<section class="slide level2">
-
-</section></section>
-<section>
-<section id="what-are-y_i-and-xt_i-here" class="title-slide slide level1 center">
-<h1>What are <span class="math inline">\(y_i\)</span> and <span class="math inline">\(x(t_i)\)</span> here?</h1>
+<section id="what-are-y_i-and-xt_i-here" class="slide level2">
+<h2>What are <span class="math inline">\(y_i\)</span> and <span class="math inline">\(x(t_i)\)</span> here?</h2>
 <ul>
 <li>In epi data for infectious diseases, we typically have incidence, i.e., number of new cases per unit time</li>
 <li>In SIR model, this is <span class="math inline">\(\beta SI\)</span> or <span class="math inline">\(\beta SI/N\)</span>, so, if using mass action incidence and Euclidean norm <span class="math display">\[
@@ -588,18 +510,15 @@ E(p)=\sum_{i=1}^N
 \]</span></li>
 </ul>
 </section>
-<section class="slide level2">
-
-</section></section>
-<section id="implementing-in-practice" class="title-slide slide level1 center">
-<h1>Implementing in practice</h1>
+<section id="implementing-in-practice" class="slide level2">
+<h2>Implementing in practice</h2>
 <p>See the code <a href="https://raw.githubusercontent.com/julien-arino/3MC-course-epidemiological-modelling/main/CODE/practicum_01_fitting.R">practicum_01_fitting.R</a>, which we will go over now</p>
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 
 </div>
 </div>
-</section>
+</section></section>
     </div>
   </div>
 
