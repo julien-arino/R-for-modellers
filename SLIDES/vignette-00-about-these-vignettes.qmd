@@ -18,13 +18,13 @@ format:
     preview-links: true
 ---
 
-# [What are "vignettes"?]{.r-fit-text}
+# What are "vignettes"?
 
 ---
 
 ![](FIGS/vignette.png){fig-align="center"}
 
----
+## Vignettes in R
 
 - In the `R` world, vignettes are short "wordy" introductions to a topic or package
 
@@ -33,17 +33,19 @@ format:
 
 - Example: [deSolve](https://cran.r-project.org/web/packages/deSolve/index.html)
 
-# [What's in *my* vignettes?]{.r-fit-text}
+# What's in *my* vignettes?
 
 ---
+
+## These vignettes
 
 - How-to's explaining how to attack some particular problems in `R`
 
 - Focus on problems that are relevant to mathematical modellers
 
-# [Who's this for?]{.r-fit-text}
+# Who's this for?
 
----
+## Who is this for?
 
 - Modellers interested in using `R` instead of `python`, `matlab`, `mathematica`, `maple`, etc.
 
@@ -51,7 +53,7 @@ format:
 
 - Students registered in one of the courses I teach at UM in which I use `R`: some of the vignettes are required reading for you!
 
-# [Organisation of the vignettes]{.r-fit-text}
+# Organisation of the vignettes
 
 ## Organi-what?
 
@@ -59,14 +61,14 @@ format:
 
 - I have tried to group similar topics ... with more or less success
 
-# [The GitHub repo(sitory)]{.r-fit-text}
+# The GitHub repo(sitory)
 
 ## Two forms
 
 - [As a webpage](https://julien-arino.github.io/R-for-modellers/)
 - [As a repo](https://github.com/julien-arino/R-for-modellers)
 
-# [Caveats]{.r-fit-text}
+# Caveats
 
 ## This is work in progress
 

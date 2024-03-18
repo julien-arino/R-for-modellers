@@ -109,22 +109,18 @@ When you install `R`, you install several programs
   - In Windows, you get a shortcut to a console version
 - A program called `Rscript` that allows you to run an .. `R` script from your OS' command line
 
---- 
+## [Run a script from the command line]{.r-fit-text}
 
-# <!--fit--> Running a script from the command line
-
-```bash
-Rscript script/path/script_file_name.R
+```{.bash}
+Rscript script/path/script-file-name.R
 ```
 or, from within the directory
-```bash
-Rscript script_file_name.R
+```{.bash}
+Rscript script-file-name.R
 ```
 
----
+## No output by default
 
-# No output by default
+- Contrary to the interactive version, if you want to see an output when running from the command line, you have to force it using commands like `print` or `writeLines`
 
-Note that contrary to the interactive version, if you want to see an output when running from the command line, you have to force it using commands like `print` or `writeLines`
-
-Figures will also not be displayed, so you may want to save them
+- Figures will also not be displayed, so you may want to save them
