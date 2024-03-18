@@ -328,78 +328,31 @@
 <section id="title-slide" class="center">
   <h4 class="subtitle">R for modellers - Vignette 12</h4>
   <h1 class="title r-fit-text">Fitting an ODE</h1>
-  <p class="author">Julien Arino</p>
+
+Julien Arino (<a href="mailto:Julien.Arino@umanitoba.ca">julien.arino@umanitoba.ca</a>) <a href="https://github.com/julien-arino"><img src="https://raw.githubusercontent.com/julien-arino/omni-course-part1/main/FIGS/GitHub-Mark-Light-64px.png" alt="" style="width:32px;"></a>
+<a href="https://julien-arino.github.io/"><img src="https://raw.githubusercontent.com/julien-arino/R-for-modellers/main/assets/img/web.png" alt="" style="width:32px;"></a>
+
+
   <p class="institute">University of Manitoba*</p>
 
+<br><br><br><br>
 <div style="text-align: justify; position: relative; bottom: -55%; font-size:18px;">
     * The University of Manitoba campuses are located on original lands of Anishinaabeg, Cree, Oji-Cree, Dakota and Dene peoples, and on the homeland of the Métis Nation.</div>    
 </section><section id="TOC">
 <nav role="doc-toc"> 
 <h2 id="toc-title">Outline</h2>
 <ul>
-<li><a href="#/vignette-12-fitting-an-ode" id="/toc-vignette-12-fitting-an-ode">Vignette 12<br>Fitting an ODE</a></li>
-<li><a href="#/outline" id="/toc-outline">Outline</a></li>
 <li><a href="#/principle---fitting-data" id="/toc-principle---fitting-data">Principle - Fitting data</a></li>
-<li><a href="#/fitting-data" id="/toc-fitting-data">Fitting data</a></li>
-<li><a href="#/principle" id="/toc-principle">Principle</a></li>
-<li><a href="#/what-are-y_i-and-xt_i-here" id="/toc-what-are-y_i-and-xt_i-here">What are <span class="math inline">\(y_i\)</span> and <span class="math inline">\(x(t_i)\)</span> here?</a></li>
-<li><a href="#/implementing-in-practice" id="/toc-implementing-in-practice">Implementing in practice</a></li>
 </ul>
 </nav>
 </section>
-<section class="slide level2">
-
-<style>
-  img[alt~="center"] {
-    display: block;
-    margin: 0 auto;
-  }
-</style>
-<!-- backgroundColor: black -->
-<!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
-</section>
-<section>
-<section id="vignette-12-fitting-an-ode" class="title-slide slide level1 center">
-<h1>Vignette 12<br>Fitting an ODE</h1>
-<p>Julien Arino <a href="mailto:Julien.Arino@umanitoba.ca"><img data-src="https://raw.githubusercontent.com/julien-arino/presentations/main/FIGS/icons/email-round.png" alt="width:32px"></a> <a href="https://julien-arino.github.io/"><img data-src="https://raw.githubusercontent.com/julien-arino/presentations/main/FIGS/icons/world-wide-web.png" alt="width:32px"></a> <a href="https://github.com/julien-arino"><img data-src="https://raw.githubusercontent.com/julien-arino/presentations/main/FIGS/icons/github-icon.png" alt="width:32px"></a></p>
-<p>Department of Mathematics University of Manitoba*</p>
-<div style="font-size:18px; margin-top:-10px; padding-bottom:30px;">
-
-</div>
-<p>Canadian Centre for Disease Modelling</p>
-<div style="text-align: justify; position: relative; bottom: -5%; font-size:18px;">
-<ul>
-<li>The University of Manitoba campuses are located on original lands of Anishinaabeg, Cree, Oji-Cree, Dakota and Dene peoples, and on the homeland of the Métis Nation.
-</li></ul></div>
-
-</section>
-<section class="slide level2">
-
-<!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
-</section></section>
-<section>
-<section id="outline" class="title-slide slide level1 center">
-<h1>Outline</h1>
-<ul>
-<li>Principle - Fitting data</li>
-<li>Example 1 - Kermack McKendrick SIR epidemic model</li>
-</ul>
-</section>
-<section class="slide level2">
-
-<!-- _backgroundImage: "linear-gradient(to top, #85110d, 1%, black)" -->
-</section></section>
 <section>
 <section id="principle---fitting-data" class="title-slide slide level1 center">
 <h1>Principle - Fitting data</h1>
 
 </section>
-<section class="slide level2">
-
-</section></section>
-<section>
-<section id="fitting-data" class="title-slide slide level1 center">
-<h1>Fitting data</h1>
+<section id="fitting-data" class="slide level2">
+<h2>Fitting data</h2>
 <ul>
 <li>Note that this is a super simplified version of what to do</li>
 <li>Much more elaborate procedures exist
@@ -417,12 +370,8 @@
 <li>Also, keep in mind that any identification procedure is subject to risks due to <em>identifiability issues</em>; see, e.g., Roda et al, <a href="https://doi.org/10.1016/j.idm.2020.03.001">Why is it difficult to accurately predict the COVID-19 epidemic?</a></li>
 </ul>
 </section>
-<section class="slide level2">
-
-</section></section>
-<section>
-<section id="principle" class="title-slide slide level1 center">
-<h1>Principle</h1>
+<section id="principle" class="slide level2">
+<h2>Principle</h2>
 <ul>
 <li>Data is a set <span class="math inline">\((t_i,y_i)\)</span>, <span class="math inline">\(i=1,\ldots,N\)</span>, where <span class="math inline">\(t_i\in\mathcal{I}\)</span>, some interval</li>
 <li>Solution to SIR is <span class="math inline">\((t,x(t))\)</span> for <span class="math inline">\(t\in\mathcal{I}\)</span></li>
@@ -440,12 +389,8 @@ E(p) = \sum_{i=1}^N \|x(t_i)-y_i\|
 <li>Using some minimisation algorithm, we seek a minimum of <span class="math inline">\(E(p)\)</span> by varying <span class="math inline">\(p\)</span></li>
 </ul>
 </section>
-<section class="slide level2">
-
-</section></section>
-<section>
-<section id="what-are-y_i-and-xt_i-here" class="title-slide slide level1 center">
-<h1>What are <span class="math inline">\(y_i\)</span> and <span class="math inline">\(x(t_i)\)</span> here?</h1>
+<section id="what-are-y_i-and-xt_i-here" class="slide level2">
+<h2>What are <span class="math inline">\(y_i\)</span> and <span class="math inline">\(x(t_i)\)</span> here?</h2>
 <ul>
 <li>In epi data for infectious diseases, we typically have incidence, i.e., number of new cases per unit time</li>
 <li>In SIR model, this is <span class="math inline">\(\beta SI\)</span> or <span class="math inline">\(\beta SI/N\)</span>, so, if using mass action incidence and Euclidean norm <span class="math display">\[
@@ -456,18 +401,15 @@ E(p)=\sum_{i=1}^N
 \]</span></li>
 </ul>
 </section>
-<section class="slide level2">
-
-</section></section>
-<section id="implementing-in-practice" class="title-slide slide level1 center">
-<h1>Implementing in practice</h1>
+<section id="implementing-in-practice" class="slide level2">
+<h2>Implementing in practice</h2>
 <p>See the code <a href="https://raw.githubusercontent.com/julien-arino/3MC-course-epidemiological-modelling/main/CODE/practicum_01_fitting.R">practicum_01_fitting.R</a>, which we will go over now</p>
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 
 </div>
 </div>
-</section>
+</section></section>
     </div>
   </div>
 
