@@ -398,6 +398,9 @@
 
 Julien Arino <a href="mailto:Julien.Arino@umanitoba.ca"><img src="https://raw.githubusercontent.com/julien-arino/R-for-modellers/main/assets/img/mail.png" alt="" style="width:32px"></a> <a href="https://julien-arino.github.io/"><img src="https://raw.githubusercontent.com/julien-arino/R-for-modellers/main/assets/img/web.png" alt="" style="width:32px;"></a> <a href="https://github.com/julien-arino"><img src="https://raw.githubusercontent.com/julien-arino/omni-course-part1/main/FIGS/GitHub-Mark-Light-64px.png" alt="" style="width:32px;"></a>
 
+<p class="institute">
+Department of Mathematics
+</p>
   <p class="institute">University of Manitoba*</p>
 
 <br><br><br><br>
@@ -407,7 +410,6 @@ Julien Arino <a href="mailto:Julien.Arino@umanitoba.ca"><img src="https://raw.gi
 <nav role="doc-toc"> 
 <h2 id="toc-title">Outline</h2>
 <ul>
-<li><a href="#/note" id="/toc-note">Note</a></li>
 <li><a href="#/packages-a.k.a.-libraries" id="/toc-packages-a.k.a.-libraries">Packages (a.k.a. libraries)</a></li>
 <li><a href="#/installing-a-package" id="/toc-installing-a-package">Installing a package</a></li>
 <li><a href="#/loading-a-package" id="/toc-loading-a-package">Loading a package</a></li>
@@ -416,15 +418,13 @@ Julien Arino <a href="mailto:Julien.Arino@umanitoba.ca"><img src="https://raw.gi
 </ul>
 </nav>
 </section>
-<section id="note" class="title-slide slide level1 center">
-<h1>Note</h1>
-<p><strong>Required reading/watching for MATH 2740 students!</strong></p>
+<section id="required-for-math-2740-students" class="slide level2">
+<h2><span class="r-fit-text">Required for MATH 2740 students!</span></h2>
 <ul>
 <li><p>If you are a student in the University of Manitoba’s Mathematics of Data Science course (MATH 2740), this is <strong>required</strong> reading &amp; watching</p></li>
-<li><p>Failure to use the <a href="#/sec:friendly">“friendly” method</a> will result in loss of marks in your <code>R</code> assignments!</p></li>
+<li><p>Failure to use the <a href="#/be-friendly-to-others">“friendly” method</a> will result in loss of marks in your <code>R</code> assignments!</p></li>
 </ul>
 </section>
-
 <section>
 <section id="packages-a.k.a.-libraries" class="title-slide slide level1 center">
 <h1>Packages (a.k.a. libraries)</h1>
@@ -438,14 +438,14 @@ Julien Arino <a href="mailto:Julien.Arino@umanitoba.ca"><img src="https://raw.gi
 </ul>
 </section>
 <section id="cran-is-the-main-source-for-packages" class="slide level2">
-<h2>CRAN is the main source for packages</h2>
+<h2><span class="r-fit-text">CRAN is the main source for packages</span></h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">paste</span>(<span class="fu">nrow</span>(<span class="fu">available.packages</span>()),</span>
 <span id="cb1-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>       <span class="st">"packages on CRAN on"</span>,</span>
 <span id="cb1-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>       <span class="fu">Sys.Date</span>())</span>
 <span id="cb1-4"><a href="" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"20240 packages on CRAN on 2023-12-27"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="there-are-also-packages-not-on-cran" class="slide level2">
-<h2>There are also packages not on CRAN</h2>
+<h2><span class="r-fit-text">There are also packages not on CRAN</span></h2>
 <ul>
 <li>For instance, packages on GitHub</li>
 <li>Sometimes packages get removed from CRAN, although the latest versions are typically still available</li>
@@ -459,28 +459,33 @@ Julien Arino <a href="mailto:Julien.Arino@umanitoba.ca"><img src="https://raw.gi
 </section>
 <section id="from-cran" class="slide level2">
 <h2>From CRAN</h2>
-<p>Use the command <code>install.packages()</code></p>
+<ul>
+<li>Use the command <code>install.packages()</code></li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"deSolve"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="from-github" class="slide level2">
 <h2>From GitHub</h2>
-<p>Some packages are only on GitHub; others have their latest (testing) version on GitHub and a stable version on CRAN</p>
-<p>Need to use the <code>devtools</code> or <code>remotes</code> packages (maybe prefer <code>devtools</code>)</p>
-<p>You can also use the package <a href="https://cran.r-project.org/web/packages/githubinstall/vignettes/githubinstall.html">githubinstall</a></p>
+<ul>
+<li><p>Some packages are only on GitHub; others have their latest (testing) version on GitHub and a stable version on CRAN</p></li>
+<li><p>Need to use the <code>devtools</code> or <code>remotes</code> packages (maybe prefer <code>devtools</code>)</p></li>
+<li><p>You can also use the package <a href="https://cran.r-project.org/web/packages/githubinstall/vignettes/githubinstall.html">githubinstall</a></p></li>
+</ul>
 </section>
-<section class="slide level2">
-
-<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">library</span>(githubinstall)</span>
-<span id="cb2-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">githubinstall</span>(<span class="st">"xkcd"</span>)</span>
-<span id="cb2-3"><a href="" aria-hidden="true" tabindex="-1"></a>Select a number or, hit <span class="dv">0</span> to cancel. </span>
-<span id="cb2-4"><a href="" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span> DanHenebery<span class="sc">/</span>Rxkcd  </span>
-<span id="cb2-6"><a href="" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">:</span> EDiLD<span class="sc">/</span>xkcd2        </span>
-<span id="cb2-7"><a href="" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="" aria-hidden="true" tabindex="-1"></a>Selection<span class="sc">:</span> <span class="dv">2</span></span>
-<span id="cb2-9"><a href="" aria-hidden="true" tabindex="-1"></a>Suggestion<span class="sc">:</span></span>
-<span id="cb2-10"><a href="" aria-hidden="true" tabindex="-1"></a> <span class="sc">-</span> EDiLD<span class="sc">/</span>xkcd2  <span class="cn">NA</span></span>
-<span id="cb2-11"><a href="" aria-hidden="true" tabindex="-1"></a>Do you want to install the <span class="fu">package</span> (Y<span class="sc">/</span>n)?  </span>
-<span id="cb2-12"><a href="" aria-hidden="true" tabindex="-1"></a>Downloading GitHub repo EDiLD<span class="sc">/</span>xkcd2<span class="sc">@</span>master</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="example-xkcd-style-graphs" class="slide level2">
+<h2>Example: xkcd style graphs</h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">library</span>(githubinstall)</span>
+<span id="cb3-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">githubinstall</span>(<span class="st">"xkcd"</span>)</span>
+<span id="cb3-3"><a href="" aria-hidden="true" tabindex="-1"></a>Select a number or, hit <span class="dv">0</span> to cancel. </span>
+<span id="cb3-4"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span> DanHenebery<span class="sc">/</span>Rxkcd  </span>
+<span id="cb3-6"><a href="" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">:</span> EDiLD<span class="sc">/</span>xkcd2        </span>
+<span id="cb3-7"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="" aria-hidden="true" tabindex="-1"></a>Selection<span class="sc">:</span> <span class="dv">2</span></span>
+<span id="cb3-9"><a href="" aria-hidden="true" tabindex="-1"></a>Suggestion<span class="sc">:</span></span>
+<span id="cb3-10"><a href="" aria-hidden="true" tabindex="-1"></a> <span class="sc">-</span> EDiLD<span class="sc">/</span>xkcd2  <span class="cn">NA</span></span>
+<span id="cb3-11"><a href="" aria-hidden="true" tabindex="-1"></a>Do you want to install the <span class="fu">package</span> (Y<span class="sc">/</span>n)?  </span>
+<span id="cb3-12"><a href="" aria-hidden="true" tabindex="-1"></a>Downloading GitHub repo EDiLD<span class="sc">/</span>xkcd2<span class="sc">@</span>master</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section></section>
 <section>
 <section id="loading-a-package" class="title-slide slide level1 center">
@@ -489,16 +494,18 @@ Julien Arino <a href="mailto:Julien.Arino@umanitoba.ca"><img src="https://raw.gi
 </section>
 <section id="loading-a-package-1" class="slide level2">
 <h2>Loading a package</h2>
-<p>Once a package is installed, you load it with the command <code>library()</code></p>
-<p>No need to use quotation marks: <code>library(ggplot2)</code></p>
+<ul>
+<li><p>Once a package is installed, you load it with the command <code>library()</code></p></li>
+<li><p>No need to use quotation marks: <code>library(ggplot2)</code></p></li>
+</ul>
 </section>
 <section id="loading-several-packages" class="slide level2">
 <h2>Loading several packages</h2>
 <p>To load several packages with a single command, you need to use a loop and the option <code>character.only = TRUE</code></p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="" aria-hidden="true" tabindex="-1"></a>required_packages <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"ggplot2"</span>, <span class="st">"dplyr"</span>)</span>
-<span id="cb3-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (p <span class="cf">in</span> required_packages) {</span>
-<span id="cb3-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(p, <span class="at">character.only =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb3-4"><a href="" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="" aria-hidden="true" tabindex="-1"></a>required_packages <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"ggplot2"</span>, <span class="st">"dplyr"</span>)</span>
+<span id="cb4-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (p <span class="cf">in</span> required_packages) {</span>
+<span id="cb4-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(p, <span class="at">character.only =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb4-4"><a href="" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section></section>
 <section>
 <section id="be-friendly-to-others" class="title-slide slide level1 center">
@@ -506,36 +513,42 @@ Julien Arino <a href="mailto:Julien.Arino@umanitoba.ca"><img src="https://raw.gi
 
 </section>
 <section id="when-distributing-your-code-think-of-those-using-it" class="slide level2">
-<h2>When distributing your code, think of those using it</h2>
-<p>If you are using a slightly unusual library, it is possible that a person you share your code with does not have that library installed</p>
-<p>In this case, it is nice to them if you spare them having to do the work to install the library</p>
-<p>But it is also possible that they already have the library</p>
-<p>In this case, it will be annoying to them if you trigger an installation of the library (especially under linux, since there libraries are compiled for installation)</p>
+<h2><span class="r-fit-text">When distributing your code, think of those using it</span></h2>
+<ul>
+<li><p>If you are using a slightly unusual library, it is possible that a person you share your code with does not have that library installed</p>
+<ul>
+<li>In this case, it is nice to them if you spare them having to do the work to install the library</li>
+</ul></li>
+<li><p>But it is also possible that they already have the library</p>
+<ul>
+<li>In this case, it will be annoying to them if you trigger an installation of the library (especially under linux, since there libraries are compiled for installation)</li>
+</ul></li>
+</ul>
 </section>
 <section class="slide level2">
 
-<p>So the way to proceed is to <strong>test</strong> whether the library is installed</p>
+<p>So <strong>test</strong> whether the library is installed</p>
 <ul>
 <li>If it is, load it</li>
 <li>If it is not, install it then load it</li>
 </ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(package_name)) {</span>
-<span id="cb4-2"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="fu">install.packages</span>(<span class="st">"package_name"</span>)</span>
-<span id="cb4-3"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="fu">library</span>(package_name)</span>
-<span id="cb4-4"><a href="" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(package_name)) {</span>
+<span id="cb5-2"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="fu">install.packages</span>(<span class="st">"package_name"</span>)</span>
+<span id="cb5-3"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="fu">library</span>(package_name)</span>
+<span id="cb5-4"><a href="" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <blockquote>
 <p><code>require</code> is designed for use inside other functions; it returns <code>FALSE</code> and gives a warning (rather than an error as <code>library()</code> does by default) if the package does not exist.</p>
 </blockquote>
 </section>
 <section id="example-using-several-libraries" class="slide level2">
 <h2>Example using several libraries</h2>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="" aria-hidden="true" tabindex="-1"></a>required_packages <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"ggplot2"</span>, <span class="st">"dplyr"</span>)</span>
-<span id="cb5-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (p <span class="cf">in</span> required_packages) {</span>
-<span id="cb5-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(p, <span class="at">character.only =</span> <span class="cn">TRUE</span>)) {</span>
-<span id="cb5-4"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="fu">install.packages</span>(p)</span>
-<span id="cb5-5"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="fu">library</span>(p, <span class="at">character.only =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb5-6"><a href="" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb5-7"><a href="" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="" aria-hidden="true" tabindex="-1"></a>required_packages <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"ggplot2"</span>, <span class="st">"dplyr"</span>)</span>
+<span id="cb6-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (p <span class="cf">in</span> required_packages) {</span>
+<span id="cb6-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(p, <span class="at">character.only =</span> <span class="cn">TRUE</span>)) {</span>
+<span id="cb6-4"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="fu">install.packages</span>(p)</span>
+<span id="cb6-5"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="fu">library</span>(p, <span class="at">character.only =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb6-6"><a href="" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb6-7"><a href="" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section></section>
 <section>
 <section id="updating-packages" class="title-slide slide level1 center">
@@ -547,7 +560,8 @@ Julien Arino <a href="mailto:Julien.Arino@umanitoba.ca"><img src="https://raw.gi
 </section>
 <section id="from-the-r-command-line" class="slide level2">
 <h2>From the R command line</h2>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">update.packages</span>(<span class="at">ask =</span> <span class="cn">FALSE</span>, <span class="at">checkBuilt =</span> <span class="cn">TRUE</span>, <span class="at">Ncpus =</span> <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">update.packages</span>(<span class="at">ask =</span> <span class="cn">FALSE</span>, <span class="at">checkBuilt =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb7-2"><a href="" aria-hidden="true" tabindex="-1"></a>                <span class="at">Ncpus =</span> <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><code>ask = FALSE</code>: do not ask for confirmation</li>
 <li><code>checkBuilt = TRUE</code>: check with which version of <code>R</code> the package was built and call package <em>old</em> if this is a earlier major version (e.g., built with 4.2 when the current is 4.3)</li>
@@ -556,18 +570,24 @@ Julien Arino <a href="mailto:Julien.Arino@umanitoba.ca"><img src="https://raw.gi
 </section>
 <section id="packages-and-r-major-versions" class="slide level2">
 <h2>Packages and <code>R</code> major versions</h2>
-<p>Packages are stored by default in your home folder under the current major version of <code>R</code> (currently 4.3)</p>
-<pre><code>~/R/x86_64-pc-linux-gnu-library/4.3/</code></pre>
-<p>When the major version changes, you therefore need to do something with all your current packages..</p>
-<p>There is no planned mechanisms for doing this</p>
-<p>Easiest: export list of libraries in the previous version, then install all of them</p>
+<ul>
+<li>Packages are stored by default in your home folder under the current major version of <code>R</code> (currently 4.3)</li>
+</ul>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">~/R/x86_64-pc-linux-gnu-library/4.3/</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><p>When the major version changes, you therefore need to do something with all your current packages..</p></li>
+<li><p>There is no planned mechanisms for doing this!</p></li>
+<li><p>Easiest: export list of libraries in the previous version, then install all of them</p></li>
+</ul>
 </section>
 <section class="slide level2">
 
 <p>Set <code>lib</code> to be previous R version, say, 4.2:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="" aria-hidden="true" tabindex="-1"></a>lib <span class="ot">=</span> <span class="st">"/home/jarino/x86_64-pc-linux-gnu-library/4.2"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="" aria-hidden="true" tabindex="-1"></a>lib <span class="ot">=</span> </span>
+<span id="cb9-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="st">"/home/jarino/x86_64-pc-linux-gnu-library/4.2"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>then get list of packages</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="" aria-hidden="true" tabindex="-1"></a>installed_packages <span class="ot">=</span> <span class="fu">as.data.frame</span>(<span class="fu">installed.packages</span>(lib))<span class="sc">$</span>Package</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="" aria-hidden="true" tabindex="-1"></a>installed_packages <span class="ot">=</span> </span>
+<span id="cb10-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>(<span class="fu">installed.packages</span>(lib))<span class="sc">$</span>Package</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 

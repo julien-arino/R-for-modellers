@@ -7,7 +7,7 @@ author: Julien Arino
 institute: University of Manitoba*
 format: 
   revealjs:
-    theme: night    
+    theme: [night, custom.scss]    
     template-partials:
       - title-slide.html
     toc: true

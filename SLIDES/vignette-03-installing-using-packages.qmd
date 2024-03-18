@@ -7,7 +7,7 @@ author: Julien Arino
 institute: University of Manitoba*
 format: 
   revealjs:
-    theme: night    
+    theme: [night, custom.scss]    
     template-partials:
       - title-slide.html
     toc: true
@@ -20,13 +20,11 @@ format:
     chalkboard: true
 ---
 
-# Note 
-
-**Required reading/watching for MATH 2740 students!**
+## [Required for MATH 2740 students!]{.r-fit-text}
 
 - If you are a student in the University of Manitoba's Mathematics of Data Science course (MATH 2740), this is **required** reading & watching
 
-- Failure to use the ["friendly" method](#sec:friendly) will result in loss of marks in your `R` assignments!
+- Failure to use the ["friendly" method](#be-friendly-to-others) will result in loss of marks in your `R` assignments!
 
 # Packages (a.k.a. libraries)
 
@@ -36,7 +34,7 @@ format:
 
 - Packages allow to avoid "bloating", since the `R` core remains relatively light and you only install the additional content you need
 
-## CRAN is the main source for packages
+## [CRAN is the main source for packages]{.r-fit-text}
 
 ```R
 > paste(nrow(available.packages()),
@@ -45,7 +43,7 @@ format:
 [1] "20240 packages on CRAN on 2023-12-27"
 ```
 
-## There are also packages not on CRAN
+## [There are also packages not on CRAN]{.r-fit-text}
 
 - For instance, packages on GitHub
 - Sometimes packages get removed from CRAN, although the latest versions are typically still available
@@ -55,19 +53,23 @@ format:
 
 ## From CRAN
 
-Use the command `install.packages()`
+- Use the command `install.packages()`
+
+```{.r}
+install.packages("deSolve")
+```
 
 ## From GitHub
 
-Some packages are only on GitHub; others have their latest (testing) version on GitHub and a stable version on CRAN
+- Some packages are only on GitHub; others have their latest (testing) version on GitHub and a stable version on CRAN
 
-Need to use the `devtools` or `remotes` packages (maybe prefer `devtools`)
+- Need to use the `devtools` or `remotes` packages (maybe prefer `devtools`)
 
-You can also use the package [githubinstall](https://cran.r-project.org/web/packages/githubinstall/vignettes/githubinstall.html)
+- You can also use the package [githubinstall](https://cran.r-project.org/web/packages/githubinstall/vignettes/githubinstall.html)
 
----
+## Example: xkcd style graphs
 
-```R
+```{.r}
 > library(githubinstall)
 > githubinstall("xkcd")
 Select a number or, hit 0 to cancel. 
@@ -86,9 +88,9 @@ Downloading GitHub repo EDiLD/xkcd2@master
 
 ## Loading a package
 
-Once a package is installed, you load it with the command `library()`
+- Once a package is installed, you load it with the command `library()`
 
-No need to use quotation marks: `library(ggplot2)`
+- No need to use quotation marks: `library(ggplot2)`
 
 ## Loading several packages
 
@@ -103,24 +105,24 @@ for (p in required_packages) {
 
 # Be friendly to others!
 
-## When distributing your code, think of those using it
+## [When distributing your code, think of those using it]{.r-fit-text}
 
-If you are using a slightly unusual library, it is possible that a person you share your code with does not have that library installed
+- If you are using a slightly unusual library, it is possible that a person you share your code with does not have that library installed
 
-In this case, it is nice to them if you spare them having to do the work to install the library
+  - In this case, it is nice to them if you spare them having to do the work to install the library
 
-But it is also possible that they already have the library
+- But it is also possible that they already have the library
 
-In this case, it will be annoying to them if you trigger an installation of the library (especially under linux, since there libraries are compiled for installation)
+  - In this case, it will be annoying to them if you trigger an installation of the library (especially under linux, since there libraries are compiled for installation)
 
 ---
 
-So the way to proceed is to **test** whether the library is installed
+So **test** whether the library is installed
 
 - If it is, load it
 - If it is not, install it then load it
 
-```R
+```{.r}
 if (!require(package_name)) {
     install.packages("package_name")
     library(package_name)
@@ -130,7 +132,7 @@ if (!require(package_name)) {
 
 ## Example using several libraries
 
-```R
+```{.r}
 required_packages = c("ggplot2", "dplyr")
 for (p in required_packages) {
   if (!require(p, character.only = TRUE)) {
@@ -147,7 +149,8 @@ for (p in required_packages) {
 ## From the R command line
 
 ```R
-update.packages(ask = FALSE, checkBuilt = TRUE, Ncpus = 6)
+update.packages(ask = FALSE, checkBuilt = TRUE, 
+                Ncpus = 6)
 ```
 
 - `ask = FALSE`: do not ask for confirmation
@@ -156,28 +159,30 @@ update.packages(ask = FALSE, checkBuilt = TRUE, Ncpus = 6)
 
 ## Packages and `R` major versions
 
-Packages are stored by default in your home folder under the current major version of `R` (currently 4.3)
+- Packages are stored by default in your home folder under the current major version of `R` (currently 4.3)
 
-```
+```{.bash}
 ~/R/x86_64-pc-linux-gnu-library/4.3/
 ```
 
-When the major version changes, you therefore need to do something with all your current packages..
+- When the major version changes, you therefore need to do something with all your current packages..
 
-There is no planned mechanisms for doing this
+- There is no planned mechanisms for doing this!
 
-Easiest: export list of libraries in the previous version, then install all of them
+- Easiest: export list of libraries in the previous version, then install all of them
 
 ---
 
 Set `lib` to be previous R version, say, 4.2:
 
 ```R
-lib = "/home/jarino/x86_64-pc-linux-gnu-library/4.2"
+lib = 
+  "/home/jarino/x86_64-pc-linux-gnu-library/4.2"
 ```
 
 then get list of packages
 
 ```R
-installed_packages = as.data.frame(installed.packages(lib))$Package
+installed_packages = 
+  as.data.frame(installed.packages(lib))$Package
 ```
