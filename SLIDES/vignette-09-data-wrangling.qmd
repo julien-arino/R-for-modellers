@@ -15,7 +15,7 @@ format:
     toc-title: Outline
     auto-stretch: true
     progress: false
-    preview-links: true
+    preview-liiks: auto
     code-line-numbers: false
     chalkboard: true
 ---
