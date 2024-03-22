@@ -40,7 +40,7 @@ format:
 
 ## These vignettes
 
-- How-to's explaining how to attack some particular problems in `R`
+- How-to's explaining .. how to attack some particular problems in `R`
 
 - Focus on problems that are relevant to mathematical modellers
 
