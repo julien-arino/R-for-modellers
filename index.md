@@ -33,8 +33,6 @@ Vignettes for which videos are available are marked with a YouTube logo and are 
 </ul>
 
 
-At present, there are no videos. I will be recording videos when time permits, probably in early 2024.
-
 ## Note pour les étudiants francophones
 
 Je prévois de traduire les vignettes en français, mais cela prendra du temps. En attendant, si vous avez des questions, n'hésitez pas à me contacter.
