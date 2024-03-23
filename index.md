@@ -1,4 +1,4 @@
-## R for modellers
+# R for modellers
 
 These are small snapshots ("vignettes") to illustrate a technique or a concept in `R`.
 This information is mainly geared towards mathematical modellers but may be useful to others. 
