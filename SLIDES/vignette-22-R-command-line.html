@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<script src="vignette-01-introduction-installation_files/libs/clipboard/clipboard.min.js"></script>
-<script src="vignette-01-introduction-installation_files/libs/quarto-html/tabby.min.js"></script>
-<script src="vignette-01-introduction-installation_files/libs/quarto-html/popper.min.js"></script>
-<script src="vignette-01-introduction-installation_files/libs/quarto-html/tippy.umd.min.js"></script>
-<link href="vignette-01-introduction-installation_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="vignette-01-introduction-installation_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="vignette-01-introduction-installation_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
-<link href="vignette-01-introduction-installation_files/libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+<script src="vignette-22-R-command-line_files/libs/clipboard/clipboard.min.js"></script>
+<script src="vignette-22-R-command-line_files/libs/quarto-html/tabby.min.js"></script>
+<script src="vignette-22-R-command-line_files/libs/quarto-html/popper.min.js"></script>
+<script src="vignette-22-R-command-line_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="vignette-22-R-command-line_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="vignette-22-R-command-line_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="vignette-22-R-command-line_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="vignette-22-R-command-line_files/libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.4.551">
 
   <meta name="author" content="Julien Arino">
-  <title>Introduction to and installation of R</title>
+  <title>R from the command line</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="vignette-01-introduction-installation_files/libs/revealjs/dist/reset.css">
-  <link rel="stylesheet" href="vignette-01-introduction-installation_files/libs/revealjs/dist/reveal.css">
+  <link rel="stylesheet" href="vignette-22-R-command-line_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="vignette-22-R-command-line_files/libs/revealjs/dist/reveal.css">
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -95,13 +95,13 @@
     code span.vs { color: #abe338; } /* VerbatimString */
     code span.wa { color: #dcc6e0; } /* Warning */
   </style>
-  <link rel="stylesheet" href="vignette-01-introduction-installation_files/libs/revealjs/dist/theme/quarto.css">
-  <link href="vignette-01-introduction-installation_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-  <link href="vignette-01-introduction-installation_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-  <link href="vignette-01-introduction-installation_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-  <link href="vignette-01-introduction-installation_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
-  <link href="vignette-01-introduction-installation_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
-  <link href="vignette-01-introduction-installation_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <link rel="stylesheet" href="vignette-22-R-command-line_files/libs/revealjs/dist/theme/quarto.css">
+  <link href="vignette-22-R-command-line_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="vignette-22-R-command-line_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="vignette-22-R-command-line_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="vignette-22-R-command-line_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="vignette-22-R-command-line_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="vignette-22-R-command-line_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
 
   .callout {
@@ -393,8 +393,8 @@
     <div class="slides">
 
 <section id="title-slide" class="center">
-  <h4 class="subtitle">R for modellers - Vignette 01</h4>
-  <h1 class="title r-fit-text">Introduction to and installation of R</h1>
+  <h4 class="subtitle">R for modellers - Vignette 22</h4>
+  <h1 class="title r-fit-text">R from the command line</h1>
 
 Julien Arino <a href="mailto:Julien.Arino@umanitoba.ca"><img src="https://raw.githubusercontent.com/julien-arino/R-for-modellers/main/assets/img/mail.png" alt="" style="width:32px"></a> <a href="https://julien-arino.github.io/"><img src="https://raw.githubusercontent.com/julien-arino/R-for-modellers/main/assets/img/web.png" alt="" style="width:32px;"></a> <a href="https://github.com/julien-arino"><img src="https://raw.githubusercontent.com/julien-arino/omni-course-part1/main/FIGS/GitHub-Mark-Light-64px.png" alt="" style="width:32px;"></a>
 
@@ -410,101 +410,45 @@ Department of Mathematics
 <nav role="doc-toc"> 
 <h2 id="toc-title">Outline</h2>
 <ul>
-<li><a href="#/foreword-the-r-language" id="/toc-foreword-the-r-language">Foreword: the R language</a></li>
-<li><a href="#/installing-r" id="/toc-installing-r">Installing R</a></li>
+<li><a href="#/running-an-r-script-from-the-command-line" id="/toc-running-an-r-script-from-the-command-line">Running an R script from the command line</a></li>
 </ul>
 </nav>
 </section>
 <section>
-<section id="foreword-the-r-language" class="title-slide slide level1 center">
-<h1>Foreword: the R language</h1>
+<section id="running-an-r-script-from-the-command-line" class="title-slide slide level1 center">
+<h1>Running an R script from the command line</h1>
 
 </section>
-<section id="r-was-originally-for-stats-but-is-now-much-more" class="slide level2">
-<h2><span class="r-fit-text">R was originally for stats but is now much more</span></h2>
+<section id="why-run-from-the-command-line" class="slide level2">
+<h2><span class="r-fit-text">Why run from the command line?</span></h2>
 <ul>
-<li>Open source version of S</li>
-<li>Appeared in 1993</li>
-<li>Now (2024-03) version 4.3</li>
-</ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">install.packages</span>(<span class="st">"rversions"</span>)</span>
-<span id="cb1-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">library</span>(rversions)</span>
-<span id="cb1-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">tail</span>(<span class="fu">r_versions</span>())</span>
-<span id="cb1-4"><a href="" aria-hidden="true" tabindex="-1"></a>    version                date              nickname</span>
-<span id="cb1-5"><a href="" aria-hidden="true" tabindex="-1"></a><span class="dv">129</span>   <span class="dv">4</span>.<span class="fl">2.2</span> <span class="dv">2022-10-31</span> <span class="dv">08</span><span class="sc">:</span><span class="dv">05</span><span class="sc">:</span><span class="dv">54</span> Innocent and Trusting</span>
-<span id="cb1-6"><a href="" aria-hidden="true" tabindex="-1"></a><span class="dv">130</span>   <span class="dv">4</span>.<span class="fl">2.3</span> <span class="dv">2023-03-15</span> <span class="dv">08</span><span class="sc">:</span><span class="dv">06</span><span class="sc">:</span><span class="dv">01</span>      Shortstop Beagle</span>
-<span id="cb1-7"><a href="" aria-hidden="true" tabindex="-1"></a><span class="dv">131</span>   <span class="dv">4</span>.<span class="fl">3.0</span> <span class="dv">2023-04-21</span> <span class="dv">07</span><span class="sc">:</span><span class="dv">06</span><span class="sc">:</span><span class="dv">14</span>      Already Tomorrow</span>
-<span id="cb1-8"><a href="" aria-hidden="true" tabindex="-1"></a><span class="dv">132</span>   <span class="dv">4</span>.<span class="fl">3.1</span> <span class="dv">2023-06-16</span> <span class="dv">07</span><span class="sc">:</span><span class="dv">06</span><span class="sc">:</span><span class="dv">07</span>         Beagle Scouts</span>
-<span id="cb1-9"><a href="" aria-hidden="true" tabindex="-1"></a><span class="dv">133</span>   <span class="dv">4</span>.<span class="fl">3.2</span> <span class="dv">2023-10-31</span> <span class="dv">08</span><span class="sc">:</span><span class="dv">07</span><span class="sc">:</span><span class="dv">42</span>             Eye Holes</span>
-<span id="cb1-10"><a href="" aria-hidden="true" tabindex="-1"></a><span class="dv">134</span>   <span class="dv">4</span>.<span class="fl">3.3</span> <span class="dv">2024-02-29</span> <span class="dv">08</span><span class="sc">:</span><span class="dv">07</span><span class="sc">:</span><span class="dv">53</span>       Angel Food Cake</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="r-uses-a-lot-of-code-from-other-languages" class="slide level2">
-<h2><span class="r-fit-text">R uses a lot of code from other languages</span></h2>
-<ul>
-<li>One major advantage in my view: uses a lot of C and Fortran code. E.g., <a href="https://cran.r-project.org/web/packages/deSolve/index.html">deSolve</a>:</li>
-</ul>
-<blockquote>
-<p>The functions provide an interface to the FORTRAN functions ‘lsoda’, ‘lsodar’, ‘lsode’, ‘lsodes’ of the ‘ODEPACK’ collection, to the FORTRAN functions ‘dvode’, ‘zvode’ and ‘daspk’ and a C-implementation of solvers of the ‘Runge-Kutta’ family with fixed or variable time steps</p>
-</blockquote>
-</section>
-<section id="lots-of-people-use-r" class="slide level2">
-<h2>Lots of people use R</h2>
-<ul>
-<li>Very active community on the web, easy to find solutions (same true of Python, I just prefer R)</li>
-<li>E.g., on Stack Overflow, <a href="https://stackoverflow.com/questions/tagged/r">questions tagged [r]</a> gives (2024-03) 505,118</li>
-<li>This also means that ChatGPT or Google Gemini are quite good at answering questions about R</li>
+<li><p><code>R</code> is a scripted language and when run from an <code>R</code> console, it is interactive</p></li>
+<li><p><span class="math inline">\(\implies\)</span> what you did before is in memory of the session you are working in</p></li>
+<li><p>This is frequent cause for errors when sharing your code with others: some things are defined in your script, others you did in the session but did not copy to the script</p></li>
 </ul>
 </section>
-<section id="r-is-a-scripted-language" class="slide level2">
-<h2>R is a scripted language</h2>
+<section id="different-program-options" class="slide level2">
+<h2>Different program options</h2>
+<p>When you install <code>R</code>, you install several programs</p>
 <ul>
-<li>Interactive</li>
-<li>Allows you to work in real time
+<li>The executable file, which launches the interactive session
 <ul>
-<li>Be careful: what is in memory might involve steps not written down in a script</li>
-<li>If you want to reproduce your steps, it is good to write all the steps down in a script and to test from time to time running using <code>Rscript</code>: this will ensure that all that is required to run is indeed loaded to memory when it needs to, i.e., that it is not already there..</li>
+<li>In Windows, you get a shortcut to a console version</li>
 </ul></li>
+<li>A program called <code>Rscript</code> that allows you to run an .. <code>R</code> script from your OS’ command line</li>
 </ul>
 </section>
-<section id="similar-to-matlab-and-python.." class="slide level2">
-<h2>Similar to matlab and Python..</h2>
-<p>.. with some differences, of course! Otherwise, where would the fun be? ;)</p>
-</section></section>
-<section>
-<section id="installing-r" class="title-slide slide level1 center">
-<h1>Installing R</h1>
-
+<section id="run-a-script-from-the-command-line" class="slide level2">
+<h2><span class="r-fit-text">Run a script from the command line</span></h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> script/path/script-file-name.R</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>or, from within the directory</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> script-file-name.R</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="the-main-location---cran" class="slide level2">
-<h2>The main location - CRAN</h2>
+<section id="no-output-by-default" class="slide level2">
+<h2>No output by default</h2>
 <ul>
-<li><p>The <a href="https://cran.r-project.org/">Comprehensive R Archive Network</a> or CRAN is where to go for all official things R</p></li>
-<li><p>To install, select your OS from the main page</p></li>
-</ul>
-</section>
-<section id="a-note-for-linux-users" class="slide level2">
-<h2>A note for Linux users</h2>
-<ul>
-<li><p>Often, the version on your distribution is not the most up to date</p></li>
-<li><p>Instructions are on CRAN about setting things up so you have the latest version. For instance,</p>
-<ul>
-<li><a href="https://cran.r-project.org/bin/linux/debian/#secure-apt">Debian</a></li>
-<li><a href="https://cran.r-project.org/bin/linux/ubuntu/">Ubuntu</a></li>
-</ul></li>
-</ul>
-</section>
-<section id="development-environments" class="slide level2">
-<h2>Development environments</h2>
-<ul>
-<li>Terminal version, not very friendly</li>
-<li>Nicer terminal: <a href="https://github.com/randy3k/radian">radian</a></li>
-<li>Execute R scripts by using <code>Rscript name_of_script.R</code>. Useful to run code in <code>cron</code>, for instance</li>
-<li>Integrate into jupyter notebooks and VS code</li>
-<li>Use IDEs:
-<ul>
-<li><a href="https://posit.co/download/rstudio-desktop/">RStudio</a> has become the reference; see <a href="https://julien-arino.github.io/R-for-modellers/SLIDES/vignette-02-Rstudio-and-friends.html">Vignette 02</a></li>
-<li><a href="https://rkward.kde.org/">RKWard</a> is useful if you are for instance using an ARM processor (Raspberry Pi, some Chromebooks..)</li>
-</ul></li>
+<li><p>Contrary to the interactive version, if you want to see an output when running from the command line, you have to force it using commands like <code>print</code> or <code>writeLines</code></p></li>
+<li><p>Figures will also not be displayed, so you may want to save them</p></li>
 </ul>
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
@@ -516,20 +460,20 @@ Department of Mathematics
   </div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
-  <script src="vignette-01-introduction-installation_files/libs/revealjs/dist/reveal.js"></script>
+  <script src="vignette-22-R-command-line_files/libs/revealjs/dist/reveal.js"></script>
   <!-- reveal.js plugins -->
-  <script src="vignette-01-introduction-installation_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
-  <script src="vignette-01-introduction-installation_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
-  <script src="vignette-01-introduction-installation_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
-  <script src="vignette-01-introduction-installation_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
-  <script src="vignette-01-introduction-installation_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
-  <script src="vignette-01-introduction-installation_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  <script src="vignette-22-R-command-line_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="vignette-22-R-command-line_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="vignette-22-R-command-line_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="vignette-22-R-command-line_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="vignette-22-R-command-line_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="vignette-22-R-command-line_files/libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
-  <script src="vignette-01-introduction-installation_files/libs/revealjs/plugin/notes/notes.js"></script>
-  <script src="vignette-01-introduction-installation_files/libs/revealjs/plugin/search/search.js"></script>
-  <script src="vignette-01-introduction-installation_files/libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="vignette-01-introduction-installation_files/libs/revealjs/plugin/math/math.js"></script>
+  <script src="vignette-22-R-command-line_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="vignette-22-R-command-line_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="vignette-22-R-command-line_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="vignette-22-R-command-line_files/libs/revealjs/plugin/math/math.js"></script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
 
   <script>
