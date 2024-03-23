@@ -1,12 +1,12 @@
 ## R for modellers
 
-These are slides, code and links to videos related to the use of the `R` programming language. This information is mainly geared towards mathematical modellers but may be useful to others. If you are registered in one of the courses I teach at the University of Manitoba in which I require `R` coding, some of the vignettes are required reading, e.g., for [MATH 2740 (Mathematics of Data Science)](https://julien-arino.github.io/math-of-data-science/) students.
+These are small snapshots ("vignettes") to illustrate a technique or a concept in `R`.
+This information is mainly geared towards mathematical modellers but may be useful to others. 
+If you are registered in one of the courses I teach at the University of Manitoba in which I require `R` coding, e.g., [MATH 2740 (Mathematics of Data Science)](https://julien-arino.github.io/math-of-data-science/), some of the vignettes are required material.
 
-All files are available on the [GitHub version](https://github.com/julien-arino/R-for-modellers/) of the page. Feel free to use the material in these slides or in the folders. If you find this useful, I will be happy to know. Slides are produced mostly using [Marp](https://marp.app/), with a few using other systems (LaTeX, Sweave, Rmarkdown, etc.).
+All files are available on the [GitHub version](https://github.com/julien-arino/R-for-modellers/) of the page. Feel free to use any material; if you find this useful, I will be happy to know. 
+Slides are produced using [Quarto](https://quarto.org/).
 
-### "Vignettes"
-
-These are small snapshots ("vignettes") meant to illustrate a technique.
 Material here is inherently work in progress. 
 I will be updating the vignettes from time to time to reflect a better understanding of the material, new packages, etc. 
 The vignettes and videos vary greatly in length.
