@@ -11,7 +11,7 @@ Slides are produced using [Quarto](https://quarto.org/).
 Material here is inherently work in progress. 
 I will be updating the vignettes from time to time to reflect a better understanding of the material, new packages, etc. 
 The vignettes and videos vary greatly in length.
-Their order is, for the most part, not really relevant.
+Their order is not relevant and somewhat random.
 
 Vignettes for which videos are available are marked with a YouTube logo and are more complete than those without.
 
