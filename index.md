@@ -5,8 +5,8 @@ This information is mainly geared towards mathematical modellers but may be usef
 
 If you are registered in one of the courses I teach at the University of Manitoba in which I require `R` coding, e.g., [Mathematics of Data Science (MATH 2740)](https://julien-arino.github.io/math-of-data-science/), some of the vignettes are required material.
 
-All files are available on the [GitHub repo](https://github.com/julien-arino/R-for-modellers/). Feel free to use any material; if you find this useful, I will be happy to know. 
 Slides are produced using [Quarto](https://quarto.org/).
+Slide sources and all the code used are available on the [GitHub repo](https://github.com/julien-arino/R-for-modellers/). Feel free to use any material; if you find this useful, I will be happy to know. 
 
 Material here is inherently work in progress. 
 I will be updating the vignettes from time to time to reflect a better understanding of the material, new packages, etc. 
