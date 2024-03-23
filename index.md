@@ -18,7 +18,7 @@ Also note that the order of the vignettes is, for the most part, not really rele
         {% if file.path contains 'qmd' %}
           <li><a href="https://julien-arino.github.io/R-for-modellers/SLIDES/{{ file.name | remove: ".qmd" }}.html">{{ file.long-title }}</a>
           {% if file.youtube %}
-            <a href="{{ file.youtube }}"><img src="/assets/img/yt_logo_rgb_light.png" height="20px" /></a>
+            <a href="{{ file.youtube }}"><img src="assets/img/yt_logo_rgb_light.png" height="20px" /></a>
           {% endif %}
           </li>
         {% endif %}
