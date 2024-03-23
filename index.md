@@ -3,7 +3,7 @@
 These are small snapshots ("vignettes") to illustrate a technique or a concept in `R`.
 This information is mainly geared towards mathematical modellers but may be useful to others. 
 
-If you are registered in one of the courses I teach at the University of Manitoba in which I require `R` coding, e.g., [MATH 2740 (Mathematics of Data Science)](https://julien-arino.github.io/math-of-data-science/), some of the vignettes are required material.
+If you are registered in one of the courses I teach at the University of Manitoba in which I require `R` coding, e.g., [Mathematics of Data Science (MATH 2740)](https://julien-arino.github.io/math-of-data-science/), some of the vignettes are required material.
 
 All files are available on the [GitHub repo](https://github.com/julien-arino/R-for-modellers/). Feel free to use any material; if you find this useful, I will be happy to know. 
 Slides are produced using [Quarto](https://quarto.org/).
