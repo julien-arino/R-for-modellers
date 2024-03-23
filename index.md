@@ -6,9 +6,13 @@ All files are available on the [GitHub version](https://github.com/julien-arino/
 
 ### "Vignettes"
 
-Please note that the slides here are inherently a work in progress. I will be updating them from time to time to reflect a better understanding of the material, new packages, etc. 
-Contrary to other courses I have posted, these are small snapshots ("vignettes") meant to illustrate a technique, so slide sets and videos vary greatly in length.
-Also note that the order of the vignettes is, for the most part, not really relevant.
+These are small snapshots ("vignettes") meant to illustrate a technique.
+Material here is inherently work in progress. 
+I will be updating the vignettes from time to time to reflect a better understanding of the material, new packages, etc. 
+The vignettes and videos vary greatly in length.
+Their order is, for the most part, not really relevant.
+
+Vignettes for which videos are available are marked with a YouTube logo and are more complete than those without.
 
 <ul>
 {% for file in site.pages %}
