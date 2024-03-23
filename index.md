@@ -1,6 +1,6 @@
 ## R for modellers
 
-These are slides, code and links to videos related to the use of the `R` programming language. This information is mainly geared towards mathematical modellers but may be useful to others. You will also find this useful if you are registered in one of the courses I teach at the University of Manitoba in which I require `R` coding, with some of the lectures being required reading/viewing in particular for [MATH 2740 (Mathematics of Data Science)](https://julien-arino.github.io/math-of-data-science/) students.
+These are slides, code and links to videos related to the use of the `R` programming language. This information is mainly geared towards mathematical modellers but may be useful to others. If you are registered in one of the courses I teach at the University of Manitoba in which I require `R` coding, some of the vignettes are required reading, e.g., for [MATH 2740 (Mathematics of Data Science)](https://julien-arino.github.io/math-of-data-science/) students.
 
 All files are available on the [GitHub version](https://github.com/julien-arino/R-for-modellers/) of the page. Feel free to use the material in these slides or in the folders. If you find this useful, I will be happy to know. Slides are produced mostly using [Marp](https://marp.app/), with a few using other systems (LaTeX, Sweave, Rmarkdown, etc.).
 
