@@ -13,7 +13,7 @@ I will be updating the vignettes from time to time to reflect a better understan
 The vignettes and videos vary greatly in length.
 Their order is not relevant and somewhat random.
 
-When available, the YouTube logo points to the video of the vignette. Those vignettes for which a video is available are more complete than those without.
+When present, the YouTube logo points to the video of the vignette. Those vignettes for which a video is available are more complete than those without.
 
 <ul>
 {% for file in site.pages %}
