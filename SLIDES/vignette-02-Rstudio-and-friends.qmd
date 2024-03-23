@@ -34,13 +34,13 @@ format:
 
 # RStudio
 
-- [RStudio](https://posit.co/products/open-source/rstudio/) has become the reference IDE for `R`
-- [Download link](https://posit.co/download/rstudio-desktop/), since the main download links appear broken
+- [RStudio](https://posit.co/products/open-source/rstudio/) has become the reference IDE for R
+- [Download link](https://posit.co/download/rstudio-desktop/)
 
 # RStudio server
 
 - [RStudio server](https://posit.co/products/open-source/rstudio-server/): run RStudio on a Linux server and connect via a web interface
-- [Download link](https://posit.co/download/rstudio-server/), since the main download links appear broken
+- [Download link](https://posit.co/download/rstudio-server/)
 - Note that as far as I can tell, there is no mechanism to auto-update RStudio-server, so you will have to program something or check the site regularly..
 
 # RMarkdown
@@ -75,4 +75,3 @@ format:
 - Useful for instance if you have a Linux VM running somewhere
 - See, e.g., my instance [here](https://daytah-or-dahtah.ovh:3838/)
 - See [Vignette 17](https://julien-arino.github.io/R-for-modellers/SLIDES/vignette-17-Shiny-server.html)
-
