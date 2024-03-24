@@ -30,8 +30,11 @@ format:
 
 - In the `R` world, vignettes are short "wordy" introductions to a topic or package
 
+<br>
 
 - Vignettes are more user friendly than package manuals or help pages, they provide a narrative
+
+<br>
 
 - Example: [deSolve](https://cran.r-project.org/web/packages/deSolve/index.html)
 
@@ -43,6 +46,8 @@ format:
 
 - How-to's explaining .. how to attack some particular problems in `R`
 
+<br>
+
 - Focus on problems that are relevant to mathematical modellers
 
 # Who's this for?
@@ -51,7 +56,11 @@ format:
 
 - Modellers interested in using `R` instead of `python`, `matlab`, `mathematica`, `maple`, etc.
 
+<br>
+
 - Students in Summer schools or one of the math epi or modelling courses I teach here and there 
+
+<br>
 
 - Students registered in one of the courses I teach at UM in which I use `R`: some of the vignettes are required reading for you!
 
