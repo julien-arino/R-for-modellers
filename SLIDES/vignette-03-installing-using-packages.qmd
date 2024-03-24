@@ -111,6 +111,27 @@ Do you want to install the package (Y/n)?
 Downloading GitHub repo EDiLD/xkcd2@master
 ```
 
+## Installing a removed package
+
+<br>
+
+- Example: [htmltab](https://cran.r-project.org/package=htmltab)
+
+<br>
+
+- Actually can be found on GitHub ([here](https://github.com/crubba/htmltab) and a [fork](https://github.com/htmltab/htmltab)), so could use previous method, but to illustrate...
+
+<br>
+
+- Grab the newest archived version from CRAN
+
+<br>
+
+```{.r}
+install.packages('~/Downloads/htmltab_0.8.2.tar.gz', 
+                 type='source')
+```
+
 # Loading a package
 
 ## Loading a package
