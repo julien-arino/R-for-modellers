@@ -411,6 +411,7 @@ Department of Mathematics
 <h2 id="toc-title">Outline</h2>
 <ul>
 <li><a href="#/the-desolve-library" id="/toc-the-desolve-library">The deSolve library</a></li>
+<li><a href="#/example---the-logistic-ode" id="/toc-example---the-logistic-ode">Example - the logistic ODE</a></li>
 </ul>
 </nav>
 </section>
@@ -418,7 +419,7 @@ Department of Mathematics
 <section id="the-desolve-library" class="title-slide slide level1 center">
 <h1>The deSolve library</h1>
 <ul>
-<li>As I have already pointed out, <a href="https://cran.r-project.org/web/packages/deSolve/index.html"><code>deSolve</code></a>:</li>
+<li>As already pointed out, <a href="https://cran.r-project.org/web/packages/deSolve/index.html"><code>deSolve</code></a>:</li>
 </ul>
 <blockquote>
 <p>The functions provide an interface to the FORTRAN functions ‘lsoda’, ‘lsodar’, ‘lsode’, ‘lsodes’ of the ‘ODEPACK’ collection, to the FORTRAN functions ‘dvode’, ‘zvode’ and ‘daspk’ and a C-implementation of solvers of the ‘Runge-Kutta’ family with fixed or variable time steps</p>
@@ -427,52 +428,184 @@ Department of Mathematics
 <section class="slide level2">
 
 <ul>
-<li><p>You are benefiting from years and years of experience: <a href="https://computing.llnl.gov/projects/odepack">ODEPACK</a> is a set of Fortran (77!) solvers developed at Lawrence Livermore National Laboratory (LLNL) starting in the late 70s</p></li>
-<li><p>Other good solvers written in <code>C</code> are also included</p></li>
-<li><p>Refer to the <a href="https://cran.r-project.org/web/packages/deSolve/deSolve.pdf">package help</a> for details</p></li>
+<li>You are benefiting from years and years of experience: <a href="https://computing.llnl.gov/projects/odepack">ODEPACK</a> is a set of Fortran (77!) solvers developed at Lawrence Livermore National Laboratory (LLNL) starting in the late 70s</li>
+</ul>
+<p><br></p>
+<ul>
+<li>Other good solvers written in <code>C</code> are also included</li>
+</ul>
+<p><br></p>
+<ul>
+<li>Refer to the <a href="https://cran.r-project.org/web/packages/deSolve/deSolve.pdf">package help</a> for details</li>
 </ul>
 </section>
 <section id="using-desolve-for-simple-odes" class="slide level2">
 <h2>Using deSolve for simple ODEs</h2>
-<p>As with more numerical solvers, you need to write a function returning the value of the right hand side of your equation (the vector field) at a given point in phase space, then call this function from the solver</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(deSolve)</span>
-<span id="cb1-2"><a href="" aria-hidden="true" tabindex="-1"></a>rhs_logistic <span class="ot">&lt;-</span> <span class="cf">function</span>(t, x, p) {</span>
-<span id="cb1-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">with</span>(<span class="fu">as.list</span>(x), {</span>
-<span id="cb1-4"><a href="" aria-hidden="true" tabindex="-1"></a>    dN <span class="ot">&lt;-</span> p<span class="sc">$</span>r <span class="sc">*</span> N <span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>N<span class="sc">/</span>p<span class="sc">$</span>K)</span>
-<span id="cb1-5"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">list</span>(dN))</span>
-<span id="cb1-6"><a href="" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb1-7"><a href="" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-8"><a href="" aria-hidden="true" tabindex="-1"></a>params <span class="ot">=</span> <span class="fu">list</span>(<span class="at">r =</span> <span class="fl">0.1</span>, <span class="at">K =</span> <span class="dv">100</span>)</span>
-<span id="cb1-9"><a href="" aria-hidden="true" tabindex="-1"></a>IC <span class="ot">=</span> <span class="fu">c</span>(<span class="at">N =</span> <span class="dv">50</span>)</span>
-<span id="cb1-10"><a href="" aria-hidden="true" tabindex="-1"></a>times <span class="ot">=</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">1</span>)</span>
-<span id="cb1-11"><a href="" aria-hidden="true" tabindex="-1"></a>sol <span class="ot">&lt;-</span> <span class="fu">ode</span>(IC, times, rhs_logistic, params)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><br></p>
+<p>As with most numerical solvers, you need to write a function returning the value of the right hand side of your equation (the vector field) at a given point in phase space, then call this function from the solver</p>
+<p><br></p>
+<p>First, we load the library</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(deSolve)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="the-required-ingredients" class="slide level2">
+<h2>The required ingredients</h2>
+<ul>
+<li>A function describing the right hand side of the differential equation</li>
+<li>Initial conditions</li>
+<li>Times at which to return the value of the solution</li>
+<li>(Optional) Parameters</li>
+</ul>
+</section></section>
+<section>
+<section id="example---the-logistic-ode" class="title-slide slide level1 center">
+<h1>Example - the logistic ODE</h1>
+
+</section>
+<section id="the-logistic-ode" class="slide level2">
+<h2>The logistic ODE</h2>
+<p><br></p>
+<p><span class="math display">\[
+\frac{d}{dt}N(t)= rN(t)\left(1-\frac{N(t)}{K}\right)
+\]</span> or, omitting time dependence <span class="math display">\[
+N' = rN\left(1-\frac NK\right)
+\]</span></p>
+<ul>
+<li><span class="math inline">\(r\)</span> growth rate</li>
+<li><span class="math inline">\(K\)</span> carrying capacity</li>
+<li><span class="math inline">\(N(0)\geq 0\)</span> initial condition</li>
+</ul>
+</section>
+<section id="ic-times-parameters" class="slide level2">
+<h2>IC / times / parameters</h2>
+<p><br></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="" aria-hidden="true" tabindex="-1"></a>IC <span class="ot">=</span> <span class="fu">c</span>(<span class="at">N =</span> <span class="dv">50</span>)</span>
+<span id="cb2-2"><a href="" aria-hidden="true" tabindex="-1"></a>times <span class="ot">=</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">1</span>)</span>
+<span id="cb2-3"><a href="" aria-hidden="true" tabindex="-1"></a>params <span class="ot">=</span> <span class="fu">list</span>(<span class="at">r =</span> <span class="fl">0.1</span>, <span class="at">K =</span> <span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br></p>
+<ul>
+<li><code>IC</code> is a <em>named</em> vector</li>
+<li><code>times</code> is a vector of times at which the solution is returned (not necessarily where it is computed, can be different from this)</li>
+<li><code>params</code> is a list</li>
+</ul>
+</section>
+<section id="the-right-hand-side-function-v1" class="slide level2">
+<h2>The right hand side function (v1)</h2>
+<p><br></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="" aria-hidden="true" tabindex="-1"></a>rhs_logistic_v1 <span class="ot">&lt;-</span> <span class="cf">function</span>(t, x, p) {</span>
+<span id="cb3-2"><a href="" aria-hidden="true" tabindex="-1"></a>  dN <span class="ot">&lt;-</span> p<span class="sc">$</span>r <span class="sc">*</span> x[<span class="dv">1</span>] <span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>x[<span class="dv">1</span>]<span class="sc">/</span>p<span class="sc">$</span>K)</span>
+<span id="cb3-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">list</span>(dN))</span>
+<span id="cb3-4"><a href="" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="the-right-hand-side-function-v2" class="slide level2">
+<h2>The right hand side function (v2)</h2>
+<p><br></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="" aria-hidden="true" tabindex="-1"></a>rhs_logistic_v2 <span class="ot">&lt;-</span> <span class="cf">function</span>(t, x, p) {</span>
+<span id="cb4-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">with</span>(<span class="fu">as.list</span>(x), {</span>
+<span id="cb4-3"><a href="" aria-hidden="true" tabindex="-1"></a>    dN <span class="ot">&lt;-</span> p<span class="sc">$</span>r <span class="sc">*</span> N <span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>N<span class="sc">/</span>p<span class="sc">$</span>K)</span>
+<span id="cb4-4"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">list</span>(dN))</span>
+<span id="cb4-5"><a href="" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb4-6"><a href="" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="the-right-hand-side-function-v3" class="slide level2">
+<h2>The right hand side function (v3)</h2>
+<p><br></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="" aria-hidden="true" tabindex="-1"></a>rhs_logistic_v3 <span class="ot">&lt;-</span> <span class="cf">function</span>(t, x, p) {</span>
+<span id="cb5-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">with</span>(<span class="fu">as.list</span>(<span class="fu">c</span>(x, p)), {</span>
+<span id="cb5-3"><a href="" aria-hidden="true" tabindex="-1"></a>    dN <span class="ot">&lt;-</span> r <span class="sc">*</span> N <span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>N<span class="sc">/</span>K)</span>
+<span id="cb5-4"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">list</span>(dN))</span>
+<span id="cb5-5"><a href="" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb5-6"><a href="" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br></p>
+<p>In this case, beware of not having a variable and a parameter with the same name..</p>
 </section>
 <section class="slide level2">
 
-<p>This also works: add <code>p</code> to arguments of <code>as.list</code> and thus use without <code>p$</code> prefix</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(deSolve)</span>
-<span id="cb2-2"><a href="" aria-hidden="true" tabindex="-1"></a>rhs_logistic <span class="ot">&lt;-</span> <span class="cf">function</span>(t, x, p) {</span>
-<span id="cb2-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">with</span>(<span class="fu">as.list</span>(<span class="fu">c</span>(x, p)), {</span>
-<span id="cb2-4"><a href="" aria-hidden="true" tabindex="-1"></a>    dN <span class="ot">&lt;-</span> r <span class="sc">*</span> N <span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>N<span class="sc">/</span>K)</span>
-<span id="cb2-5"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">list</span>(dN))</span>
-<span id="cb2-6"><a href="" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb2-7"><a href="" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb2-8"><a href="" aria-hidden="true" tabindex="-1"></a>params <span class="ot">=</span> <span class="fu">list</span>(<span class="at">r =</span> <span class="fl">0.1</span>, <span class="at">K =</span> <span class="dv">100</span>)</span>
-<span id="cb2-9"><a href="" aria-hidden="true" tabindex="-1"></a>IC <span class="ot">=</span> <span class="fu">c</span>(<span class="at">N =</span> <span class="dv">50</span>)</span>
-<span id="cb2-10"><a href="" aria-hidden="true" tabindex="-1"></a>times <span class="ot">=</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">1</span>)</span>
-<span id="cb2-11"><a href="" aria-hidden="true" tabindex="-1"></a>sol <span class="ot">&lt;-</span> <span class="fu">ode</span>(IC, times, rhs_logistic, params)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>In this case, beware of not having a variable and a parameter with the same name..</p>
+<p>Just to clarify:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">as.list</span>(<span class="fu">c</span>(IC, params))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$N
+[1] 50
+
+$r
+[1] 0.1
+
+$K
+[1] 100</code></pre>
+</div>
+</div>
+<p>and using <code>with(as.list(c()))</code> makes these values available to the function with just the names (hence we do not need <code>p$r</code>, for instance)</p>
 </section>
+<section id="finally-call-the-solver" class="slide level2">
+<h2>Finally, call the solver</h2>
+<p><br></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="" aria-hidden="true" tabindex="-1"></a>sol_v1 <span class="ot">&lt;-</span> <span class="fu">ode</span>(IC, times, rhs_logistic_v1, params)</span>
+<span id="cb8-2"><a href="" aria-hidden="true" tabindex="-1"></a>sol_v2 <span class="ot">&lt;-</span> <span class="fu">ode</span>(IC, times, rhs_logistic_v2, params)</span>
+<span id="cb8-3"><a href="" aria-hidden="true" tabindex="-1"></a>sol_v3 <span class="ot">&lt;-</span> <span class="fu">ode</span>(IC, times, rhs_logistic_v3, params)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Just to make sure results are the same</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">any</span>(sol_v1 <span class="sc">!=</span> sol_v2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">any</span>(sol_v1 <span class="sc">!=</span> sol_v3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">any</span>(sol_v2 <span class="sc">!=</span> sol_v3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+</div>
+</section>
+<section id="what-a-solution-looks-like" class="slide level2">
+<h2>What a solution looks like</h2>
+<p><br></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(sol_v1, <span class="at">n =</span> <span class="dv">8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     time        N
+[1,]    0 50.00000
+[2,]    1 52.49788
+[3,]    2 54.98347
+[4,]    3 57.44433
+[5,]    4 59.86886
+[6,]    5 62.24604
+[7,]    6 64.56573
+[8,]    7 66.81887</code></pre>
+</div>
+</div>
+</section>
+<section id="plot-the-result" class="slide level2">
+<h2>Plot the result</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(sol_v1[,<span class="st">"time"</span>], sol_v1[,<span class="st">"N"</span>],</span>
+<span id="cb17-2"><a href="" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Time"</span>, <span class="at">ylab =</span> <span class="st">"N(t)"</span>,</span>
+<span id="cb17-3"><a href="" aria-hidden="true" tabindex="-1"></a>     <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="vignette-10-solving-ODE_files/figure-revealjs/unnamed-chunk-9-1.png" width="960" class="r-stretch"></section>
 <section id="default-method-lsoda" class="slide level2">
 <h2>Default method: <code>lsoda</code></h2>
 <ul>
 <li><p><code>lsoda</code> switches automatically between stiff and nonstiff methods</p></li>
 <li><p>You can also specify other methods: “lsode”, “lsodes”, “lsodar”, “vode”, “daspk”, “euler”, “rk4”, “ode23”, “ode45”, “radau”, “bdf”, “bdf_d”, “adams”, “impAdams” or “impAdams_d” ,“iteration” (the latter for discrete-time systems)</p></li>
 </ul>
-<pre><code>ode(y, times, func, parms, 
-    method = "ode45")</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">ode</span>(y, times, func, parms, <span class="at">method =</span> <span class="st">"ode45"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
-<li>You can even implement your own integration method</li>
+<li>You can implement your own integration method</li>
 </ul>
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
@@ -692,6 +825,44 @@ Department of Mathematics
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {

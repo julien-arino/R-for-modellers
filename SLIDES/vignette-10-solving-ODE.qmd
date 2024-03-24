@@ -20,9 +20,19 @@ format:
     chalkboard: true
 ---
 
+```{r}
+#| label: setup
+#| echo: false
+if (!require(thematic)) {
+  install.packages("thematic")
+  library(thematic)
+}
+thematic_rmd(bg = "black", fg = "white")
+```
+
 # The deSolve library
 
-- As I have already pointed out, [`deSolve`](https://cran.r-project.org/web/packages/deSolve/index.html):
+- As already pointed out, [`deSolve`](https://cran.r-project.org/web/packages/deSolve/index.html):
 
 > The functions provide an interface to the FORTRAN functions 'lsoda', 'lsodar', 'lsode', 'lsodes' of the 'ODEPACK' collection, to the FORTRAN functions 'dvode', 'zvode' and 'daspk' and a C-implementation of solvers of the 'Runge-Kutta' family with fixed or variable time steps
 
@@ -30,48 +40,154 @@ format:
 
 - You are benefiting from years and years of experience: [ODEPACK](https://computing.llnl.gov/projects/odepack) is a set of Fortran (77!) solvers developed at Lawrence Livermore National Laboratory (LLNL) starting in the late 70s
 
+<br>
+
 - Other good solvers written in `C` are also included
+
+<br>
 
 - Refer to the [package help](https://cran.r-project.org/web/packages/deSolve/deSolve.pdf) for details
 
 
 ## Using deSolve for simple ODEs
 
-As with more numerical solvers, you need to write a function returning the value of the right hand side of your equation (the vector field) at a given point in phase space, then call this function from the solver
+<br>
 
-```R
+As with most numerical solvers, you need to write a function returning the value of the right hand side of your equation (the vector field) at a given point in phase space, then call this function from the solver
+
+<br>
+
+First, we load the library
+```{r load_deSolve, echo=TRUE}
 library(deSolve)
-rhs_logistic <- function(t, x, p) {
+```
+
+## The required ingredients
+
+- A function describing the right hand side of the differential equation
+- Initial conditions
+- Times at which to return the value of the solution
+- (Optional) Parameters
+
+# Example - the logistic ODE
+
+## The logistic ODE
+
+<br>
+
+$$
+\frac{d}{dt}N(t)= rN(t)\left(1-\frac{N(t)}{K}\right)
+$$
+or, omitting time dependence
+$$
+N' = rN\left(1-\frac NK\right)
+$$
+
+- $r$ growth rate
+- $K$ carrying capacity
+- $N(0)\geq 0$ initial condition
+
+## IC / times / parameters
+
+<br>
+
+```{r set_all_logistic, echo=TRUE}
+IC = c(N = 50)
+times = seq(0, 100, 1)
+params = list(r = 0.1, K = 100)
+```
+
+<br>
+
+- `IC` is a *named* vector
+- `times` is a vector of times at which the solution is returned (not necessarily where it is computed, can be different from this)
+- `params` is a list
+
+## The right hand side function (v1)
+
+<br>
+
+```{r, echo=TRUE}
+rhs_logistic_v1 <- function(t, x, p) {
+  dN <- p$r * x[1] *(1-x[1]/p$K)
+  return(list(dN))
+}
+```
+
+## The right hand side function (v2)
+
+<br> 
+
+```{r, echo=TRUE}
+rhs_logistic_v2 <- function(t, x, p) {
   with(as.list(x), {
     dN <- p$r * N *(1-N/p$K)
     return(list(dN))
   })
 }
-params = list(r = 0.1, K = 100)
-IC = c(N = 50)
-times = seq(0, 100, 1)
-sol <- ode(IC, times, rhs_logistic, params)
 ```
 
----
+## The right hand side function (v3)
 
-This also works: add `p` to arguments of `as.list` and thus use without `p$` prefix
+<br>
 
-```R
-library(deSolve)
-rhs_logistic <- function(t, x, p) {
+```{r, echo=TRUE}
+rhs_logistic_v3 <- function(t, x, p) {
   with(as.list(c(x, p)), {
     dN <- r * N *(1-N/K)
     return(list(dN))
   })
 }
-params = list(r = 0.1, K = 100)
-IC = c(N = 50)
-times = seq(0, 100, 1)
-sol <- ode(IC, times, rhs_logistic, params)
 ```
 
+<br>
+
 In this case, beware of not having a variable and a parameter with the same name..
+
+---
+
+Just to clarify:
+
+```{r, echo=TRUE}
+as.list(c(IC, params))
+```
+
+and using `with(as.list(c()))` makes these values available to the function with just the names (hence we do not need `p$r`, for instance)
+
+## Finally, call the solver
+
+<br>
+
+```{r, echo=TRUE}
+sol_v1 <- ode(IC, times, rhs_logistic_v1, params)
+sol_v2 <- ode(IC, times, rhs_logistic_v2, params)
+sol_v3 <- ode(IC, times, rhs_logistic_v3, params)
+```
+
+Just to make sure results are the same
+
+```{r, echo=TRUE}
+any(sol_v1 != sol_v2)
+any(sol_v1 != sol_v3)
+any(sol_v2 != sol_v3)
+```
+
+## What a solution looks like
+
+<br>
+
+```{r, echo=TRUE}
+head(sol_v1, n = 8)
+```
+
+
+## Plot the result
+
+```{r, echo=TRUE}
+plot(sol_v1[,"time"], sol_v1[,"N"],
+     xlab = "Time", ylab = "N(t)",
+     type = "l", lwd = 2)
+```
 
 ## Default method: `lsoda`
 
@@ -79,10 +195,9 @@ In this case, beware of not having a variable and a parameter with the same name
 
 - You can also specify other methods: "lsode", "lsodes", "lsodar", "vode", "daspk", "euler", "rk4", "ode23", "ode45", "radau", "bdf", "bdf_d", "adams", "impAdams" or "impAdams_d" ,"iteration" (the latter for discrete-time systems)
 
-```
-ode(y, times, func, parms, 
-    method = "ode45")
+```{.r}
+ode(y, times, func, parms, method = "ode45")
 ```
 
-- You can even implement your own integration method
+- You can implement your own integration method
 
