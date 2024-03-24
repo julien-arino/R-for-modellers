@@ -5,6 +5,7 @@ long-title: Vignette 02 - RStudio and friends
 description-meta: Julien Arino - R for modellers - Vignette 02 - RStudio and friends
 author: Julien Arino
 institute: University of Manitoba*
+youtube: https://youtu.be/_YZFaOaDNUM
 format: 
   revealjs:
     theme: [night, custom.scss]    
