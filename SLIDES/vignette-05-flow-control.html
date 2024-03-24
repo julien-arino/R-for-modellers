@@ -410,47 +410,246 @@ Department of Mathematics
 <nav role="doc-toc"> 
 <h2 id="toc-title">Outline</h2>
 <ul>
-<li><a href="#/if-statements" id="/toc-if-statements"><code>if</code> statements</a></li>
 <li><a href="#/for-loops" id="/toc-for-loops"><code>for</code> loops</a></li>
+<li><a href="#/while-loops" id="/toc-while-loops"><code>while</code> loops</a></li>
+<li><a href="#/repeat-loops" id="/toc-repeat-loops"><code>repeat</code> loops</a></li>
+<li><a href="#/if-statements" id="/toc-if-statements"><code>if</code> statements</a></li>
+<li><a href="#/ifelse-statements" id="/toc-ifelse-statements"><code>ifelse</code> statements</a></li>
+<li><a href="#/break-statement" id="/toc-break-statement"><code>break</code> statement</a></li>
+<li><a href="#/next-statement" id="/toc-next-statement"><code>next</code> statement</a></li>
 </ul>
 </nav>
 </section>
-<section id="if-statements" class="title-slide slide level1 center">
-<h1><code>if</code> statements</h1>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (condition is true) {</span>
-<span id="cb1-2"><a href="" aria-hidden="true" tabindex="-1"></a>  list of stuff to do</span>
-<span id="cb1-3"><a href="" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Even if <code>list of stuff to do</code> is a single instruction, best to use curly braces</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (condition is true) {</span>
-<span id="cb2-2"><a href="" aria-hidden="true" tabindex="-1"></a>  list of stuff to do</span>
-<span id="cb2-3"><a href="" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (another condition) {</span>
-<span id="cb2-4"><a href="" aria-hidden="true" tabindex="-1"></a>  ...</span>
-<span id="cb2-5"><a href="" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb2-6"><a href="" aria-hidden="true" tabindex="-1"></a>  ...</span>
-<span id="cb2-7"><a href="" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-
+<section>
 <section id="for-loops" class="title-slide slide level1 center">
 <h1><code>for</code> loops</h1>
 <p><code>for</code> applies to lists or vectors</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) {</span>
-<span id="cb3-2"><a href="" aria-hidden="true" tabindex="-1"></a>  something using integer i</span>
-<span id="cb3-3"><a href="" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb3-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (j <span class="cf">in</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">4</span>)) {</span>
-<span id="cb3-5"><a href="" aria-hidden="true" tabindex="-1"></a>  something using integer j</span>
-<span id="cb3-6"><a href="" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb3-7"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (n <span class="cf">in</span> <span class="fu">c</span>(<span class="st">"truc"</span>, <span class="st">"muche"</span>, <span class="st">"chose"</span>)) {</span>
-<span id="cb3-8"><a href="" aria-hidden="true" tabindex="-1"></a>  something using string n</span>
-<span id="cb3-9"><a href="" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb3-10"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (m <span class="cf">in</span> <span class="fu">list</span>(<span class="st">"truc"</span>, <span class="st">"muche"</span>, <span class="st">"chose"</span>, <span class="dv">1</span>, <span class="dv">2</span>)) {</span>
-<span id="cb3-11"><a href="" aria-hidden="true" tabindex="-1"></a>  something using string n or integer n, depending</span>
-<span id="cb3-12"><a href="" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><br></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) {</span>
+<span id="cb1-2"><a href="" aria-hidden="true" tabindex="-1"></a>  something using integer i</span>
+<span id="cb1-3"><a href="" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (j <span class="cf">in</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">4</span>)) {</span>
+<span id="cb1-5"><a href="" aria-hidden="true" tabindex="-1"></a>  something using integer j</span>
+<span id="cb1-6"><a href="" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-7"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (n <span class="cf">in</span> <span class="fu">c</span>(<span class="st">"truc"</span>, <span class="st">"muche"</span>, <span class="st">"chose"</span>)) {</span>
+<span id="cb1-8"><a href="" aria-hidden="true" tabindex="-1"></a>  something using string n</span>
+<span id="cb1-9"><a href="" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-10"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (m <span class="cf">in</span> <span class="fu">list</span>(<span class="st">"truc"</span>, <span class="st">"muche"</span>, <span class="st">"chose"</span>, <span class="dv">1</span>, <span class="dv">2</span>)) {</span>
+<span id="cb1-11"><a href="" aria-hidden="true" tabindex="-1"></a>  something using string n or integer n, depending</span>
+<span id="cb1-12"><a href="" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section class="slide level2">
+
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">10</span>)) {</span>
+<span id="cb2-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="fu">paste0</span>(<span class="st">"i="</span>,i,<span class="st">", i*2="</span>,i<span class="sc">*</span><span class="dv">2</span>))</span>
+<span id="cb2-3"><a href="" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>i=1, i*2=2
+i=2, i*2=4
+i=3, i*2=6
+i=5, i*2=10
+i=10, i*2=20</code></pre>
+</div>
+</div>
+<p><br></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">10</span>)) {</span>
+<span id="cb4-2"><a href="" aria-hidden="true" tabindex="-1"></a>  ch <span class="ot">=</span> <span class="fu">sprintf</span>(<span class="st">"i=%d, i*3=%d"</span>, i, i<span class="sc">*</span><span class="dv">3</span>)</span>
+<span id="cb4-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(ch)</span>
+<span id="cb4-4"><a href="" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "i=1, i*3=3"
+[1] "i=2, i*3=6"
+[1] "i=3, i*3=9"
+[1] "i=5, i*3=15"
+[1] "i=10, i*3=30"</code></pre>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">c</span>(<span class="st">"truc"</span>, <span class="st">"muche"</span>, <span class="st">"chose"</span>)) {</span>
+<span id="cb6-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="fu">paste0</span>(<span class="st">"i="</span>,i))</span>
+<span id="cb6-3"><a href="" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>i=truc
+i=muche
+i=chose</code></pre>
+</div>
+</div>
+<p><br></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">c</span>(<span class="st">"truc"</span>, <span class="st">"muche"</span>, <span class="st">"chose"</span>, <span class="dv">1</span>, <span class="dv">22</span>)) {</span>
+<span id="cb8-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="fu">paste0</span>(<span class="st">"is.character(i)="</span>,</span>
+<span id="cb8-3"><a href="" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">is.character</span>(i)))</span>
+<span id="cb8-4"><a href="" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>is.character(i)=TRUE
+is.character(i)=TRUE
+is.character(i)=TRUE
+is.character(i)=TRUE
+is.character(i)=TRUE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">is.character</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">22</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+</div>
+</section></section>
+<section id="while-loops" class="title-slide slide level1 center">
+<h1><code>while</code> loops</h1>
+
+</section>
+
+<section id="repeat-loops" class="title-slide slide level1 center">
+<h1><code>repeat</code> loops</h1>
+
+</section>
+
+<section id="if-statements" class="title-slide slide level1 center">
+<h1><code>if</code> statements</h1>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (condition is true) {</span>
+<span id="cb12-2"><a href="" aria-hidden="true" tabindex="-1"></a>  list of stuff to do</span>
+<span id="cb12-3"><a href="" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Even if <code>list of stuff to do</code> is a single instruction, better to use curly braces</p>
+<p><br></p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (condition is true) {</span>
+<span id="cb13-2"><a href="" aria-hidden="true" tabindex="-1"></a>  list of stuff to do</span>
+<span id="cb13-3"><a href="" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (another condition) {</span>
+<span id="cb13-4"><a href="" aria-hidden="true" tabindex="-1"></a>  ...</span>
+<span id="cb13-5"><a href="" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb13-6"><a href="" aria-hidden="true" tabindex="-1"></a>  ...</span>
+<span id="cb13-7"><a href="" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+
+<section id="ifelse-statements" class="title-slide slide level1 center">
+<h1><code>ifelse</code> statements</h1>
+<p><br></p>
+<p>Very useful to set values based on simple tests</p>
+<p><br></p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">ifelse</span>(condition, value<span class="sc">-</span>when<span class="sc">-</span>true, value<span class="sc">-</span>when<span class="sc">-</span>false)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><br></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="" aria-hidden="true" tabindex="-1"></a>a <span class="ot">=</span> <span class="dv">5</span></span>
+<span id="cb15-2"><a href="" aria-hidden="true" tabindex="-1"></a>b <span class="ot">=</span> <span class="fu">ifelse</span>(a <span class="sc">&lt;</span> <span class="dv">10</span>, <span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb15-3"><a href="" aria-hidden="true" tabindex="-1"></a>c <span class="ot">=</span> <span class="fu">ifelse</span>(a <span class="sc">&gt;</span> <span class="dv">10</span>, <span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb15-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">writeLines</span>(<span class="fu">paste0</span>(<span class="st">"b="</span>, b, <span class="st">", c="</span>, c))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>b=1, c=2</code></pre>
+</div>
+</div>
+</section>
+
+<section>
+<section id="break-statement" class="title-slide slide level1 center">
+<h1><code>break</code> statement</h1>
+<blockquote>
+<p><code>break</code> breaks out of a <code>for</code>, <code>while</code> or <code>repeat</code> loop; control is transferred to the first statement outside the inner-most loop</p>
+</blockquote>
+</section>
+<section class="slide level2">
+
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>) {</span>
+<span id="cb17-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (i <span class="sc">==</span> <span class="dv">3</span>) {</span>
+<span id="cb17-3"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="fu">writeLines</span>(<span class="st">'i==3, quitting'</span>)</span>
+<span id="cb17-4"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">break</span></span>
+<span id="cb17-5"><a href="" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb17-6"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="fu">paste0</span>(<span class="st">'i='</span>, i))</span>
+<span id="cb17-7"><a href="" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>i=1
+i=2
+i==3, quitting</code></pre>
+</div>
+</div>
+</section></section>
+<section>
+<section id="next-statement" class="title-slide slide level1 center">
+<h1><code>next</code> statement</h1>
+<blockquote>
+<p><code>next</code> halts the processing of the current iteration and advances the looping index</p>
+</blockquote>
+</section>
+<section class="slide level2">
+
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>) {</span>
+<span id="cb19-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (i <span class="sc">==</span> <span class="dv">3</span>) {</span>
+<span id="cb19-3"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="fu">writeLines</span>(<span class="st">'i==3, skipping ahead'</span>)</span>
+<span id="cb19-4"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">next</span></span>
+<span id="cb19-5"><a href="" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb19-6"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="fu">paste0</span>(<span class="st">'i='</span>, i))</span>
+<span id="cb19-7"><a href="" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>i=1
+i=2
+i==3, skipping ahead
+i=4
+i=5</code></pre>
+</div>
+</div>
+</section>
+<section id="important-remark" class="slide level2">
+<h2>Important remark</h2>
+<blockquote>
+<p>Both <code>break</code> and <code>next</code> apply only to the innermost of nested loops</p>
+</blockquote>
+</section>
+<section class="slide level2">
+
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>) {</span>
+<span id="cb21-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>) {</span>
+<span id="cb21-3"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (j <span class="sc">==</span> <span class="dv">2</span>) {</span>
+<span id="cb21-4"><a href="" aria-hidden="true" tabindex="-1"></a>      <span class="fu">writeLines</span>(<span class="st">'j==2, quitting'</span>)</span>
+<span id="cb21-5"><a href="" aria-hidden="true" tabindex="-1"></a>      <span class="cf">break</span></span>
+<span id="cb21-6"><a href="" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb21-7"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="fu">writeLines</span>(<span class="fu">paste0</span>(<span class="st">'i='</span>, i, <span class="st">", j="</span>, j))</span>
+<span id="cb21-8"><a href="" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb21-9"><a href="" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>i=1, j=1
+j==2, quitting
+i=2, j=1
+j==2, quitting
+i=3, j=1
+j==2, quitting</code></pre>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>) {</span>
+<span id="cb23-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>) {</span>
+<span id="cb23-3"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (j <span class="sc">==</span> <span class="dv">2</span>) {</span>
+<span id="cb23-4"><a href="" aria-hidden="true" tabindex="-1"></a>      <span class="fu">writeLines</span>(<span class="st">'j==2, skipping ahead'</span>)</span>
+<span id="cb23-5"><a href="" aria-hidden="true" tabindex="-1"></a>      <span class="cf">next</span></span>
+<span id="cb23-6"><a href="" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb23-7"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="fu">writeLines</span>(<span class="fu">paste0</span>(<span class="st">'i='</span>, i, <span class="st">", j="</span>, j))</span>
+<span id="cb23-8"><a href="" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb23-9"><a href="" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>i=1, j=1
+j==2, skipping ahead
+i=1, j=3
+i=2, j=1
+j==2, skipping ahead
+i=2, j=3
+i=3, j=1
+j==2, skipping ahead
+i=3, j=3</code></pre>
+</div>
+</div>
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 
 </div>
 </div>
-</section>
+</section></section>
     </div>
   </div>
 
@@ -663,6 +862,44 @@ Department of Mathematics
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {

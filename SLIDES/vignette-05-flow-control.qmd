@@ -20,29 +20,11 @@ format:
     chalkboard: true
 ---
 
-# `if` statements
-
-```R
-if (condition is true) {
-  list of stuff to do
-}
-```
-
-Even if `list of stuff to do` is a single instruction, best to use curly braces
-
-```R
-if (condition is true) {
-  list of stuff to do
-} else if (another condition) {
-  ...
-} else {
-  ...
-}
-```
-
 # `for` loops
 
 `for` applies to lists or vectors
+
+<br>
 
 ```R
 for (i in 1:10) {
@@ -59,3 +41,146 @@ for (m in list("truc", "muche", "chose", 1, 2)) {
 }
 ```
 
+---
+
+```{r, echo=TRUE}
+for (i in c(1:3, 5, 10)) {
+  writeLines(paste0("i=",i,", i*2=",i*2))
+}
+```
+
+<br>
+
+```{r, echo=TRUE}
+for (i in c(1:3, 5, 10)) {
+  ch = sprintf("i=%d, i*3=%d", i, i*3)
+  print(ch)
+}
+```
+
+---
+
+```{r, echo=TRUE}
+for (i in c("truc", "muche", "chose")) {
+  writeLines(paste0("i=",i))
+}
+```
+
+<br>
+
+```{r, echo=TRUE}
+for (i in c("truc", "muche", "chose", 1, 22)) {
+  writeLines(paste0("is.character(i)=",
+                    is.character(i)))
+}
+is.character(c(1, 22))
+```
+
+# `while` loops
+
+# `repeat` loops
+
+# `if` statements
+
+```R
+if (condition is true) {
+  list of stuff to do
+}
+```
+
+Even if `list of stuff to do` is a single instruction, better to use curly braces
+
+<br>
+
+```R
+if (condition is true) {
+  list of stuff to do
+} else if (another condition) {
+  ...
+} else {
+  ...
+}
+```
+
+# `ifelse` statements
+
+<br>
+
+Very useful to set values based on simple tests
+
+<br>
+
+```{.r}
+ifelse(condition, value-when-true, value-when-false)
+```
+<br>
+```{r, echo=TRUE}
+a = 5
+b = ifelse(a < 10, 1, 2)
+c = ifelse(a > 10, 1, 2)
+writeLines(paste0("b=", b, ", c=", c))
+```
+
+# `break` statement
+
+> `break` breaks out of a `for`, `while` or `repeat` loop; control is transferred to the first statement outside the inner-most loop
+
+---
+
+```{r example_break, echo=TRUE}
+for (i in 1:5) {
+  if (i == 3) {
+    writeLines('i==3, quitting')
+    break
+  }
+  writeLines(paste0('i=', i))
+}
+```
+
+# `next` statement
+
+> `next` halts the processing of the current iteration and advances the looping index
+
+---
+
+```{r example_next, echo=TRUE}
+for (i in 1:5) {
+  if (i == 3) {
+    writeLines('i==3, skipping ahead')
+    next
+  }
+  writeLines(paste0('i=', i))
+}
+```
+
+## Important remark
+
+> Both `break` and `next` apply only to the innermost of nested loops
+
+---
+
+```{r example_break_2, echo=TRUE}
+for (i in 1:3) {
+  for (j in 1:3) {
+    if (j == 2) {
+      writeLines('j==2, quitting')
+      break
+    }
+    writeLines(paste0('i=', i, ", j=", j))
+  }
+}
+```
+
+---
+
+```{r example_next_2, echo=TRUE}
+for (i in 1:3) {
+  for (j in 1:3) {
+    if (j == 2) {
+      writeLines('j==2, skipping ahead')
+      next
+    }
+    writeLines(paste0('i=', i, ", j=", j))
+  }
+}
+```
