@@ -58,8 +58,6 @@ format:
 
 ## Who is this for?
 
-<br>
-
 - Modellers interested in using `R` instead of `python`, `matlab`, `mathematica`, `maple`, etc.
 
 <br>
