@@ -22,19 +22,29 @@ format:
 
 ## [Required for MATH 2740 students!]{.r-fit-text}
 
+<br>
+
 - If you are a student in the University of Manitoba's Mathematics of Data Science (MATH 2740) course, you must read the ["friendly" method](#be-friendly-to-others)
+
+<br>
 
 - In particular, failure to use this method may result in loss of marks in your `R` assignments!
 
 # Packages (a.k.a. libraries)
 
----
+## Why use packages?
+
+<br>
 
 - *Packages* (or *libraries*) extend `R` by providing functions or data that are useful in particular contexts
+
+<br>
 
 - Packages allow to avoid "bloating", since the `R` core remains relatively light and you only install the additional content you need
 
 ## [CRAN is the main source for packages]{.r-fit-text}
+
+<br>
 
 ```{r count-packages, echo=TRUE}
 paste(nrow(available.packages()),
@@ -45,7 +55,13 @@ paste(nrow(available.packages()),
 ## [There are also packages not on CRAN]{.r-fit-text}
 
 - For instance, packages on GitHub
+
+<br>
+
 - Sometimes packages get removed from CRAN, although the latest versions are typically still available
+
+<br>
+
 - Installation is a little different (detailed later)
 
 # Installing a package
@@ -58,7 +74,11 @@ paste(nrow(available.packages()),
 install.packages("deSolve")
 ```
 
+<br>
+
 - However, do read the section on the ["friendly" method](#be-friendly-to-others)
+
+<br>
 
 - You can also use RStudio
 
@@ -66,7 +86,11 @@ install.packages("deSolve")
 
 - Some packages are only on GitHub; others have their latest (testing) version on GitHub and a stable version on CRAN
 
+<br>
+
 - Need to use the `devtools` or `remotes` packages (maybe prefer `devtools`)
+
+<br>
 
 - You can also use the package [githubinstall](https://cran.r-project.org/web/packages/githubinstall/vignettes/githubinstall.html)
 
@@ -93,13 +117,21 @@ Downloading GitHub repo EDiLD/xkcd2@master
 
 - Once a package is installed, you load it with the command `library()`
 
+<br>
+
 - No need to use quotation marks: `library(ggplot2)`
+
+<br>
 
 - You can also use RStudio
 
 ## Loading several packages
 
+<br>
+
 To load several packages with a single command, you need to use a loop and the option `character.only = TRUE`
+
+<br>
 
 ```R
 required_packages = c("ggplot2", "dplyr")
@@ -115,6 +147,8 @@ for (p in required_packages) {
 - If you use a slightly unusual library, it is possible that a person you share your code with does not have that library installed
 
   - It is nice to them if you spare them having to do the work to install the library
+
+<br>
 
 - But it is also possible that they already have the library
 
@@ -137,6 +171,8 @@ if (!require(package_name)) {
 
 ## Example using several libraries
 
+<br>
+
 ```{.r}
 required_packages = c("ggplot2", "dplyr")
 for (p in required_packages) {
@@ -150,6 +186,8 @@ for (p in required_packages) {
 # Updating packages
 
 ## Using RStudio
+
+<br>
 
 - RStudio has a menu to check if updates are available to libraries and update them if that is the case
 
@@ -182,16 +220,24 @@ update.packages(ask = FALSE, checkBuilt = TRUE,
 
 Set `lib` to be previous R version (the one prior to the update), say, 4.2:
 
+<br>
+
 ```R
 lib = 
   "/home/jarino/x86_64-pc-linux-gnu-library/4.2"
 ```
 
+<br>
+
 then get list of packages
+
+<br>
 
 ```R
 installed_packages = 
   as.data.frame(installed.packages(lib))$Package
 ```
+
+<br>
 
 then use the method described earlier to install all these packages

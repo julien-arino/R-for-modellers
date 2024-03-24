@@ -50,17 +50,28 @@ tail(rversions::r_versions(), n = 8)
 ## Lots of people use R
 
 - Very active community on the web, easy to find solutions (same true of Python, I just prefer R)
+
+<br>
+
 - E.g., on Stack Overflow, [questions tagged [r]](https://stackoverflow.com/questions/tagged/r) gives (2024-03) 505,118
+
+<br>
+
 - This also means that ChatGPT or Google Gemini are quite good at answering questions about R
 
 ## R is a scripted language
 
 - Interactive
+
+<br>
+
 - Allows you to work in real time
     - Be careful: what is in memory might involve steps not written down in a script
-    - If you want to reproduce your steps, it is good to write all the steps down in a script and to test from time to time running using `Rscript`: this will ensure that all that is required to run is indeed loaded to memory when it needs to, i.e., that it is not already there..
+    - If you want to reproduce your steps, it is good to write all the steps down in a script and to test from time to time using the command line; see [Vignette 22](https://julien-arino.github.io/R-for-modellers/SLIDES/vignette-22-R-command-line.html)
 
 ## Similar to matlab and Python..
+
+<br>
 
 .. with some differences, of course! Otherwise, where would the fun be? ;)
 
@@ -70,11 +81,17 @@ tail(rversions::r_versions(), n = 8)
 
 - The [Comprehensive R Archive Network](https://cran.r-project.org/) or CRAN is where to go for all official things R
 
+<br>
+
 - To install, select your OS from the main page
 
 ## A note for Linux users
 
+<br>
+
 - Often, the version on your distribution is not the most up to date
+
+<br>
 
 - Instructions are on CRAN about setting things up so you have the latest version. For instance,
 

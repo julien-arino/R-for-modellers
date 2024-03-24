@@ -28,25 +28,42 @@ format:
 
 - For-profit company, sells "pro" versions of its open source products
 
-- IMOBO: in the process of moving to the "dark side", trying to ram "pro" versions down your throat
+- IMOBO: in the process of moving to the "dark side"
 
 - You can completely exist without using the pro versions, though, don't worry!
 
 # RStudio
 
+<br>
+
 - [RStudio](https://posit.co/products/open-source/rstudio/) has become the reference IDE for R
+
+<br>
+
 - [Download link](https://posit.co/download/rstudio-desktop/)
 
 # RStudio server
 
 - [RStudio server](https://posit.co/products/open-source/rstudio-server/): run RStudio on a Linux server and connect via a web interface
+
+<br>
+
 - [Download link](https://posit.co/download/rstudio-server/)
+
+<br>
+
 - Note that as far as I can tell, there is no mechanism to auto-update RStudio-server, so you will have to program something or check the site regularly..
 
 # RMarkdown
 
 - Rmarkdown: markdown that incorporates R commands
+
+<br>
+
 - Useful for generating reports in html, pdf or doc, can make slides as well..
+
+<br>
+
 - See [Vignette 13](https://julien-arino.github.io/R-for-modellers/SLIDES/vignette-13-RMarkdown.html)
 
 # Sweave
@@ -60,13 +77,23 @@ format:
 # Quarto
 
 - Promoted as next-gen version of Sweave/RMarkdown
-- Will confess that I have not yet seen why switch in the general case
+
+<br>
+
 - These Vignettes are created using Quarto and reveal.js
+
+<br>
+
 - See [Vignette 15](https://julien-arino.github.io/R-for-modellers/SLIDES/vignette-15-Quarto.html)
 
 # Shiny
 
-- Shiny: easily create an interactive web site running R code
+<br>
+
+- Shiny: easily create an *interactive* web page running R code
+
+<br>
+
 - See [Vignette 16](https://julien-arino.github.io/R-for-modellers/SLIDES/vignette-16-Shiny.html)
 
 # Shiny server

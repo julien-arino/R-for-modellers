@@ -420,9 +420,13 @@ Department of Mathematics
 </section>
 <section id="required-for-math-2740-students" class="slide level2">
 <h2><span class="r-fit-text">Required for MATH 2740 students!</span></h2>
+<p><br></p>
 <ul>
-<li><p>If you are a student in the University of Manitoba’s Mathematics of Data Science (MATH 2740) course, you must read the <a href="#/be-friendly-to-others">“friendly” method</a></p></li>
-<li><p>In particular, failure to use this method may result in loss of marks in your <code>R</code> assignments!</p></li>
+<li>If you are a student in the University of Manitoba’s Mathematics of Data Science (MATH 2740) course, you must read the <a href="#/be-friendly-to-others">“friendly” method</a></li>
+</ul>
+<p><br></p>
+<ul>
+<li>In particular, failure to use this method may result in loss of marks in your <code>R</code> assignments!</li>
 </ul>
 </section>
 <section>
@@ -430,21 +434,26 @@ Department of Mathematics
 <h1>Packages (a.k.a. libraries)</h1>
 
 </section>
-<section class="slide level2">
-
+<section id="why-use-packages" class="slide level2">
+<h2>Why use packages?</h2>
+<p><br></p>
 <ul>
-<li><p><em>Packages</em> (or <em>libraries</em>) extend <code>R</code> by providing functions or data that are useful in particular contexts</p></li>
-<li><p>Packages allow to avoid “bloating”, since the <code>R</code> core remains relatively light and you only install the additional content you need</p></li>
+<li><em>Packages</em> (or <em>libraries</em>) extend <code>R</code> by providing functions or data that are useful in particular contexts</li>
+</ul>
+<p><br></p>
+<ul>
+<li>Packages allow to avoid “bloating”, since the <code>R</code> core remains relatively light and you only install the additional content you need</li>
 </ul>
 </section>
 <section id="cran-is-the-main-source-for-packages" class="slide level2">
 <h2><span class="r-fit-text">CRAN is the main source for packages</span></h2>
+<p><br></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(<span class="fu">nrow</span>(<span class="fu">available.packages</span>()),</span>
 <span id="cb1-2"><a href="" aria-hidden="true" tabindex="-1"></a>      <span class="st">"packages on CRAN on"</span>,</span>
 <span id="cb1-3"><a href="" aria-hidden="true" tabindex="-1"></a>      <span class="fu">Sys.Date</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "20634 packages on CRAN on 2024-03-24"</code></pre>
+<pre><code>[1] "20607 packages on CRAN on 2024-03-24"</code></pre>
 </div>
 </div>
 </section>
@@ -452,7 +461,13 @@ Department of Mathematics
 <h2><span class="r-fit-text">There are also packages not on CRAN</span></h2>
 <ul>
 <li>For instance, packages on GitHub</li>
+</ul>
+<p><br></p>
+<ul>
 <li>Sometimes packages get removed from CRAN, although the latest versions are typically still available</li>
+</ul>
+<p><br></p>
+<ul>
 <li>Installation is a little different (detailed later)</li>
 </ul>
 </section></section>
@@ -467,17 +482,27 @@ Department of Mathematics
 <li>Use the command <code>install.packages()</code></li>
 </ul>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"deSolve"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><br></p>
 <ul>
-<li><p>However, do read the section on the <a href="#/be-friendly-to-others">“friendly” method</a></p></li>
-<li><p>You can also use RStudio</p></li>
+<li>However, do read the section on the <a href="#/be-friendly-to-others">“friendly” method</a></li>
+</ul>
+<p><br></p>
+<ul>
+<li>You can also use RStudio</li>
 </ul>
 </section>
 <section id="from-github" class="slide level2">
 <h2>From GitHub</h2>
 <ul>
-<li><p>Some packages are only on GitHub; others have their latest (testing) version on GitHub and a stable version on CRAN</p></li>
-<li><p>Need to use the <code>devtools</code> or <code>remotes</code> packages (maybe prefer <code>devtools</code>)</p></li>
-<li><p>You can also use the package <a href="https://cran.r-project.org/web/packages/githubinstall/vignettes/githubinstall.html">githubinstall</a></p></li>
+<li>Some packages are only on GitHub; others have their latest (testing) version on GitHub and a stable version on CRAN</li>
+</ul>
+<p><br></p>
+<ul>
+<li>Need to use the <code>devtools</code> or <code>remotes</code> packages (maybe prefer <code>devtools</code>)</li>
+</ul>
+<p><br></p>
+<ul>
+<li>You can also use the package <a href="https://cran.r-project.org/web/packages/githubinstall/vignettes/githubinstall.html">githubinstall</a></li>
 </ul>
 </section>
 <section id="example-xkcd-style-graphs" class="slide level2">
@@ -503,14 +528,22 @@ Department of Mathematics
 <section id="loading-a-package-1" class="slide level2">
 <h2>Loading a package</h2>
 <ul>
-<li><p>Once a package is installed, you load it with the command <code>library()</code></p></li>
-<li><p>No need to use quotation marks: <code>library(ggplot2)</code></p></li>
-<li><p>You can also use RStudio</p></li>
+<li>Once a package is installed, you load it with the command <code>library()</code></li>
+</ul>
+<p><br></p>
+<ul>
+<li>No need to use quotation marks: <code>library(ggplot2)</code></li>
+</ul>
+<p><br></p>
+<ul>
+<li>You can also use RStudio</li>
 </ul>
 </section>
 <section id="loading-several-packages" class="slide level2">
 <h2>Loading several packages</h2>
+<p><br></p>
 <p>To load several packages with a single command, you need to use a loop and the option <code>character.only = TRUE</code></p>
+<p><br></p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="" aria-hidden="true" tabindex="-1"></a>required_packages <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"ggplot2"</span>, <span class="st">"dplyr"</span>)</span>
 <span id="cb5-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (p <span class="cf">in</span> required_packages) {</span>
 <span id="cb5-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(p, <span class="at">character.only =</span> <span class="cn">TRUE</span>)</span>
@@ -528,6 +561,9 @@ Department of Mathematics
 <ul>
 <li>It is nice to them if you spare them having to do the work to install the library</li>
 </ul></li>
+</ul>
+<p><br></p>
+<ul>
 <li><p>But it is also possible that they already have the library</p>
 <ul>
 <li>It will be annoying to them if you trigger an installation of the library (especially under linux where libraries are compiled for installation)</li>
@@ -551,6 +587,7 @@ Department of Mathematics
 </section>
 <section id="example-using-several-libraries" class="slide level2">
 <h2>Example using several libraries</h2>
+<p><br></p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="" aria-hidden="true" tabindex="-1"></a>required_packages <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"ggplot2"</span>, <span class="st">"dplyr"</span>)</span>
 <span id="cb7-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (p <span class="cf">in</span> required_packages) {</span>
 <span id="cb7-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(p, <span class="at">character.only =</span> <span class="cn">TRUE</span>)) {</span>
@@ -566,6 +603,7 @@ Department of Mathematics
 </section>
 <section id="using-rstudio" class="slide level2">
 <h2>Using RStudio</h2>
+<p><br></p>
 <ul>
 <li>RStudio has a menu to check if updates are available to libraries and update them if that is the case</li>
 </ul>
@@ -595,11 +633,15 @@ Department of Mathematics
 <section class="slide level2">
 
 <p>Set <code>lib</code> to be previous R version (the one prior to the update), say, 4.2:</p>
+<p><br></p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="" aria-hidden="true" tabindex="-1"></a>lib <span class="ot">=</span> </span>
 <span id="cb10-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="st">"/home/jarino/x86_64-pc-linux-gnu-library/4.2"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><br></p>
 <p>then get list of packages</p>
+<p><br></p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="" aria-hidden="true" tabindex="-1"></a>installed_packages <span class="ot">=</span> </span>
 <span id="cb11-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>(<span class="fu">installed.packages</span>(lib))<span class="sc">$</span>Package</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><br></p>
 <p>then use the method described earlier to install all these packages</p>
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
