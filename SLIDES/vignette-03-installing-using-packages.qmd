@@ -22,9 +22,9 @@ format:
 
 ## [Required for MATH 2740 students!]{.r-fit-text}
 
-- If you are a student in the University of Manitoba's Mathematics of Data Science course (MATH 2740), this is **required** reading & watching
+- If you are a student in the University of Manitoba's Mathematics of Data Science (MATH 2740) course, you must read the ["friendly" method](#be-friendly-to-others)
 
-- In particular, failure to use the ["friendly" method](#be-friendly-to-others) will result in loss of marks in your `R` assignments!
+- In particular, failure to use this method may result in loss of marks in your `R` assignments!
 
 # Packages (a.k.a. libraries)
 
@@ -58,7 +58,9 @@ paste(nrow(available.packages()),
 install.packages("deSolve")
 ```
 
-However, do read the section on the ["friendly" method](#be-friendly-to-others)
+- However, do read the section on the ["friendly" method](#be-friendly-to-others)
+
+- You can also use RStudio
 
 ## From GitHub
 
@@ -93,6 +95,8 @@ Downloading GitHub repo EDiLD/xkcd2@master
 
 - No need to use quotation marks: `library(ggplot2)`
 
+- You can also use RStudio
+
 ## Loading several packages
 
 To load several packages with a single command, you need to use a loop and the option `character.only = TRUE`
@@ -104,7 +108,7 @@ for (p in required_packages) {
 }
 ```
 
-# Be friendly to others!
+# Be friendly to others
 
 ## [When distributing your code, think of those using it]{.r-fit-text}
 
@@ -147,7 +151,7 @@ for (p in required_packages) {
 
 ## Using RStudio
 
-RStudio has a menu to check if updates are available to libraries and update them if that is the case
+- RStudio has a menu to check if updates are available to libraries and update them if that is the case
 
 ## From the R command line
 
