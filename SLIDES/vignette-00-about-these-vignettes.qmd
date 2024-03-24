@@ -28,6 +28,8 @@ format:
 
 ## Vignettes in R
 
+<br>
+
 - In the `R` world, vignettes are short "wordy" introductions to a topic or package
 
 <br>
@@ -44,6 +46,8 @@ format:
 
 ## These vignettes
 
+<br>
+
 - How-to's explaining .. how to attack some particular problems in `R`
 
 <br>
@@ -53,6 +57,8 @@ format:
 # Who's this for?
 
 ## Who is this for?
+
+<br>
 
 - Modellers interested in using `R` instead of `python`, `matlab`, `mathematica`, `maple`, etc.
 
@@ -68,7 +74,11 @@ format:
 
 ## Organi-what?
 
+<br>
+
 - Essentially, there is none! 
+
+<br>
 
 - I have tried to group similar topics ... with more or less success
 
@@ -76,14 +86,27 @@ format:
 
 ## Two forms
 
+<br>
+
 - [As a webpage](https://julien-arino.github.io/R-for-modellers/)
+
+<br>
+
 - [As a repo](https://github.com/julien-arino/R-for-modellers)
 
 # Caveats
 
 ## This is work in progress
 
+<br>
+
 - Likely to contain typos
+
+<br>
+
 - All the vignettes are not ready yet
+
+<br>
+
 - Hint: if there is a video for a vignette, it is "more ready"
 
