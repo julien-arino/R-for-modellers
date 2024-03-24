@@ -541,7 +541,7 @@ Department of Mathematics
 <div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">'~/Downloads/htmltab_0.8.2.tar.gz'</span>, </span>
 <span id="cb5-2"><a href="" aria-hidden="true" tabindex="-1"></a>                 <span class="at">type=</span><span class="st">'source'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><br></p>
-<p>or we can even point to the link</p>
+<p>or we can point directly to the link</p>
 <p><br></p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="" aria-hidden="true" tabindex="-1"></a>url <span class="ot">=</span> <span class="st">"https://cran.r-project.org/src/contrib/Archive/htmltab/htmltab_0.8.2.tar.gz"</span></span>
 <span id="cb6-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(url, </span>
@@ -660,12 +660,10 @@ Department of Mathematics
 <section class="slide level2">
 
 <p>Set <code>lib</code> to be previous R version (the one prior to the update), say, 4.2:</p>
-<p><br></p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="" aria-hidden="true" tabindex="-1"></a>lib <span class="ot">=</span> </span>
 <span id="cb12-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="st">"/home/jarino/x86_64-pc-linux-gnu-library/4.2"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><br></p>
 <p>then get list of packages</p>
-<p><br></p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="" aria-hidden="true" tabindex="-1"></a>installed_packages <span class="ot">=</span> </span>
 <span id="cb13-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>(<span class="fu">installed.packages</span>(lib))<span class="sc">$</span>Package</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><br></p>

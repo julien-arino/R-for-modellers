@@ -136,7 +136,7 @@ install.packages('~/Downloads/htmltab_0.8.2.tar.gz',
 
 <br>
 
-or we can even point to the link 
+or we can point directly to the link 
 
 <br>
 
@@ -256,7 +256,6 @@ update.packages(ask = FALSE, checkBuilt = TRUE,
 
 Set `lib` to be previous R version (the one prior to the update), say, 4.2:
 
-<br>
 
 ```R
 lib = 
@@ -267,7 +266,6 @@ lib =
 
 then get list of packages
 
-<br>
 
 ```R
 installed_packages = 
