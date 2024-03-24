@@ -79,6 +79,8 @@ tail(rversions::r_versions(), n = 8)
 
 ## The main location - CRAN
 
+<br>
+
 - The [Comprehensive R Archive Network](https://cran.r-project.org/) or CRAN is where to go for all official things R
 
 <br>

@@ -26,7 +26,7 @@ format:
 
 - Did a lot of development for `R`, still do even on the open source side of things
 
-- For-profit company, sells "pro" versions of its open source products
+- For-profit company, sells *pro* versions of its open source products
 
 - IMOBO: in the process of moving to the "dark side"
 
