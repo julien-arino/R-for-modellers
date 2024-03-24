@@ -194,4 +194,4 @@ installed_packages =
   as.data.frame(installed.packages(lib))$Package
 ```
 
-then use the method described earlier
+then use the method described earlier to install all these packages

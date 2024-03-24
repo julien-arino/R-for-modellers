@@ -425,18 +425,22 @@ Department of Mathematics
 <ul>
 <li>Open source version of S</li>
 <li>Appeared in 1993</li>
-<li>Now (2024-03) version 4.3</li>
+<li>Currently version 4.3.3</li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">install.packages</span>(<span class="st">"rversions"</span>)</span>
-<span id="cb1-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">library</span>(rversions)</span>
-<span id="cb1-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">tail</span>(<span class="fu">r_versions</span>())</span>
-<span id="cb1-4"><a href="" aria-hidden="true" tabindex="-1"></a>    version                date              nickname</span>
-<span id="cb1-5"><a href="" aria-hidden="true" tabindex="-1"></a><span class="dv">129</span>   <span class="dv">4</span>.<span class="fl">2.2</span> <span class="dv">2022-10-31</span> <span class="dv">08</span><span class="sc">:</span><span class="dv">05</span><span class="sc">:</span><span class="dv">54</span> Innocent and Trusting</span>
-<span id="cb1-6"><a href="" aria-hidden="true" tabindex="-1"></a><span class="dv">130</span>   <span class="dv">4</span>.<span class="fl">2.3</span> <span class="dv">2023-03-15</span> <span class="dv">08</span><span class="sc">:</span><span class="dv">06</span><span class="sc">:</span><span class="dv">01</span>      Shortstop Beagle</span>
-<span id="cb1-7"><a href="" aria-hidden="true" tabindex="-1"></a><span class="dv">131</span>   <span class="dv">4</span>.<span class="fl">3.0</span> <span class="dv">2023-04-21</span> <span class="dv">07</span><span class="sc">:</span><span class="dv">06</span><span class="sc">:</span><span class="dv">14</span>      Already Tomorrow</span>
-<span id="cb1-8"><a href="" aria-hidden="true" tabindex="-1"></a><span class="dv">132</span>   <span class="dv">4</span>.<span class="fl">3.1</span> <span class="dv">2023-06-16</span> <span class="dv">07</span><span class="sc">:</span><span class="dv">06</span><span class="sc">:</span><span class="dv">07</span>         Beagle Scouts</span>
-<span id="cb1-9"><a href="" aria-hidden="true" tabindex="-1"></a><span class="dv">133</span>   <span class="dv">4</span>.<span class="fl">3.2</span> <span class="dv">2023-10-31</span> <span class="dv">08</span><span class="sc">:</span><span class="dv">07</span><span class="sc">:</span><span class="dv">42</span>             Eye Holes</span>
-<span id="cb1-10"><a href="" aria-hidden="true" tabindex="-1"></a><span class="dv">134</span>   <span class="dv">4</span>.<span class="fl">3.3</span> <span class="dv">2024-02-29</span> <span class="dv">08</span><span class="sc">:</span><span class="dv">07</span><span class="sc">:</span><span class="dv">53</span>       Angel Food Cake</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(rversions<span class="sc">::</span><span class="fu">r_versions</span>(), <span class="at">n =</span> <span class="dv">8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    version                date              nickname
+127   4.2.0 2022-04-22 07:05:41 Vigorous Calisthenics
+128   4.2.1 2022-06-23 07:05:33     Funny-Looking Kid
+129   4.2.2 2022-10-31 08:05:54 Innocent and Trusting
+130   4.2.3 2023-03-15 08:06:01      Shortstop Beagle
+131   4.3.0 2023-04-21 07:06:14      Already Tomorrow
+132   4.3.1 2023-06-16 07:06:07         Beagle Scouts
+133   4.3.2 2023-10-31 08:07:42             Eye Holes
+134   4.3.3 2024-02-29 08:07:53       Angel Food Cake</code></pre>
+</div>
+</div>
 </section>
 <section id="r-uses-a-lot-of-code-from-other-languages" class="slide level2">
 <h2><span class="r-fit-text">R uses a lot of code from other languages</span></h2>
@@ -724,6 +728,44 @@ Department of Mathematics
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {
