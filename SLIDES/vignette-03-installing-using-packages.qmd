@@ -125,12 +125,27 @@ Downloading GitHub repo EDiLD/xkcd2@master
 
 - Grab the newest archived version from CRAN
 
+---
+
 <br>
 
 ```{.r}
 install.packages('~/Downloads/htmltab_0.8.2.tar.gz', 
                  type='source')
 ```
+
+<br>
+
+or we can even point to the link 
+
+<br>
+
+```{.r}
+url = "https://cran.r-project.org/src/contrib/Archive/htmltab/htmltab_0.8.2.tar.gz"
+install.packages(url, 
+                 type='source')
+```
+
 
 # Loading a package
 
