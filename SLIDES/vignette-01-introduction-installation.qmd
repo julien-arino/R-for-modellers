@@ -68,7 +68,7 @@ tail(rversions::r_versions(), n = 8)
 
 - Allows you to work in real time
     - Be careful: what is in memory might involve steps not written down in a script
-    - If you want to reproduce your steps, it is good to write all the steps down in a script and to test from time to time using the command line; see [Vignette 22](https://julien-arino.github.io/R-for-modellers/SLIDES/vignette-22-R-command-line.html)
+    - If you want to reproduce your steps, it is good to write all the steps down in a script and to test from time to time using the command line; see [Vignette 24](https://julien-arino.github.io/R-for-modellers/SLIDES/vignette-24-R-command-line.html)
 
 ## Similar to matlab and Python..
 

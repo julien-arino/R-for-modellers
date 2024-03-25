@@ -18,6 +18,10 @@ format:
     preview-liiks: auto
     code-line-numbers: false
     chalkboard: true
+    fig-dpi: 400
+knitr:
+  opts_chunk:
+    fig.path: FIGS/v10-
 ---
 
 ```{r}
@@ -58,7 +62,9 @@ As with most numerical solvers, you need to write a function returning the value
 <br>
 
 First, we load the library
-```{r load_deSolve, echo=TRUE}
+```{r}
+#| label: load-deSolve
+#| echo: true
 library(deSolve)
 ```
 
@@ -91,7 +97,9 @@ $$
 
 <br>
 
-```{r set_all_logistic, echo=TRUE}
+```{r}
+#| label: set-all-logistic
+#| echo: true
 IC = c(N = 50)
 times = seq(0, 100, 1)
 params = list(r = 0.1, K = 100)
@@ -107,7 +115,9 @@ params = list(r = 0.1, K = 100)
 
 <br>
 
-```{r, echo=TRUE}
+```{r}
+#| label: rhs-logistic-v1
+#| echo: true
 rhs_logistic_v1 <- function(t, x, p) {
   dN <- p$r * x[1] *(1-x[1]/p$K)
   return(list(dN))
@@ -118,7 +128,9 @@ rhs_logistic_v1 <- function(t, x, p) {
 
 <br> 
 
-```{r, echo=TRUE}
+```{r}
+#| label: rhs-logistic-v2
+#| echo: true
 rhs_logistic_v2 <- function(t, x, p) {
   with(as.list(x), {
     dN <- p$r * N *(1-N/p$K)
@@ -131,7 +143,9 @@ rhs_logistic_v2 <- function(t, x, p) {
 
 <br>
 
-```{r, echo=TRUE}
+```{r}
+#| label: rhs-logistic-v3
+#| echo: true
 rhs_logistic_v3 <- function(t, x, p) {
   with(as.list(c(x, p)), {
     dN <- r * N *(1-N/K)
@@ -148,7 +162,9 @@ In this case, beware of not having a variable and a parameter with the same name
 
 Just to clarify:
 
-```{r, echo=TRUE}
+```{r}
+#| label: example-as-list
+#| echo: true
 as.list(c(IC, params))
 ```
 
@@ -158,7 +174,9 @@ and using `with(as.list(c()))` makes these values available to the function with
 
 <br>
 
-```{r, echo=TRUE}
+```{r}
+#| label: solve-3-logistic
+#| echo: true
 sol_v1 <- ode(IC, times, rhs_logistic_v1, params)
 sol_v2 <- ode(IC, times, rhs_logistic_v2, params)
 sol_v3 <- ode(IC, times, rhs_logistic_v3, params)
@@ -166,7 +184,9 @@ sol_v3 <- ode(IC, times, rhs_logistic_v3, params)
 
 Just to make sure results are the same
 
-```{r, echo=TRUE}
+```{r}
+#| label: check-equal-solutions
+#| echo: true
 any(sol_v1 != sol_v2)
 any(sol_v1 != sol_v3)
 any(sol_v2 != sol_v3)
@@ -176,18 +196,29 @@ any(sol_v2 != sol_v3)
 
 <br>
 
-```{r, echo=TRUE}
+```{r}
+#| label: head-logistic-solution
+#| echo: true
 head(sol_v1, n = 8)
 ```
 
 
 ## Plot the result
 
-```{r, echo=TRUE}
+```{r}
+#| label: plot-logistic-solution
+#| echo: true
+#| fig-width: 5
+#| fig-height: 4
+#| output: false
 plot(sol_v1[,"time"], sol_v1[,"N"],
      xlab = "Time", ylab = "N(t)",
      type = "l", lwd = 2)
 ```
+
+![](FIGS/v10-plot-logistic-solution-1.png){.nostretch fig-align="center" width="650px"}
+
+# Changing integration parameters
 
 ## Default method: `lsoda`
 

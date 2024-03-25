@@ -412,6 +412,7 @@ Department of Mathematics
 <ul>
 <li><a href="#/the-desolve-library" id="/toc-the-desolve-library">The deSolve library</a></li>
 <li><a href="#/example---the-logistic-ode" id="/toc-example---the-logistic-ode">Example - the logistic ODE</a></li>
+<li><a href="#/changing-integration-parameters" id="/toc-changing-integration-parameters">Changing integration parameters</a></li>
 </ul>
 </nav>
 </section>
@@ -594,9 +595,18 @@ $K
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(sol_v1[,<span class="st">"time"</span>], sol_v1[,<span class="st">"N"</span>],</span>
 <span id="cb17-2"><a href="" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Time"</span>, <span class="at">ylab =</span> <span class="st">"N(t)"</span>,</span>
 <span id="cb17-3"><a href="" aria-hidden="true" tabindex="-1"></a>     <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
 </div>
-<img data-src="vignette-10-solving-ODE_files/figure-revealjs/unnamed-chunk-9-1.png" width="960" class="r-stretch"></section>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="FIGS/v10-plot-logistic-solution-1.png" class="quarto-figure quarto-figure-center" width="650"></p>
+</figure>
+</div>
+</section></section>
+<section>
+<section id="changing-integration-parameters" class="title-slide slide level1 center">
+<h1>Changing integration parameters</h1>
+
+</section>
 <section id="default-method-lsoda" class="slide level2">
 <h2>Default method: <code>lsoda</code></h2>
 <ul>

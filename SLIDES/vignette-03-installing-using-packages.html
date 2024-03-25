@@ -453,7 +453,7 @@ Department of Mathematics
 <span id="cb1-2"><a href="" aria-hidden="true" tabindex="-1"></a>      <span class="st">"packages on CRAN on"</span>,</span>
 <span id="cb1-3"><a href="" aria-hidden="true" tabindex="-1"></a>      <span class="fu">Sys.Date</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "20607 packages on CRAN on 2024-03-24"</code></pre>
+<pre><code>[1] "20607 packages on CRAN on 2024-03-25"</code></pre>
 </div>
 </div>
 </section>
@@ -571,10 +571,12 @@ Department of Mathematics
 <p><br></p>
 <p>To load several packages with a single command, you need to use a loop and the option <code>character.only = TRUE</code></p>
 <p><br></p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="" aria-hidden="true" tabindex="-1"></a>required_packages <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"ggplot2"</span>, <span class="st">"dplyr"</span>)</span>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="" aria-hidden="true" tabindex="-1"></a>required_packages <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"ggplot2"</span>, <span class="st">"dplyr"</span>)</span>
 <span id="cb7-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (p <span class="cf">in</span> required_packages) {</span>
 <span id="cb7-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(p, <span class="at">character.only =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb7-4"><a href="" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section></section>
 <section>
 <section id="be-friendly-to-others" class="title-slide slide level1 center">
