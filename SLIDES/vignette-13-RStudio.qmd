@@ -5,7 +5,6 @@ long-title: Vignette 13 - RStudio
 description-meta: Julien Arino - R for modellers - Vignette 13 - RStudio
 author: Julien Arino
 institute: University of Manitoba*
-youtube: https://youtu.be/_YZFaOaDNUM
 format: 
   revealjs:
     theme: [night, custom.scss]    
