@@ -5,6 +5,7 @@ long-title: Vignette 03 - Installing  and loading packages
 description-meta: Julien Arino - R for modellers - Vignette 03 - Installing  and loading packages
 author: Julien Arino
 institute: University of Manitoba*
+youtube: https://youtu.be/WPYHU2G7U7Q
 format: 
   revealjs:
     theme: [night, custom.scss]    
