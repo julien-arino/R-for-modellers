@@ -1,0 +1,30 @@
+---
+vignette-nb: "19"
+title: Shiny-server
+long-title: Vignette 19 - Shiny-server
+description-meta: Julien Arino - R for modellers - Vignette 19 - Shiny-server
+author: Julien Arino
+institute: University of Manitoba*
+format: 
+  revealjs:
+    theme: [night, custom.scss]    
+    template-partials:
+      - title-slide.html
+    toc: true
+    toc-depth: 1
+    toc-title: Outline
+    auto-stretch: true
+    progress: false
+    preview-liiks: auto
+    code-line-numbers: false
+    chalkboard: true
+---
+
+# Shiny server
+
+## Shiny server
+
+- [Shiny server](https://posit.co/products/open-source/shinyserver/): run Shiny apps on a Linux server
+- Useful for instance if you have a Linux VM running somewhere
+- See, e.g., my instance [here](https://daytah-or-dahtah.ovh:3838/)
+

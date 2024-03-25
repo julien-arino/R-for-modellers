@@ -1,0 +1,29 @@
+---
+vignette-nb: "16"
+title: Sweave
+long-title: Vignette 16 - Sweave
+description-meta: Julien Arino - R for modellers - Vignette 16 - Sweave
+author: Julien Arino
+institute: University of Manitoba*
+format: 
+  revealjs:
+    theme: [night, custom.scss]    
+    template-partials:
+      - title-slide.html
+    toc: true
+    toc-depth: 1
+    toc-title: Outline
+    auto-stretch: true
+    progress: false
+    preview-liiks: auto
+    code-line-numbers: false
+    chalkboard: true
+---
+
+# Sweave
+
+- Sweave: LaTeX incorporating R commands
+- Useful for generating pdf reports
+- Not used as much as Rmarkdown these days, probably because Rmarkdown allows output also in html and doc
+- If you have a whole document to typeset using LaTeX, then still the best option
+

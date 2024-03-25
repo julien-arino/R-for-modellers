@@ -1,0 +1,28 @@
+---
+vignette-nb: "18"
+title: Shiny
+long-title: Vignette 18 - Shiny
+description-meta: Julien Arino - R for modellers - Vignette 18 - Shiny
+author: Julien Arino
+institute: University of Manitoba*
+format: 
+  revealjs:
+    theme: [night, custom.scss]    
+    template-partials:
+      - title-slide.html
+    toc: true
+    toc-depth: 1
+    toc-title: Outline
+    auto-stretch: true
+    progress: false
+    preview-liiks: auto
+    code-line-numbers: false
+    chalkboard: true
+---
+
+# <!--fit-->Shiny
+
+## Shiny
+
+- Shiny: easily create an interactive web site running R code
+

@@ -1,0 +1,22 @@
+---
+vignette-nb: "21"
+title: Continuous Time Markov Chains (CTMC) in R
+long-title: Vignette 21 - Continuous Time Markov Chains (CTMC) in R
+description-meta: Julien Arino - R for modellers - Vignette 21 - Continuous Time Markov Chains (CTMC) in R
+author: Julien Arino
+institute: University of Manitoba*
+format: 
+  revealjs:
+    theme: [night, custom.scss]    
+    template-partials:
+      - title-slide.html
+    toc: true
+    toc-depth: 1
+    toc-title: Outline
+    auto-stretch: true
+    progress: false
+    preview-liiks: auto
+    code-line-numbers: false
+    chalkboard: true
+---
+

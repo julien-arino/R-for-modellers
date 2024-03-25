@@ -1,0 +1,113 @@
+---
+vignette-nb: "02"
+title: RStudio and friends
+long-title: Vignette 02 - RStudio and friends
+description-meta: Julien Arino - R for modellers - Vignette 02 - RStudio and friends
+author: Julien Arino
+institute: University of Manitoba*
+youtube: https://youtu.be/_YZFaOaDNUM
+format: 
+  revealjs:
+    theme: [night, custom.scss]    
+    template-partials:
+      - title-slide.html
+    toc: true
+    toc-depth: 1
+    toc-title: Outline
+    auto-stretch: true
+    progress: false
+    preview-liiks: auto
+    code-line-numbers: false
+    chalkboard: true
+---
+
+# Posit
+
+- [Posit](https://posit.co/) was formerly called `RStudio`, like their main product
+
+- Did a lot of development for `R`, still do even on the open source side of things
+
+- For-profit company, sells *pro* versions of its open source products
+
+- IMOBO: in the process of moving to the "dark side"
+
+- You can completely exist without using the pro versions, though, don't worry!
+
+# RStudio
+
+<br>
+
+- [RStudio](https://posit.co/products/open-source/rstudio/) has become the reference IDE for R
+
+<br>
+
+- [Download link](https://posit.co/download/rstudio-desktop/)
+
+<br>
+
+- See [Vignette 13](https://julien-arino.github.io/R-for-modellers/SLIDES/vignette-13-RStudio.html)
+
+# RStudio server
+
+- [RStudio server](https://posit.co/products/open-source/rstudio-server/): run RStudio on a Linux server and connect via a web interface
+
+<br>
+
+- [Download link](https://posit.co/download/rstudio-server/)
+
+<br>
+
+- See [Vignette 14](https://julien-arino.github.io/R-for-modellers/SLIDES/vignette-14-RStudio-server.html)
+
+<br>
+
+- Note that as far as I can tell, there is no mechanism to auto-update RStudio-server, so you will have to program something or check the site regularly..
+
+# RMarkdown
+
+- Rmarkdown: markdown that incorporates R commands
+
+<br>
+
+- Useful for generating reports in html, pdf or doc, can make slides as well..
+
+<br>
+
+- See [Vignette 15](https://julien-arino.github.io/R-for-modellers/SLIDES/vignette-15-RMarkdown.html)
+
+# Sweave
+
+- Sweave: LaTeX incorporating R commands
+- Useful for generating pdf reports
+- Not used as much as Rmarkdown these days, probably because Rmarkdown allows output also in html and doc
+- If you have a whole document to typeset using LaTeX, then still the best option
+- See [Vignette 17](https://julien-arino.github.io/R-for-modellers/SLIDES/vignette-17-Sweave.html)
+
+# Quarto
+
+- Promoted as next-gen version of Sweave/RMarkdown
+
+<br>
+
+- These Vignettes are created using Quarto and reveal.js
+
+<br>
+
+- See [Vignette 16](https://julien-arino.github.io/R-for-modellers/SLIDES/vignette-16-Quarto.html)
+
+# Shiny
+
+<br>
+
+- Shiny: easily create an *interactive* web page running R code
+
+<br>
+
+- See [Vignette 18](https://julien-arino.github.io/R-for-modellers/SLIDES/vignette-18-Shiny.html)
+
+# Shiny server
+
+- [Shiny server](https://posit.co/products/open-source/shinyserver/): run Shiny apps on a Linux server
+- Useful for instance if you have a Linux VM running somewhere
+- See, e.g., my instance [here](https://daytah-or-dahtah.ovh:3838/)
+- See [Vignette 19](https://julien-arino.github.io/R-for-modellers/SLIDES/vignette-19-Shiny-server.html)

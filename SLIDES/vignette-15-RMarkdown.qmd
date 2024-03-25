@@ -1,0 +1,32 @@
+---
+vignette-nb: "15"
+title: RMarkdown
+long-title: Vignette 15 - RMarkdown
+description-meta: Julien Arino - R for modellers - Vignette 15 - RMarkdown
+author: Julien Arino
+institute: University of Manitoba*
+format: 
+  revealjs:
+    theme: [night, custom.scss]    
+    template-partials:
+      - title-slide.html
+    toc: true
+    toc-depth: 1
+    toc-title: Outline
+    auto-stretch: true
+    progress: false
+    preview-liiks: auto
+    code-line-numbers: false
+    chalkboard: true
+---
+
+# Note
+
+**Required reading/watching for MATH 2740 students**
+
+If you are a student in the University of Manitoba's Mathematics of Data Science course (MATH 2740), this is **required** reading & watching
+
+# RMarkdown
+
+- Rmarkdown: markdown that incorporates R commands. Useful for generating reports in html or pdf, can make slides as well..
+

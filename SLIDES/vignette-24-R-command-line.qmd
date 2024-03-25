@@ -1,0 +1,56 @@
+---
+vignette-nb: "24"
+title: R from the command line
+long-title: Vignette 24 - R from the command line
+description-meta: Julien Arino - R for modellers - Vignette 24 - R from the command line
+author: Julien Arino
+institute: University of Manitoba*
+format: 
+  revealjs:
+    theme: [night, custom.scss]    
+    template-partials:
+      - title-slide.html
+    toc: true
+    toc-depth: 1
+    toc-title: Outline
+    auto-stretch: true
+    progress: false
+    preview-liiks: auto
+    code-line-numbers: false
+    chalkboard: true
+---
+
+# Running an R script from the command line
+
+
+## [Why run from the command line?]{.r-fit-text}
+
+- `R` is a scripted language and when run from an `R` console, it is interactive
+
+- $\implies$ what you did before is in memory of the session you are working in
+
+- This is frequent cause for errors when sharing your code with others: some things are defined in your script, others you did in the session but did not copy to the script
+
+## Different program options
+
+When you install `R`, you install several programs
+
+- The executable file, which launches the interactive session
+  - In Windows, you get a shortcut to a console version
+- A program called `Rscript` that allows you to run an .. `R` script from your OS' command line
+
+## [Run a script from the command line]{.r-fit-text}
+
+```{.bash}
+Rscript script/path/script-file-name.R
+```
+or, from within the directory
+```{.bash}
+Rscript script-file-name.R
+```
+
+## No output by default
+
+- Contrary to the interactive version, if you want to see an output when running from the command line, you have to force it using commands like `print` or `writeLines`
+
+- Figures will also not be displayed, so you may want to save them
