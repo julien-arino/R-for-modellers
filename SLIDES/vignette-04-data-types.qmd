@@ -107,7 +107,21 @@ for (n in names(L)) {
 }
 ```
 
+## List of lists
 
+```{r}
+#| echo: true
+L <- list()
+L[["2024"]] = list()
+L[["2024"]]$population = 200
+L[["2024"]]$v = 1:5
+```
+
+```{r}
+#| echo: true
+L
+```
+Convenient: we could replicate the same list elements for "2023", for instance 
 
 # Vectors
 
@@ -168,9 +182,7 @@ i.e., adds 1 to all entries in the vector
 
 ```{r}
 #| echo: true
-x = seq(from = 2, to = 10, by = 1.5)
-
-x
+(x = seq(from = 2, to = 10, by = 1.5))
 ```
 
 <br>
@@ -201,18 +213,22 @@ x
 
 # Matrices
 
-Matrix (or vector) of zeros
-```R
-A <- mat.or.vec(nr = 2, nc = 3)
+## Matrix (or vector) of zeros
+
+<br>
+
+```{r}
+#| echo: true
+(A <- mat.or.vec(nr = 2, nc = 3))
 ```
 
-<br> 
+## Matrix with prescribed entries
 
-Matrix with prescribed entries
-
-```R
-B <- matrix(c(1,2,3,4), nr = 2, nc = 2)
-C <- matrix(c(1,2,3,4), nc = 2, nr = 2, byrow = TRUE)
+```{r}
+#| echo: true
+(B <- matrix(c(1,2,3,4), nr = 2, nc = 2))
+(C <- matrix(c(1,2,3,4), nc = 2, nr = 2, 
+             byrow = TRUE))
 ```
 
 <br>
@@ -242,9 +258,41 @@ Probably the biggest annoyance in R compared to other languages !
 
 # Data frames
 
+## Data frames
+
+<br>
+
+From the R documentation: 
+
+<br>
+
+> [data frames are] tightly coupled collections of variables which share many of the properties of matrices and of lists, used as the fundamental data structure by most of R's modeling software
+
+## [Data frames are lists and matrices]{.r-fit-text}
+
+<br>
+
+- Easier to access elements than in lists 
+
+<br>
+
+- More flexible than matrices (columns can be of different types)
+
+---
+
+```{r}
+#| echo: true
+L3 <- LETTERS[1:3]
+fac <- sample(L3, 8, replace = TRUE)
+(d <- data.frame(x = 1, y = 1:8, fac = fac))
+```
+
+
 # Type checking/casting
 
 ## Checking types
+
+<br>
 
 `is.type`, for whatever `type`, is typically defined
 
