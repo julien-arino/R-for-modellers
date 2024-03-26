@@ -413,120 +413,267 @@ Department of Mathematics
 <li><a href="#/assignment" id="/toc-assignment">Assignment</a></li>
 <li><a href="#/lists" id="/toc-lists">Lists</a></li>
 <li><a href="#/vectors" id="/toc-vectors">Vectors</a></li>
-<li><a href="#/use-seq-to-make-more-complex-sequences" id="/toc-use-seq-to-make-more-complex-sequences">Use <code>seq</code> to make more complex sequences</a></li>
 <li><a href="#/matrices" id="/toc-matrices">Matrices</a></li>
-<li><a href="#/for-the-matlab-ers-here" id="/toc-for-the-matlab-ers-here">For the matlab-ers here</a></li>
 <li><a href="#/data-frames" id="/toc-data-frames">Data frames</a></li>
+<li><a href="#/type-checkingcasting" id="/toc-type-checkingcasting">Type checking/casting</a></li>
 </ul>
 </nav>
 </section>
 <section id="assignment" class="title-slide slide level1 center">
 <h1>Assignment</h1>
 <p>Two ways:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="dv">10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="dv">10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>or</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="" aria-hidden="true" tabindex="-1"></a>X <span class="ot">=</span> <span class="dv">10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="" aria-hidden="true" tabindex="-1"></a>X <span class="ot">=</span> <span class="dv">10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br></p>
 <p>First version is preferred by R purists.. I don’t really care</p>
 </section>
 
+<section>
 <section id="lists" class="title-slide slide level1 center">
 <h1>Lists</h1>
-<p>A very useful data structure, quite flexible and versatile. Empty list: <code>L &lt;- list()</code>. Convenient for things like parameters. For instance</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="" aria-hidden="true" tabindex="-1"></a>L <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
-<span id="cb3-2"><a href="" aria-hidden="true" tabindex="-1"></a>L<span class="sc">$</span>a <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb3-3"><a href="" aria-hidden="true" tabindex="-1"></a>L<span class="sc">$</span>b <span class="ot">&lt;-</span> <span class="dv">3</span></span>
-<span id="cb3-4"><a href="" aria-hidden="true" tabindex="-1"></a>L[[<span class="st">"another_name"</span>]] <span class="ot">&lt;-</span> <span class="st">"Plouf plouf"</span></span>
-<span id="cb3-5"><a href="" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> L[<span class="dv">1</span>]</span>
-<span id="cb3-6"><a href="" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>a</span>
-<span id="cb3-7"><a href="" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">10</span></span>
-<span id="cb3-8"><a href="" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> L[[<span class="dv">2</span>]]</span>
-<span id="cb3-9"><a href="" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">3</span></span>
-<span id="cb3-10"><a href="" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> L<span class="sc">$</span>a</span>
-<span id="cb3-11"><a href="" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">10</span></span>
-<span id="cb3-12"><a href="" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> L[[<span class="st">"b"</span>]]</span>
-<span id="cb3-13"><a href="" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">3</span></span>
-<span id="cb3-14"><a href="" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> L<span class="sc">$</span>another_name</span>
-<span id="cb3-15"><a href="" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"Plouf plouf"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>A very useful data structure, quite flexible and versatile</p>
+<p><br></p>
+<p>Empty list</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="" aria-hidden="true" tabindex="-1"></a>L <span class="ot">&lt;-</span> <span class="fu">list</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br></p>
+<p>Convenient for things like parameters</p>
 </section>
+<section class="slide level2">
 
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="" aria-hidden="true" tabindex="-1"></a>L<span class="sc">$</span>a <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb4-2"><a href="" aria-hidden="true" tabindex="-1"></a>L<span class="sc">$</span>b <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb4-3"><a href="" aria-hidden="true" tabindex="-1"></a>L[[<span class="st">"another_name"</span>]] <span class="ot">&lt;-</span> <span class="st">"Plouf plouf"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="" aria-hidden="true" tabindex="-1"></a>L[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$a
+[1] 10</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="" aria-hidden="true" tabindex="-1"></a>L[[<span class="dv">2</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="" aria-hidden="true" tabindex="-1"></a>L<span class="sc">$</span>a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 10</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="" aria-hidden="true" tabindex="-1"></a>L[[<span class="st">"b"</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="" aria-hidden="true" tabindex="-1"></a>L<span class="sc">$</span>another_name</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Plouf plouf"</code></pre>
+</div>
+</div>
+</section>
+<section id="accessing-subsets-of-list-entries" class="slide level2">
+<h2>Accessing subsets of list entries</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="" aria-hidden="true" tabindex="-1"></a>L <span class="ot">=</span> <span class="fu">list</span>()</span>
+<span id="cb15-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) {</span>
+<span id="cb15-3"><a href="" aria-hidden="true" tabindex="-1"></a>  L[[i]] <span class="ot">=</span> <span class="dv">2</span><span class="sc">*</span>i</span>
+<span id="cb15-4"><a href="" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br></p>
+<p>Then to access entries 3 and 4</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="" aria-hidden="true" tabindex="-1"></a>L[<span class="dv">3</span><span class="sc">:</span><span class="dv">4</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+[1] 6
+
+[[2]]
+[1] 8</code></pre>
+</div>
+</div>
+</section>
+<section id="list-names-can-be-parameters" class="slide level2">
+<h2>List names can be parameters</h2>
+<p><br></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="" aria-hidden="true" tabindex="-1"></a>L <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb18-2"><a href="" aria-hidden="true" tabindex="-1"></a>L<span class="sc">$</span>a <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb18-3"><a href="" aria-hidden="true" tabindex="-1"></a>L<span class="sc">$</span>b <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb18-4"><a href="" aria-hidden="true" tabindex="-1"></a>L[[<span class="st">"another_name"</span>]] <span class="ot">&lt;-</span> <span class="st">"Plouf plouf"</span></span>
+<span id="cb18-5"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (n <span class="cf">in</span> <span class="fu">names</span>(L)) {</span>
+<span id="cb18-6"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="fu">paste0</span>(<span class="st">"n="</span>, n, <span class="st">", L[[n]]="</span>, L[[n]]))</span>
+<span id="cb18-7"><a href="" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>n=a, L[[n]]=10
+n=b, L[[n]]=3
+n=another_name, L[[n]]=Plouf plouf</code></pre>
+</div>
+</div>
+</section></section>
 <section>
 <section id="vectors" class="title-slide slide level1 center">
 <h1>Vectors</h1>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
-<span id="cb4-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> y <span class="ot">&lt;-</span> <span class="fu">c</span>(x, <span class="dv">12</span>)</span>
-<span id="cb4-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> y</span>
-<span id="cb4-4"><a href="" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>]  <span class="dv">1</span>  <span class="dv">2</span>  <span class="dv">3</span>  <span class="dv">4</span>  <span class="dv">5</span>  <span class="dv">6</span>  <span class="dv">7</span>  <span class="dv">8</span>  <span class="dv">9</span> <span class="dv">10</span> <span class="dv">12</span></span>
-<span id="cb4-5"><a href="" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> z <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>)</span>
-<span id="cb4-6"><a href="" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> z</span>
-<span id="cb4-7"><a href="" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"red"</span>  <span class="st">"blue"</span></span>
-<span id="cb4-8"><a href="" aria-hidden="true" tabindex="-1"></a>z <span class="ot">=</span> <span class="fu">c</span>(z, <span class="dv">1</span>)</span>
-<span id="cb4-9"><a href="" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> z</span>
-<span id="cb4-10"><a href="" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"red"</span>  <span class="st">"blue"</span> <span class="st">"1"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Note that in <code>z</code>, since the first two entries are characters, the added entry is also a character. Contrary to lists, vectors have all entries of the same type</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb20-2"><a href="" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(x, <span class="dv">12</span>)</span>
+<span id="cb20-3"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="" aria-hidden="true" tabindex="-1"></a>y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]  1  2  3  4  5  6  7  8  9 10 12</code></pre>
+</div>
+</div>
 </section>
-<section id="vector-operations" class="slide level2">
-<h2>Vector operations</h2>
-<p>Say you write <code>x=1:10</code>, i.e., make the vector</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x</span>
-<span id="cb5-2"><a href="" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>]  <span class="dv">1</span>  <span class="dv">2</span>  <span class="dv">3</span>  <span class="dv">4</span>  <span class="dv">5</span>  <span class="dv">6</span>  <span class="dv">7</span>  <span class="dv">8</span>  <span class="dv">9</span> <span class="dv">10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Then <code>x+1</code> gives</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x<span class="sc">+</span><span class="dv">1</span></span>
-<span id="cb6-2"><a href="" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>]  <span class="dv">2</span>  <span class="dv">3</span>  <span class="dv">4</span>  <span class="dv">5</span>  <span class="dv">6</span>  <span class="dv">7</span>  <span class="dv">8</span>  <span class="dv">9</span> <span class="dv">10</span> <span class="dv">11</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>i.e., adds 1 to all entries in the vector</p>
-</section></section>
-<section id="use-seq-to-make-more-complex-sequences" class="title-slide slide level1 center">
-<h1>Use <code>seq</code> to make more complex sequences</h1>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="ot">=</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">2</span>, <span class="at">to =</span> <span class="dv">10</span>, <span class="at">by =</span> <span class="fl">1.25</span>)</span>
-<span id="cb7-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x</span>
-<span id="cb7-3"><a href="" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">2.00</span> <span class="fl">3.25</span> <span class="fl">4.50</span> <span class="fl">5.75</span> <span class="fl">7.00</span> <span class="fl">8.25</span> <span class="fl">9.50</span></span>
-<span id="cb7-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> y <span class="ot">=</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">2</span>, <span class="at">to =</span> <span class="dv">100</span>, <span class="at">length.out =</span> <span class="dv">10</span>)</span>
-<span id="cb7-5"><a href="" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> y</span>
-<span id="cb7-6"><a href="" aria-hidden="true" tabindex="-1"></a> [<span class="dv">1</span>]   <span class="fl">2.00000</span>  <span class="fl">12.88889</span>  <span class="fl">23.77778</span>  <span class="fl">34.66667</span>  <span class="fl">45.55556</span>  <span class="fl">56.44444</span></span>
-<span id="cb7-7"><a href="" aria-hidden="true" tabindex="-1"></a> [<span class="dv">7</span>]  <span class="fl">67.33333</span>  <span class="fl">78.22222</span>  <span class="fl">89.11111</span> <span class="fl">100.00000</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
+<section class="slide level2">
 
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="" aria-hidden="true" tabindex="-1"></a>z <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>)</span>
+<span id="cb22-2"><a href="" aria-hidden="true" tabindex="-1"></a>z <span class="ot">=</span> <span class="fu">c</span>(z, <span class="dv">1</span>)</span>
+<span id="cb22-3"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="" aria-hidden="true" tabindex="-1"></a>z</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "red"  "blue" "1"   </code></pre>
+</div>
+</div>
+<p><br></p>
+<p>Since the first two entries are characters, the added entry is also a character. Contrary to lists, vectors have all entries of the same type</p>
+</section>
+<section id="populating-an-empty-vector" class="slide level2">
+<h2>Populating an empty vector</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="" aria-hidden="true" tabindex="-1"></a>v <span class="ot">=</span> <span class="fu">c</span>()</span>
+<span id="cb24-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) {</span>
+<span id="cb24-3"><a href="" aria-hidden="true" tabindex="-1"></a>  v <span class="ot">=</span> <span class="fu">c</span>(v, <span class="dv">2</span><span class="sc">*</span>i)</span>
+<span id="cb24-4"><a href="" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb24-5"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-6"><a href="" aria-hidden="true" tabindex="-1"></a>v</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]  2  4  6  8 10 12 14 16 18 20</code></pre>
+</div>
+</div>
+</section>
+<section id="vector-operations---beware" class="slide level2">
+<h2>Vector operations - Beware !</h2>
+<p>Say</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br></p>
+<p>Then <code>x+1</code> gives</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="" aria-hidden="true" tabindex="-1"></a>x<span class="sc">+</span><span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]  2  3  4  5  6  7  8  9 10 11</code></pre>
+</div>
+</div>
+<p>i.e., adds 1 to all entries in the vector</p>
+</section>
+<section id="use-seq-to-make-more-complex-sequences" class="slide level2">
+<h2><span class="r-fit-text">Use seq to make more complex sequences</span></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">2</span>, <span class="at">to =</span> <span class="dv">10</span>, <span class="at">by =</span> <span class="fl">1.5</span>)</span>
+<span id="cb29-2"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.0 3.5 5.0 6.5 8.0 9.5</code></pre>
+</div>
+</div>
+<p><br></p>
+<p>The <code>(from, to, by)</code> form is the default; others exist</p>
+<p><br></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">2</span>, <span class="at">to =</span> <span class="dv">100</span>, <span class="at">length.out =</span> <span class="dv">6</span>)</span>
+<span id="cb31-2"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(y, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]   2.0  21.6  41.2  60.8  80.4 100.0</code></pre>
+</div>
+</div>
+</section>
+<section id="naming-vector-entries" class="slide level2">
+<h2>Naming vector entries</h2>
+<p>It is possible (and often useful) to name vector entries</p>
+<p><br></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">2</span>, <span class="at">to =</span> <span class="dv">10</span>, <span class="at">by =</span> <span class="fl">1.5</span>)</span>
+<span id="cb33-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(x) <span class="ot">=</span> <span class="fu">sprintf</span>(<span class="st">"v%d"</span>, <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(x))</span>
+<span id="cb33-3"><a href="" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> v1  v2  v3  v4  v5  v6 
+2.0 3.5 5.0 6.5 8.0 9.5 </code></pre>
+</div>
+</div>
+</section></section>
 <section>
 <section id="matrices" class="title-slide slide level1 center">
 <h1>Matrices</h1>
 <p>Matrix (or vector) of zeros</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="" aria-hidden="true" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="fu">mat.or.vec</span>(<span class="at">nr =</span> <span class="dv">2</span>, <span class="at">nc =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="" aria-hidden="true" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="fu">mat.or.vec</span>(<span class="at">nr =</span> <span class="dv">2</span>, <span class="at">nc =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><br></p>
 <p>Matrix with prescribed entries</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>), <span class="at">nr =</span> <span class="dv">2</span>, <span class="at">nc =</span> <span class="dv">2</span>)</span>
-<span id="cb9-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> B</span>
-<span id="cb9-3"><a href="" aria-hidden="true" tabindex="-1"></a>     [,<span class="dv">1</span>] [,<span class="dv">2</span>]</span>
-<span id="cb9-4"><a href="" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>,]    <span class="dv">1</span>    <span class="dv">3</span></span>
-<span id="cb9-5"><a href="" aria-hidden="true" tabindex="-1"></a>[<span class="dv">2</span>,]    <span class="dv">2</span>    <span class="dv">4</span></span>
-<span id="cb9-6"><a href="" aria-hidden="true" tabindex="-1"></a>C <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>), <span class="at">nr =</span> <span class="dv">2</span>, <span class="at">nc =</span> <span class="dv">2</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb9-7"><a href="" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> C</span>
-<span id="cb9-8"><a href="" aria-hidden="true" tabindex="-1"></a>     [,<span class="dv">1</span>] [,<span class="dv">2</span>]</span>
-<span id="cb9-9"><a href="" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>,]    <span class="dv">1</span>    <span class="dv">2</span></span>
-<span id="cb9-10"><a href="" aria-hidden="true" tabindex="-1"></a>[<span class="dv">2</span>,]    <span class="dv">3</span>    <span class="dv">4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Remark that here and elsewhere, naming the arguments (e.g., <code>nr = 2</code>) allows to use arguments in any order</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>), <span class="at">nr =</span> <span class="dv">2</span>, <span class="at">nc =</span> <span class="dv">2</span>)</span>
+<span id="cb36-2"><a href="" aria-hidden="true" tabindex="-1"></a>C <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>), <span class="at">nc =</span> <span class="dv">2</span>, <span class="at">nr =</span> <span class="dv">2</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><br> Here and elsewhere, naming the arguments (e.g., <code>nr = 2</code>) allows to use arguments in any order</p>
 </section>
 <section id="matrix-operations" class="slide level2">
 <h2>Matrix operations</h2>
-<p>Probably the biggest annoyance in R compared to other languages</p>
+<p>Probably the biggest annoyance in R compared to other languages !</p>
+<p><br></p>
 <ul>
-<li>The notation <code>A*B</code> is the <em>Hadamard product</em> <span class="math inline">\(A\circ B\)</span> (what would be denoted <code>A.*B</code> in matlab), not the standard matrix multiplication</li>
-<li>Matrix multiplication is written <code>A %*% B</code></li>
+<li><code>A*B</code> is the <em>Hadamard product</em> <span class="math inline">\(A\circ B\)</span> (denoted <code>A.*B</code> in matlab), not the standard matrix multiplication</li>
 </ul>
-</section></section>
-<section id="for-the-matlab-ers-here" class="title-slide slide level1 center">
-<h1>For the matlab-ers here</h1>
+<p><br></p>
 <ul>
-<li>R does not have the keyword <code>end</code> to access the last entry in a matrix/vector/list..</li>
-<li>Use <code>length</code> (lists or vectors), <code>nchar</code> (character chains), <code>dim</code> (matrices.. careful, of course returns 2 values)</li>
+<li>Standard matrix multiplication is <code>A %*% B</code></li>
 </ul>
 </section>
-
+<section id="for-the-matlab-ers-here" class="slide level2">
+<h2>For the matlab-ers here</h2>
+<p><br></p>
+<ul>
+<li>R does not have the keyword <code>end</code> to access the last entry in a matrix/vector/list..</li>
+</ul>
+<p><br></p>
+<ul>
+<li>Use <code>length</code> (lists or vectors), <code>nchar</code> (character chains), <code>dim</code> (matrices.. careful, of course returns 2 values)</li>
+</ul>
+</section></section>
 <section id="data-frames" class="title-slide slide level1 center">
 <h1>Data frames</h1>
+
+</section>
+
+<section>
+<section id="type-checkingcasting" class="title-slide slide level1 center">
+<h1>Type checking/casting</h1>
+
+</section>
+<section id="checking-types" class="slide level2">
+<h2>Checking types</h2>
+<p><code>is.type</code>, for whatever <code>type</code>, is typically defined</p>
+<p><br></p>
+<p><code>is.array</code>, <code>is.atomic</code>, <code>is.character</code>, <code>is.data.frame</code>, <code>is.double</code>, <code>is.function</code>, <code>is.integer</code>, <code>is.list</code>, <code>is.logical</code>, <code>is.matrix</code>, <code>is.numeric</code>, <code>is.object</code>, <code>is.vector</code></p>
+<p><br></p>
+<p>Many packages also define specific types</p>
+</section>
+<section id="casting" class="slide level2">
+<h2>Casting</h2>
+<p><br></p>
+<p>Typically, if <code>is.type</code> exists for type <code>type</code>, then <code>as.type</code> also exists</p>
+<p><br></p>
+<p><code>as.array</code>, <code>as.data.frame</code>, <code>as.list</code>, <code>as.matrix</code>, <code>as.numeric</code>, <code>as.vector</code></p>
+<p><br></p>
+<p>Often: matrix <span class="math inline">\(\leftrightarrow\)</span> data frame, list <span class="math inline">\(\leftrightarrow\)</span> matrix</p>
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 
 </div>
 </div>
-</section>
+</section></section>
     </div>
   </div>
 
@@ -739,6 +886,44 @@ Department of Mathematics
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {
