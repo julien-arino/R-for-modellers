@@ -17,6 +17,8 @@ format:
     progress: false
     preview-liiks: auto
     code-line-numbers: false
+    code-block-bg: true
+    code-block-border-left: "#31BAE9"
     chalkboard: true
 ---
 
@@ -127,20 +129,36 @@ Convenient: we could replicate the same list elements for "2023", for instance
 
 ```{r}
 #| echo: true
+#| code-line-numbers: true
 x = 1:10
-y <- c(x, 12)
-
-y
+(y <- c(x, 12))
 ```
 
----
+<br>
+
+(Line 2: surrounded by ( ) so that the result appears)
+
+## Concatenating two vectors
+
+- The `c()` command is ubiquitous in R
+
+- Used to make vectors, concatenate them, etc.
+
+```{r}
+#| echo: true
+x = 1:5
+y = 10:12
+(z = c(x, y))
+```
+
+## Vectors have a single entry type
+
+<br>
 
 ```{r}
 #| echo: true
 z = c("red", "blue")
-z = c(z, 1)
-
-z
+(z = c(z, 1))
 ```
 
 <br>
@@ -149,19 +167,25 @@ Since the first two entries are characters, the added entry is also a character.
 
 ## Populating an empty vector
 
+<br>
+
 ```{r}
 #| echo: true
 v = c()
 for (i in 1:10) {
   v = c(v, 2*i)
 }
-
 v
 ```
+
+<br>
+
+Very useful method to create a vector if you don't know in advance how many entries it will have
 
 ## Vector operations - Beware !
 
 Say
+
 ```{r}
 #| echo: true
 #| label: set-x-vector
@@ -171,6 +195,7 @@ x = 1:10
 <br>
 
 Then `x+1` gives
+
 ```{r}
 #| echo: true
 #| label: add-1-to-x
@@ -200,6 +225,8 @@ round(y, 2)
 
 ## Naming vector entries
 
+<br>
+
 It is possible (and often useful) to name vector entries
 
 <br>
@@ -227,7 +254,7 @@ x
 ```{r}
 #| echo: true
 (B <- matrix(c(1,2,3,4), nr = 2, nc = 2))
-(C <- matrix(c(1,2,3,4), nc = 2, nr = 2, 
+(C <- matrix(c(5,6,7,8), nc = 2, nr = 2, 
              byrow = TRUE))
 ```
 
@@ -255,6 +282,25 @@ Probably the biggest annoyance in R compared to other languages !
 <br>
 
 - Use `length` (lists or vectors), `nchar` (character chains), `dim` (matrices.. careful, of course returns 2 values)
+
+## Concatenating matrices
+
+Dimensions must be compatible
+
+```{r}
+#| echo: true
+rbind(B, C)
+cbind(B, C)
+```
+
+## [Concatenating vectors and matrices]{.r-fit-text}
+
+```{r}
+#| echo: true
+v = c(9, 10)
+rbind(B, v)
+cbind(B, v)
+```
 
 # Data frames
 
