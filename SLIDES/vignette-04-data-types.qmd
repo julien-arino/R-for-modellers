@@ -302,6 +302,96 @@ rbind(B, v)
 cbind(B, v)
 ```
 
+## Naming matrix rows/columns
+
+Can be useful sometimes
+
+```{r}
+#| echo: true
+rownames(B) = c("before", "after")
+colnames(B) = c("Jane", "John")
+B
+```
+
+<br>
+
+Not assigning a value returns the existing values, if any
+
+```{r}
+#| echo: true
+rownames(B)
+colnames(C)
+```
+
+## Access matrix/vector entries
+
+By position
+
+```{r}
+#| echo: true
+B[1,2]
+v[1]
+```
+
+<br>
+By name, if present, and combining
+
+```{r}
+#| echo: true
+B["before", "Jane"]
+B["before", 2]
+```
+
+## Whole rows/columns
+
+```{r}
+#| echo: true
+B["before", ]
+B[, "Jane"]
+C[,]
+```
+
+## Submatrices
+
+<br>
+
+```{r}
+#| echo: true
+D = matrix(data = runif(100), nc = 10)
+D[2:3, 5:7]
+```
+
+<br>
+`runif(100)`: generate 100 uniformly distributed random numbers between the default `min=0` and `max=1`
+
+<br>
+Note that indices are "local" to the result
+
+---
+
+## Submatrix of a named matrix
+
+<br>
+
+```{r}
+#| echo: true
+D = matrix(data = runif(100), nc = 10)
+rownames(D) = sprintf("R%d", 1:dim(D)[1])
+colnames(D) = sprintf("C%d", 1:dim(D)[2])
+(E = D[2:3, 5:7])
+```
+
+<br>
+Indices are "local" but names are those "extracted"
+
+```{r}
+#| echo: true
+E["R3", "C6"]
+E[2, 2]
+```
+
+
+
 # Data frames
 
 ## Data frames
@@ -330,7 +420,88 @@ From the R documentation:
 #| echo: true
 L3 <- LETTERS[1:3]
 fac <- sample(L3, 8, replace = TRUE)
-(d <- data.frame(x = 1, y = 1:8, fac = fac))
+(df <- data.frame(x = 1, y = 1:8, fac = fac))
+```
+
+<br>
+
+```{r}
+#| echo: true
+is.character(df$x)
+is.character(df$fac)
+```
+
+## [Data frames are lists and matrices (2)]{.r-fit-text}
+
+<br>
+
+```{r}
+#| echo: true
+df$fac
+df[["fac"]]
+df[, "fac"]
+df[, 3]
+```
+
+---
+
+<br>
+
+```{r}
+#| echo: true
+df$fac[2]
+df[["fac"]][2]
+df[2, "fac"]
+df[2, 3]
+```
+
+# which
+
+## The `which` function
+
+<br>
+
+- Extremely useful
+
+<br>
+
+- Important to learn how to use
+
+<br>
+
+> Give the `TRUE` indices of a logical object, allowing for array indices
+
+## [TRUE indices of a logical object?]{.r-fit-text}
+
+<br>
+
+- Return to logical tests in [Vignette 05](https://julien-arino.github.io/R-for-modellers/SLIDES/vignette-05-flow-control.html) about flow control
+
+<br>
+
+- `TRUE` indices: those indices for which a property is `TRUE`
+
+<br>
+
+- E.g., $x<1$?
+
+---
+
+```{r}
+#| echo: true
+df 
+df$y < 5
+which(df$y < 5)
+df$fac == "A"
+which(df$fac == "A")
+```
+
+## `which` is useful
+
+```{r}
+#| echo: true
+df$fac[which(df$fac == "A")] = "Z"
+df
 ```
 
 
