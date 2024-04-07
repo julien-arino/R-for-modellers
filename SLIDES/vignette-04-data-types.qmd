@@ -550,3 +550,22 @@ Typically, if `is.type` exists for type `type`, then `as.type` also exists
 <br>
 
 Often: matrix $\leftrightarrow$ data frame, list $\leftrightarrow$ matrix
+
+## Example: matrix to list
+
+```{r}
+#| echo: true
+to_vary_m = 
+  expand.grid(p1= seq(1, 3, length.out = 10),
+              p2 = seq(0.8, 3, length.out = 10))
+to_vary_l = split(to_vary_m, seq(nrow(to_vary_m)))
+```
+
+<br>
+`expand.grid`: makes a matrix with every combination of the values of the vectors `p1` and `p2`
+
+```{r}
+#| echo: true
+to_vary_m[3,]
+to_vary_l[3]
+```

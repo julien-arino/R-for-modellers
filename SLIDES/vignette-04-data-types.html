@@ -830,9 +830,9 @@ after     2    4</code></pre>
 <div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="" aria-hidden="true" tabindex="-1"></a>D <span class="ot">=</span> <span class="fu">matrix</span>(<span class="at">data =</span> <span class="fu">runif</span>(<span class="dv">100</span>), <span class="at">nc =</span> <span class="dv">10</span>)</span>
 <span id="cb76-2"><a href="" aria-hidden="true" tabindex="-1"></a>D[<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>, <span class="dv">5</span><span class="sc">:</span><span class="dv">7</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>          [,1]      [,2]      [,3]
-[1,] 0.6247074 0.8055243 0.1357194
-[2,] 0.5403849 0.6503341 0.4570913</code></pre>
+<pre><code>           [,1]      [,2]      [,3]
+[1,] 0.06432872 0.1033244 0.4490614
+[2,] 0.67333276 0.6240762 0.6828366</code></pre>
 </div>
 </div>
 <p><br> <code>runif(100)</code>: generate 100 uniformly distributed random numbers between the default <code>min=0</code> and <code>max=1</code></p>
@@ -848,19 +848,19 @@ after     2    4</code></pre>
 <span id="cb78-4"><a href="" aria-hidden="true" tabindex="-1"></a>(<span class="at">E =</span> D[<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>, <span class="dv">5</span><span class="sc">:</span><span class="dv">7</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          C5         C6        C7
-R2 0.6887928 0.41078482 0.8638379
-R3 0.5974476 0.03560276 0.4852788</code></pre>
+R2 0.8800404 0.03406038 0.6105576
+R3 0.7780433 0.88645936 0.0242153</code></pre>
 </div>
 </div>
 <p><br> Indices are “local” but names are those “extracted”</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="" aria-hidden="true" tabindex="-1"></a>E[<span class="st">"R3"</span>, <span class="st">"C6"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.03560276</code></pre>
+<pre><code>[1] 0.8864594</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb82"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="" aria-hidden="true" tabindex="-1"></a>E[<span class="dv">2</span>, <span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.03560276</code></pre>
+<pre><code>[1] 0.8864594</code></pre>
 </div>
 </div>
 </section></section>
@@ -897,14 +897,14 @@ R3 0.5974476 0.03560276 0.4852788</code></pre>
 <span id="cb84-3"><a href="" aria-hidden="true" tabindex="-1"></a>(df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="dv">1</span>, <span class="at">y =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>, <span class="at">fac =</span> fac))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  x y fac
-1 1 1   B
+1 1 1   C
 2 1 2   B
-3 1 3   A
+3 1 3   B
 4 1 4   B
-5 1 5   A
-6 1 6   A
-7 1 7   A
-8 1 8   C</code></pre>
+5 1 5   B
+6 1 6   C
+7 1 7   B
+8 1 8   A</code></pre>
 </div>
 </div>
 <p><br></p>
@@ -925,19 +925,19 @@ R3 0.5974476 0.03560276 0.4852788</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb90"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>fac</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "B" "B" "A" "B" "A" "A" "A" "C"</code></pre>
+<pre><code>[1] "C" "B" "B" "B" "B" "C" "B" "A"</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb92"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="" aria-hidden="true" tabindex="-1"></a>df[[<span class="st">"fac"</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "B" "B" "A" "B" "A" "A" "A" "C"</code></pre>
+<pre><code>[1] "C" "B" "B" "B" "B" "C" "B" "A"</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="" aria-hidden="true" tabindex="-1"></a>df[, <span class="st">"fac"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "B" "B" "A" "B" "A" "A" "A" "C"</code></pre>
+<pre><code>[1] "C" "B" "B" "B" "B" "C" "B" "A"</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb96"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="" aria-hidden="true" tabindex="-1"></a>df[, <span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "B" "B" "A" "B" "A" "A" "A" "C"</code></pre>
+<pre><code>[1] "C" "B" "B" "B" "B" "C" "B" "A"</code></pre>
 </div>
 </div>
 </section>
@@ -1004,14 +1004,14 @@ R3 0.5974476 0.03560276 0.4852788</code></pre>
 <div class="sourceCode cell-code" id="cb106"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb106-1"><a href="" aria-hidden="true" tabindex="-1"></a>df </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  x y fac
-1 1 1   B
+1 1 1   C
 2 1 2   B
-3 1 3   A
+3 1 3   B
 4 1 4   B
-5 1 5   A
-6 1 6   A
-7 1 7   A
-8 1 8   C</code></pre>
+5 1 5   B
+6 1 6   C
+7 1 7   B
+8 1 8   A</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb108"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb108-1"><a href="" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>y <span class="sc">&lt;</span> <span class="dv">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1023,11 +1023,11 @@ R3 0.5974476 0.03560276 0.4852788</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb112"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb112-1"><a href="" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>fac <span class="sc">==</span> <span class="st">"A"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] FALSE FALSE  TRUE FALSE  TRUE  TRUE  TRUE FALSE</code></pre>
+<pre><code>[1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb114"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb114-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span>(df<span class="sc">$</span>fac <span class="sc">==</span> <span class="st">"A"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 3 5 6 7</code></pre>
+<pre><code>[1] 8</code></pre>
 </div>
 </div>
 </section>
@@ -1038,14 +1038,14 @@ R3 0.5974476 0.03560276 0.4852788</code></pre>
 <span id="cb116-2"><a href="" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  x y fac
-1 1 1   B
+1 1 1   C
 2 1 2   B
-3 1 3   Z
+3 1 3   B
 4 1 4   B
-5 1 5   Z
-6 1 6   Z
-7 1 7   Z
-8 1 8   C</code></pre>
+5 1 5   B
+6 1 6   C
+7 1 7   B
+8 1 8   Z</code></pre>
 </div>
 </div>
 </section>
@@ -1056,21 +1056,17 @@ R3 0.5974476 0.03560276 0.4852788</code></pre>
 <span id="cb118-2"><a href="" aria-hidden="true" tabindex="-1"></a>(<span class="at">rc =</span> <span class="fu">which</span>(E <span class="sc">&lt;</span> <span class="fl">0.1</span>, <span class="at">arr.ind =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     row col
-[1,]   4   1
-[2,]   3   3
-[3,]   3   4
-[4,]   5   4
-[5,]   2   5</code></pre>
+[1,]   4   2</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb120"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb120-1"><a href="" aria-hidden="true" tabindex="-1"></a>E[rc] <span class="ot">=</span> <span class="cn">Inf</span></span>
 <span id="cb120-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(E, <span class="at">digits =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     [,1] [,2] [,3] [,4] [,5]
-[1,] 0.71 0.66 0.53 0.21 0.96
-[2,] 0.44 0.23 0.22 0.86  Inf
-[3,] 0.39 0.92  Inf  Inf 0.50
-[4,]  Inf 0.31 0.99 0.13 0.45
-[5,] 0.79 0.41 1.00  Inf 0.18</code></pre>
+[1,] 0.77 0.38 0.92 0.75 0.91
+[2,] 0.40 0.56 0.10 0.89 0.34
+[3,] 0.96 0.19 0.92 0.75 0.76
+[4,] 0.32  Inf 0.65 0.39 0.56
+[5,] 0.95 0.15 0.76 0.59 0.48</code></pre>
 </div>
 </div>
 </section></section>
@@ -1096,6 +1092,29 @@ R3 0.5974476 0.03560276 0.4852788</code></pre>
 <p><code>as.array</code>, <code>as.data.frame</code>, <code>as.list</code>, <code>as.matrix</code>, <code>as.numeric</code>, <code>as.vector</code></p>
 <p><br></p>
 <p>Often: matrix <span class="math inline">\(\leftrightarrow\)</span> data frame, list <span class="math inline">\(\leftrightarrow\)</span> matrix</p>
+</section>
+<section id="example-matrix-to-list" class="slide level2">
+<h2>Example: matrix to list</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb122"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb122-1"><a href="" aria-hidden="true" tabindex="-1"></a>to_vary_m <span class="ot">=</span> </span>
+<span id="cb122-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expand.grid</span>(<span class="at">p1=</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="at">length.out =</span> <span class="dv">10</span>),</span>
+<span id="cb122-3"><a href="" aria-hidden="true" tabindex="-1"></a>              <span class="at">p2 =</span> <span class="fu">seq</span>(<span class="fl">0.8</span>, <span class="dv">3</span>, <span class="at">length.out =</span> <span class="dv">10</span>))</span>
+<span id="cb122-4"><a href="" aria-hidden="true" tabindex="-1"></a>to_vary_l <span class="ot">=</span> <span class="fu">split</span>(to_vary_m, <span class="fu">seq</span>(<span class="fu">nrow</span>(to_vary_m)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br> <code>expand.grid</code>: makes a matrix with every combination of the values of the vectors <code>p1</code> and <code>p2</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb123"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb123-1"><a href="" aria-hidden="true" tabindex="-1"></a>to_vary_m[<span class="dv">3</span>,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        p1  p2
+3 1.444444 0.8</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb125"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb125-1"><a href="" aria-hidden="true" tabindex="-1"></a>to_vary_l[<span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$`3`
+        p1  p2
+3 1.444444 0.8</code></pre>
+</div>
+</div>
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 
