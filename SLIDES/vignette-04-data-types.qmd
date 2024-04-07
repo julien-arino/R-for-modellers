@@ -238,6 +238,13 @@ names(x) = sprintf("v%d", 1:length(x))
 x
 ```
 
+<br>
+
+```{r}
+#| echo: true
+x["v5"]
+```
+
 # Matrices
 
 ## Matrix (or vector) of zeros
@@ -504,6 +511,15 @@ df$fac[which(df$fac == "A")] = "Z"
 df
 ```
 
+## `which` can return array indices
+
+```{r}
+#| echo: true
+E = matrix(data = runif(25), nr = 5)
+(rc = which(E < 0.1, arr.ind = TRUE))
+E[rc] = Inf
+round(E, digits = 2)
+```
 
 # Type checking/casting
 
