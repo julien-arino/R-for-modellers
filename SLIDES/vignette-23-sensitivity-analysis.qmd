@@ -5,7 +5,7 @@ long-title: Vignette 23 - Sensitivity analysis in R
 description-meta: Julien Arino - R for modellers - Vignette 23 - Sensitivity analysis in R
 author: Julien Arino
 institute: University of Manitoba*
-format: 
+format:
   revealjs:
     theme: [night, custom.scss]    
     template-partials:
@@ -18,11 +18,244 @@ format:
     preview-liiks: auto
     code-line-numbers: false
     chalkboard: true
+    html-math-method: mathjax
 ---
 
 We saw an example of sensitivity analysis in [Vignette 07](vignette-07-parLapply-and-friends.html)
 
+<br>
+
 Here we cover the topic in more detail
 
-**Warning**, though: sensitivity analysis is a vast topic, we don't go into details here. Also, as always in these vignettes, this is about using `R` to perform sensitivity analysis, not about the theory itself...
+<br> 
+**Warning**: sensitivity analysis is a vast topic, we don't go into details here. Also, as always in these vignettes, this is about using `R` to perform sensitivity analysis, not about the theory itself...
+
+# What is sensitivity analysis
+
+## [Uncertainty vs sensitivity analysis]{.r-fit-text}
+
+According to [Wikipedia](https://en.wikipedia.org/wiki/Sensitivity_analysis) (emphasis mine)
+
+- Uncertainty analysis investigates the **uncertainty** of **variables** that are used in decision-making problems in which **observations** and **models** represent the **knowledge base**
+- Sensitivity analysis is the study of how the **uncertainty** in the **output** of a *mathematical model or system* (numerical or otherwise) can be divided and **allocated** to different sources of **uncertainty** in its **inputs**
+
+## For modellers
+
+## Some notation
+
+<br>
+
+$P$ number of parameters considered
+
+<br>
+
+Parameter space $\mathbb{P}$: some subset of $\mathbb{R}^P$
+
+<br>
+
+$p\in\mathbb{P}$ a **point** in parameter space
+
+---
+
+- Output in *direct* functional form
+
+$y=f(p)$, $f:\mathbb{P}\to\mathbb{R}$ some function and $p\in\mathbb{P}$
+
+<br>
+
+- Output in *observational* functional form
+
+\begin{align*}
+x' &= g(x,p),\quad x\in\mathbb{R}^n,p\in\mathbb{P} \\
+y &= h(x)
+\end{align*}
+where $g:\mathbb{R}^n\times\mathbb{P}\to\mathbb{R}^n$ and $h:\mathbb{R}^n\to\mathbb{R}$
+
+<br>
+
+$h$ may be some complicated function
+
+## [A running example - SLIARSV with demography]{.r-fit-text}
+
+- [Bistability in deterministic and stochastic SLIAR-type models with imperfect and waning vaccine protection](http://dx.doi.org/10.1007/s00285-022-01765-9), Arino & Milliken, Journal of Mathematical Biology, 2022
+- Complex model with enough parameters (13) for illustration, but for which some quantities ($\mathcal{R}_0$, $\mathcal{R}_v$, ...) are known
+
+## [A running example - SLIARSV with demography]{.r-fit-text}
+
+```{r, engine = 'tikz'}
+\usetikzlibrary{shapes,arrows}
+\usetikzlibrary{positioning}
+\tikzstyle{cloud} = [draw, ellipse,fill=red!20, node distance=0.87cm,
+minimum height=2em]
+\tikzstyle{line} = [draw, -latex', color=yellow]
+\usetikzlibrary{shapes.symbols,shapes.callouts,patterns}
+\usetikzlibrary{calc,fit}
+\usetikzlibrary{backgrounds}
+\begin{tikzpicture}[background rectangle/.style={fill=black}, 
+  show background rectangle,
+  scale=1, every node/.style={transform shape},
+	auto, %node distance = 2cm, auto,
+	box/.style={minimum width={width("N-1")+2pt},
+		draw, rectangle,fill=gray!20}]
+	%% States
+	\node [box] at (0,0) (S) {$S$};
+	\node [box] at (2,-3) (V) {$V$};
+	\node [box] at (4,0) (L) {$L$};
+	\node [box] at (8,2) (I) {$I$};
+	\node [box] at (8,-2) (A) {$A$};
+	\node [box] at (12,0) (R) {$R$};
+	%% Flows
+	\path [line, thick, dashed] (-2,0) to node [midway, above] (TextNode) {$(1-p)B$} (S);
+	\path [line, thick, dashed] (0,-3) to node [midway, below] (TextNode) {$pB$} (V);
+	\path [line, thick] (S) to node [midway, below, sloped] (TextNode) {$\beta S(I+\eta A)$} (L);
+	\path [line, thick, bend left] (S) to node [midway, above, sloped] (TextNode) {$eS$} (V);
+	\path [line, thick, bend left] (V) to node [sloped, midway, below] (TextNode) {$\omega_v V$} (S);
+	\path [line, thick] (V) to node [midway, below, sloped] (TextNode) {$(1-\sigma)\beta V(I+\eta A)$} (L);
+	\path [line, thick] (L) to node [sloped, midway, above] (TextNode) {$(1-\pi)\varepsilon L$} (I);
+	\path [line, thick] (L) to node [sloped, midway, below] (TextNode) {$\pi\varepsilon L$} (A);
+	\path [line, thick] (I) to node [sloped, midway, below] (TextNode) {$\gamma I$} (R);
+  \path [line, thick] (A) to node [sloped, midway, below] (TextNode) {$\gamma I$} (R);
+	\draw [>=latex,->, thick, rounded corners, color=yellow] (R) -- +(0,2.5) -- ++(-12,2.5) node[sloped, midway, above] {$\omega_r R$} -- (S);
+  \path [line, thick, dashed] (S) to node [sloped, midway, above] (TextNode) {$dS$} ++(1.5,1.5);
+  \path [line, thick, dashed] (V) to node [sloped, midway, below] (TextNode) {$dV$} ++(0,-1.5);
+  \path [line, thick, dashed] (L) to node [sloped, midway, above] (TextNode) {$dL$} ++(0,1.5);
+  \path [line, thick] (I) to node [sloped, midway, above] (TextNode) {$(d+\mu)I$} ++(0,-1.75);
+  \path [line, thick, dashed] (A) to node [sloped, midway, below] (TextNode) {$dA$} ++(0,-1.5);
+  \path [line, thick, dashed] (R) to node [sloped, midway, below] (TextNode) {$dR$} ++(0,-1.5);
+\end{tikzpicture}
+```
+
+## Parameters {.scrollable}
+
+```{css}
+#| echo: false
+.reveal table {
+  font-size: medium;
+}
+```
+
+| Type | Parameter | Description |
+|---|--|----|
+| Demography | $B$ | Natural birth rate ($=dN_0$) | 
+| | $d$ | Natural mortality rate | 
+| Disease characteristics | $\beta$ | Rate of transmission |
+| | $\eta$ | Modification of transmission for asymptomatics |
+| | $\pi$ | Proportion of asymptomatic cases |
+| | $\varepsilon$ | Rate of transition from latency to infectious stage |
+| | $\gamma$ | Rate of recovery |
+| | $\omega_r$ | Rate of waning of disease induced immunity |
+| | $\mu$ | Disease induced mortality rate |
+| Vaccination | $p$ | Proportion of newborns vaccinated | 
+| | $e$ | Rate of vaccination of adults |
+| | $\sigma$ | Vaccine efficacy |
+| | $\omega_v$ | Rate of waning of vaccine induced immunity |
+
+: {.striped .hover}
+
+## The system
+
+$$
+\begin{align}
+S' & = (1-p)B + \omega_vV + \omega_rR - \beta S (I+\eta A) - (e + d) S \\
+V' & = pB + e S - (1-\sigma )\beta V (I+\eta A) - (\omega_v + d) V \\
+L' & = \beta (S+(1-\sigma)V) (I+\eta A) - (\varepsilon + d) L \\
+I' & = (1 - \pi)\varepsilon L - (\gamma+ \mu + d) I \\
+A' & = \pi\varepsilon L - (\gamma+ d) A \\
+R' & = \gamma (A + I) - (\omega_r + d) R
+\end{align}
+$${#eq-SVLIARS}
+
+
+## [Disease-free equilibria (DFE)]{.r-fit-text}
+
+<br>
+
+In ([-@eq-SVLIARS]) without equation for $V'$ and with $p=e=\omega_v=0$, DFE has $\bar S_0=B/d$
+
+<br>
+
+DFE of full ([-@eq-SVLIARS]) is $E_0 = (S_0,V_0,0,0,0,0)$, where
+$$
+S_0 = \frac{(1-p)d+\omega_v}{e+\omega_v+d}\; \frac Bd 
+\quad\textrm{and}\quad
+V_0 = \frac{pd+e}{e+\omega_v+d}\;\frac Bd
+$${#eq-DFE-SVLIARS}
+
+
+## [Reproduction numbers]{.r-fit-text}
+
+With the combination parameter
+$$
+\lambda = \beta\varepsilon
+\frac{(\gamma+\mu+d)\eta\pi + (1-\pi)(\gamma + d)}
+{(\gamma + d)(\gamma+\mu+d)}
+$${#eq-lambda}
+
+we have
+
+$$
+\mathcal{R}_0 = \frac{\lambda}{\varepsilon+d}\bar S_0
+$${#eq-R0-SLIARS}
+$$
+\mathcal{R}_v=\frac{\lambda}{\varepsilon+d}(S_0+(1-\sigma)V_0)
+$${#eq-Rv-SVLIARS}
+
+
+## [Two main cases for modellers]{.r-fit-text}
+
+- Direct approach: you have a function (EP as function of parameters, $\mathcal{R}_0$ in an epi model, etc.) and want to test its dependence on parameters. You can evaluate the function at each point in parameter space
+
+<br>
+
+- Indirect approach: you have a model and want to test the dependence of a model output on parameters. You must first do a model run at each point in parameter space, then compute the model output
+
+# Different methods
+
+## Different methods
+
+- OAT (one factor at a time)
+- Local sensitivity
+- Global sensitivity
+- Sensitivity for (dynamic) ODE
+- Heatmaps
+
+## One factor at a time
+
+- Evaluate response of system to changes in 1 parameter, *ceteris paribus*
+<br>
+- Assumes you have good confidence in your parameters, as you are testing variations with other parameters set at baseline value
+
+## Local sensitivty analysis
+
+Take partials of output with respect to individual parameters
+\begin{equation}
+\frac{\partial y}{\partial p_i}
+\end{equation}
+where $i=1,\ldots,P$ is one of the parameters
+
+## Global sensitivity analysis
+
+## Global before OAT
+
+- Often worth doing global *before* OAT: parameters with little influence on the output can be fixed without much debate
+
+## Sensitivity for (dynamic) ODE
+
+## Heatmaps
+
+- Deterministic version of OAT with one or (usually) two parameters
+- Set all other parameters to baseline and vary deterministically 1 or 2 parameters
+
+## [Importance of parameter sampling methods]{.r-fit-text}
+
+- For all methods except heatmaps, important to think about choice of points in parameter space being investigated (*sampling* of parameter space)
+
+# Global sensitivity analysis
+
+# One factor at a time
+
+# Sensitivity for (dynamic) ODE
+
+# Heatmaps
+
 

@@ -8,7 +8,7 @@
 <link href="vignette-23-sensitivity-analysis_files/libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="vignette-23-sensitivity-analysis_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="vignette-23-sensitivity-analysis_files/libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.4.552">
+  <meta name="generator" content="quarto-1.4.553">
 
   <meta name="author" content="Julien Arino">
   <title>Sensitivity analysis in R</title>
@@ -341,12 +341,288 @@ Department of Mathematics
 <br><br><br>
 <div style="text-align: justify; position: relative; bottom: -55%; font-size:18px;">
     * The University of Manitoba campuses are located on original lands of Anishinaabeg, Cree, Oji-Cree, Dakota and Dene peoples, and on the homeland of the Métis Nation.</div>    
+</section><section id="TOC">
+<nav role="doc-toc"> 
+<h2 id="toc-title">Outline</h2>
+<ul>
+<li><a href="#/what-is-sensitivity-analysis" id="/toc-what-is-sensitivity-analysis">What is sensitivity analysis</a></li>
+<li><a href="#/different-methods" id="/toc-different-methods">Different methods</a></li>
+<li><a href="#/global-sensitivity-analysis-1" id="/toc-global-sensitivity-analysis-1">Global sensitivity analysis</a></li>
+<li><a href="#/one-factor-at-a-time-1" id="/toc-one-factor-at-a-time-1">One factor at a time</a></li>
+<li><a href="#/sensitivity-for-dynamic-ode-1" id="/toc-sensitivity-for-dynamic-ode-1">Sensitivity for (dynamic) ODE</a></li>
+<li><a href="#/heatmaps-1" id="/toc-heatmaps-1">Heatmaps</a></li>
+</ul>
+</nav>
 </section>
 <section class="slide level2">
 
 <p>We saw an example of sensitivity analysis in <a href="vignette-07-parLapply-and-friends.html">Vignette 07</a></p>
+<p><br></p>
 <p>Here we cover the topic in more detail</p>
-<p><strong>Warning</strong>, though: sensitivity analysis is a vast topic, we don’t go into details here. Also, as always in these vignettes, this is about using <code>R</code> to perform sensitivity analysis, not about the theory itself…</p>
+<p><br> <strong>Warning</strong>: sensitivity analysis is a vast topic, we don’t go into details here. Also, as always in these vignettes, this is about using <code>R</code> to perform sensitivity analysis, not about the theory itself…</p>
+</section>
+<section>
+<section id="what-is-sensitivity-analysis" class="title-slide slide level1 center">
+<h1>What is sensitivity analysis</h1>
+
+</section>
+<section id="uncertainty-vs-sensitivity-analysis" class="slide level2">
+<h2><span class="r-fit-text">Uncertainty vs sensitivity analysis</span></h2>
+<p>According to <a href="https://en.wikipedia.org/wiki/Sensitivity_analysis">Wikipedia</a> (emphasis mine)</p>
+<ul>
+<li>Uncertainty analysis investigates the <strong>uncertainty</strong> of <strong>variables</strong> that are used in decision-making problems in which <strong>observations</strong> and <strong>models</strong> represent the <strong>knowledge base</strong></li>
+<li>Sensitivity analysis is the study of how the <strong>uncertainty</strong> in the <strong>output</strong> of a <em>mathematical model or system</em> (numerical or otherwise) can be divided and <strong>allocated</strong> to different sources of <strong>uncertainty</strong> in its <strong>inputs</strong></li>
+</ul>
+</section>
+<section id="for-modellers" class="slide level2">
+<h2>For modellers</h2>
+</section>
+<section id="some-notation" class="slide level2">
+<h2>Some notation</h2>
+<p><br></p>
+<p><span class="math inline">\(P\)</span> number of parameters considered</p>
+<p><br></p>
+<p>Parameter space <span class="math inline">\(\mathbb{P}\)</span>: some subset of <span class="math inline">\(\mathbb{R}^P\)</span></p>
+<p><br></p>
+<p><span class="math inline">\(p\in\mathbb{P}\)</span> a <strong>point</strong> in parameter space</p>
+</section>
+<section class="slide level2">
+
+<ul>
+<li>Output in <em>direct</em> functional form</li>
+</ul>
+<p><span class="math inline">\(y=f(p)\)</span>, <span class="math inline">\(f:\mathbb{P}\to\mathbb{R}\)</span> some function and <span class="math inline">\(p\in\mathbb{P}\)</span></p>
+<p><br></p>
+<ul>
+<li>Output in <em>observational</em> functional form</li>
+</ul>
+<p><span class="math display">\[\begin{align*}
+x' &amp;= g(x,p),\quad x\in\mathbb{R}^n,p\in\mathbb{P} \\
+y &amp;= h(x)
+\end{align*}\]</span> where <span class="math inline">\(g:\mathbb{R}^n\times\mathbb{P}\to\mathbb{R}^n\)</span> and <span class="math inline">\(h:\mathbb{R}^n\to\mathbb{R}\)</span></p>
+<p><br></p>
+<p><span class="math inline">\(h\)</span> may be some complicated function</p>
+</section>
+<section id="a-running-example---sliarsv-with-demography" class="slide level2">
+<h2><span class="r-fit-text">A running example - SLIARSV with demography</span></h2>
+<ul>
+<li><a href="http://dx.doi.org/10.1007/s00285-022-01765-9">Bistability in deterministic and stochastic SLIAR-type models with imperfect and waning vaccine protection</a>, Arino &amp; Milliken, Journal of Mathematical Biology, 2022</li>
+<li>Complex model with enough parameters (13) for illustration, but for which some quantities (<span class="math inline">\(\mathcal{R}_0\)</span>, <span class="math inline">\(\mathcal{R}_v\)</span>, …) are known</li>
+</ul>
+</section>
+<section id="a-running-example---sliarsv-with-demography-1" class="slide level2">
+<h2><span class="r-fit-text">A running example - SLIARSV with demography</span></h2>
+
+<img data-src="vignette-23-sensitivity-analysis_files/figure-revealjs/unnamed-chunk-1-1.png" width="960" class="r-stretch"></section>
+<section id="parameters" class="slide level2 scrollable">
+<h2>Parameters</h2>
+<div class="cell">
+<style type="text/css">
+.reveal table {
+  font-size: medium;
+}
+</style>
+</div>
+<table class="table-striped table-hover">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 22%">
+<col style="width: 44%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Type</th>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Demography</td>
+<td><span class="math inline">\(B\)</span></td>
+<td>Natural birth rate (<span class="math inline">\(=dN_0\)</span>)</td>
+</tr>
+<tr class="even">
+<td></td>
+<td><span class="math inline">\(d\)</span></td>
+<td>Natural mortality rate</td>
+</tr>
+<tr class="odd">
+<td>Disease characteristics</td>
+<td><span class="math inline">\(\beta\)</span></td>
+<td>Rate of transmission</td>
+</tr>
+<tr class="even">
+<td></td>
+<td><span class="math inline">\(\eta\)</span></td>
+<td>Modification of transmission for asymptomatics</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><span class="math inline">\(\pi\)</span></td>
+<td>Proportion of asymptomatic cases</td>
+</tr>
+<tr class="even">
+<td></td>
+<td><span class="math inline">\(\varepsilon\)</span></td>
+<td>Rate of transition from latency to infectious stage</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><span class="math inline">\(\gamma\)</span></td>
+<td>Rate of recovery</td>
+</tr>
+<tr class="even">
+<td></td>
+<td><span class="math inline">\(\omega_r\)</span></td>
+<td>Rate of waning of disease induced immunity</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><span class="math inline">\(\mu\)</span></td>
+<td>Disease induced mortality rate</td>
+</tr>
+<tr class="even">
+<td>Vaccination</td>
+<td><span class="math inline">\(p\)</span></td>
+<td>Proportion of newborns vaccinated</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><span class="math inline">\(e\)</span></td>
+<td>Rate of vaccination of adults</td>
+</tr>
+<tr class="even">
+<td></td>
+<td><span class="math inline">\(\sigma\)</span></td>
+<td>Vaccine efficacy</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><span class="math inline">\(\omega_v\)</span></td>
+<td>Rate of waning of vaccine induced immunity</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="the-system" class="slide level2">
+<h2>The system</h2>
+<p><span id="eq-SVLIARS"><span class="math display">\[
+\begin{align}
+S' &amp; = (1-p)B + \omega_vV + \omega_rR - \beta S (I+\eta A) - (e + d) S \\
+V' &amp; = pB + e S - (1-\sigma )\beta V (I+\eta A) - (\omega_v + d) V \\
+L' &amp; = \beta (S+(1-\sigma)V) (I+\eta A) - (\varepsilon + d) L \\
+I' &amp; = (1 - \pi)\varepsilon L - (\gamma+ \mu + d) I \\
+A' &amp; = \pi\varepsilon L - (\gamma+ d) A \\
+R' &amp; = \gamma (A + I) - (\omega_r + d) R
+\end{align}
+\tag{1}\]</span></span></p>
+</section>
+<section id="disease-free-equilibria-dfe" class="slide level2">
+<h2><span class="r-fit-text">Disease-free equilibria (DFE)</span></h2>
+<p><br></p>
+<p>In (<a href="#/the-system" class="quarto-xref">1</a>) without equation for <span class="math inline">\(V'\)</span> and with <span class="math inline">\(p=e=\omega_v=0\)</span>, DFE has <span class="math inline">\(\bar S_0=B/d\)</span></p>
+<p><br></p>
+<p>DFE of full (<a href="#/the-system" class="quarto-xref">1</a>) is <span class="math inline">\(E_0 = (S_0,V_0,0,0,0,0)\)</span>, where <span id="eq-DFE-SVLIARS"><span class="math display">\[
+S_0 = \frac{(1-p)d+\omega_v}{e+\omega_v+d}\; \frac Bd
+\quad\textrm{and}\quad
+V_0 = \frac{pd+e}{e+\omega_v+d}\;\frac Bd
+\tag{2}\]</span></span></p>
+</section>
+<section id="reproduction-numbers" class="slide level2">
+<h2><span class="r-fit-text">Reproduction numbers</span></h2>
+<p>With the combination parameter <span id="eq-lambda"><span class="math display">\[
+\lambda = \beta\varepsilon
+\frac{(\gamma+\mu+d)\eta\pi + (1-\pi)(\gamma + d)}
+{(\gamma + d)(\gamma+\mu+d)}
+\tag{3}\]</span></span></p>
+<p>we have</p>
+<p><span id="eq-R0-SLIARS"><span class="math display">\[
+\mathcal{R}_0 = \frac{\lambda}{\varepsilon+d}\bar S_0
+\tag{4}\]</span></span> <span id="eq-Rv-SVLIARS"><span class="math display">\[
+\mathcal{R}_v=\frac{\lambda}{\varepsilon+d}(S_0+(1-\sigma)V_0)
+\tag{5}\]</span></span></p>
+</section>
+<section id="two-main-cases-for-modellers" class="slide level2">
+<h2><span class="r-fit-text">Two main cases for modellers</span></h2>
+<ul>
+<li>Direct approach: you have a function (EP as function of parameters, <span class="math inline">\(\mathcal{R}_0\)</span> in an epi model, etc.) and want to test its dependence on parameters. You can evaluate the function at each point in parameter space</li>
+</ul>
+<p><br></p>
+<ul>
+<li>Indirect approach: you have a model and want to test the dependence of a model output on parameters. You must first do a model run at each point in parameter space, then compute the model output</li>
+</ul>
+</section></section>
+<section>
+<section id="different-methods" class="title-slide slide level1 center">
+<h1>Different methods</h1>
+
+</section>
+<section id="different-methods-1" class="slide level2">
+<h2>Different methods</h2>
+<ul>
+<li>OAT (one factor at a time)</li>
+<li>Local sensitivity</li>
+<li>Global sensitivity</li>
+<li>Sensitivity for (dynamic) ODE</li>
+<li>Heatmaps</li>
+</ul>
+</section>
+<section id="one-factor-at-a-time" class="slide level2">
+<h2>One factor at a time</h2>
+<ul>
+<li>Evaluate response of system to changes in 1 parameter, <em>ceteris paribus</em> <br></li>
+<li>Assumes you have good confidence in your parameters, as you are testing variations with other parameters set at baseline value</li>
+</ul>
+</section>
+<section id="local-sensitivty-analysis" class="slide level2">
+<h2>Local sensitivty analysis</h2>
+<p>Take partials of output with respect to individual parameters <span class="math display">\[\begin{equation}
+\frac{\partial y}{\partial p_i}
+\end{equation}\]</span> where <span class="math inline">\(i=1,\ldots,P\)</span> is one of the parameters</p>
+</section>
+<section id="global-sensitivity-analysis" class="slide level2">
+<h2>Global sensitivity analysis</h2>
+</section>
+<section id="global-before-oat" class="slide level2">
+<h2>Global before OAT</h2>
+<ul>
+<li>Often worth doing global <em>before</em> OAT: parameters with little influence on the output can be fixed without much debate</li>
+</ul>
+</section>
+<section id="sensitivity-for-dynamic-ode" class="slide level2">
+<h2>Sensitivity for (dynamic) ODE</h2>
+</section>
+<section id="heatmaps" class="slide level2">
+<h2>Heatmaps</h2>
+<ul>
+<li>Deterministic version of OAT with one or (usually) two parameters</li>
+<li>Set all other parameters to baseline and vary deterministically 1 or 2 parameters</li>
+</ul>
+</section>
+<section id="importance-of-parameter-sampling-methods" class="slide level2">
+<h2><span class="r-fit-text">Importance of parameter sampling methods</span></h2>
+<ul>
+<li>For all methods except heatmaps, important to think about choice of points in parameter space being investigated (<em>sampling</em> of parameter space)</li>
+</ul>
+</section></section>
+<section id="global-sensitivity-analysis-1" class="title-slide slide level1 center">
+<h1>Global sensitivity analysis</h1>
+
+</section>
+
+<section id="one-factor-at-a-time-1" class="title-slide slide level1 center">
+<h1>One factor at a time</h1>
+
+</section>
+
+<section id="sensitivity-for-dynamic-ode-1" class="title-slide slide level1 center">
+<h1>Sensitivity for (dynamic) ODE</h1>
+
+</section>
+
+<section id="heatmaps-1" class="title-slide slide level1 center">
+<h1>Heatmaps</h1>
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 
@@ -539,7 +815,7 @@ Department of Mathematics
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -565,6 +841,44 @@ Department of Mathematics
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {
