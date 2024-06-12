@@ -877,7 +877,11 @@ See the code in the \code{Rnw} source of these slides and in \code{CODE/function
 \section{Parallelising your code in \code{R}}
 
 \begin{frame}{Parallelisation}
-    To see multiple realisations: good idea to parallelise, then interpolate results. Write a function, e.g.,  \code{run\_one\_sim} that .. runs one simulation
+    To run multiple realisations, it is a good idea to parallelise your code, since CTMC simulations are \emph{embarrassingly parallel}
+    \vfill
+    Write a function, e.g.,  \code{run\_one\_sim} that .. runs one simulation, then call it from within a \code{parLapply} statement
+    \vfill
+    Note: if you want to compute the mean trajectory of the realisations, you will need to interpolate solutions, since event times are different in each realisation
     \vfill
     On the GitHub repo for the course, see
     \begin{itemize}
