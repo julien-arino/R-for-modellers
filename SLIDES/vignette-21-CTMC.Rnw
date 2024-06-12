@@ -1,0 +1,1194 @@
+%\SweaveUTF8
+\documentclass[aspectratio=43]{beamer}
+\usepackage{Sweave}
+
+\input{slides-setup-whiteBG.tex}
+
+\title{Continuous time Markov chains}
+\subtitle{R for modellers -- Vignette 21}
+\author{Julien Arino}
+\date{June 2024}
+
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+\SweaveOpts{prefix.string = FIGS/CTMC}
+
+<<set-options,echo=FALSE>>=
+# Are we plotting for a dark background
+plot_blackBG = FALSE
+# Do we need to refresh the computations already performed and saved?
+REFRESH = FALSE
+# Source the useful functions file
+source("../CODE/functions-useful.R")
+library(knitr)
+library(kableExtra)
+library(dplyr)
+@
+
+% The title page
+\begin{frame}[noframenumbering,plain]
+  \begin{tikzpicture}[remember picture,overlay]
+    \node[above right,inner sep=0pt,opacity=0.2] at (current page.south west)
+    {
+        \includegraphics[height=\paperheight,width=\paperwidth]{FIGS/Gemini-generated-viruses-bacteria-Bacon-style-2.jpeg}
+    };
+\end{tikzpicture}
+  \setbeamercolor{title}{fg=subsub_header_section}
+  \setbeamercolor{author}{fg=subsub_header_section} 
+  \setbeamerfont{title}{size=\Large,series=\bfseries}
+  \setbeamerfont{author}{size=\Large,series=\bfseries}
+  \setbeamerfont{date}{series=\bfseries}
+  %\setbeamerfont{date}{size=\small,series=\mdseries}
+	\titlepage
+\end{frame}
+\addtocounter{page}{-1}
+
+
+% The outline page
+{
+\setbeamercolor{background canvas}{bg=outline_colour}
+\begin{frame}{Outline}
+    \tableofcontents[hideallsubsections]
+\end{frame}
+\addtocounter{page}{-1}
+}
+
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+\section{Continuous time Markov chains}
+
+\begin{frame}{Continuous-time Markov chains}
+    CTMC similar to DTMC except in way they handle time between events (transitions)
+\vfill
+    DTMC: transitions occur each $\Delta t$
+   \vfill 
+    CTMC: $\Delta t\to 0$ and transition times follow an exponential distribution parametrised by the state of the system
+    \vfill
+    CTMC are roughly equivalent to ODE    
+\end{frame}
+
+
+\section{ODE $\leftrightarrow$ CTMC}
+
+\begin{frame}{Converting your compartmental ODE model to CTMC}
+    Easy as $\pi$ :)
+\vfill
+\begin{itemize}
+    \item Compartmental ODE model focuses on flows into and out of compartments
+    \vfill
+    \item ODE model has as many equations as there are compartments
+    \vfill
+    \item Compartmental CTMC model focuses on transitions
+    \vfill
+    \item CTMC model has as many transitions as there are arrows between (or into or out of) compartments
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{ODE to CTMC : focus on different components}
+    \begin{center}
+        \begin{tikzpicture}[auto,
+            scale=1.2, every node/.style={transform shape},
+            cloud/.style={minimum width={width("N-1")+2pt},
+            draw, ellipse,fill=red!20}]
+            \node[cloud, fill=green!90, double=red] (S) at (0,0) {$S$};
+            \node[cloud, draw=none, fill=white] (h4) at (2,0) {};
+            \node[cloud, fill=red!90, double=red] (I) at (4,0) {$I$};
+            \node[cloud, fill=green!90] (S2) at (6,0) {$S$};
+            \node[cloud, fill=red!90] (I2) at (8,0) {$I$};
+            %% Flows (ODE)
+            \path [line, bend left, very thick, dashed] (S) to node [midway, above] (TextNode) {$-\beta SI$} (h4);
+            \path [line, bend left, very thick] (h4) to node [midway, below] (TextNode) {$+\gamma I$} (S);
+            \path [line, bend left, very thick] (h4) to node [midway, above] (TextNode) {$+\beta SI$} (I);
+            \path [line, bend left, very thick, dashed] (I) to node [midway, below] (TextNode) {$-\gamma I$} (h4);
+            %% Flows (CTMC)
+            \path [line, bend left, very thick, red] (S2) to node [midway, above, black] (TextNode) {$\beta SI$} (I2);
+            \path [line, bend left, very thick, red] (I2) to node [midway, below] (TextNode) {$\gamma I$} (S2);
+            %%
+            \draw[very thick, dotted] (5,-2) -- (5,2);
+            %%
+            \node[style=rectangle] at (2,2) {ODE};
+            \node[style=rectangle] at (7,2) {CTMC};
+            %%
+            \node[style=rectangle] (fODE) at (2,-2) {focus};
+            \path [line, dotted,red] (fODE) to  (S.south);
+            \path [line, dotted,red] (fODE) to  (I.south);
+            \node[style=rectangle] (fCTMC) at (6,-2) {focus};
+            \path [line, dotted,red] (fCTMC) to (6.75,0.3);
+            \path [line, dotted,red] (fCTMC) to  (6.75,-0.475);
+        \end{tikzpicture}        
+    \end{center}
+\end{frame}
+
+
+\begin{frame}{SIS without demography}
+    \begin{center}
+        \begin{tabular}{cp{3cm}cc}
+          \toprule
+            Transition & Effect & Weight & Probability \\
+            \midrule
+            $S\to S-1$, $I\to I+1$ & new infection & $\beta SI$ & $\dfrac{\beta SI}{\beta SI+\gamma I}$ \\
+            $S\to S+1$, $I\to I-1$ & recovery of an infectious & $\gamma I$ & $\dfrac{\gamma I}{\beta SI+\gamma I}$ \\
+            \bottomrule
+        \end{tabular}
+    \end{center}
+    \vfill
+    States are $S,I$
+\end{frame}
+
+
+\begin{frame}{SIS with demography}
+    \begin{center}
+        \begin{tabular}{p{3cm}p{3cm}cc}
+        \toprule
+            Transition & Effect & Weight & Probability \\
+          \midrule
+            $S\to S+1$ & birth of a susceptible & $b$ & $\frac{b}{b+d(S+I)+\beta SI+\gamma I}$ \\
+            $S\to S-1$ & death of a susceptible & $dS$ & $\frac{dS}{b+d(S+I)+\beta SI+\gamma I}$ \\
+            $S\to S-1$, $I\to I+1$ & new infection & $\beta SI$ & $\frac{\beta SI}{b+d(S+I)+\beta SI+\gamma I}$ \\
+            $I\to I-1$ & death of an infectious & $dI$ & $\frac{dI}{b+d(S+I)+\beta SI+\gamma I}$ \\
+            $S\to S+1$, $I\to I-1$ & recovery of an infectious & $\gamma I$ & $\frac{\gamma I}{b+d(S+I)+\beta SI+\gamma I}$ \\
+            \bottomrule
+        \end{tabular}
+    \end{center}
+\vfill
+States are $S,I$
+\end{frame}
+
+
+\begin{frame}[fragile]{Kermack \& McKendrick model}
+    \begin{center}
+        \begin{tabular}{cp{3cm}cc}
+        \toprule
+            Transition & Effect & Weight & Probability \\
+            \midrule
+            $S\to S-1$, $I\to I+1$ & new infection & $\beta SI$ & $\dfrac{\beta SI}{\beta SI+\gamma I}$ \\
+            $I\to I-1$, $R\to R+1$ & recovery of an infectious & $\gamma I$ & $\dfrac{\gamma I}{\beta SI+\gamma I}$ \\
+            \bottomrule
+        \end{tabular}
+    \end{center}
+    \vfill
+    States are $S,I,R$
+\end{frame}
+
+
+\section{Simulating CTMC (in theory)}
+
+\begin{frame}{Gillespie's algorithm}
+    \begin{itemize}
+        \item A.k.a. the stochastic simulation algorithm (SSA)
+        \vfill
+        \item Derived in 1976 by Daniel Gillespie
+        \vfill
+        \item Generates possible solutions for CTMC
+        \vfill
+        \item Extremely simple, so worth learning how to implement; there are however packages that you can use (see later)
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Gillespie's algorithm}
+Suppose system has state $\mathbf{x}(t)$ with initial condition $\mathbf{x}(t_0)=\mathbf{x}_0$ and \emph{propensity functions} $a_i$ of elementary reactions
+\vfill
+set $t\leftarrow t_0$ and $\mathbf{x}(t)\leftarrow \mathbf{x}_0$\\
+\code{while} {$t\leq t_f$}
+\begin{itemize}
+\setbeamertemplate{itemize item}[circle]
+\item $\xi_t\leftarrow \sum_j a_j(\mathbf{x}(t))$
+\item Draw $\tau_t$ from $T\thicksim \mathcal{E}(\xi_t)$
+\item Draw $\zeta_t$ from $\mathcal{U}([0,1])$
+\item Find $r$, smallest integer s.t.
+\[
+\sum_{k=1}^r a_k(\mathbf{x}(t))> \zeta_t\sum_j a_j(\mathbf{x}(t))=\zeta_t\xi_t
+\]
+\item Effect the next reaction (the one indexed $r$)
+\item $t\leftarrow t+\tau_t$
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Drawing at random from an exponential distribution}
+    If you do not have an exponential distribution random number generator.. We want $\tau_t$ from $T\thicksim\mathcal{E}(\xi_t)$, i.e., $T$ has probability density function
+    $$
+    f(x,\xi_t)=
+    \xi_te^{-\xi_t x}\mathbf{1}_{x\geq 0}
+    $$
+    Use cumulative distribution function $F(x,\xi_t)=\int_{-\infty}^x f(s,\xi_t)\,ds$
+    $$
+    F(x,\xi_t)=
+    (1-e^{-\xi_t x})\mathbf{1}_{x\geq 0}
+    $$
+    which has values in $[0,1]$. So draw $\zeta$ from $\mathcal{U}([0,1])$ and solve $F(x,\xi_t)=\zeta$ for $x$
+    \begin{align*}
+    F(x,\xi_t)=\zeta & \Leftrightarrow 1-e^{-\xi_tx}=\zeta \\
+    &\Leftrightarrow e^{-\xi_tx} = 1-\zeta \\
+    &\Leftrightarrow \xi_tx = -\ln(1-\zeta) \\
+    &\Leftrightarrow \boxed{x = \frac{-\ln(1-\zeta)}{\xi_t}}
+    \end{align*}
+\end{frame}
+
+
+\begin{frame}{Gillespie's algorithm (SIS model with only I eq.)}
+set $t\leftarrow t_0$ and $I(t)\leftarrow I(t_0)$\\
+\code{while} {$t\leq t_f$}
+\begin{itemize}
+\setbeamertemplate{itemize item}[circle]
+\item $\xi_t\leftarrow \beta (P^\star-i)i+\gamma i$
+\item Draw $\tau_t$ from $T\thicksim \mathcal{E}(\xi_t)$
+\item $v\leftarrow\left[\beta (P^\star-i)i,\xi_t\right]/\xi_t$
+\item Draw $\zeta_t$ from $\mathcal{U}([0,1])$
+\item Find $pos$ such that $v_{pos-1}\leq\zeta_t\leq v_{pos}$
+\item switch {$pos$}
+\begin{enumerate}
+\item New infection, $I(t+\tau_t)=I(t)+1$
+\item End of infectious period, $I(t+\tau_t)=I(t)-1$
+\end{enumerate}
+\item $t\leftarrow t+\tau_t$
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Sometimes Gillespie goes bad}
+    \begin{itemize}
+        \item Recall that the inter-event time is exponentially distributed
+        \vfill
+        \item Critical step of the Gillespie algorithm:
+        \begin{itemize}
+            \item $\xi_t\leftarrow$ weight of all possible events (\emph{propensity})
+            \item Draw $\tau_t$ from $T\thicksim \mathcal{E}(\xi_t)$
+        \end{itemize}
+        \vfill
+        \item So inter-event time $\tau_t\to 0$ if $\xi_t$ very large for some $t$
+        \vfill
+        \item This can cause the simulation to grind to a halt
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Example: a birth and death process}
+    \begin{itemize}
+        \item Individuals born at \emph{per capita} rate $b$
+        \vfill
+        \item Individuals die at \emph{per capita} rate $d$
+        \vfill
+        \item Let's implement this using classic Gillespie
+    \end{itemize}
+    \vfill
+(\href{https://raw.githubusercontent.com/julien-arino/R-for-modellers/main/CODE/simulate-birth-death-CTMC-classic-Gillespie.R}{\code{CODE/simulate-birth-death-CTMC-classic-Gillespie.R}} on course GitHub repo)
+\end{frame}
+
+
+\begin{frame}{Gillespie's algorithm (birth-death model)}
+set $t\leftarrow t_0$ and $N(t)\leftarrow N(t_0)$\\
+\code{while} {$t\leq t_f$}
+\begin{itemize}
+\setbeamertemplate{itemize item}[circle]
+\item $\xi_t\leftarrow (b+d)N(t)$
+\item Draw $\tau_t$ from $T\thicksim \mathcal{E}(\xi_t)$
+\item $v\leftarrow\left[bN(t),\xi_t\right]/\xi_t$
+\item Draw $\zeta_t$ from $\mathcal{U}([0,1])$
+\item Find $pos$ such that $v_{pos-1}\leq\zeta_t\leq v_{pos}$
+\item switch {$pos$}
+\begin{enumerate}
+\item Birth, $N(t+\tau_t)=N(t)+1$ 
+\item Death, $N(t+\tau_t)=N(t)-1$
+\end{enumerate}
+\item $t\leftarrow t+\tau_t$
+\end{itemize}
+\end{frame}
+
+<<gillespie-birth-death,echo=FALSE>>=
+birth_death = function(b = 0.01, d = 0.01, 
+                       N_0 = 100, 
+                       t_0 = 0, t_f = 1000) {
+
+  # Vectors to store time and state.
+  # Initialise with initial condition.
+  t = t_0 # Initial time
+  N = N_0 # Initial population
+  
+  # We'll track the current time and state (could also just check 
+  # last entry in t and N, but will take more operations)
+  t_curr = t_0
+  N_curr = N_0
+  while (t_curr<=t_f) {
+    xi_t = (b+d)*N_curr
+    # The exponential number generator does not like a rate of 0 
+    # (when the population crashes). 
+    # So check if we need to quit
+    if (N_curr == 0) {
+      break
+    }
+    tau_t = rexp(1, rate = xi_t)
+    t_curr = t_curr+tau_t
+    v = c(b*N_curr, xi_t)/xi_t
+    zeta_t = runif(n = 1)
+    pos = findInterval(zeta_t, v)+1
+    switch(pos,
+           {
+             N_curr = N_curr+1 # Birth
+           },
+           {
+             N_curr = N_curr-1 # Death
+           })
+    N = c(N, N_curr)
+    t = c(t, t_curr)
+  }
+  
+  return(data.frame(t = t, N = N))
+}
+@
+
+\begin{frame}[fragile]
+\begin{lstlisting}[language=Renhanced]
+birth_death = function(b = 0.01, d = 0.01, 
+                       N_0 = 100, 
+                       t_0 = 0, t_f = 1000) {
+
+  # Vectors to store time and state.
+  # Initialise with initial condition.
+  t = t_0 # Initial time
+  N = N_0 # Initial population
+  
+  # We'll track the current time and state (could also just check 
+  # last entry in t and N, but will take more operations)
+  t_curr = t_0
+  N_curr = N_0
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\begin{lstlisting}[language=Renhanced]
+  while (t_curr<=t_f) {
+    xi_t = (b+d)*N_curr
+    if (N_curr == 0) {
+      break
+    }
+    tau_t = rexp(1, rate = xi_t)
+    t_curr = t_curr+tau_t
+    v = c(b*N_curr, xi_t)/xi_t
+    zeta_t = runif(n = 1)
+    pos = findInterval(zeta_t, v)+1
+    switch(pos,
+           {
+             N_curr = N_curr+1 # Birth
+           },
+           {
+             N_curr = N_curr-1 # Death
+           })
+    N = c(N, N_curr)
+    t = c(t, t_curr)
+  }
+  return(data.frame(t = t, N = N))
+}
+\end{lstlisting}
+\end{frame}
+
+<<birth-death-b0_01-d0_01,eval=TRUE,echo=FALSE,fig=TRUE,width=8,height=6,include=FALSE>>=
+set.seed(122)
+sol = birth_death()
+plot(sol$t, sol$N, type = "l", xlab = "Time", ylab = "Population",
+     main = sprintf("Birth-death process, b=%.2f, d=%.2f", 0.01, 0.01))
+abline(h = 100, lty = 2)
+@
+
+<<birth-death-b0_01-d0_02,eval=TRUE,echo=FALSE,fig=TRUE,width=8,height=6,include=FALSE>>=
+set.seed(122)
+sol = birth_death(d = 0.02)
+plot(sol$t, sol$N, type = "l", xlab = "Time", ylab = "Population",
+     main = sprintf("Birth-death process, b=%.2f, d=%.2f", 0.01, 0.02))
+abline(h = 100, lty = 2)
+@
+
+\maxFrameImage{FIGS/CTMC-birth-death-b0_01-d0_01}
+\maxFrameImage{FIGS/CTMC-birth-death-b0_01-d0_02}
+
+<<birth-death-b0_03-d0_01,eval=TRUE,echo=FALSE,fig=TRUE,width=8,height=6,include=FALSE,cache=TRUE>>=
+birth_death_stop = function(b = 0.01, d = 0.01, 
+                            N_0 = 100, 
+                            t_0 = 0, t_f = 1000,
+                            threshold = 1e-8) {
+
+  # Vectors to store time and state.
+  # Initialise with initial condition.
+  t = t_0 # Initial time
+  N = N_0 # Initial population
+  
+  # We'll track the current time and state (could also just check 
+  # last entry in t and N, but will take more operations)
+  t_curr = t_0
+  N_curr = N_0
+  while (t_curr<=t_f) {
+    xi_t = (b+d)*N_curr
+    # The exponential number generator does not like a rate of 0 
+    # (when the population crashes). 
+    # So check if we need to quit
+    if (N_curr == 0) {
+      break
+    }
+    tau_t = rexp(1, rate = xi_t)
+    t_curr = t_curr+tau_t
+    v = c(b*N_curr, xi_t)/xi_t
+    zeta_t = runif(n = 1)
+    pos = findInterval(zeta_t, v)+1
+    switch(pos,
+           {
+             N_curr = N_curr+1 # Birth
+           },
+           {
+             N_curr = N_curr-1 # Death
+           })
+    N = c(N, N_curr)
+    t = c(t, t_curr)
+    # If the time step has gone below the threshold, stop
+    if (tau_t < threshold) {
+      break
+    }
+  }
+  
+  return(data.frame(t = t, N = N))
+}
+if (REFRESH) {
+  set.seed(122)
+  sol = birth_death_stop(b = 0.03)
+  saveRDS(sol, file = "OUTPUT/CTMC-birth-death-b0_03-d0_01.Rds")
+} else {
+  sol = readRDS("OUTPUT/CTMC-birth-death-b0_03-d0_01.Rds")
+}
+
+plot(sol$t, sol$N, type = "l", xlab = "Time", ylab = "Population",
+     main = sprintf("Birth-death process, b=%.2f, d=%.2f", 0.03, 0.01))
+@
+
+\maxFrameImage{FIGS/CTMC-birth-death-b0_03-d0_01}
+
+
+\begin{frame}[fragile]{Last one did not go well}
+    \begin{itemize}
+        \item Penultimate slide: sim stopped because the population went extinct, I did not stop it!
+        \item Last slide: I wanted 1,000 time units (days?)
+        \vfill
+        \item Interrupted at $t=\Sexpr{round(sol$t[dim(sol)[1]],2)}$ because I ``lost patience'' (added something to check step size, see code for the slide)
+        \vfill
+        \item At stop time
+        \begin{itemize}
+            \item $N = \Sexpr{format(sol$N[dim(sol)[1]], big.mark=",")}$
+            \item $|t|=|N| = \Sexpr{format(dim(sol)[1], big.mark=",")}$
+            \item time was moving slowly
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+<<plot-diff-times,eval=TRUE,echo=FALSE,fig=TRUE,width=8,height=6,include=FALSE>>=
+library(dplyr)
+library(lubridate)
+
+diff_t = diff(sol$t)
+sol_sums <- sol %>%
+  mutate(t_int = floor(t)) %>%   # Convert t to integer
+  group_by(t_int) %>%             # Group by integer t
+  summarise(N_count = n())        # Count rows per group
+
+max_y_diff_t = max(diff_t)
+max_y_sol_sums = max(sol_sums$N_count)
+sol_sums$scaled_N_count = sol_sums$N_count / 
+  max_y_sol_sums * max_y_diff_t
+par(mar = c(5,4,4,4) + 0.1)
+plot(sol$t[-1], diff_t, type = "l", 
+     xlab = "Time", ylab = "Time step (days)")
+lines(sol_sums$t_int[1:dim(sol_sums)[1]-1], 
+      sol_sums$scaled_N_count[1:dim(sol_sums)[1]-1], 
+      lwd = 3, col = "red")
+mtext("Number of events / day", side = 4, line = 3, col = "red")
+axis(side = 4, 
+     at = pretty(sol_sums$N_count) / max_y_sol_sums * max_y_diff_t ,
+     labels = pretty(sol_sums$N_count),
+     las = 1, cex.axis=0.8, col.axis= "red")
+@
+
+\maxFrameImage{FIGS/CTMC-plot-diff-times}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Simulating CTMC (in practice)}
+
+\begin{frame}{Tau-leaping (and packages) to the rescue!}
+    \begin{itemize}
+        \item \emph{Approximation} method (compared to classic Gillespie, which is exact)
+        \vfill
+        \item Roughly: consider "groups" of events instead of individual events
+        \vfill
+        \item Good news: \code{GillespieSSA2} and \code{adaptivetau}, two standard packages for SSA in \code{R}, implement tau leaping
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{{\tt adaptivetau} or {\tt GillespieSSA2}?}
+\begin{itemize}
+\item Both packages do roughly the same thing now (in the past, {\tt GillespieSSA2} was the only only one exporting ``events'', but now both do)
+\item {\tt GillespieSSA2} can precompile stuff, which is faster. Also has a slightly more compact syntax
+\item {\tt adaptivetau} is more robust: precompiling is great but runs into issues when you are parallelising your code
+\end{itemize}
+\vfill
+$\implies$ I will illustrate using {\tt adaptivetau}
+\vfill
+CODE directory has some {\tt GillespieSSA2} examples as well. Both are very similar!
+\end{frame}
+
+
+<<sim-ssa-tauleap-SIRS,eval=TRUE,echo=FALSE,fig=TRUE,width=8,height=6,include=FALSE>>=
+library(adaptivetau)
+Pop <- 1000
+I_0 <- 2
+IC <- c(S = (Pop-I_0), I = I_0, R = 0)
+params <- list(gamma = 1/5, nu = 1/50)
+# Incidence is mass action, so R0=beta/gamma*S0. So work out beta so R0
+# takes the desired value: beta=gamma*R0/S0
+params$beta <- params$gamma*1.5/(Pop-I_0)
+# Final time of the simulation (assuming days as units here)
+t_f = 100
+# In adaptivetau, reaction and reaction rates are defined separately.
+# Reaction rates are a function of the current state, parameters and time.
+# We also define names of the reactions (see later)
+reactions_names <- c("new_infection", 
+                     "recovery", 
+                     "loss_immunity")
+reactions_effects <- list(
+  c(S=-1, I=+1), # new infection
+  c(I=-1, R=+1), # recovery
+  c(R=-1, S=+1)  # loss of immunity
+)
+reactions_rates <- function(x, params, t) {
+  with(as.list(c(x, params)), {
+    rates <- c(
+      beta*S*I, # new infection
+      gamma*I,  # recovery
+      nu*R      # loss of immunity
+    )
+    return(rates)
+  })
+}
+# In GillespieSSA2, you use the "reaction" function to define the reactions
+# reactions <- list(
+#   reaction("beta*S*I", c(S=-1,I=+1), "new_infection"),
+#   reaction("gamma*I", c(I=-1,R=+1), "recovery"),
+#   reaction("gamma*R", c(R=-1,S=+1), "loss_of_immunity")
+# )
+set.seed(1) # for reproducibility
+sol <- ssa.adaptivetau(
+  init.values = IC,
+  transitions = reactions_effects,
+  rateFunc = reactions_rates,
+  params = params,
+  tf = t_f
+)
+plot(sol[,"time"], sol[,"I"], type = "l",
+     xlab = "Time (days)", ylab = "Prevalence")
+@
+
+\begin{frame}[fragile]{\code{adaptivetau} to simulate an SIRS CTMC}
+\framesubtitle{Initial setup}
+\begin{lstlisting}[language=Renhanced]
+library(adaptivetau)
+
+Pop <- 1000
+I_0 <- 2
+IC <- c(S = (Pop-I_0), I = I_0, R = 0)
+
+params <- list(gamma = 1/5, nu = 1/50)
+params$beta <- params$gamma*1.5/(Pop-I_0)
+
+t_f = 100
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{\code{adaptivetau} to simulate an SIRS CTMC}
+\framesubtitle{Reactions and reaction rates}
+\begin{lstlisting}[language=Renhanced]
+reactions_names <- c("new_infection", 
+                     "recovery", 
+                     "loss_immunity")
+reactions_effects <- list(
+  c(S=-1, I=+1), # new infection
+  c(I=-1, R=+1), # recovery
+  c(R=-1, S=+1)  # loss of immunity
+)
+reactions_rates <- function(x, params, t) {
+  with(as.list(c(x, params)), {
+    rates <- c(
+      beta*S*I, # new infection
+      gamma*I,  # recovery
+      nu*R      # loss of immunity
+    )
+    return(rates)
+  })
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{\code{adaptivetau} to simulate an SIRS CTMC}
+\framesubtitle{Calling the ``solver''}
+\begin{lstlisting}[language=Renhanced]
+set.seed(1)
+
+sol <- ssa.adaptivetau(
+  init.values = IC,
+  transitions = reactions_effects,
+  rateFunc = reactions_rates,
+  params = params,
+  tf = t_f
+)
+\end{lstlisting}
+\vfill
+Beware: \code{set.seed(1)} is used for reproducibility. Remove for real simulations! (E.g., use \code{set.seed(NULL)})
+\end{frame}
+
+
+
+\begin{frame}{Simulation output}
+<<show-sim-results-SIRS,echo=FALSE,results=tex>>=
+kable(head(sol), 
+      format = "latex",
+      booktabs = TRUE) %>%
+  kable_styling(position = "center")
+@
+\vfill
+Can be useful to convert to a \code{data.frame} for convenience (e.g., to use \code{sol\$time} instead of \code{sol[,"time"]})
+\end{frame}
+
+\maxFrameImage{FIGS/CTMC-sim-ssa-tauleap-SIRS}
+
+
+\begin{frame}{Important options to \code{ssa.adaptivetau}}
+\begin{itemize}
+\item Not an option \emph{per se}: calling \code{ssa.exact} instead of \code{ssa.tauleap} uses the exact SSA algorithm (traditional Gillespie algorithm) instead of tau-leaping
+\vfill
+\item Both \code{ssa.exact} and \code{ssa.tauleap} have a \code{reportTransitions}, which, when set to \code{TRUE}, returns the transitions that occurred at each time step
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{\code{adaptivetau} to simulate an SIRS CTMC}
+\framesubtitle{Playing with options}
+\begin{lstlisting}[language=Renhanced]
+set.seed(1)
+
+sol <- ssa.exact(
+  init.values = IC,
+  transitions = reactions_effects,
+  rateFunc = reactions_rates,
+  params = params,
+  tf = t_f,
+  reportTransitions = TRUE
+)
+\end{lstlisting}
+\end{frame}
+
+<<sim-ssa-tauleap-SIRS-transitions,eval=TRUE,echo=FALSE,fig=TRUE,width=8,height=6,include=FALSE>>=
+set.seed(1) # for reproducibility
+sol <- ssa.exact(
+  init.values = IC,
+  transitions = reactions_effects,
+  rateFunc = reactions_rates,
+  params = params,
+  tf = t_f,
+  reportTransitions = TRUE
+)
+plot(sol$dynamics[,"time"], sol$dynamics[,"I"], type = "l",
+     xlab = "Time (days)", ylab = "Prevalence")
+@
+
+\begin{frame}[fragile]{Transitions in the simulation}
+Calling with \code{reportTransitions = TRUE} returns the solution as a \code{list} with fields \code{dynamics} and \code{transitions}
+\vfill
+\code{dynamics} is the output we had before
+\vfill
+\code{transitions} is a matrix with the corresponding events. That's where having the transition names is useful:
+<<echo=TRUE>>=
+colnames(sol$transitions) <- reactions_names
+@
+ensures we have the names of the transitions in the output matrix
+\end{frame}
+
+
+\begin{frame}{Why are transitions useful?}
+Let's take the example of an SLIAR model
+\vfill
+\vfill
+What is going on?
+\end{frame}
+
+<<sim-ssa-tauleap-SLIARS,eval=TRUE,echo=FALSE,fig=TRUE,width=8,height=6,include=FALSE>>=
+Pop <- 1000
+L_0 = 2
+I_0 <- 0
+A_0 <- 0
+IC <- c(S = (Pop-L_0-I_0-A_0), 
+        L = L_0, I = I_0, A = A_0, 
+        R = 0)
+params <- list(gamma = 1/5, 
+               epsilon = 1/3, 
+               p = 2/3, 
+               eta = 1/3, 
+               nu = 1/100)
+# R0 = (p/gamma+(1-p)*eta/gamma)*beta*S0
+params$beta <- 
+  (params$p/params$gamma + 
+     (1-params$p)*params$eta/params$eta) *
+  1.2/(Pop-(I_0+A_0))
+t_f = 100
+reactions_names <- c("new_infection_I",
+                     "new_infection_A",
+                     "L_to_I",
+                     "L_to_A",
+                     "recovery_I",
+                     "recovery_A",
+                     "loss_immunity")
+reactions_effects <- list(
+  c(S=-1, L=+1), # new infection I
+  c(S=-1, L=+1), # new infection A
+  c(L=-1, I=+1), # L to I
+  c(L=-1, A=+1), # L to A
+  c(I=-1, R=+1), # recovery I
+  c(A=-1, R=+1), # recovery A
+  c(R=-1, S=+1)  # loss of immunity
+)
+reactions_rates <- function(x, params, t) {
+  with(as.list(c(x, params)), {
+    rates <- c(
+      beta*S*I,         # new infection I
+      beta*S*eta*A,     # new infection A
+      (1-p)*epsilon*L,  # L to I
+      p*epsilon*L,      # L to A
+      gamma*I,          # recovery I
+      gamma*A,          # recovery A
+      nu*R              # loss of immunity
+    )
+    return(rates)
+  })
+}
+set.seed(15) # for reproducibility
+sol <- ssa.adaptivetau(
+  init.values = IC,
+  transitions = reactions_effects,
+  rateFunc = reactions_rates,
+  params = params,
+  tf = t_f,
+  reportTransitions = TRUE
+)
+colnames(sol$transitions) <- reactions_names
+plot(sol$dynamics[,"time"], 
+     sol$dynamics[,"I"] + sol$dynamics[,"A"], 
+     type = "l",
+     xlab = "Time (days)", ylab = "Prevalence")
+@
+
+\maxFrameImage{FIGS/CTMC-sim-ssa-tauleap-SLIARS}
+
+\begin{frame}{Who is doing the infecting?}
+We can go further if we look at transitions in detail
+\end{frame}
+
+\begin{frame}[fragile]{Using transitions -- The not so good way}
+\begin{lstlisting}[language=Renhanced]
+reactions_names <- c("new_infection",
+                     "L_to_I",
+..
+
+reactions_effects <- list(
+  c(S=-1, L=+1), # new infection
+  c(L=-1, I=+1), # L to I
+..
+
+reactions_rates <- function(x, params, t) {
+  with(as.list(c(x, params)), {
+    rates <- c(
+      beta*S*(I+eta*A), # new infection I
+      (1-p)*epsilon*L,  # L to I
+..
+\end{lstlisting}
+\end{frame}
+
+
+\begin{frame}[fragile]{Using transitions -- The good way}
+\begin{lstlisting}[language=Renhanced]
+reactions_names <- c("new_infection_I",
+                     "new_infection_A",
+                     "L_to_I",
+..
+
+reactions_effects <- list(
+  c(S=-1, L=+1), # new infection I
+  c(S=-1, L=+1), # new infection A
+  c(L=-1, I=+1), # L to I
+..
+
+reactions_rates <- function(x, params, t) {
+  with(as.list(c(x, params)), {
+    rates <- c(
+      beta*S*I,         # new infection I
+      beta*S*eta*A,     # new infection A
+      (1-p)*epsilon*L,  # L to I
+..
+\end{lstlisting}
+\end{frame}
+
+<<plot-incidence-from-I-and-A,echo=FALSE>>=
+# Store names of events before augmenting the matrix
+names_events = colnames(sol$transitions)
+# Make a data frame with firings
+transitions = data.frame(time = sol$dynamics[,"time"],
+                         sol$transitions)
+# Make tables for each firing type
+result_table =
+  tables_for_selected_firings(t_f = 1000,
+                              SIM = transitions,
+                              list_firings = names_events)
+summary_tables = make_summary_tables(result_table)
+# Plot incidence from I and A
+L_to_plot = list(
+  "New infections from I" = result_table$new_infection_I,
+  "New infections from A" = result_table$new_infection_A)
+L_to_plot = make_line_list_from_matrices(L_to_plot)
+p = plot_as_incidence_from_line_list(L_to_plot)
+ggsave(filename = "FIGS/CTMC-sim-SLIARS-incidence.pdf",
+       width = 20, height = 12, units = "cm")
+ggsave(filename = "FIGS/CTMC-sim-SLIARS-incidence.png",
+       width = 20, height = 12, units = "cm")
+@
+
+\begin{frame}{Representing transition results as epi diagrams}
+We use the libraries \code{incidence2} and \code{ggplot2}
+\vfill
+Need to make a ``line list'' from the transitions, i.e., a matrix with columns \code{time}, \code{value} and \code{event}
+\vfill
+See the code in the \code{Rnw} source of these slides and in \code{CODE/functions-useful.R}
+\end{frame}
+
+\maxFrameImage{FIGS/CTMC-sim-SLIARS-incidence}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Parallelising your code in \code{R}}
+
+\begin{frame}{Parallelisation}
+    To see multiple realisations: good idea to parallelise, then interpolate results. Write a function, e.g.,  \code{run\_one\_sim} that .. runs one simulation
+    \vfill
+    On the GitHub repo for the course, see
+    \begin{itemize}
+        \item \href{https://raw.githubusercontent.com/julien-arino/R-for-modellers/main/CODE/SIS-CTMC-parallel.R}{\code{CODE/SIS-CTMC-parallel.R}}
+        \item \href{https://raw.githubusercontent.com/julien-arino/R-for-modellers/main/CODE/SIS-CTMC-parallel-multiple-R0.R}{\code{CODE/SIS-CTMC-parallel-multiple-R0.R}}
+    \end{itemize}
+\end{frame}
+
+<<parallel-CTMC,echo=FALSE,results=hide>>=
+library(parallel)
+# The reaction rates function (repeated here for convenience)
+reactions_rates <- function(x, params, t) {
+  with(as.list(c(x, params)), {
+    rates <- c(
+      beta*S*I, # new infection
+      gamma*I,  # recovery
+      nu*R      # loss of immunity
+    )
+    return(rates)
+  })
+}
+# Function that runs a single simulation
+run_one_sim = function(params) {
+  with(as.list(params), {
+    set.seed(NULL) # avoid reproducibility here
+    sol <- ssa.exact(
+      init.values = IC,
+      transitions = reactions_effects,
+      rateFunc = reactions_rates,
+      params = params,
+      tf = t_f,
+      reportTransitions = TRUE
+    )
+    # Interpolate result (just I will do)
+    wanted_t = seq(from = 0, to = t_f, by = 0.01)
+    sol$interp_I = approx(x = sol$dynamics[,"time"], 
+                          y = sol$dynamics[,"I"], 
+                          xout = wanted_t)
+    names(sol$interp_I) = c("time", "I")
+    # Return result
+    return(sol)
+  })
+}
+## Now proceed with sims themselves
+# Set parameters
+# We store even the IC in there.. In parallel computations, this
+# can be useful
+params = list(
+  Pop = 1000,
+  I_0 = 2,
+  t_f = 100,
+  gamma = 1/5, 
+  nu = 1/50,
+  R0 = 1.5)
+params$beta <- params$gamma*params$R0/(params$Pop-params$I_0)
+params$IC <- c(S = (params$Pop-params$I_0), 
+               I = params$I_0, R = 0)
+params$reactions_names <- c("new_infection", 
+                            "recovery", 
+                            "loss_immunity")
+params$reactions_effects <- list(
+  c(S=-1, I=+1), # new infection
+  c(I=-1, R=+1), # recovery
+  c(R=-1, S=+1)  # loss of immunity
+)
+# It is always good to plan to also run in serial, this makes
+# debugging easier. Set test below to TRUE to run serial.
+if (FALSE) {
+  SIMS = lapply(1:50, function(x) run_one_sim(params))
+} else {
+  # Create cluster and run sims
+  nb_cores <- detectCores()-1
+  if (nb_cores > 124) {
+    # If not using Sweave, 124 is the max without recompiling R. Sweave uses
+    # some sockets, so we need to reduce the number of cores
+    nb_cores = 110
+  }
+  cl <- makeCluster(nb_cores)
+  clusterEvalQ(cl,{
+    library(adaptivetau)
+  })
+  clusterExport(cl,
+                c("params",
+                  "run_one_sim",
+                  "reactions_rates"),
+                envir = .GlobalEnv)
+  SIMS = parLapply(cl = cl,
+                   X = 1:100,
+                   fun =  function(x) run_one_sim(params))
+  stopCluster(cl)
+}
+@
+
+\begin{frame}[fragile]
+\begin{lstlisting}[language=Renhanced]
+# Set parameters
+# We store even the IC in there.. In parallel computations, this
+# can be useful
+params = list(
+  Pop = 1000,
+  I_0 = 2,
+  t_f = 100,
+  gamma = 1/5, 
+  nu = 1/50,
+  R0 = 1.5)
+params$beta <- params$gamma*params$R0/(params$Pop-params$I_0)
+params$IC <- c(S = (params$Pop-params$I_0), 
+               I = params$I_0, R = 0)
+params$reactions_names <- c("new_infection", 
+                            "recovery", 
+                            "loss_immunity")
+params$reactions_effects <- list(
+  c(S=-1, I=+1), # new infection
+  c(I=-1, R=+1), # recovery
+  c(R=-1, S=+1)  # loss of immunity
+)
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\begin{lstlisting}[language=Renhanced]
+library(parallel)
+run_one_sim = function(params) {
+  with(as.list(params), {
+    set.seed(NULL) # avoid reproducibility here
+    sol <- ssa.exact(
+      init.values = IC,
+      transitions = reactions_effects,
+      rateFunc = reactions_rates,
+      params = params,
+      tf = t_f,
+      reportTransitions = TRUE
+    )
+    # Interpolate result (just I will do)
+    wanted_t = seq(from = 0, to = t_f, by = 0.01)
+    sol$interp_I = approx(x = sol$dynamics[,"time"], 
+                          y = sol$dynamics[,"I"], 
+                          xout = wanted_t)
+    names(sol$interp_I) = c("time", "I")
+    # Return result
+    return(sol)
+  })
+}
+\end{lstlisting}
+\end{frame}
+
+
+\begin{frame}[fragile]
+\begin{lstlisting}[language=Renhanced]
+if (FALSE) {
+  SIMS = lapply(1:50, function(x) run_one_sim(params))
+} else {
+  nb_cores <- detectCores()-1
+  if (nb_cores > 124) {
+    nb_cores = 124
+  }
+  cl <- makeCluster(nb_cores)
+  clusterEvalQ(cl,{
+    library(adaptivetau)
+  })
+  clusterExport(cl,
+                c("params",
+                  "run_one_sim",
+                  "reactions_rates"),
+                envir = .GlobalEnv)
+  SIMS = parLapply(cl = cl,
+                   X = 1:100,
+                   fun =  function(x) run_one_sim(params))
+  stopCluster(cl)
+}
+\end{lstlisting}
+\end{frame}
+
+<<plot-multiple-SIRS,eval=TRUE,echo=FALSE,fig=TRUE,width=8,height=6,include=FALSE>>=
+# Fin max of y for plot
+y_max = max(unlist(lapply(SIMS, function(x) max(x$interp_I$I))))
+# Now plot. 
+# While plotting, collect the mean state and number of sims with
+# extinctions, to display later
+mean_I = numeric(length(SIMS[[1]]$interp_I$I))
+nb_sims_with_extinction = 0
+for (i in 1:length(SIMS)) {
+  if (i == 1) {
+    # First plot
+    plot(SIMS[[i]]$interp_I$time, 
+         SIMS[[i]]$interp_I$I, 
+         type = "l", lwd = 0.5, ylim = c(0, y_max),
+         xlab = "Time (days)", ylab = "Prevalence")
+  } else {
+    # Add lines
+    lines(SIMS[[i]]$interp_I$time, 
+          SIMS[[i]]$interp_I$I,
+          lwd = 0.5)
+  }
+  mean_I = mean_I + SIMS[[i]]$interp_I$I
+  if (tail(SIMS[[i]]$interp_I$I, n = 1) < 1) {
+    nb_sims_with_extinction = nb_sims_with_extinction + 1
+  }
+}
+mean_I = mean_I/length(SIMS)
+lines(SIMS[[i]]$interp_I$time, mean_I, lwd = 5, col = "red")
+mean_I_non_extinct = mean_I * length(SIMS) / 
+  (length(SIMS)-nb_sims_with_extinction)
+lines(SIMS[[i]]$interp_I$time, mean_I_non_extinct, 
+      lwd = 5, col = "blue")
+@
+
+
+\maxFrameImage{FIGS/CTMC-plot-multiple-SIRS}
+
+
+<<timing-simulations,eval=TRUE,echo=FALSE,include=FALSE,results=hide>>=
+library(tictoc)
+tic.clearlog()
+# Serial version
+tic("serial")
+  SIMS = lapply(1:100, function(x) run_one_sim(params))
+toc_serial = toc()
+# Parallel version
+tic("parallel-overall")
+nb_cores <- detectCores()-1
+if (nb_cores > 124) {
+  # If not using Sweave, 124 is the max without recompiling R. Sweave uses
+  # some sockets, so we need to reduce the number of cores
+  nb_cores = 110
+}
+cl <- makeCluster(nb_cores)
+clusterEvalQ(cl,{
+  library(adaptivetau)
+})
+clusterExport(cl,
+              c("params",
+                "run_one_sim",
+                "reactions_rates"),
+              envir = .GlobalEnv)
+tic("parallel-parLapply")
+SIMS = parLapply(cl = cl,
+                 X = 1:100,
+                 fun =  function(x) run_one_sim(params))
+toc_parLapply = toc()
+stopCluster(cl)
+toc_overall = toc()
+cpu = system(command = "cat /proc/cpuinfo", intern = TRUE) 
+cpu = cpu[which(grepl("model name", cpu))][1]
+cpu = stringi::stri_trim_both(strsplit(cpu,":")[[1]][2])
+speedup = 
+  as.numeric(toc_serial$toc-toc_serial$tic) /
+  as.numeric(toc_parLapply$toc-toc_parLapply$tic)
+@
+
+\begin{frame}[fragile]{Benefit of parallelisation}
+Run the parallel code for 100 sims between \code{tictoc::tic()} and \code{tictoc::toc()}, giving \Sexpr{stringi::stri_trim_both(strsplit(toc_parLapply$callback_msg,":")[[1]][[2]])}, then the sequential version
+\vfill
+\begin{lstlisting}
+tictoc::tic()
+SIMS = lapply(X = 1:params$number_sims,
+                FUN =  function(x) run_one_sim(params))
+tictoc::toc()
+\end{lstlisting}
+\vfill
+which gives \Sexpr{stringi::stri_trim_both(strsplit(toc_serial$callback_msg,":")[[1]][[2]])} on a \Sexpr{detectCores()}T \Sexpr{cpu} (parallel is \Sexpr{round(speedup,2)}$\times$ faster) 
+% \vfill    
+% \code{12.067 sec elapsed} versus \code{258.985 sec elapsed} on a 32C/64T AMD Ryzen Threadripper 3970X (21.46$\times$ faster !)
+\end{frame}
+
+
+
+\begin{frame}{Some words of caution -- Overheads}
+\begin{itemize}
+\item Overheads (setting up the cluster, providing data to workers, etc.) can be significant. For small numbers of simulations, overheads can be larger than the gains
+\vfill
+\item Be careful in particular if the function to be parallelised is very fast
+\vfill
+\item Setup time increases with more cores 
+\end{itemize}
+\vfill
+In the example, we have the following
+\begin{itemize}
+\item Serial version (all included): \Sexpr{stringi::stri_trim_both(strsplit(toc_serial$callback_msg,":")[[1]][[2]])}
+\item Parallel version:
+\begin{itemize}
+\item Time for the parallel part:  \Sexpr{stringi::stri_trim_both(strsplit(toc_parLapply$callback_msg,":")[[1]][[2]])}
+\item Overall, including setup: \Sexpr{stringi::stri_trim_both(strsplit(toc_overall$callback_msg,":")[[1]][[2]])}
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Some words of caution -- RAM usage}
+\begin{itemize}
+\item Beware of RAM usage: each worker will have to have a copy of the data, so if the data is large or you have many workers (cores/threads on your computer), this can be a problem
+\vfill
+\item Also, about RAM usage: results can quickly become large, so you may have to select what to keep and what to discard or save intermediate results to disk (it is fine to write to disk from a worker or to run a certain number of simulations, save the results and then run the next batch, without restarting the cluster)
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Amdahl's law}
+\[
+  S_{\text{latency}}(s)=
+  \frac {1}{(1-p)+p/s}
+\]
+where
+\begin{itemize}
+\item $S_{\text{latency}}$ is the theoretical speedup of the execution of the whole task
+\item $s$ is the speedup of the part of the task that benefits from improved system resources
+\item $p$ is the proportion of execution time that the part benefiting from improved resources originally occupied
+\end{itemize}
+\end{frame}
+
+
+
+
+\end{document}
