@@ -22,7 +22,7 @@ When present, the YouTube logo points to the video of the vignette. Those vignet
       {% unless file.path contains 'FIGS' %}
         {% if file.path contains 'qmd' %}
           {% assign pdffile = {{ file.name | remove: ".qmd" }}.pdf %}
-          {% if pdffile in site.static_files %} 
+          {% if site.static_files contains pdffile %} 
             <li><a href="https://julien-arino.github.io/R-for-modellers/SLIDES/{{ file.name | remove: ".qmd" }}.pdf">{{ file.long-title }}</a>
           {% else %}
             <li><a href="https://julien-arino.github.io/R-for-modellers/SLIDES/{{ file.name | remove: ".qmd" }}.html">{{ file.long-title }}</a>
