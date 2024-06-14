@@ -11,6 +11,12 @@
         {% if p_file contains q_file %}
             <li> Eureka!!!!! </li>
         {% endif %}
+        {% if q_file contains p_file %}
+            <li> Eureka!!!!! </li>
+        {% endif %}
+        {% if p_file == q_file %}
+            <li> Eureka!!!!! </li>
+        {% endif %}
     {% endfor %}
     {% if qmd_file.youtube %}
         <a href="{{ qmd_file.youtube }}"><img src="assets/img/yt_logo_rgb_light.png" height="15px" /></a>
