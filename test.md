@@ -38,10 +38,19 @@
 </ul>
 
 <ul>
-{% for file in qmd_files %}
-    <li><a href="https://julien-arino.github.io/R-for-modellers/SLIDES/{{ file.name | remove: ".qmd" }}.html">{{ file.long-title }}</a>
-    {% if file.youtube %}
-        <a href="{{ file.youtube }}"><img src="assets/img/yt_logo_rgb_light.png" height="15px" /></a>
+{% for qmd_file in qmd_files %}
+    {% capture q_file %}  {{ qmd_file.name | remove: ".qmd" }} {% endcapture %}
+    <li><a href="https://julien-arino.github.io/R-for-modellers/SLIDES/{{ qmd_file.name | remove: ".qmd" }}.html">{{ qmd_file.long-title }}</a>
+    <li><a href="https://julien-arino.github.io/R-for-modellers/SLIDES/{{ q_file }}.html">{{ qmd_file.long-title }}</a>
+    {% for pdf_file in pdf_files %}
+        {% capture p_file %} {{ pdf_file.name | remove: ".pdf" }} {% endcapture %}
+        <li>p_file: {{ p_file }}</li>
+        {% if p_file == q_file %}
+            <li> Eureka!!!!! </li>
+        {% endif %}
+    {% endfor %}
+    {% if qmd_file.youtube %}
+        <a href="{{ qmd_file.youtube }}"><img src="assets/img/yt_logo_rgb_light.png" height="15px" /></a>
     {% endif %}
     </li>
 {% endfor %}
