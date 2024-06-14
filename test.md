@@ -14,6 +14,7 @@
                 {% if file.path contains 'qmd' %}
                     {% assign pdf_version_exists = false %}
                     {% assign file_name_with_pdf = {{ file.name | remove: ".qmd" }}.pdf %}
+                    {% assign file_name_with_pdf = {{ file.basename }} %}
                     <li> {{ file_name_with_pdf }} </li>
                     {% for pdf_file in pdf_files %}
                         {% if pdf_file.name == file_name_with_pdf %}
