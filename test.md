@@ -9,8 +9,9 @@
 
 <ul>
 {% for qmd_file in qmd_files %}
-    <li> {{qmd_file.name | remove: ".qmd" }} </li>
+    <li> {{ qmd_file.name | remove: ".qmd" }} </li>
     {% assign q_file = {{ qmd_file.name | remove: ".qmd" }} %}
+    <li> {{ q_file }} </li>
     {% for pdf_file in pdf_files %}
         {% assign q_file = {{ pdf_file.name | remove: ".pdf" }} %}
         {% if  p_file == q_file %}
