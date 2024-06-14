@@ -1,5 +1,5 @@
 {% assign pdf_files = site.static_files | where: "extname", ".pdf" %}
-{% assign qmd_files = site.static_files | where: "extname", ".qmd" %}
+{% assign qmd_files = site.pages | where: "extname", ".qmd" %}
 
 <ul>
 {% for file in pdf_files %}
