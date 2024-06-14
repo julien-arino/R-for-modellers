@@ -26,6 +26,7 @@
     <li><a href="https://julien-arino.github.io/R-for-modellers/SLIDES/{{ file.name | remove: ".qmd" }}.html">{{ file.long-title }}</a>
     {% if file.youtube %}
         <a href="{{ file.youtube }}"><img src="assets/img/yt_logo_rgb_light.png" height="15px" /></a>
+    {% endif %}
     </li>
 {% endfor %}
 </ul>
