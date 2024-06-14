@@ -10,6 +10,10 @@
 <ul>
 {% for file in qmd_files %}
     <li> {{file.name | remove: ".qmd" }} </li>
+    {% for file in pdf_files %}
+        {% if {{file.name | remove: ".qmd" }} == {{file.name | remove: ".pdf" }} %}
+        <li> Eureka!!!!! </li>
+    {% endfor %}
 {% endfor %}
 </ul>
 
