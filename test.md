@@ -8,10 +8,10 @@
 </ul>
 
 <ul>
-{% for file in qmd_files %}
-    <li> {{file.name | remove: ".qmd" }} </li>
-    {% for file in pdf_files %}
-        {% if {{file.name | remove: ".qmd" }} == {{file.name | remove: ".pdf" }} %}
+{% for qmd_file in qmd_files %}
+    <li> {{qmd_file.name | remove: ".qmd" }} </li>
+    {% for pdf_file in pdf_files %}
+        {% if {{qmd_file.name | remove: ".qmd" }} == {{pdf_file.name | remove: ".pdf" }} %}
         <li> Eureka!!!!! </li>
     {% endfor %}
 {% endfor %}
