@@ -14,7 +14,7 @@
     <li> {{ q_file }} </li>
     {% for pdf_file in pdf_files %}
         {% assign p_file = {{ pdf_file.name | remove: ".pdf" }} %}
-        {% if  p_file == q_file %}
+        {% if p_file == q_file %}
             <li> Eureka!!!!! </li>
         {% endif %}
     {% endfor %}
@@ -23,22 +23,9 @@
 
 <ul>
 {% for file in qmd_files %}
-    {% assign pdf_version_exists = false %}
-    {% assign file_name_with_pdf = {{ file.name | remove: ".qmd" }}.pdf %}
-    {% assign file_name_with_pdf = {{ file.basename }} %}
-    {% for pdf_file in pdf_files %}
-        {% if pdf_file.basename == file_name_with_pdf %}
-            {% assign pdf_version_exists = true %}
-        {% endif %}
-    {% endfor %}
-    {% if pdf_version_exists %} 
-        <li><a href="https://julien-arino.github.io/R-for-modellers/SLIDES/{{ file.name | remove: ".qmd" }}.pdf">{{ file.long-title }}</a>
-    {% else %}
-        <li><a href="https://julien-arino.github.io/R-for-modellers/SLIDES/{{ file.name | remove: ".qmd" }}.html">{{ file.long-title }}</a>
-    {% endif %}
+    <li><a href="https://julien-arino.github.io/R-for-modellers/SLIDES/{{ file.name | remove: ".qmd" }}.html">{{ file.long-title }}</a>
     {% if file.youtube %}
         <a href="{{ file.youtube }}"><img src="assets/img/yt_logo_rgb_light.png" height="15px" /></a>
-    {% endif %}
     </li>
 {% endfor %}
 </ul>
