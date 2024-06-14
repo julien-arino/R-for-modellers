@@ -8,8 +8,7 @@
 
 <ul>
 {% for file in site.pages %}
-    {% if file.path contains 'SLIDES' %}
-        {% if file.path contains 'vignette' %}
+    {% if file.path contains 'SLIDES/vignette' %}
             {% unless file.path contains 'FIGS' %}
                 {% if file.path contains 'qmd' %}
                     {% assign pdf_version_exists = false %}
@@ -32,7 +31,6 @@
                     </li>
                 {% endif %}
             {% endunless %}
-        {% endif %}
     {% endif %}
 {% endfor %}
 </ul>
