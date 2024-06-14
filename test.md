@@ -17,7 +17,7 @@
                     {% assign file_name_with_pdf = {{ file.basename }} %}
                     <li> {{ file_name_with_pdf }} </li>
                     {% for pdf_file in pdf_files %}
-                        {% if pdf_file.name == file_name_with_pdf %}
+                        {% if pdf_file.basename == file_name_with_pdf %}
                             {% assign pdf_version_exists = true %}
                         {% endif %}
                     {% endfor %}
