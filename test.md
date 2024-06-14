@@ -2,8 +2,10 @@
 {% assign qmd_files = site.pages | where_exp: "page", "page.path contains '.qmd'" %}
 
 <ul>
-{% for file in pdf_files %}
-    <li> {{file.name | remove: ".pdf" }} </li>
+{% for pdf_file in pdf_files %}
+    <li> {{ pdf_file.name | remove: ".pdf" }} </li>
+    {% capture p_file %} {{ pdf_file.name | remove: ".pdf" }} {% endcapture %}
+    <li> {{ p_file }} <li>
 {% endfor %}
 </ul>
 
