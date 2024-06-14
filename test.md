@@ -8,7 +8,7 @@
     {% for pdf_file in pdf_files %}
         {% capture p_file %} {{ pdf_file.name | remove: ".pdf" }} {% endcapture %}
         {% if p_file contains q_file or q_file contains p_file or p_file == q_file %}
-            <li> Eureka!!!!! </li>
+            <li><a href="https://julien-arino.github.io/R-for-modellers/SLIDES/{{ qmd_file.name | remove: ".qmd" }}.pdf">{{ qmd_file.long-title }}</a>
         {% endif %}
     {% endfor %}
     {% if qmd_file.youtube %}
