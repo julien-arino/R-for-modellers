@@ -15,26 +15,17 @@ Their order is not relevant and somewhat random.
 
 When present, the YouTube logo points to the video of the vignette. Those vignettes for which a video is available are more complete than those without.
 
+{% assign pdf_files = site.static_files | where: "extname", ".pdf" %}
+{% assign qmd_files = site.pages | where_exp: "page", "page.path contains '.qmd'" %}
+
 <ul>
-{% for file in site.pages %}
-  {% if file.path contains 'SLIDES' %}
-    {% if file.path contains 'vignette' %}
-      {% unless file.path contains 'FIGS' %}
-        {% if file.path contains 'qmd' %}
-          {% assign pdffile = {{ file.name | remove: ".qmd" }}.pdf %}
-          {% if site.static_files contains pdffile %} 
-            <li><a href="https://julien-arino.github.io/R-for-modellers/SLIDES/{{ file.name | remove: ".qmd" }}.pdf">{{ file.long-title }}</a>
-          {% else %}
-            <li><a href="https://julien-arino.github.io/R-for-modellers/SLIDES/{{ file.name | remove: ".qmd" }}.html">{{ file.long-title }}</a>
-          {% endif %}
-          {% if file.youtube %}
-            <a href="{{ file.youtube }}"><img src="assets/img/yt_logo_rgb_light.png" height="15px" /></a>
-          {% endif %}
-          </li>
-        {% endif %}
-      {% endunless %}
+{% for qmd_file in qmd_files %}
+    {% capture q_file %}  {{ qmd_file.name | remove: ".qmd" }} {% endcapture %}
+    <li><a href="https://julien-arino.github.io/R-for-modellers/SLIDES/{{ qmd_file.name | remove: ".qmd" }}.html">{{ qmd_file.long-title }}</a>
+    {% if qmd_file.youtube %}
+        <a href="{{ qmd_file.youtube }}"><img src="assets/img/yt_logo_rgb_light.png" height="15px" /></a>
     {% endif %}
-  {% endif %}
+    </li>
 {% endfor %}
 </ul>
 
