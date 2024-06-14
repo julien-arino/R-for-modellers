@@ -1,6 +1,6 @@
 {% assign pdf_files = site.static_files | where: "extname", ".pdf" %}
 
-<p> {{ pdf_files }} </p>
+<p> {{ pdf_files.name }} </p>
 
 <ul>
 {% for file in site.pages %}
