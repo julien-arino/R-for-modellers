@@ -45,10 +45,14 @@
   {% assign html_file = site.static_files | where: "basename", base_name + '.html' | first %}
   {% assign pdf_file = site.static_files | where: "basename", base_name + '.pdf' | first %}
 
+    {% if file.path contains 'SLIDES/vignette' %}
+    {% unless file.path contains 'FIGS' %}
   {% if pdf_file %}
     <li><a href="{{ pdf_file.path }}">{{ pdf_file.basename }}</a></li>
   {% elsif html_file %}
     <li><a href="{{ html_file.path }}">{{ html_file.basename }}</a></li>
+  {% endif %}
+  {% endunless %}
   {% endif %}
 {% endfor %}
 </ul>
