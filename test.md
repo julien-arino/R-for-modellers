@@ -8,7 +8,7 @@
     {% for pdf_file in pdf_files %}
         {% capture p_file %} {{ pdf_file.name | remove: ".pdf" }} {% endcapture %}
         <li>p_file: {{ p_file }}, q_file: {{q_file }}</li>
-        {% if p_file == q_file %}
+        {% if p_file contains q_file or q_file contains p_file or p_file == q_file %}
             <li> Eureka!!!!! </li>
         {% endif %}
     {% endfor %}
