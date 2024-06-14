@@ -18,6 +18,7 @@
                         {% if pdf_file.name == file_name_with_pdf %}
                             {% assign pdf_version_exists = true %}
                         {% endif %}
+                    {% endfor %}
                     {% if pdf_version_exists %} 
                         <li><a href="https://julien-arino.github.io/R-for-modellers/SLIDES/{{ file.name | remove: ".qmd" }}.pdf">{{ file.long-title }}</a>
                     {% else %}
