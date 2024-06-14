@@ -36,3 +36,19 @@
     {% endif %}
 {% endfor %}
 </ul>
+
+
+<h2>Available Documents</h2>
+<ul>
+{% for file in site.static_files %}
+  {% assign base_name = file.basename | split: '.' | first %}
+  {% assign html_file = site.static_files | where: "basename", base_name + '.html' | first %}
+  {% assign pdf_file = site.static_files | where: "basename", base_name + '.pdf' | first %}
+
+  {% if pdf_file %}
+    <li><a href="{{ pdf_file.path }}">{{ pdf_file.basename }}</a></li>
+  {% elsif html_file %}
+    <li><a href="{{ html_file.path }}">{{ html_file.basename }}</a></li>
+  {% endif %}
+{% endfor %}
+</ul>
