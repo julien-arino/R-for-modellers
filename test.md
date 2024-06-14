@@ -21,7 +21,7 @@
 {% endfor %}
 </ul>
 
-<p> {{ site.static_files}}
+<p> {{ site.static_files}} </p>
 
 <ul>
 {% for file in site.static_files %}
