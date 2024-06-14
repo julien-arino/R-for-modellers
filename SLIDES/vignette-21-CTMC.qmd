@@ -6,6 +6,7 @@ description-meta: Julien Arino - R for modellers - Vignette 21 - Continuous Time
 author: Julien Arino
 institute: University of Manitoba
 youtube: https://youtu.be/Frs7wkoBJyY
+redirect_to: https://julien-arino.github.io/R-for-modellers/SLIDES/vignette-21-CTMC.pdf
 format: 
   revealjs:
     theme: [night, custom.scss]    
