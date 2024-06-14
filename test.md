@@ -20,13 +20,14 @@
     {% endfor %}
 {% endfor %}
 </ul>
+
 <ul>
 {% for qmd_file in qmd_files %}
     <li> {{ qmd_file.name | remove: ".qmd" }} </li>
     {% capture q_file %}  {{ qmd_file.name | remove: ".qmd" }} {% endcapture %}
     <li> {{ q_file }} </li>
     {% for pdf_file in pdf_files %}
-        {% assign p_file = {{ pdf_file.name | remove: ".pdf" }} %}
+        {% capture p_file %} {{ pdf_file.name | remove: ".pdf" }} {% endcapture %}
         {% if p_file == q_file %}
             <li> Eureka!!!!! </li>
         {% endif %}
