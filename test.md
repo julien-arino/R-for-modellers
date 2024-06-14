@@ -3,13 +3,13 @@
 
 <ul>
 {% for file in pdf_files %}
-    <li> {{file.name}} </li>
+    <li> {{file.name | remove: ".pdf" }} </li>
 {% endfor %}
 </ul>
 
 <ul>
 {% for file in qmd_files %}
-    <li> {{file.name}} </li>
+    <li> {{file.name | remove: ".qmd" }} </li>
 {% endfor %}
 </ul>
 
