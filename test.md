@@ -1,3 +1,7 @@
+{% assign pdf_files = site.static_files | where: "extname", ".pdf" %}
+
+<p> {{ pdf_files }} </p>
+
 <ul>
 {% for file in site.pages %}
   {% if file.path contains 'SLIDES' %}
@@ -20,20 +24,3 @@
   {% endif %}
 {% endfor %}
 </ul>
-
-<p> {{ site.static_files}} </p>
-
-<ul>
-{% for file in site.static_files %}
-  {% if file.path contains 'SLIDES' %}
-    {% if file.path contains 'vignette' %}
-      {% unless file.path contains 'FIGS' %}
-        {% if file.path contains 'pdf' %}
-            <li> {{file.path}} {{file.name}} </li>
-        {% endif %}
-      {% endunless %}
-    {% endif %}
-  {% endif %}
-{% endfor %}
-</ul>
-
