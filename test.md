@@ -29,7 +29,7 @@
     {% if file.path contains 'vignette' %}
       {% unless file.path contains 'FIGS' %}
         {% if file.path contains 'pdf' %}
-            <li> {{file}} </li>
+            <li> {{file.path}} {{file.name}} </li>
         {% endif %}
       {% endunless %}
     {% endif %}
