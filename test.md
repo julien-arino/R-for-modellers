@@ -13,7 +13,7 @@
     {% assign q_file = {{ qmd_file.name | remove: ".qmd" }} %}
     <li> {{ q_file }} </li>
     {% for pdf_file in pdf_files %}
-        {% assign q_file = {{ pdf_file.name | remove: ".pdf" }} %}
+        {% assign p_file = {{ pdf_file.name | remove: ".pdf" }} %}
         {% if  p_file == q_file %}
             <li> Eureka!!!!! </li>
         {% endif %}
