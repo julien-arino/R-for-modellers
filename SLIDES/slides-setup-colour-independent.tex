@@ -16,14 +16,17 @@
 % \zexternaldocument{fileI}
 % in the tex files. And cite using \zref instead of \ref
 \usepackage{booktabs}
-
+\usepackage{marvosym}
+\usepackage{cancel}
 %\usepackage{transparent}
 
 % Fields and the like
 \def\IC{\mathbb{C}}
+\def\IE{\mathbb{E}}
 \def\IF{\mathbb{F}}
 \def\II{\mathbb{I}}
 \def\IJ{\mathbb{J}}
+\def\IK{\mathbb{K}}
 \def\IM{\mathbb{M}}
 \def\IN{\mathbb{N}}
 \def\IP{\mathbb{P}}
@@ -203,7 +206,7 @@
 \usetikzlibrary{fadings}
 \usetikzlibrary{patterns,hobby}
 \usetikzlibrary{backgrounds,fit,petri}
-
+\usetikzlibrary{tikzmark}
 
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.6}
@@ -321,6 +324,100 @@ minimum height=2em]
    }}}}
 
 
+% Beginning of a section
+\newcommand{\newSectionSlide}[1]{
+\begin{frame}[noframenumbering,plain]
+  \begin{tikzpicture}[remember picture,overlay]
+    \node[above right,inner sep=0pt,opacity=0.2] at (current page.south west)
+    {
+        \includegraphics[height=\paperheight,width=\paperwidth]{#1}
+    };
+  \end{tikzpicture}
+  \setbeamercolor{section in toc}{fg=subsub_header_section}
+  \setbeamerfont{section in toc}{size=\Large,series=\bfseries}
+  \setbeamertemplate{section in toc shaded}[default][60]
+  %\setbeamercolor{background canvas}{bg=section_colour}
+  \tableofcontents[
+    currentsection,
+    sectionstyle=show/shaded,
+    subsectionstyle=show/hide/hide,
+    subsubsectionstyle=hide/hide/hide]
+\end{frame}
+\addtocounter{page}{-1}
+}
+
+% Beginning of a section in which we also show subsections
+\newcommand{\newSectionWithSubsSlide}[1]{
+	\begin{frame}[noframenumbering,plain]
+		\begin{tikzpicture}[remember picture,overlay]
+			\node[above right,inner sep=0pt,opacity=0.2] at (current page.south west)
+			{
+				\includegraphics[height=\paperheight,width=\paperwidth]{#1}
+			};
+		\end{tikzpicture}
+		\setbeamercolor{section in toc}{fg=subsub_header_section}
+		\setbeamerfont{section in toc}{size=\Large,series=\bfseries}
+		\setbeamertemplate{section in toc shaded}[default][60]
+		%\setbeamercolor{background canvas}{bg=section_colour}
+		\tableofcontents[
+		currentsection,
+		sectionstyle=show/hide,
+		subsectionstyle=show/show/hide,
+		subsubsectionstyle=hide/hide/hide]
+	\end{frame}
+	\addtocounter{page}{-1}
+}
+
+% Beginning of a subsection
+\newcommand{\newSubSectionSlide}[1]{
+\begin{frame}[noframenumbering,plain]
+  \begin{tikzpicture}[remember picture,overlay]
+    \node[above right,inner sep=0pt,opacity=0.2] at (current page.south west)
+    {
+        \includegraphics[height=\paperheight,width=\paperwidth]{#1}
+    };
+  \end{tikzpicture}
+  \setbeamercolor{section in toc}{fg=subsub_header_section}
+  \setbeamerfont{section in toc}{size=\Large,series=\bfseries}
+  \setbeamertemplate{section in toc shaded}[default][60]
+  \setbeamerfont{subsection in toc}{series=\bfseries}
+  \setbeamertemplate{subsection in toc shaded}[default][50]
+  %\setbeamercolor{background canvas}{bg=section_colour}
+  \tableofcontents[
+    currentsection,
+    sectionstyle=show/hide,
+    subsectionstyle=show/shaded/hide,
+    subsubsectionstyle=hide/hide/hide]
+\end{frame}
+\addtocounter{page}{-1}
+}
+
+
+% Beginning of a subsubsection
+\newcommand{\newSubSubSectionSlide}[1]{
+\begin{frame}[noframenumbering,plain]
+  \begin{tikzpicture}[remember picture,overlay]
+    \node[above right,inner sep=0pt,opacity=0.2] at (current page.south west)
+    {
+        \includegraphics[height=\paperheight,width=\paperwidth]{#1}
+    };
+  \end{tikzpicture}
+  \setbeamercolor{section in toc}{fg=subsub_header_section}
+  \setbeamerfont{section in toc}{size=\Large,series=\bfseries}
+  \setbeamertemplate{section in toc shaded}[default][60]
+  \setbeamerfont{subsection in toc}{series=\bfseries}
+  \setbeamertemplate{subsection in toc shaded}[default][50]
+  \setbeamertemplate{subsubsection in toc shaded}[default][50]
+  \tableofcontents[
+    currentsection,
+    sectionstyle=show/hide,
+    subsectionstyle=show/hide/hide,
+    subsubsectionstyle=show/shaded/hide]
+\end{frame}
+\addtocounter{page}{-1}
+}
+
+
    %%%%%%%%%%%
 % To have links to parts in the outline
 \makeatletter
@@ -351,3 +448,65 @@ minimum height=2em]
           \end{frame}
         }
     }
+
+
+% The title page with figure
+\newcommand{\titlepagewithfigure}[1]{%
+\begin{frame}[noframenumbering,plain]
+  \begin{tikzpicture}[remember picture,overlay]
+    \node[above right,inner sep=0pt,opacity=0.2] at (current page.south west)
+    {
+        \includegraphics[height=\paperheight,width=\paperwidth]{#1}
+    };
+    \node[anchor=north east,
+    inner sep=5pt,
+    opacity=0.9] at (current page.north east)
+    {
+        \includegraphics[width=0.2\textwidth]{FIGS/UM-logo-horizontal-CMYK.png}
+    };
+    \node[anchor=south, 
+    align=justify, 
+    text=black, 
+    text width=1.1\textwidth,
+    font=\footnotesize]  (land_acknowledgement)
+    at (current page.south) 
+    {The University of Manitoba campuses are located on original lands of Anishinaabeg, Ininew, Anisininew, Dakota and Dene peoples, and on the National Homeland of the Red River Métis.\\
+    We respect the Treaties that were made on these territories, we acknowledge the harms and mistakes of the past, and we dedicate ourselves to move forward in partnership with Indigenous communities in a spirit of Reconciliation and collaboration.};  
+    \node[align=center, anchor=south,
+    above=0.5cm of land_acknowledgement,
+    text=black,
+    font=\bfseries] {Fall 2024};
+\end{tikzpicture}
+  \setbeamercolor{title}{fg=subsub_header_section}
+  \setbeamercolor{author}{fg=subsub_header_section} 
+  \setbeamerfont{title}{size=\Large,series=\bfseries}
+  \setbeamerfont{author}{size=\Large,series=\bfseries}
+  \setbeamerfont{date}{series=\bfseries}
+	\titlepage
+\end{frame}
+\addtocounter{page}{-1}
+}
+
+
+% The outline page, with figure
+\newcommand{\outlinepage}[1]{%
+\begin{frame}[noframenumbering,plain]
+  \begin{tikzpicture}[remember picture,overlay]
+    \node[above right,inner sep=0pt,opacity=0.2] at (current page.south west)
+    {
+        \includegraphics[height=\paperheight,width=\paperwidth]{#1}
+    };
+  \end{tikzpicture}
+  \setbeamercolor{section in toc}{fg=subsub_header_section}
+  \setbeamerfont{section in toc}{size=\Large,series=\bfseries}
+  \frametitle{\textcolor{blue}{\LARGE\bfseries Outline}}
+  \tableofcontents[hideallsubsections]
+\end{frame}
+\addtocounter{page}{-1}
+}
+
+
+%\let\oldsection\section
+%\renewcommand{\section}[2]{\oldsection[#1]\newSectionSlide[#2]}
+
+

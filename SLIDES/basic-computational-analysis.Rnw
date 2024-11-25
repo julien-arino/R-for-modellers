@@ -1,0 +1,1461 @@
+\documentclass[aspectratio=169]{beamer}
+
+<<set-options,echo=FALSE,warning=FALSE,message=FALSE>>=
+# Load required libraries
+required_packages = c("dplyr", 
+                      "ggplot2", 
+                      "knitr", 
+                      "latex2exp", 
+                      "lhs", 
+                      "RColorBrewer", 
+                      "sensitivity", 
+                      "tidyr")
+for (p in required_packages) {
+  if (!require(p, character.only = TRUE)) {
+    install.packages(p, dependencies = TRUE)
+    require(p, character.only = TRUE)
+  }
+}
+# Knitr options
+opts_chunk$set(echo = TRUE, 
+               warning = FALSE, 
+               message = FALSE, 
+               fig.width = 6, 
+               fig.height = 4, 
+               fig.path = "FIGS/comp-analysis-",
+               fig.keep = "high",
+               fig.show = "hide")
+@
+
+
+<<set-slide-background,echo=FALSE,results='asis'>>=
+# Are we plotting for a dark background?
+plot_blackBG = FALSE
+if (plot_blackBG) {
+  bg_color = "black"
+  fg_color = "white"
+  input_setup = "\\input{slides-setup-blackBG.tex}"
+} else {
+  bg_color = "white"
+  fg_color = "black"
+  input_setup = "\\input{slides-setup-whiteBG.tex}"
+}
+cat(input_setup)
+@
+
+\title[Elementary computational analysis]{Elementary computational analysis of a mathematical model}
+\author{\texorpdfstring{Julien Arino\newline University of Manitoba\newline\url{julien.arino@umanitoba.ca}}{Julien Arino}}
+\date{}
+
+\begin{document}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% TITLE AND OUTLINE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\titlepagewithfigure{FIGS/Gemini_Generated_Image_fv8nozfv8nozfv8n.jpeg}
+\outlinepage{FIGS/Gemini_Generated_Image_fv8np0fv8np0fv8n.jpeg}
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
+\section{Course description}
+\newSectionSlide{FIGS/Gemini_Generated_Image_ycrtwoycrtwoycrt.jpeg}
+
+\begin{frame}\frametitle{This is not a \emph{vignette}!}
+The vignettes in this repo illustrate how to use \code{R} to consider several problems that a modeller is faced with
+\vfill
+This is somewhat orthogonal: it takes the information in several of these vignettes and integrates it in the perspective of computational analysis
+\vfill
+I am including it in this repo, however, because of the non-empty intersection between the two: this is \code{R} and is related to modelling
+\end{frame}
+
+\begin{frame}\frametitle{Course objectives}
+The objective of the course is to introduce notions used in the computational analysis of a mathematical model
+\vfill
+This is not an exhaustive course on the subject, but rather an introduction to some basic concepts
+\vfill
+See this as a minimal toolkit to get you started
+\vfill
+If you are a graduate student of mine, take this as a hint: this is the type of stuff that I expect to see in your work
+\vfill
+Note that I am not doing my job properly: I am skipping a very important part of any computational analysis by not doing a proper \emph{return to biology}. This is an essential part of any computational analysis but is outside the scope of these slides
+\end{frame}
+
+\begin{frame}\frametitle{Course slides}
+These slides are produced using \code{knitr} in \code{Rnw}, i.e., \code{R} within \LaTeX, to illustrate some of the concepts
+\vfill
+To generate them, you need to have \code{R} and \LaTeX\ installed on your computer and, preferably, \code{RStudio}
+\vfill
+The code ensures that all the required packages are installed
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Code chunks}
+In \code{Rnw} files, code chunks are delimited by \code{<<>>=} and \code{@}
+<<echo=FALSE>>=
+# Just to make sure RStudio highlights properly until the next code chunk
+@
+\vfill
+Code chunks are highlighted in the RStudio editor, so you should be able to identify them easily
+\vfill
+I also generate an \code{R} file with all the code (\code{basic-computational-analysis.Rnw}). It is in the CODE directory of the repo. See the last slide for details
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
+\section{Some toy epidemiological models}
+\newSectionSlide{FIGS/Gemini_Generated_Image_fv8np1fv8np1fv8n.jpeg}
+
+\begin{frame}\frametitle{The toy models}
+I illustrate the methods using two toy models
+\vfill
+Both are epidemiological models I have worked on
+\vfill
+Some of the computational analysis is common to both models, some is specific
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The SLIAR epidemic model}
+\newSubSectionSlide{FIGS/Gemini_Generated_Image_fv8np3fv8np3fv8n.jpeg}
+
+\begin{frame}\frametitle{The SLIAR epidemic model}
+\vskip0pt plus 1filll
+Kermack-McKendrick SIR (susceptible-infectious-removed) is a little too simple for many diseases:
+\begin{itemize}
+\item No incubation period
+\item A lot of infectious diseases (in particular respiratory) have mild and less mild forms depending on the patient
+\end{itemize}
+\vskip0pt plus 1filll
+$\implies$ model with SIR but also L(atent) and (A)symptomatic individuals, in which I are now symptomatic individuals
+\vskip0pt plus 1filll
+\tiny
+Arino, Brauer, PvdD, Watmough \& Wu, \href{http://dx.doi.org/10.1098/rsif.2006.0112}{Simple models for containment of a pandemic}, \emph{Journal of the Royal Society Interface} (2006)
+\end{frame}
+
+
+\begin{frame}\frametitle{The SLIAR epidemic model -- Flow diagram}
+\centering
+\resizebox{\textwidth}{!}{
+  \begin{tikzpicture}[%transform canvas={scale=1.3},
+      auto,
+      cloud/.style={minimum width={width("N-1")+2pt},
+      draw, 
+      ellipse,
+      fill=gray!20}]
+    \node [cloud, fill=green!90] (S) {$S$};
+    \node [cloud, right=2cm of S, fill=red!30] (L) {$L$};
+    \node [cloud, above right=of L, fill=red!90] (I) {$I$};
+    \node [cloud, below right=of L, fill=red!60] (A) {$A$};
+    \node [cloud, below right=of I, fill=blue!90] (R) {$R$};
+    \node [cloud, right=1.5cm of I, draw=none, fill=none] (h1) {};
+    %% Infections
+    \path [line, very thick] (S) to node [midway, above] (TextNode) {$\beta S(I+\delta A)$} (L);
+    \path [line, very thick] (L) to node [midway, above, sloped] (TextNode) {$p\varepsilon L$} (I);
+    \path [line, very thick] (L) to node [midway, above, sloped] (TextNode) {$(1-p)\varepsilon L$} (A);
+    \path [line, very thick] (I) to node [midway, above, sloped] (TextNode) {$f\gamma I$} (R);
+    \path [line, very thick] (A) to node [midway, above, sloped] (TextNode) {$\eta A$} (R);
+    \path [line, very thick] (I) to node [midway, above, sloped] (TextNode) {$(1-f)\gamma I$} (h1);
+  \end{tikzpicture}
+}
+\end{frame}
+
+\begin{frame}\frametitle{The SLIAR epidemic model -- Equations}
+\begin{subequations}\label{sys:SLIAR}
+\begin{align}
+S\pprime & = - \beta S (I+\delta A) \\
+L\pprime & = \beta S(I+\delta A) - \varepsilon L \\
+I\pprime & = p\varepsilon L - \gamma I \\
+A\pprime & = p\varepsilon L - \eta A \\
+R\pprime & = f\gamma I+\eta A
+\end{align}
+\end{subequations}
+\end{frame}
+
+
+
+\begin{frame}\frametitle{The SLIAR epidemic model -- Behaviour}
+It's always a good idea to not barge into the computational analysis of a model without an understanding of its behaviour
+\vfill
+This is an \defword{epidemic} model: all its solutions go to \emph{a} disease-free equilibrium
+\vfill
+There is a \defword{basic reproduction number} $\R_0$ (next slide) that determines whether the disease will spread or not. If $\R_0<1$, the disease dies out without first going through an outbreakl if $\R_0>1$, the disease goes through an outbreak, then dies out
+\vfill
+As with many epidemic models, we can also caracterise the so-called \defword{final size} of the epidemic
+\end{frame}
+
+\begin{frame}{The SLIAR epidemic model -- Basic reproduction number \& Final size}
+We find the basic reproduction number
+\begin{equation}\label{eq:R0-SLIAR}
+\mathcal{R}_0=\beta
+\left(
+\frac{p}{\gamma}+\frac{\delta(1-p)}{\eta}
+\right)S_0
+\end{equation}
+\vfill
+The final size relation takes the form
+\begin{equation}\label{eq:final-size}
+S_0(\ln S_0-\ln S_\infty) =
+\mathcal{R}_0(S_0-S_\infty)+\frac{\mathcal{R}_0I_0}{\rho}
+\end{equation}
+with 
+\[
+\rho=\frac{p}{\gamma}+\frac{\delta(1-p)}{\eta}
+\]
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The SLIARVS endemic model}
+\newSubSectionSlide{FIGS/Gemini_Generated_Image_fv8np2fv8np2fv8n.jpeg}
+
+\begin{frame}\frametitle{The SLIARVS endemic model}
+\vskip0pt plus 1filll
+The SLIAR model is an epidemic model: all its solutions go to \emph{a} disease-free equilibrium
+\vskip0pt plus 1filll
+Here we consider a complexification of the SLIAR epidemic model:
+\begin{itemize}
+\item Add vital dynamics (births and deaths), a.k.a. demography
+\item Add a vaccination compartment $V$, with imperfect and waning vaccine
+\item Interpret $R$ as \emph{recovered} (and immune) individuals instead of \emph{removed}
+\item Add loss of immunity (waning immunity)
+\end{itemize}
+\vskip0pt plus 1filll
+This makes the model \defword{endemic}: it has an endemic equilibrium (EEP) and (roughly) $\R_0$ determines if the system goes to the DFE or the EEP
+\vskip0pt plus 1filll
+\tiny
+Arino \& Milliken, \href{https://doi.org/10.1007/s00285-022-01765-9}{Bistability in deterministic and stochastic SLIAR-type models with imperfect and waning vaccine protection}, \emph{Journal of Mathematical Biology} (2022)
+\end{frame}
+
+
+\begin{frame}\frametitle{The SLIARVS endemic model -- Flow diagram}
+\centering
+\begin{tikzpicture}[
+  scale=1, every node/.style={transform shape},
+	auto, %node distance = 2cm, auto,
+	box/.style={minimum width={width("N-1")+2pt},
+		draw, rectangle,fill=gray!20}]
+	%% States
+	\node [box] at (0,0) (S) {$S$};
+	\node [box] at (2,-3) (V) {$V$};
+	\node [box] at (4,0) (L) {$L$};
+	\node [box] at (8,2) (I) {$I$};
+	\node [box] at (8,-2) (A) {$A$};
+	\node [box] at (12,0) (R) {$R$};
+	%% Flows
+	\path [line, thick, dashed] (-2,0) to node [midway, above] (TextNode) {$(1-v)B$} (S);
+	\path [line, thick, dashed] (0,-3) to node [midway, below] (TextNode) {$vB$} (V);
+	\path [line, thick] (S) to node [midway, below, sloped] (TextNode) {$\beta S(I+\eta A)$} (L);
+	\path [line, thick, bend left] (S) to node [midway, above, sloped] (TextNode) {$eS$} (V);
+	\path [line, thick, bend left] (V) to node [sloped, midway, below] (TextNode) {$\omega_v V$} (S);
+	\path [line, thick] (V) to node [midway, below, sloped] (TextNode) {$(1-\sigma)\beta V(I+\eta A)$} (L);
+	\path [line, thick] (L) to node [sloped, midway, above] (TextNode) {$\pi\varepsilon L$} (I);
+	\path [line, thick] (L) to node [sloped, midway, below] (TextNode) {$(1-\pi)\varepsilon L$} (A);
+	\path [line, thick] (I) to node [sloped, midway, above] (TextNode) {$\gamma I$} (R);
+  \path [line, thick] (A) to node [sloped, midway, below] (TextNode) {$\gamma I$} (R);
+	\draw [>=latex,->, thick, rounded corners] (R) -- +(0,2.5) -- ++(-12,2.5) node[sloped, midway, above] {$\omega_r R$} -- (S);
+  \path [line, thick, dashed] (S) to node [sloped, midway, above] (TextNode) {$dS$} ++(1.5,1.5);
+  \path [line, thick, dashed] (V) to node [sloped, midway, below] (TextNode) {$dV$} ++(0,-1.5);
+  \path [line, thick, dashed] (L) to node [sloped, midway, above] (TextNode) {$dL$} ++(0,1.5);
+  \path [line, thick] (I) to node [sloped, midway, above] (TextNode) {$(d+\mu)I$} ++(0,-1.75);
+  \path [line, thick, dashed] (A) to node [sloped, midway, below] (TextNode) {$dA$} ++(0,-1.5);
+  \path [line, thick, dashed] (R) to node [sloped, midway, below] (TextNode) {$dR$} ++(0,-1.5);
+\end{tikzpicture}
+\end{frame}
+
+
+\begin{frame}\frametitle{The SLIARVS endemic model -- Equations}
+\begin{subequations}\label{sys:SVLIARS}
+\begin{align}
+S\pprime & = (1-v)B + \omega_vV + \omega_rR - \beta S (I+\eta A) - (e + d) S \\
+V\pprime & = vB + e S - (1-\sigma )\beta V (I+\eta A) - (\omega_v + d) V \\
+L\pprime & = \beta (S+(1-\sigma)V) (I+\eta A) - (\varepsilon + d) L \\
+I\pprime & = \pi\varepsilon L - (\gamma+ \mu + d) I \\
+A\pprime & = (1 - \pi)\varepsilon L - (\gamma+ d) A \\
+R\pprime & = \gamma (A + I) - (\omega_r + d) R
+\end{align}
+\end{subequations}
+\end{frame}
+
+
+\begin{frame}\frametitle{The SLIARVS endemic model -- DFE}
+In \eqref{sys:SVLIARS} without equation for $V'$ and with $v=e=\omega_v=0$, disease-free equilibrium (DFE) has $\bar S_0=B/d$
+\vfill
+DFE of full \eqref{sys:SVLIARS} is $E_0 = (S_0,V_0,0,0,0,0)$, where
+\begin{equation}\label{eq:DFE-SVLIARS}
+S_0 = \frac{(1-v)d+\omega_v}{e+\omega_v+d}\; \frac Bd 
+\quad\textrm{and}\quad
+V_0 = \frac{vd+e}{e+\omega_v+d}\;\frac Bd
+\end{equation}
+\end{frame}
+
+
+\begin{frame}\frametitle{The SLIARVS endemic model -- Reproduction numbers}
+With the combination parameter
+\begin{equation}\label{eq:lambda}
+\lambda = \beta\varepsilon
+\frac{(\gamma+\mu+d)\eta(1-\pi) + \pi(\gamma + d)}
+{(\gamma + d)(\gamma+\mu+d)}
+\end{equation}
+we have
+\begin{equation}\label{eq:R0-SLIARS}
+\mathcal{R}_0 = \frac{\lambda}{\varepsilon+d}\bar S_0
+\end{equation}
+\begin{equation}\label{eq:Rv-SVLIARS}
+\mathcal{R}_v=\frac{\lambda}{\varepsilon+d}(S_0+(1-\sigma)V_0)
+\end{equation}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Tackling the models computationally}
+\newSubSectionSlide{FIGS/Gemini_Generated_Image_fv8np7fv8np7fv8n.jpeg}
+
+\begin{frame}
+The models are systems of ODEs, we could simulate and show the result, but who cares if we just show the behaviour?
+\begin{itemize}
+\item System \eqref{sys:SLIAR} goes to the DFE every time, after undergoing (or not) an epidemic depending on the value of $\R_0$
+\item System \eqref{sys:SVLIARS} goes to the DFE or the EEP, depending on the value of $\R_0$
+\end{itemize}
+\vfill
+Booooriiiing!
+\vfill
+We can still do things with the solutions, but we'll have to make it worthwhile...
+\vfill
+To get more insight into the model, we can use the formula for the reproduction numbers \eqref{eq:R0-SLIAR}, \eqref{eq:R0-SLIARS} and \eqref{eq:Rv-SVLIARS}, the final size relation \eqref{eq:final-size} and other quantities to study the model: this will show how these important quantities depend on parameters
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
+\section{Investigating $\R_0$}
+\newSectionSlide{FIGS/Gemini_Generated_Image_80srg080srg080sr.jpeg}
+
+
+\begin{frame}[fragile]\frametitle{Make a function for $\R_0$}
+We have
+\begin{equation}
+\mathcal{R}_0=\beta
+\left(
+\frac{p}{\gamma}+\frac{\delta(1-p)}{\eta}
+\right)S_0
+\tag{\ref{eq:R0-SLIAR}}
+\end{equation}
+\vfill
+So write a function, where \code{p} is a list of parameters (including the initial number \code{S0} of susceptible individuals)
+\vfill
+<<R0-SLIAR-function>>=
+R0_SLIAR = function(p) {
+  OUT = p$beta*(p$p/p$gamma+p$delta*(1-p$p)/p$eta)*p$S0
+  return(OUT)
+}
+@
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Another way to write the function}
+<<R0-SLIAR-function-2>>=
+R0_SLIAR_2 = function(p) {
+  with(as.list(p), {
+       OUT = beta*(p/gamma+delta*(1-p)/eta)*S0
+       return(OUT)
+  })
+}
+@
+\vfill
+This can be useful if you have a lot of parameters and want to avoid writing \code{p\$} all the time. However, note that the \code{return} statement must be within the \code{with} statement
+\end{frame}
+
+\begin{frame}\frametitle{What we can do with this function}
+Of course, we can check what $\R_0$ is at a given point in parameter space, but let us go further
+\vfill
+We can plot $\R_0$ as a function of one parameter, \emph{ceteris paribus} (all other things remaining the same), to see how it behaves
+\vfill
+We can plot $\R_0$ as a function of two parameters, to see how it behaves in a plane
+\vfill
+We can conduct a ``full fledged'' sensitivity analysis, by plotting $\R_0$ as a function of all parameters
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{$\R_0$ as a function of a single parameter}
+\newSubSectionSlide{FIGS/Gemini_Generated_Image_80srg280srg280sr.jpeg}
+
+\begin{frame}[fragile]\frametitle{The parameter list}
+Before we begin, we have to set default values for the parameters
+<<parameters>>=
+p = list()
+p$kappa = 1/3 # incubation
+p$p = 1/3 # fraction going to I vs A
+p$beta = 1 # contact parameter
+p$delta = 1/3 # infectivity differential A
+p$gamma = 1/7 # recovery rate I
+p$eta = 1/7 # recovery rate A
+p$f = 0.5 # fraction symptomatic not dying
+p$S0 = 999 # Initial S
+@
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Plotting $\R_0$ as a function of one parameter}
+We can plot $\R_0$ as a function of one parameter, say $\beta$
+\vfill
+<<plot-R0-SLIAR-1>>=
+beta = seq(1e-5, 1e-1, by=1e-3)
+R0_values = c()
+for (i in 1:length(beta)) {
+  p$beta = beta[i]
+  R0_values = c(R0_values, R0_SLIAR(p))
+}
+plot(beta, R0_values, 
+     type="l", xlab=expression(beta), ylab=expression(R[0]))
+@
+\end{frame}
+
+\maxFrameImage{\Sexpr{fig_chunk('plot-R0-SLIAR-1', 'pdf')}}
+
+\begin{frame}[fragile]\frametitle{An old trick}
+Clearly, we're getting super large values of $\R_0$. Finding the ``right'' values for $\beta$ is hard. One way to solve the problem is to solve \eqref{eq:R0-SLIAR} as a function of $\R_0$ for $\beta$ and set an interval for $\R_0$ instead of one for $\beta$
+\vfill
+\begin{equation}
+\mathcal{R}_0=\beta
+\left(
+\frac{p}{\gamma}+\frac{\delta(1-p)}{\eta}
+\right)S_0
+\tag{\ref{eq:R0-SLIAR}}
+\end{equation}
+\vfill
+So we can write
+\begin{equation}\label{eq:beta-fct-R0}
+\beta = \frac{\mathcal{R}_0}{\left(
+\frac{p}{\gamma}+\frac{\delta(1-p)}{\eta}
+\right)S_0}
+\end{equation}
+\vfill
+<<beta-fct-R0-SLIAR>>=
+beta_SLIAR = function(R0, p) {
+  return(R0/((p$p/p$gamma+p$delta*(1-p$p)/p$eta)*p$S0))
+}
+@
+\end{frame}
+
+\begin{frame}
+But there's no point plotting $\R_0$ as a function of $\R_0$...
+\vfill
+This function will nonetheless be useful later
+\vfill
+For now, let's vary another parameter. For this
+\begin{itemize}
+\item choose a sensible value of $\beta$ using \eqref{eq:beta-fct-R0}, all other parameters being fixed
+\item vary the parameter of interest
+\item compute $\R_0$ for each value of the parameter of interest
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Plotting $\R_0$ as a function of another parameter}
+\vfill
+<<plot-R0-SLIAR-2>>=
+p$beta = beta_SLIAR(R0=1.5, p)
+gamma = seq(from=1/14, to=1, by=0.01)
+R0_values = c()
+for (i in 1:length(gamma)) {
+  p$gamma = gamma[i]
+  R0_values = c(R0_values, R0_SLIAR(p))
+}
+plot(gamma, R0_values, 
+     type="l", xlab=expression(gamma), ylab=expression(R[0]),
+     main = TeX("$R_0$ as a function of $\\gamma$"))
+# Throw in a line at R0=1 for good measure
+abline(h=1, col="red", lty = 3)
+@
+\end{frame}
+
+\maxFrameImage{\Sexpr{fig_chunk('plot-R0-SLIAR-2', 'pdf')}}
+
+\begin{frame}\frametitle{Making axes that make sense}
+A substantial part of a modeller's job is to communicate with non-modellers (e.g., your favourite biologist/public health/medical person)
+\vfill
+It is important to use axes that make sense to them: they are your \emph{end users}
+\vfill
+Remember: numerics is here to help you bridge the gap between the model and the real world
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Reworking the previous figure}
+$\gamma$ is the recovery rate of symptomatic individuals, so the average duration of the symptomatic infectious period is $1/\gamma$
+\vfill
+<<plot-R0-SLIAR-3>>=
+inv_gamma = 1/gamma
+plot(inv_gamma, R0_values, 
+     type="l", 
+     xlab=TeX("Average duration of the symptomatic infectious period (days)"), 
+     ylab=expression(R[0]),
+     main = TeX("$R_0$ as a function of $1/\\gamma$"))
+abline(h=1, col="red", lty = 3)
+@
+\end{frame}
+
+\maxFrameImage{\Sexpr{fig_chunk('plot-R0-SLIAR-3', 'pdf')}}
+
+\begin{frame}\frametitle{Looks way less cool}
+Indeed, but it is way more informative
+\vfill
+And expected ...
+\begin{equation}
+\mathcal{R}_0=\beta
+\left(
+\frac{p}{\gamma}+\frac{\delta(1-p)}{\eta}
+\right)S_0
+\tag{\ref{eq:R0-SLIAR}}
+\end{equation}
+\vfill
+So as a function of $1/\gamma$, $\R_0$ is an affine function
+\end{frame}
+
+\begin{frame}\frametitle{Make it even easier to read}
+A good figure can ``sell your work'', it is worth spending some time thinking about it
+\vfill
+Don't overload with information, but ensure the important stuff is there
+\vfill
+For instance, the red line at $\R_0=1$ is a good idea: in your work, you are probably describing how the situation changes when $\R_0=1$
+\vfill
+Let's make the point of intersection even easier to see
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Finding where $\R_0=1$}
+Recall that as we computed it, $\R_0$ is decreasing, so look for when $\R_0<1$ the first time
+\vfill
+<<plot-R0-SLIAR-4>>=
+idx_switch = which(R0_values<=1)[1]
+inv_gamma_switch = inv_gamma[idx_switch]
+plot(inv_gamma, R0_values, 
+     type="l", 
+     xlab=TeX("Average duration of the symptomatic infectious period (days)"),
+     ylab=expression(R[0]),
+     main = TeX("$R_0$ as a function of $1/\\gamma$"))
+points(x = inv_gamma_switch, y = 1, col = "darkred", pch = 16)
+abline(h=1, col="red", lty = 3)
+@
+\end{frame}
+
+\maxFrameImage{\Sexpr{fig_chunk('plot-R0-SLIAR-4', 'pdf')}}
+
+\begin{frame}\frametitle{About figure titles (IMOBO)}
+(in my own biased opinion)
+\vfill
+Here, I am using \code{main=} to add titles to the figures
+\vfill
+This is because I am including the figures as full size images in slides without titles (see the \code{Rnw} file)
+\vfill
+In a paper, usually, you do not need to provide a title for the figure: the caption should be enough and serves the same role. Check the journal you are submitting to!
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{$\R_0$ as a function of two parameters}
+\newSubSectionSlide{FIGS/Gemini_Generated_Image_n2gng3n2gng3n2gn.jpeg}
+
+\begin{frame}\frametitle{Heatmap plots}
+The last plot shows how $\R_0$ varies as a function of $\gamma$
+\vfill
+In many circumstances, we are interested in how $\R_0$ varies as a function of two parameters
+\end{frame}
+
+
+\begin{frame}\frametitle{Setting up the heatmap}
+The easiest way (IMOBO) to set things up is to use the function \code{expand.grid} to make a table with all combinations of the two parameters and compute the value of the function for each of the combinations
+\vfill
+Ideally, the function evaluated should be vectorised, so that you can compute all values at once, but this is not always possible. Here, we will do both the direct approach and the vectorised one to illustrate the difference
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Setting up the heatmap -- calling \code{expand.grid}}
+<<>>=
+values = expand.grid(gamma = seq(1/14, 1, by=0.01), 
+                     p = seq(0, 1, by = 0.01))
+head(values)
+@
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Setting up the heatmap -- computing the values}
+<<>>=
+R0_values = c()
+for (i in 1:nrow(values)) {
+  p$gamma = values$gamma[i]
+  p$p = values$p[i]
+  R0_values = c(R0_values, R0_SLIAR(p))
+}
+values$R0 = R0_values
+head(values, 4)
+@
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Setting up the heatmap -- computing the values (vectorised)}
+Revise the $\R_0$ function so it makes the difference between default parameter values and those changed for the heatmap. We could of course just redefine \code{p\$p} and \code{p\$gamma}
+\vfill
+<<>>=
+R0_SLIAR_vect = function(p, v) {
+  return(p$beta*(v$p/v$gamma + p$delta*(1-v$p)/p$eta)*p$S0)
+}
+values = expand.grid(gamma = seq(1/14, 1, by=0.01), 
+                     p = seq(0, 1, by = 0.01))
+values$R0 = R0_SLIAR_vect(p, values)
+head(values, 4)
+@
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Plotting the heatmap}
+There are many different ways to plot heatmaps in \code{R}
+\begin{itemize}
+\item The \code{image} function is the simplest, but it is not very flexible
+\item The \code{ggplot2} package has a \code{geom\_tile} function that is more flexible
+\item The \code{pheatmap} package is very good for publication quality heatmaps
+\item Contour plots are also a good option
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Plotting the heatmap -- using \code{image}}
+We need \code{require(RColorBrewer)} for the colour palette 
+\vfill
+<<plot-R0-SLIAR-fct-gamma-p-1>>=
+image(x = unique(values$gamma), y = unique(values$p), 
+      z = matrix(values$R0, 
+                 nrow = length(unique(values$gamma))),
+      col = brewer.pal(9, "YlOrRd"),
+      xlab = TeX("$\\gamma$"),
+      ylab = TeX("$p$"),
+      main = TeX("$R_0$ as a function of $\\gamma$ and $p$"))
+@
+\end{frame}
+
+\maxFrameImage{\Sexpr{fig_chunk('plot-R0-SLIAR-fct-gamma-p-1', 'pdf')}}
+
+\begin{frame}[fragile]\frametitle{As before: axes need to make sense to normal people}
+Here, it is easier to actually recompute with $1/\gamma$
+\vfill
+<<plot-R0-SLIAR-fct-gamma-p-2>>=
+R0_SLIAR_vect_inv_gamma = function(p, v) {
+  return(p$beta*(v$p*v$inv_gamma + p$delta*(1-v$p)/p$eta)*p$S0)
+}
+values = expand.grid(inv_gamma = seq(1, 14, by=0.01), 
+                     p = seq(0, 1, by = 0.01))
+values$R0 = R0_SLIAR_vect_inv_gamma(p, values)
+image(x = unique(values$inv_gamma), y = unique(values$p), 
+      z = matrix(values$R0, 
+                 nrow = length(unique(values$inv_gamma))),
+      col = brewer.pal(9, "YlOrRd"),
+      xlab = TeX("Average duration of the symptomatic infectious period (days)"),
+      ylab = TeX("$p$"),
+      main = TeX("$R_0$ as a function of $1/\\gamma$ and $p$"))
+@
+\end{frame}
+
+\maxFrameImage{\Sexpr{fig_chunk('plot-R0-SLIAR-fct-gamma-p-2', 'pdf')}}
+
+\begin{frame}[fragile]\frametitle{Let us add useful information}
+A curve showing where $\R_0 = 1$ would be useful
+\vfill
+<<plot-R0-SLIAR-fct-gamma-p-2-legend>>=
+image(x = unique(values$inv_gamma), y = unique(values$p), 
+      z = matrix(values$R0, 
+                 nrow = length(unique(values$inv_gamma))),
+      col = brewer.pal(9, "YlOrRd"),
+      xlab = TeX("Average duration of the symptomatic infectious period (days)"),
+      ylab = TeX("$p$"),
+      main = TeX("$R_0$ as a function of $1/\\gamma$ and $p$"))
+contour(x = unique(values$inv_gamma), y = unique(values$p), 
+        z = matrix(values$R0, 
+                   nrow = length(unique(values$inv_gamma))),
+        levels = c(1), add = TRUE)
+@
+\end{frame}
+
+\maxFrameImage{\Sexpr{fig_chunk('plot-R0-SLIAR-fct-gamma-p-2-legend', 'pdf')}}
+
+
+\begin{frame}[fragile]\frametitle{Plotting the heatmap -- using \code{ggplot2}}
+<<plot-R0-SLIAR-fct-gamma-p-3>>=
+require(ggplot2)
+ggplot(values, aes(x = inv_gamma, y = p, fill = R0)) + 
+  geom_tile() + 
+  scale_fill_viridis_c() +
+  #scale_fill_gradientn(colours = brewer.pal(9, "YlOrRd")) +
+  xlab("Average duration of the symptomatic infectious period (days)") +
+  ylab(TeX("$p$")) +
+  ggtitle(TeX("$R_0$ as a function of $1/\\gamma$ and $p$")) +
+  theme_minimal()
+@
+\end{frame}
+
+\maxFrameImage{\Sexpr{fig_chunk('plot-R0-SLIAR-fct-gamma-p-3', 'pdf')}}
+
+% \begin{frame}[fragile]\frametitle{Plotting the heatmap -- using \code{pheatmap}}
+% <<plot-R0-SLIAR-fct-gamma-p-4,eval=TRUE,include=FALSE>>=
+% require(pheatmap)
+% # pheatmap(values$R0, 
+% #          annotation_col = values[,c("inv_gamma", "p")],
+% #          annotation_colors = list(inv_gamma = c("white", "black"),
+% #                                   p = c("white", "black")),
+% #          cluster_rows = FALSE, cluster_cols = FALSE,
+% #          main = TeX("$R_0$ as a function of $1/\\gamma$ and $p$"))
+% @
+% \end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Plotting the heatmap -- using \code{contour}}
+<<plot-R0-SLIAR-fct-gamma-p-5>>=
+contour(x = unique(values$inv_gamma), y = unique(values$p), 
+        z = matrix(values$R0, 
+                   nrow = length(unique(values$inv_gamma))),
+        xlab = "Average duration of the symptomatic infectious period (days)",
+        ylab = TeX("$p$"),
+        main = TeX("$R_0$ as a function of $1/\\gamma$ and $p$"))
+@
+\end{frame}
+
+\maxFrameImage{\Sexpr{fig_chunk('plot-R0-SLIAR-fct-gamma-p-5', 'pdf')}}
+
+\begin{frame}[fragile]\frametitle{Plotting the heatmap -- using \code{filled.contour}}
+<<plot-R0-SLIAR-fct-gamma-p-6>>=
+filled.contour(x = unique(values$inv_gamma), y = unique(values$p), 
+        z = matrix(values$R0, 
+                   nrow = length(unique(values$inv_gamma))),
+        xlab = "Average duration of the symptomatic infectious period (days)",
+        ylab = TeX("$p$"),
+        main = TeX("$R_0$ as a function of $1/\\gamma$ and $p$"))
+@
+\end{frame}
+
+\maxFrameImage{\Sexpr{fig_chunk('plot-R0-SLIAR-fct-gamma-p-6', 'pdf')}}
+
+\begin{frame}\frametitle{Last remark on heatmaps -- \code{expand.grid} is cool}
+We can use \code{expand.grid} for more than two variables
+\vfill
+The only problem is visualisation...
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Sensitivity analysis of $\R_0$}
+\newSubSectionSlide{FIGS/Gemini_Generated_Image_n2gng0n2gng0n2gn.jpeg}
+
+
+\begin{frame}\frametitle{Sensitivity analysis of $\R_0$}
+To perform a sensitivity analysis, there are several steps to follow:
+\begin{enumerate}
+\item Define the parameters of interest
+\item Define the range of variation of each parameter
+\item Define the method to use to vary the parameters
+\item Define the function to evaluate
+\item Evaluate the function for each combination of parameters
+\item Choose a method to evaluate the sensitivity
+\end{enumerate}
+\end{frame}
+
+\begin{frame}\frametitle{SLIAR model -- Sensitivity analysis of $\R_0$}
+We perform a sensitivity analysis of $\R_0$ with respect to all parameters involved in \eqref{eq:R0-SLIAR} except $S_0$ (which we take to be 999 here)
+\vfill
+Note that we cannot use the same trick as before, where we set $\beta$ using \eqref{eq:beta-fct-R0}: it would defeat the purpose of the sensitivity analysis to assume a value of $\R_0$ to compute $\beta$ to then compute $\R_0$
+\vfill
+Instead, we set overall acceptable bounds for $\R_0$ and compute a resulting range of values of $\beta$ based on the set ranges for the other parameters and these bounds for $\R_0$
+\end{frame}
+
+\begin{frame}\frametitle{SLIAR model -- Finding the range of $\beta$}
+\begin{equation}\tag{\ref{eq:beta-fct-R0}}
+\beta = \frac{\mathcal{R}_0}{\left(
+\frac{p}{\gamma}+\frac{\delta(1-p)}{\eta}
+\right)S_0}
+\end{equation}
+\vfill
+Then
+\[
+\frac{\partial\beta}{\partial \R_0}>0,
+\frac{\partial\beta}{\partial \gamma}>0,
+\frac{\partial\beta}{\partial \eta}>0
+\]
+\[
+\frac{\partial\beta}{\partial\delta}<0
+\]
+while 
+\[
+\sgn\left(\frac{\partial\beta}{\partial p}\right)=\sgn(\gamma\delta-\eta)
+\]
+\end{frame}
+
+\begin{frame}
+So the maximum of $\beta$ can be evaluated using \eqref{eq:beta-fct-R0} with the maximum values of $\R_0$, $\gamma$, $\eta$ and the minimum value of $\delta$
+\vfill
+On the other hand, we always vary $p\in[0,1]$; for such $p$, we have $\beta>0$
+\[
+\left.\beta\right|_{p=0} = \frac{\eta\R_0}{\delta S_0}\quad
+\left.\beta\right|_{p=1} = \frac{\gamma\R_0}{S_0}
+\]
+with $\beta(p)$ 
+\begin{itemize}
+\item $\nearrow$ if $\gamma\delta>\eta$ $\implies$ use $p=0$ and $p=1$ for the min and max values of $\beta$, respectively
+\item $\searrow$ if $\gamma\delta<\eta$ $\implies$ use $p=1$ and $p=0$ for the min and max values of $\beta$, respectively
+\end{itemize}
+\vfill
+So we can further simplify the computation of the range of $\beta$
+\end{frame}
+
+\begin{frame}
+Thus, in practice, if $\gamma^{\min}\delta^{\min}>\eta^{\min}$, then $\beta(p)$ is increasing and
+\[
+\beta^{\min}=\frac{\eta^{\min}\R_0^{\min}}{\delta^{\min} S_0^{\min}}
+\]
+while if $\gamma^{\min}\delta^{\min}\leq\eta^{\min}$, $\beta(p)$ is decreasing and 
+\[
+\beta^{\min}=\frac{\gamma^{\min}\R_0^{\min}}{S_0^{\min}}
+\]
+\vfill
+Similarly, if $\gamma^{\max}\delta^{\max}>\eta^{\max}$, then $\beta(p)$ is increasing and
+\[
+\beta^{\max}=\frac{\gamma^{\max}\R_0^{\max}}{S_0^{\max}}
+\]
+while if $\gamma^{\max}\delta^{\max}\leq\eta^{\max}$, $\beta(p)$ is decreasing and 
+\[
+\beta^{\max}=\frac{\eta^{\max}\R_0^{\max}}{\delta^{\max} S_0^{\max}}
+\]
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{SLIAR model -- Setting parameters}
+The ranges are shown on the next page, but let us here show how we set up the code
+\vfill
+<<>>=
+params = list()
+params$N = 1000
+params$I0 = 1
+params$S0 = params$N-params$I0
+params$R0 = c(0.5, 5)
+params.vary = list(
+  delta = c(0.05, 1), 
+  p = c(0, 1), 
+  gamma = c(1/10, 1/2), 
+  eta = c(1/7,1))
+params.vary$beta = 
+  c(params.vary$gamma[1]*params$R0[1]/params$S0,
+    params.vary$eta[2]*params$R0[2]/(params.vary$delta[2]*params$S0))
+@
+\end{frame}
+
+\begin{frame}\frametitle{SLIAR model -- Parameter ranges used with $\R_0$}
+\begin{center}
+\begin{tabular}{ccc}
+\toprule
+Parameter & Minimum & Maximum\\
+\midrule
+$\R_0$ & 0.5 & 5 \\
+$\delta$ & 0.05 & 1 \\
+$p$ & 0 & 1 \\
+$\gamma$ & 1/10 & 1/2 \\
+$\eta$ & 1/7 & 1 \\
+\end{tabular}
+\end{center}
+\vfill
+$\gamma^{\min}\delta^{\min}\leq\eta^{\min}$ ($\Sexpr{params.vary$gamma[1]*params.vary$delta[1]}\leq\Sexpr{round(params.vary$eta[1],3)}$) $\implies$ $\beta^{\min}\simeq\Sexpr{round(params.vary$beta[1],6)}$
+\vfill
+$\gamma^{\max}\delta^{\max}\leq\eta^{\max}$ ($\Sexpr{params.vary$gamma[2]*params.vary$delta[2]}\leq\Sexpr{round(params.vary$eta[2],3)}$) $\implies$ $\beta^{\max}\simeq\Sexpr{round(params.vary$beta[2],6)}$
+\end{frame}
+
+\begin{frame}\frametitle{SLIAR model -- Parameter ranges used with $\beta$}
+After this computation of $\beta$, we thus consider the following ranges for the parameters
+\vfill
+\begin{center}
+\begin{tabular}{ccc}
+\toprule
+Parameter & Minimum & Maximum\\
+\midrule
+$\beta$ & \Sexpr{round(params.vary$beta[1],6)} & \Sexpr{round(params.vary$beta[2],6)} \\
+$\delta$ & 0.05 & 1 \\
+$p$ & 0 & 1 \\
+$\gamma$ & 1/10 & 1/2 \\
+$\eta$ & 1/7 & 1 \\
+\end{tabular}
+\end{center}
+\end{frame}
+
+
+\begin{frame}\frametitle{An important question -- How to sample parameter space}
+We want to generate \code{nb\_samples} values of the function we are evaluating
+\vfill
+However, we can't just pick random values for each parameter
+\vfill
+Indeed, if we did, we would have no guarantee that we would cover the whole parameter space (in particular, various combinations of random values of the different parameters)
+\vfill
+Of course, we cannot test all possible combinations of parameter values, but we can try to approach this by using a \defword{sampling method}
+\end{frame}
+
+\begin{frame}\frametitle{Illustrating sampling methods}
+We use a function adapted from one (\code{graph2LHS}) in an official CRAN vignette (not my vignettes) (\href{https://rdrr.io/cran/lhs/f/vignettes/lhs_basics.Rmd}{link to Rmd version of the vignette}) to show the different sampling schemes
+\vfill
+In all illustrations, we use two parameters whose values are in $[0,1]$
+\vfill
+In practice, we have more parameters and their values are in different ranges
+\end{frame}
+
+<<graph2d-samples-function,echo=FALSE>>=
+graph2d_samples <- function(M_sample, 
+                            highlight = TRUE,
+                            subdivs = NULL) {
+  stopifnot(ncol(M_sample) == 2)
+  sims <- nrow(M_sample)
+  par(mar = c(4,4,2,2))
+  plot.default(M_sample[,1], M_sample[,2], type = "n", ylim = c(0,1),
+    xlim = c(0,1), xlab = "Parameter 1", ylab = "Parameter 2", 
+    xaxs = "i",  yaxs = "i", main = "")
+  if (highlight) {
+    for (i in 1:nrow(M_sample)) {
+    rect(floor(M_sample[i,1]*sims)/sims, floor(M_sample[i,2]*sims)/sims,
+         ceiling(M_sample[i,1]*sims)/sims, ceiling(M_sample[i,2]*sims)/sims, 
+         col = "grey")
+    }
+  }
+  points(M_sample[,1], M_sample[,2], pch = 19, col = "red")
+  if (is.null(subdivs)) {
+    abline(v = (0:sims)/sims, h = (0:sims)/sims)
+  } else {
+    abline(v = (0:subdivs[1])/subdivs[1], h = (0:subdivs[2])/subdivs[2])
+  }
+}
+@
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Grid Sampling}
+\newSubSubSectionSlide{FIGS/Gemini_Generated_Image_c5e6qvc5e6qvc5e6.jpeg}
+
+
+\begin{frame}\frametitle{The ``naive'' method -- Grid sampling}
+We can use \code{expand.grid} to generate all possible combinations of parameter values
+\vfill
+This gets large a little too quickly: in the SLIAR model \eqref{sys:SLIAR}, we want to investigate 5 parameters
+\vfill
+If we pick 10 values for each parameter, we have to evaluate $10^5=100,000$ combinations
+\vfill
+This is viable if the function being evaluated ($\R_0$ here) is not costly or there aren't too many parameters; otherwise, this quickly becomes messy or too long
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Grid sampling (20 samples)}
+<<grid-sampling-2d-example,echo=FALSE,fig.height=3.3,fig.width=6,fig.show='asis'>>=
+A <- expand.grid(p1 = seq(0, 1, length.out = 5), 
+                 p2 = seq(0, 1, length.out = 4))
+graph2d_samples(A, highlight = FALSE, subdivs = c(4,3))
+@
+\end{frame}
+
+
+
+
+\begin{frame}[fragile]\frametitle{Select a sampling method -- Grid sampling}
+<<>>=
+nb_points_per_param = 10
+params.grid = expand_grid(
+  delta = seq(params.vary$delta[1], 
+              params.vary$delta[2], 
+              length.out = nb_points_per_param),
+  p = seq(params.vary$p[1], params.vary$p[2], length.out = nb_points_per_param),
+  gamma = seq(params.vary$gamma[1], params.vary$gamma[2], length.out = nb_points_per_param),
+  eta = seq(params.vary$eta[1], params.vary$eta[2], length.out = nb_points_per_param),
+  beta = seq(params.vary$beta[1], params.vary$beta[2], length.out = nb_points_per_param))
+@
+\end{frame}
+
+
+
+\begin{frame}\frametitle{Vectorised or parallel? Both?}
+Functions like the ones here are easily vectorised. We show an example here
+\vfill
+More complex functions (for instance, requiring the use of \code{ode}) may not be vectorised and can benefit from parallelisation
+\vfill
+We will use the \code{parallel} package to parallelise the evaluation of the function
+\vfill
+It is possible to parallelise a vector function as well, but we will not do that here
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Vectorised version of the $\R_0$ function}
+The first function we wrote actually works with vectors, but we need to allow S0 as an argument (as it is not varying). So we distinguish between two parameter sets, the fixed ones and the varying ones
+\vfill
+<<sensi-R0-SLIAR-grid>>=
+R0_SLIAR = function(p, p_fixed) {
+  OUT = p$beta*(p$p/p$gamma+p$delta*(1-p$p)/p$eta)*p_fixed$S0
+  return(OUT)
+}
+R0_values = R0_SLIAR(params.grid, params)
+@
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Now compute PRCC}
+Partial rank correlation coefficients (PRCC) are a measure of the correlation between a parameter and the output of a function, controlling for the effect of the other parameters
+\vfill
+We make a function just to simplify the call
+\vfill
+<<compute-PRCC-R0-SLIAR-grid>>=
+compute_PRCC = function(v, pars) {
+  x = pcc(pars, as.numeric(v),
+          rank = TRUE, semi = FALSE)
+  return(x)
+}
+R0_SLIAR_PRCC_grid = compute_PRCC(R0_values, params.grid)
+@
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{The PRCC values}
+<<>>=
+R0_SLIAR_PRCC_grid
+@
+\end{frame}
+
+
+
+\begin{frame}[fragile]\frametitle{Plotting the results using base graphics}
+To make things a bit easier to read, let's sort the PRCC values in decreasing absolute value
+\vfill
+<<plot-PRCC-R0-SLIAR-grid-base>>=
+idx = order(abs(R0_SLIAR_PRCC_grid$PRCC$original), 
+            decreasing = TRUE)
+plot(R0_SLIAR_PRCC_grid$PRCC$original[idx], 
+     ylim = c(-1,1), xaxt='n',
+     xlab = "Parameter", ylab = "PRCC",
+     main = TeX("PRCC for $R_0$ - parameters sampled using a grid"),
+     pch = 19, col = "blue", cex = 2)
+axis(1, at = 1:length(idx), 
+     labels = rownames(R0_SLIAR_PRCC_grid$PRCC)[idx])
+abline(h=0, lty = 3)
+@
+\end{frame}
+
+\maxFrameImage{\Sexpr{fig_chunk('plot-PRCC-R0-SLIAR-grid-base', 'pdf')}}
+
+\begin{frame}[fragile]\frametitle{Refining the plot a little}
+Let's use different colours for the points, make their size proportional to the PRCC values and use \LaTeX for the labels
+\vfill
+<<plot-PRCC-R0-SLIAR-grid-2>>=
+colour = viridis::viridis(length(idx))
+labels =  sprintf("$\\%s$", rownames(R0_SLIAR_PRCC_grid$PRCC)[idx])
+labels = gsub("\\\\p", "p", labels)
+plot(R0_SLIAR_PRCC_grid$PRCC$original[idx], 
+     ylim = c(-1,1), xaxt='n', pch = 19, 
+     xlab = "Parameter", ylab = "PRCC",
+     col = colour, 
+     main = TeX("PRCC for $R_0$ - parameters sampled using a grid"),
+     cex = 3 * abs(R0_SLIAR_PRCC_grid$PRCC$original)[idx])
+axis(1, at = 1:length(idx), labels = TeX(labels))
+abline(h=0, lty = 3)
+@
+\end{frame}
+
+\maxFrameImage{\Sexpr{fig_chunk('plot-PRCC-R0-SLIAR-grid-2', 'pdf')}}
+
+
+\begin{frame}[fragile]\frametitle{Plotting the results using ggplot2}
+<<plot-PRCC-R0-SLIAR-grid-ggplot2>>=
+df = data.frame(Parameter = rownames(R0_SLIAR_PRCC_grid$PRCC)[idx],
+                PRCC = R0_SLIAR_PRCC_grid$PRCC$original[idx])
+ggplot(df, aes(x = Parameter, y = PRCC)) +
+  geom_point(colour = "blue", size = 3) +
+  geom_hline(yintercept = 0, linetype = "dotted") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  theme_minimal()
+@
+\end{frame}
+
+\maxFrameImage{\Sexpr{fig_chunk('plot-PRCC-R0-SLIAR-grid-ggplot2', 'pdf')}}
+
+
+\begin{frame}\frametitle{The problem with grid sampling}
+Suppose we decide that since 100,000 evaluations are done easily, we can afford to do 1,000,000 evaluations
+\vfill
+How do we implement that?
+\vfill
+We have
+\[
+1,000,000^{1/5} \simeq 15.8489
+\]
+so we could decide to cut each range in 16 parts
+\vfill
+If the range of each parameter is relatively large, this could quickly become unmanageable
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{What if I do want grid sampling nonetheless?}
+The function \code{parameterSets} from the \code{sensitivity} package can be used to generate a grid of parameter sets
+\vfill
+<<>>=
+nb_samples = 1000000
+length_grid_side = floor(nb_samples^(1/5))
+params.grid = parameterSets(par.ranges = params.vary,
+                             samples = rep(length_grid_side, 5),
+                             method = "grid")
+params.grid = as.data.frame(params.grid)
+colnames(params.grid) = names(params.vary)
+R0_values = R0_SLIAR(params.grid, params)
+R0_SLIAR_PRCC_grid_2 = compute_PRCC(R0_values, params.grid)
+@
+\vfill
+You can also use \code{method="innergrid"} to generate a grid of parameter sets that are offset from the sides of the hypecube
+\end{frame}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Sobol sampling}
+\newSubSubSectionSlide{FIGS/Gemini_Generated_Image_hfkrgfhfkrgfhfkr.jpeg}
+
+
+\begin{frame}[fragile]\frametitle{Sobol sampling (20 samples)}
+<<sobol-sampling-2d-example,echo=FALSE,fig.height=3.3,fig.width=6,fig.show='asis'>>=
+A <- parameterSets(par.ranges = list(p1 = c(0, 1), 
+                                     p2 = c(0, 1)),
+                   samples = 20,
+                   method = "sobol")
+graph2d_samples(A, highlight = FALSE, subdivs = c(10,10))
+@
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Select a sampling method -- Sobol}
+This uses the \code{sensitivity} package
+\vfill
+<<echo=TRUE>>=
+nb_samples = 100000
+params.sobol = parameterSets(par.ranges = params.vary,
+                             samples = nb_samples,
+                             method = "sobol")
+params.sobol = as.data.frame(params.sobol)
+colnames(params.sobol) = names(params.vary)
+@
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Compute PRCC with Sobol sampling}
+Partial rank correlation coefficients (PRCC) are a measure of the correlation between a parameter and the output of a function, controlling for the effect of the other parameters
+\vfill
+<<compute-R0-values-sensi-SLIAR-Sobol>>=
+R0_values = R0_SLIAR(params.sobol, params)
+compute_PRCC = function(v, pars) {
+  x = pcc(pars, as.numeric(v),
+          rank = TRUE, semi = FALSE)
+  return(x)
+}
+R0_SLIAR_PRCC_sobol = compute_PRCC(R0_values, params.sobol)
+@
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{The PRCC values}
+<<>>=
+R0_SLIAR_PRCC_sobol
+@
+\end{frame}
+
+
+
+\begin{frame}[fragile]\frametitle{Plotting the results using base graphics}
+<<plot-PRCC-R0-SLIAR-2>>=
+idx = order(abs(R0_SLIAR_PRCC_sobol$PRCC$original),
+            decreasing = TRUE)
+colour = viridis::viridis(length(idx))
+labels =  sprintf("$\\%s$", rownames(R0_SLIAR_PRCC_sobol$PRCC)[idx])
+labels = gsub("\\\\p", "p", labels)
+plot(R0_SLIAR_PRCC_sobol$PRCC$original[idx], 
+     ylim = c(-1,1), xaxt='n', pch = 19, 
+     xlab = "Parameter", ylab = "PRCC",
+     col = colour,
+     main = TeX("PRCC for $R_0$ - parameters sampled using Sobol"),
+     cex = 3 * abs(R0_SLIAR_PRCC_sobol$PRCC$original)[idx])
+axis(1, at = 1:length(idx), labels = TeX(labels))
+abline(h=0, lty = 3)
+@
+\end{frame}
+
+\maxFrameImage{\Sexpr{fig_chunk('plot-PRCC-R0-SLIAR-2', 'pdf')}}
+
+
+\begin{frame}[fragile]\frametitle{Plotting the results using ggplot2}
+<<plot-PRCC-R0-SLIAR-ggplot2>>=
+df = data.frame(Parameter = rownames(R0_SLIAR_PRCC_sobol$PRCC)[idx],
+                PRCC = R0_SLIAR_PRCC_sobol$PRCC$original[idx])
+ggplot(df, aes(x = Parameter, y = PRCC)) +
+  geom_point(colour = "blue", size = 3) +
+  geom_hline(yintercept = 0, linetype = "dotted") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  theme_minimal()
+@
+\end{frame}
+
+\maxFrameImage{\Sexpr{fig_chunk('plot-PRCC-R0-SLIAR-ggplot2', 'pdf')}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Latin Hypercube Sampling}
+\newSubSubSectionSlide{FIGS/Gemini_Generated_Image_i0pbri0pbri0pbri.jpeg}
+
+\begin{frame}[fragile]\frametitle{Select a sampling method -- Latin Hypercube}
+This is another method to sample the parameter space
+\vfill
+\begin{quote}
+\href{https://en.wikipedia.org/wiki/Latin_hypercube_sampling}{From Wikipedia}
+In the context of statistical sampling, a square grid containing sample positions is a Latin square if (and only if) there is only one sample in each row and each column. A Latin hypercube is the generalisation of this concept to an arbitrary number of dimensions, whereby each sample is the only one in each axis-aligned hyperplane containing it.
+\end{quote}
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Latin hypercube sampling (20 samples)}
+<<lhs-sampling-2d-example,echo=FALSE,fig.height=3.3,fig.width=6,fig.show='asis'>>=
+A <- randomLHS(20, 2)
+graph2d_samples(A)
+@
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Select a sampling method -- Latin Hypercube}
+Call the function with arguments for the number of samples and the number of parameters
+<<echo=TRUE>>=
+params.lhs = lhs::randomLHS(nb_samples, length(params.vary))
+params.lhs = as.data.frame(params.lhs)
+colnames(params.lhs) = names(params.vary)
+head(params.lhs)
+@
+\vfill
+Results are uniform on $[0,1]$ for each parameter and need to be transformed prior to use
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Transforming the uniform distribution}
+Suppose values $\xi$ uniformly distributed on $[0,1]$ are to be transformed to the range $[x_{\min},x_{\max}]$
+\begin{align*}
+x = x_{\min} + \xi (x_{\max} - x_{\min})
+\end{align*}
+\vfill
+<<>>=
+for (c in 1:length(params.vary)) {
+  params.lhs[,c] = params.vary[[c]][1] + params.lhs[,c] * 
+    (params.vary[[c]][2] - params.vary[[c]][1])
+}
+R0_values = R0_SLIAR(params.lhs, params)
+R0_SLIAR_PRCC_lhs = compute_PRCC(R0_values, params.lhs)
+@
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Plotting the results using base graphics}
+<<plot-PRCC-R0-SLIAR-lhs>>=
+idx = order(abs(R0_SLIAR_PRCC_lhs$PRCC$original),
+            decreasing = TRUE)
+colour = viridis::viridis(length(idx))
+labels =  sprintf("$\\%s$", rownames(R0_SLIAR_PRCC_lhs$PRCC)[idx])
+labels = gsub("\\\\p", "p", labels)
+plot(R0_SLIAR_PRCC_lhs$PRCC$original[idx], 
+     ylim = c(-1,1), xaxt='n', pch = 19, 
+     xlab = "Parameter", ylab = "PRCC",
+     main = TeX("PRCC for $R_0$ with parameters sampled using LHS"),
+     col = colour, 
+     cex = 3 * abs(R0_SLIAR_PRCC_lhs$PRCC$original)[idx])
+axis(1, at = 1:length(idx), labels = TeX(labels))
+abline(h=0, lty = 3)
+@
+\end{frame}
+
+\maxFrameImage{\Sexpr{fig_chunk('plot-PRCC-R0-SLIAR-lhs', 'pdf')}}
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Comparing results}
+\newSubSubSectionSlide{FIGS/Gemini_Generated_Image_a2j2lja2j2lja2j2.jpeg}
+\begin{frame}[fragile]\frametitle{Comparing the PRCC values}
+<<results='asis'>>=
+R0_SLIAR_PRCC = cbind(R0_SLIAR_PRCC_grid$PRCC$original,
+                R0_SLIAR_PRCC_grid_2$PRCC$original,
+                R0_SLIAR_PRCC_sobol$PRCC$original,
+                R0_SLIAR_PRCC_lhs$PRCC$original)
+rownames(R0_SLIAR_PRCC) = rownames(R0_SLIAR_PRCC_grid$PRCC)
+colnames(R0_SLIAR_PRCC) = c("Grid 1", "Grid 2", "Sobol", "LHS")
+knitr::kable(R0_SLIAR_PRCC, digits = 3, booktabs = TRUE)
+@
+\end{frame}
+
+
+\begin{frame}\frametitle{One last remark on sensitivity}
+We have used $\gamma$ and $\eta$
+\vfill
+We saw when plotting $\R_0$ as a function of $\gamma$ that the situation is very different when using $\gamma$ and $1/\gamma$
+\vfill
+The same is true, to a lesser extent, of $\eta$ and $1/\eta$
+\vfill
+We would therefore get a very different picture if we considered $1/\gamma$ and $1/\eta$ for the sensitivity analysis 
+\end{frame}
+
+
+\begin{frame}\frametitle{Nobody expects the Spanish Inquisition!}
+Here, we used PRCC. There are many other types of sensititivities that can be computed
+\vfill
+The \code{sensitivity} packages has quite an array of these. See the package documentation for details
+\vfill
+There are other \code{R} packages that also do sensitivity analysis
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Using a parallel version}
+\newSubSubSectionSlide{FIGS/Gemini_Generated_Image_hgadozhgadozhgad.jpeg}
+
+\begin{frame}\frametitle{Why parallelise?}
+Numerical problems like the evaluation of a function at a bunch of points in parameter space when all evaluations are independent from one another are \defword{embarassingly parallel}
+\vfill
+In the case of the PRCC for $\R_0$ like here, parallel is not necessarily a good idea, as there is a lot of overhead
+\vfill
+However, if you are computing the response of a more complex function, e.g., simulating the solutions to an ODE then performing a bunch of computations, then parallelising can greatly speed stuff up
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Setting up the parallel version}
+The easiest way is to use \code{parLapply}. For this, we need a list in which each entry is a list with a specific point in parameter space
+\vfill
+<<split-sobol-as-list>>=
+params.sobol.list = split(params.sobol, seq(nrow(params.sobol)))
+head(params.sobol.list, n = 2)
+@
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Testing iteratively first}
+If your code is going to run in parallel using \code{parLapply}, it also needs to run sequentially using \code{lapply}
+\vfill
+Using \code{lapply} also is good to debug, as debugging parallel code is not easy
+\vfill
+<<>>=
+R0_values = lapply(X = params.sobol.list, 
+                   FUN = function(x) R0_SLIAR(x, params))
+head(R0_values, n = 2)
+@
+\end{frame}
+
+
+\begin{frame}\frametitle{Note the little trick here}
+The function \code{R0\_SLIAR} takes two arguments, \code{p} and \code{p\_fixed}
+\vfill
+However, \code{lapply} (or \code{parLapply} later) only allow dependence on a single variable
+\vfill
+Suppose we have a function \code{f(a,b)}
+\vfill
+We use the construct \code{function(x) f(x,b)} to make \code{f} depend only its first argument
+\vfill
+Similarly, \code{function(x) f(a,x)} would make \code{f} depend only on its second argument
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Sequential works, let's go parallel}
+To run your code in parallel using \code{parLapply}, you need several steps:
+\vfill
+\begin{itemize}
+\item Create a \emph{cluster}, i.e., a group of \emph{workers} that will each execute the function passed as argument to \code{parLapply} (\code{R0\_SLIAR} here). Typically, you want to use all compute cores but one (unless you are on a headless server), otherwise your machine may become unresponsive
+\vfill
+\item Provide each worker with all they need to execute the function. Each worker is an instance of \code{R} running independently
+\vfill
+\item Call \code{parLapply} to have the workers run the code
+\vfill
+\item Close the cluster to ``free up'' the workers
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{Let's go parallel! (and time our run)}
+<<>>=
+nb_cores <- parallel::detectCores() - 1
+nb_cores <- ifelse(nb_cores > 122, 122, nb_cores)
+tictoc::tic("whole parallel phase")
+cl <- parallel::makeCluster(nb_cores)
+parallel::clusterExport(cl, c("params", "R0_SLIAR"))
+tictoc::tic("parLapply")
+result = parallel::parLapply(cl = cl, X = params.sobol.list,
+                             fun =  function(x) R0_SLIAR(x, params))
+tictoc::toc()
+parallel::stopCluster(cl)
+tictoc::toc()
+@
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Just for comparison}
+<<>>=
+tictoc::tic("lapply")
+result = lapply(X = params.sobol.list,
+                FUN =  function(x) R0_SLIAR(x, params))
+tictoc::toc()
+tictoc::tic("vectorised")
+result = R0_SLIAR(params.sobol, params)
+tictoc::toc()
+@
+\end{frame}
+
+
+\begin{frame}\frametitle{Remarks about running in parallel}
+Here, the gain was not massive and the overhead of setting up the cluster was not negligible (cluster setup is sequential so setup time depends on the number of cores)
+\vfill
+One of the machines I run this on has 128 threads. \code{R} has hard coded limit of 128 threads and uses a few of them for other things $\implies$ limit to 122 threads. If you try to use more, your parallel code will not run
+\vfill
+If you want to get rid of this limitation, you need to recompile \code{R} with a higher limit. See a blog post I made about this (\href{https://julien-arino.github.io/blog/2023/R-on-raspberri-pi-and-more-than-128-threads/}{link})
+\vfill
+That post also explains how to set up a cluster using multiple machines
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Now repeat everything for the SLIARVS model}
+\newSubSectionSlide{FIGS/Gemini_Generated_Image_l5l0q6l5l0q6l5l0.jpeg}
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
+\section{Considerations on the final size}
+\newSectionSlide{FIGS/Gemini_Generated_Image_1vpz11vpz11vpz11.jpeg}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
+\section{Using simulations of the ODE}
+\newSectionSlide{FIGS/Gemini_Generated_Image_1vpyz1vpyz1vpyz1.jpeg}
+
+
+\begin{frame}
+In all we have done so far, $\varepsilon$ and $f$ have not been used
+\vfill
+Indeed, they do not play a role in the computation of the basic reproduction number $\R_0$ given by \eqref{eq:R0-SLIAR} or the final size relation given by \eqref{eq:final-size}
+\vfill
+$\varepsilon$ does play a role in determining the ``speed'' of the system, but we have not considered this aspect in our analysis so far
+\vfill
+$f$ helps determine how many individuals die of the disease and won't be discussed here
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{\textsc{Can I have this wrapped up to go?}}
+To finish, we use the command \code{purl} to generate an \code{R} file (\code{basic-computational-analysis.R}) in the CODE directory with all the code chunks in this \code{Rnw} file
+\vfill
+<<convert-Rnw-to-R,warning=FALSE,message=FALSE>>=
+# From https://stackoverflow.com/questions/36868287/purl-within-knit-duplicate-label-error
+rmd_chunks_to_r_temp <- function(file){
+  callr::r(function(file, temp){
+    out_file = sprintf("CODE/%s", gsub(".Rnw", ".R", file))
+    knitr::purl(file, output = out_file, documentation = 1)
+  }, args = list(file))
+}
+rmd_chunks_to_r_temp("basic-computational-analysis.Rnw")
+@
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{About that \code{R} file}
+Source the file \code{CODE/basic-computational-analysis.R} in \code{R} to reproduce all the results in these slides
+\vfill
+Some small changes are required; for instance, when sourcing (instead of knitting or interactively), \code{ggplot} figures are created but not printed, so in the \code{R} file, you need to print them ``manually''
+\vfill
+<<eval=FALSE>>=
+pp = ggplot(...)
+print(pp)
+@
+\end{frame}
+
+\end{document}

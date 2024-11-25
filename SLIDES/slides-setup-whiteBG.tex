@@ -155,59 +155,84 @@
 \definecolor{subsub_header_section}{RGB}{196,44,27}
 %\definecolor{mygold}{rgb}{1,0.843,0}
 % Beginning of a section
-\AtBeginSection[]{
-	{
-	  \setbeamercolor{section in toc}{fg=mygold}
-		\setbeamercolor{background canvas}{bg=section_colour}
-		\begin{frame}[noframenumbering,plain]
-			\framesubtitle{\nameofthepart Chapter \insertromanpartnumber \ -- \iteminsert{\insertpart}}
-			\tableofcontents[
-				currentsection,
-				sectionstyle=show/shaded,
-				subsectionstyle=show/hide/hide,
-				subsubsectionstyle=hide/hide/hide]
-		\end{frame}
-	\addtocounter{page}{-1}
-	%\addtocounter{framenumber}{-1} 
-	}
-}
+% \AtBeginSection[]{
+% 	{
+% 	  \setbeamercolor{section in toc}{fg=mygold}
+% 		\setbeamercolor{background canvas}{bg=section_colour}
+% 		\begin{frame}[noframenumbering,plain]
+% 			\framesubtitle{\nameofthepart Chapter \insertromanpartnumber \ -- \iteminsert{\insertpart}}
+% 			\tableofcontents[
+% 				currentsection,
+% 				sectionstyle=show/shaded,
+% 				subsectionstyle=show/hide/hide,
+% 				subsubsectionstyle=hide/hide/hide]
+% 		\end{frame}
+% 	\addtocounter{page}{-1}
+% 	%\addtocounter{framenumber}{-1} 
+% 	}
+% }
 
-% Beginning of a section
-\AtBeginSubsection[]{
-	{
-	  \setbeamercolor{section in toc}{fg=mygold}
-		\setbeamercolor{background canvas}{bg=subsection_colour}
-		\begin{frame}[noframenumbering,plain]
-				\framesubtitle{\nameofthepart Chapter \insertromanpartnumber \ -- \iteminsert{\insertpart}}
-				\tableofcontents[
-					currentsection,
-					sectionstyle=show/hide,
-					currentsubsection,
-					subsectionstyle=show/shaded/hide,
-					subsubsectionstyle=show/hide/hide]
-			\end{frame}
-		\addtocounter{page}{-1}
-	}
-}
 
-% Beginning of a section
-\AtBeginSubsubsection[]{
-	{
-	  \setbeamercolor{section in toc}{fg=subsub_header_section}
-	  \setbeamercolor{subsubsection in toc}{fg=mygold2}
-	  \setbeamercolor{subsubsection in toc shaded}{fg=mygrey2}
-		\setbeamercolor{background canvas}{bg=subsubsection_colour}
-		\begin{frame}[noframenumbering,plain]
-				\framesubtitle{\nameofthepart Chapter \insertromanpartnumber \ -- \iteminsert{\insertpart}}
-				\tableofcontents[
-					currentsection,
-					sectionstyle=show/hide,
-					currentsubsection,
-					subsectionstyle=show/hide/shaded
-					currentsubsubsection]%,
-					%subsubsectionstyle=hide/hide/shaded]
-					%currentsubsubsection]
-			\end{frame}
-		\addtocounter{page}{-1}
-	}
-}
+% % Beginning of a section
+% \AtBeginSubsection[]{
+% 	{
+% 	  \setbeamercolor{section in toc}{fg=mygold}
+% 		\setbeamercolor{background canvas}{bg=subsection_colour}
+% 		\begin{frame}[noframenumbering,plain]
+% 				\framesubtitle{\nameofthepart Chapter \insertromanpartnumber \ -- \iteminsert{\insertpart}}
+% 				\tableofcontents[
+% 					currentsection,
+% 					sectionstyle=show/hide,
+% 					currentsubsection,
+% 					subsectionstyle=show/shaded/hide,
+% 					subsubsectionstyle=show/hide/hide]
+% 			\end{frame}
+% 		\addtocounter{page}{-1}
+% 	}
+% }
+
+% \newcommand{\newSubSectionSlide}[1]{
+% \begin{frame}[noframenumbering,plain]
+%   \begin{tikzpicture}[remember picture,overlay]
+%     \node[above right,inner sep=0pt,opacity=0.2] at (current page.south west)
+%     {
+%         \includegraphics[height=\paperheight,width=\paperwidth]{#1}
+%     };
+%   \end{tikzpicture}
+%   \setbeamercolor{section in toc}{fg=subsub_header_section}
+%   \setbeamerfont{section in toc}{size=\Large,series=\bfseries}
+%   \setbeamertemplate{section in toc shaded}[default][60]
+%   \setbeamertemplate{subsection in toc shaded}[default][60]
+%   %\setbeamercolor{background canvas}{bg=section_colour}
+%   \tableofcontents[
+%     currentsection,
+%     sectionstyle=show/hide,
+%     currentsubsection,
+%     subsectionstyle=show/shaded/hide,
+%     subsubsectionstyle=show/hide/hide]
+% \end{frame}
+% \addtocounter{page}{-1}
+% }
+
+
+% % Beginning of a section
+% \AtBeginSubsubsection[]{
+% 	{
+% 	  \setbeamercolor{section in toc}{fg=subsub_header_section}
+% 	  \setbeamercolor{subsubsection in toc}{fg=mygold2}
+% 	  \setbeamercolor{subsubsection in toc shaded}{fg=mygrey2}
+% 		\setbeamercolor{background canvas}{bg=subsubsection_colour}
+% 		\begin{frame}[noframenumbering,plain]
+% 				\framesubtitle{\nameofthepart Chapter \insertromanpartnumber \ -- \iteminsert{\insertpart}}
+% 				\tableofcontents[
+% 					currentsection,
+% 					sectionstyle=show/hide,
+% 					currentsubsection,
+% 					subsectionstyle=show/hide/shaded
+% 					currentsubsubsection]%,
+% 					%subsubsectionstyle=hide/hide/shaded]
+% 					%currentsubsubsection]
+% 			\end{frame}
+% 		\addtocounter{page}{-1}
+% 	}
+% }
