@@ -5,8 +5,8 @@ This information is mainly geared towards mathematical modellers but may be usef
 
 If you are registered in one of the courses I teach at the University of Manitoba in which I require `R` coding, e.g., [Mathematics of Data Science (MATH 2740)](https://julien-arino.github.io/math-of-data-science/), some of the vignettes are required material.
 
-Slides are produced using [Quarto](https://quarto.org/).
-Slide sources and all the code used are available on the [GitHub repo](https://github.com/julien-arino/R-for-modellers/). Feel free to use any material; if you find this useful, I will be happy to know. 
+Slides are produced using [Quarto](https://quarto.org/) and, for a few, using [Sweave](https://www.stat.ethz.ch/R-manual/R-devel/library/utils/doc/Sweave.pdf).
+Slide sources and all the code used are available on the [GitHub repo](https://github.com/julien-arino/R-for-modellers/). Feel free to use any material; if you find this useful, I will be happy to know, that's all.
 
 Material here is inherently work in progress. 
 I will be updating the vignettes from time to time to reflect a better understanding of the material, new packages, etc. 
@@ -15,21 +15,28 @@ Their order is not relevant and somewhat random.
 
 When present, the YouTube logo points to the video of the vignette. Those vignettes for which a video is available are more complete than those without.
 
+{% assign pdf_files = site.static_files | where: "extname", ".pdf" %}
+{% assign qmd_files = site.pages | where_exp: "page", "page.path contains '.qmd'" %}
+
 <ul>
-{% for file in site.pages %}
-  {% if file.path contains 'SLIDES' %}
-    {% if file.path contains 'vignette' %}
-      {% unless file.path contains 'FIGS' %}
-        {% if file.path contains 'qmd' %}
-          <li><a href="https://julien-arino.github.io/R-for-modellers/SLIDES/{{ file.name | remove: ".qmd" }}.html">{{ file.long-title }}</a>
-          {% if file.youtube %}
-            <a href="{{ file.youtube }}"><img src="assets/img/yt_logo_rgb_light.png" height="15px" /></a>
-          {% endif %}
-          </li>
+{% for qmd_file in qmd_files %}
+    {% assign has_pdf_version = false %}
+    {% capture q_file %}  {{ qmd_file.name | remove: ".qmd" }} {% endcapture %}
+    {% for pdf_file in pdf_files %}
+        {% capture p_file %} {{ pdf_file.name | remove: ".pdf" }} {% endcapture %}
+        {% if p_file contains q_file or q_file contains p_file or p_file == q_file %}
+            {% assign has_pdf_version = true %}
         {% endif %}
-      {% endunless %}
+    {% endfor %}
+    {% if has_pdf_version %}
+        <li><a href="https://julien-arino.github.io/R-for-modellers/SLIDES/{{ qmd_file.name | remove: ".qmd" }}.pdf">{{ qmd_file.long-title }}</a>
+    {% else %} 
+        <li><a href="https://julien-arino.github.io/R-for-modellers/SLIDES/{{ qmd_file.name | remove: ".qmd" }}.html">{{ qmd_file.long-title }}</a>
     {% endif %}
-  {% endif %}
+    {% if qmd_file.youtube %}
+        <a href="{{ qmd_file.youtube }}"><img src="assets/img/yt_logo_rgb_light.png" height="15px" /></a>
+    {% endif %}
+    </li>
 {% endfor %}
 </ul>
 
