@@ -56,3 +56,5 @@ rsconnect/
 *.toc
 *.vrb
 *vignette*.tex
+
+*-concordance.tex

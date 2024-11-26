@@ -1,0 +1,415 @@
+\documentclass[aspectratio=169]{beamer}\usepackage[]{graphicx}\usepackage[]{xcolor}
+% maxwidth is the original width if it is less than linewidth
+% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
+\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
+\newcommand{\hlsng}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
+\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
+\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hldef}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
+\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
+\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
+\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
+\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+\let\hlipl\hlkwb
+
+\usepackage{framed}
+\makeatletter
+\newenvironment{kframe}{%
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
+
+\usepackage{alltt}
+
+
+
+
+\input{slides-setup-whiteBG.tex}
+
+\title[Basic computational analysis]{Basic computational analysis of a mathematical model}
+\subtitle{02 -- Using \textit{simulations}}
+\author{\texorpdfstring{Julien Arino\newline University of Manitoba\newline\url{julien.arino@umanitoba.ca}}{Julien Arino}}
+\date{}
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% TITLE AND OUTLINE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\titlepagewithfigure{FIGS/Gemini_Generated_Image_fv8nozfv8nozfv8n.jpeg}
+
+\begin{frame}\frametitle{\emph{Using simulations} ?}
+To caricature, suppose we have an IVP $x'=f(x,\mu)$, $x(t_0)=x_0$, where $\mu$ are parameters
+\vfill
+We can find functional expressions telling us that, say, if $\Psi(\mu)<0$, then the system has a certain behaviour and that this changes when $\Psi(\mu)>0$
+\vfill
+This type of functional relationship between model parameters and behaviour is what is in the first set of slides for this lecture
+\vfill
+There are cases also where we need to numerically solve the IVP to obtain, say, the value of an equilibrium $x^\star$, because there is no closed-form formula giving $x^\star$ as a function of $\mu$
+\vfill
+This type of work \emph{uses simulations} and is what we are interested in here
+\end{frame}
+
+\outlinepage{FIGS/Gemini_Generated_Image_fv8np0fv8np0fv8n.jpeg}
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
+\section{Course description}
+\newSectionSlide{FIGS/Gemini_Generated_Image_ycrtwoycrtwoycrt.jpeg}
+
+\begin{frame}\frametitle{This is not a \emph{vignette}!}
+The vignettes in this repo illustrate how to use \code{R} to consider several problems that a modeller is faced with
+\vfill
+This is somewhat orthogonal: it takes the information in several of these vignettes and integrates it in the perspective of computational analysis
+\vfill
+I am including it in this repo, however, because of the non-empty intersection between the two: this is \code{R} and is related to modelling
+\end{frame}
+
+\begin{frame}\frametitle{Course objectives}
+The objective of the course is to introduce notions used in the computational analysis of a mathematical model
+\vfill
+This is not an exhaustive course on the subject, but rather an introduction to some basic concepts
+\vfill
+See this as a minimal toolkit to get you started
+\vfill
+If you are a graduate student of mine, take this as a hint: this is the type of stuff that I expect to see in your work
+\vfill
+Note that I am not doing my job properly: I am skipping a very important part of any computational analysis by not doing a proper \emph{return to biology}. This is an essential part of any computational analysis but is outside the scope of these slides
+\end{frame}
+
+\begin{frame}\frametitle{Course slides}
+These slides are produced using \code{knitr} in \code{Rnw}, i.e., \code{R} within \LaTeX, to illustrate some of the concepts
+\vfill
+To generate them, you need to have \code{R} and \LaTeX\ installed on your computer and, preferably, \code{RStudio}
+\vfill
+The code ensures that all the required packages are installed
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Code chunks}
+In \code{Rnw} files, code chunks are delimited by \code{<<>>=} and \code{@}
+
+\vfill
+Code chunks are highlighted in the RStudio editor, so you should be able to identify them easily
+\vfill
+I also generate an \code{R} file with all the code (\code{basic-computational-analysis.Rnw}). It is in the CODE directory of the repo. See the last slide for details
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
+\section{Some toy epidemiological models}
+\newSectionSlide{FIGS/Gemini_Generated_Image_fv8np1fv8np1fv8n.jpeg}
+
+\begin{frame}\frametitle{The toy models}
+I illustrate the methods using two toy models
+\vfill
+Both are epidemiological models I have worked on
+\vfill
+Some of the computational analysis is common to both models, some is specific
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The SLIAR epidemic model}
+\newSubSectionSlide{FIGS/Gemini_Generated_Image_fv8np3fv8np3fv8n.jpeg}
+
+\begin{frame}\frametitle{The SLIAR epidemic model}
+\vskip0pt plus 1filll
+Kermack-McKendrick SIR (susceptible-infectious-removed) is a little too simple for many diseases:
+\begin{itemize}
+\item No incubation period
+\item A lot of infectious diseases (in particular respiratory) have mild and less mild forms depending on the patient
+\end{itemize}
+\vskip0pt plus 1filll
+$\implies$ model with SIR but also L(atent) and (A)symptomatic individuals, in which I are now symptomatic individuals
+\vskip0pt plus 1filll
+\tiny
+Arino, Brauer, PvdD, Watmough \& Wu, \href{http://dx.doi.org/10.1098/rsif.2006.0112}{Simple models for containment of a pandemic}, \emph{Journal of the Royal Society Interface} (2006)
+\end{frame}
+
+
+\begin{frame}\frametitle{The SLIAR epidemic model -- Flow diagram}
+\centering
+\resizebox{\textwidth}{!}{
+  \begin{tikzpicture}[%transform canvas={scale=1.3},
+      auto,
+      cloud/.style={minimum width={width("N-1")+2pt},
+      draw, 
+      ellipse,
+      fill=gray!20}]
+    \node [cloud, fill=green!90] (S) {$S$};
+    \node [cloud, right=2cm of S, fill=red!30] (L) {$L$};
+    \node [cloud, above right=of L, fill=red!90] (I) {$I$};
+    \node [cloud, below right=of L, fill=red!60] (A) {$A$};
+    \node [cloud, below right=of I, fill=blue!90] (R) {$R$};
+    \node [cloud, right=1.5cm of I, draw=none, fill=none] (h1) {};
+    %% Infections
+    \path [line, very thick] (S) to node [midway, above] (TextNode) {$\beta S(I+\delta A)$} (L);
+    \path [line, very thick] (L) to node [midway, above, sloped] (TextNode) {$p\varepsilon L$} (I);
+    \path [line, very thick] (L) to node [midway, above, sloped] (TextNode) {$(1-p)\varepsilon L$} (A);
+    \path [line, very thick] (I) to node [midway, above, sloped] (TextNode) {$f\gamma I$} (R);
+    \path [line, very thick] (A) to node [midway, above, sloped] (TextNode) {$\eta A$} (R);
+    \path [line, very thick] (I) to node [midway, above, sloped] (TextNode) {$(1-f)\gamma I$} (h1);
+  \end{tikzpicture}
+}
+\end{frame}
+
+\begin{frame}\frametitle{The SLIAR epidemic model -- Equations}
+\begin{subequations}\label{sys:SLIAR}
+\begin{align}
+S\pprime & = - \beta S (I+\delta A) \\
+L\pprime & = \beta S(I+\delta A) - \varepsilon L \\
+I\pprime & = p\varepsilon L - \gamma I \\
+A\pprime & = p\varepsilon L - \eta A \\
+R\pprime & = f\gamma I+\eta A
+\end{align}
+\end{subequations}
+\end{frame}
+
+
+
+\begin{frame}\frametitle{The SLIAR epidemic model -- Behaviour}
+It's always a good idea to not barge into the computational analysis of a model without an understanding of its behaviour
+\vfill
+This is an \defword{epidemic} model: all its solutions go to \emph{a} disease-free equilibrium
+\vfill
+There is a \defword{basic reproduction number} $\R_0$ (next slide) that determines whether the disease will spread or not. If $\R_0<1$, the disease dies out without first going through an outbreakl if $\R_0>1$, the disease goes through an outbreak, then dies out
+\vfill
+As with many epidemic models, we can also caracterise the so-called \defword{final size} of the epidemic
+\end{frame}
+
+\begin{frame}{The SLIAR epidemic model -- Basic reproduction number \& Final size}
+We find the basic reproduction number
+\begin{equation}\label{eq:R0-SLIAR}
+\mathcal{R}_0=\beta
+\left(
+\frac{p}{\gamma}+\frac{\delta(1-p)}{\eta}
+\right)S_0
+\end{equation}
+\vfill
+The final size relation takes the form
+\begin{equation}\label{eq:final-size}
+S_0(\ln S_0-\ln S_\infty) =
+\mathcal{R}_0(S_0-S_\infty)+\frac{\mathcal{R}_0I_0}{\rho}
+\end{equation}
+with 
+\[
+\rho=\frac{p}{\gamma}+\frac{\delta(1-p)}{\eta}
+\]
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The SLIARVS endemic model}
+\newSubSectionSlide{FIGS/Gemini_Generated_Image_fv8np2fv8np2fv8n.jpeg}
+
+\begin{frame}\frametitle{The SLIARVS endemic model}
+\vskip0pt plus 1filll
+The SLIAR model is an epidemic model: all its solutions go to \emph{a} disease-free equilibrium
+\vskip0pt plus 1filll
+Here we consider a complexification of the SLIAR epidemic model:
+\begin{itemize}
+\item Add vital dynamics (births and deaths), a.k.a. demography
+\item Add a vaccination compartment $V$, with imperfect and waning vaccine
+\item Interpret $R$ as \emph{recovered} (and immune) individuals instead of \emph{removed}
+\item Add loss of immunity (waning immunity)
+\end{itemize}
+\vskip0pt plus 1filll
+This makes the model \defword{endemic}: it has an endemic equilibrium (EEP) and (roughly) $\R_0$ determines if the system goes to the DFE or the EEP
+\vskip0pt plus 1filll
+\tiny
+Arino \& Milliken, \href{https://doi.org/10.1007/s00285-022-01765-9}{Bistability in deterministic and stochastic SLIAR-type models with imperfect and waning vaccine protection}, \emph{Journal of Mathematical Biology} (2022)
+\end{frame}
+
+
+\begin{frame}\frametitle{The SLIARVS endemic model -- Flow diagram}
+\centering
+\begin{tikzpicture}[
+  scale=1, every node/.style={transform shape},
+	auto, %node distance = 2cm, auto,
+	box/.style={minimum width={width("N-1")+2pt},
+		draw, rectangle,fill=gray!20}]
+	%% States
+	\node [box] at (0,0) (S) {$S$};
+	\node [box] at (2,-3) (V) {$V$};
+	\node [box] at (4,0) (L) {$L$};
+	\node [box] at (8,2) (I) {$I$};
+	\node [box] at (8,-2) (A) {$A$};
+	\node [box] at (12,0) (R) {$R$};
+	%% Flows
+	\path [line, thick, dashed] (-2,0) to node [midway, above] (TextNode) {$(1-v)B$} (S);
+	\path [line, thick, dashed] (0,-3) to node [midway, below] (TextNode) {$vB$} (V);
+	\path [line, thick] (S) to node [midway, below, sloped] (TextNode) {$\beta S(I+\eta A)$} (L);
+	\path [line, thick, bend left] (S) to node [midway, above, sloped] (TextNode) {$eS$} (V);
+	\path [line, thick, bend left] (V) to node [sloped, midway, below] (TextNode) {$\omega_v V$} (S);
+	\path [line, thick] (V) to node [midway, below, sloped] (TextNode) {$(1-\sigma)\beta V(I+\eta A)$} (L);
+	\path [line, thick] (L) to node [sloped, midway, above] (TextNode) {$\pi\varepsilon L$} (I);
+	\path [line, thick] (L) to node [sloped, midway, below] (TextNode) {$(1-\pi)\varepsilon L$} (A);
+	\path [line, thick] (I) to node [sloped, midway, above] (TextNode) {$\gamma I$} (R);
+  \path [line, thick] (A) to node [sloped, midway, below] (TextNode) {$\gamma I$} (R);
+	\draw [>=latex,->, thick, rounded corners] (R) -- +(0,2.5) -- ++(-12,2.5) node[sloped, midway, above] {$\omega_r R$} -- (S);
+  \path [line, thick, dashed] (S) to node [sloped, midway, above] (TextNode) {$dS$} ++(1.5,1.5);
+  \path [line, thick, dashed] (V) to node [sloped, midway, below] (TextNode) {$dV$} ++(0,-1.5);
+  \path [line, thick, dashed] (L) to node [sloped, midway, above] (TextNode) {$dL$} ++(0,1.5);
+  \path [line, thick] (I) to node [sloped, midway, above] (TextNode) {$(d+\mu)I$} ++(0,-1.75);
+  \path [line, thick, dashed] (A) to node [sloped, midway, below] (TextNode) {$dA$} ++(0,-1.5);
+  \path [line, thick, dashed] (R) to node [sloped, midway, below] (TextNode) {$dR$} ++(0,-1.5);
+\end{tikzpicture}
+\end{frame}
+
+
+\begin{frame}\frametitle{The SLIARVS endemic model -- Equations}
+\begin{subequations}\label{sys:SVLIARS}
+\begin{align}
+S\pprime & = (1-v)B + \omega_vV + \omega_rR - \beta S (I+\eta A) - (e + d) S \\
+V\pprime & = vB + e S - (1-\sigma )\beta V (I+\eta A) - (\omega_v + d) V \\
+L\pprime & = \beta (S+(1-\sigma)V) (I+\eta A) - (\varepsilon + d) L \\
+I\pprime & = \pi\varepsilon L - (\gamma+ \mu + d) I \\
+A\pprime & = (1 - \pi)\varepsilon L - (\gamma+ d) A \\
+R\pprime & = \gamma (A + I) - (\omega_r + d) R
+\end{align}
+\end{subequations}
+\end{frame}
+
+
+\begin{frame}\frametitle{The SLIARVS endemic model -- DFE}
+In \eqref{sys:SVLIARS} without equation for $V'$ and with $v=e=\omega_v=0$, disease-free equilibrium (DFE) has $\bar S_0=B/d$
+\vfill
+DFE of full \eqref{sys:SVLIARS} is $E_0 = (S_0,V_0,0,0,0,0)$, where
+\begin{equation}\label{eq:DFE-SVLIARS}
+S_0 = \frac{(1-v)d+\omega_v}{e+\omega_v+d}\; \frac Bd 
+\quad\textrm{and}\quad
+V_0 = \frac{vd+e}{e+\omega_v+d}\;\frac Bd
+\end{equation}
+\end{frame}
+
+
+\begin{frame}\frametitle{The SLIARVS endemic model -- Reproduction numbers}
+With the combination parameter
+\begin{equation}\label{eq:lambda}
+\lambda = \beta\varepsilon
+\frac{(\gamma+\mu+d)\eta(1-\pi) + \pi(\gamma + d)}
+{(\gamma + d)(\gamma+\mu+d)}
+\end{equation}
+we have
+\begin{equation}\label{eq:R0-SLIARS}
+\mathcal{R}_0 = \frac{\lambda}{\varepsilon+d}\bar S_0
+\end{equation}
+\begin{equation}\label{eq:Rv-SVLIARS}
+\mathcal{R}_v=\frac{\lambda}{\varepsilon+d}(S_0+(1-\sigma)V_0)
+\end{equation}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Tackling the models computationally}
+\newSubSectionSlide{FIGS/Gemini_Generated_Image_fv8np7fv8np7fv8n.jpeg}
+
+\begin{frame}
+The models are systems of ODEs, we could simulate and show the result, but who cares if we just show the behaviour?
+\begin{itemize}
+\item System \eqref{sys:SLIAR} goes to the DFE every time, after undergoing (or not) an epidemic depending on the value of $\R_0$
+\item System \eqref{sys:SVLIARS} goes to the DFE or the EEP, depending on the value of $\R_0$
+\end{itemize}
+\vfill
+Booooriiiing!
+\vfill
+We can still do things with the solutions, but we'll have to make it worthwhile...
+\vfill
+To get more insight into the model, we can use the formula for the reproduction numbers \eqref{eq:R0-SLIAR}, \eqref{eq:R0-SLIARS} and \eqref{eq:Rv-SVLIARS}, the final size relation \eqref{eq:final-size} and other quantities to study the model: this will show how these important quantities depend on parameters
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
+\section{Using simulations of the ODE}
+\newSectionSlide{FIGS/Gemini_Generated_Image_1vpyz1vpyz1vpyz1.jpeg}
+
+
+\begin{frame}
+In all we have done so far, $\varepsilon$ and $f$ have not been used
+\vfill
+Indeed, they do not play a role in the computation of the basic reproduction number $\R_0$ given by \eqref{eq:R0-SLIAR} or the final size relation given by \eqref{eq:final-size}
+\vfill
+$\varepsilon$ does play a role in determining the ``speed'' of the system, but we have not considered this aspect in our analysis so far
+\vfill
+$f$ helps determine how many individuals die of the disease and won't be discussed here
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{\textsc{Can I have this wrapped up to go?}}
+To finish, we use the command \code{purl} to generate an \code{R} file (\code{basic-computational-analysis.R}) in the CODE directory with all the code chunks in this \code{Rnw} file
+\vfill
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcom{# From https://stackoverflow.com/questions/36868287/purl-within-knit-duplicate-label-error}
+\hldef{rmd_chunks_to_r_temp} \hlkwb{<-} \hlkwa{function}\hldef{(}\hlkwc{file}\hldef{)\{}
+  \hldef{callr}\hlopt{::}\hlkwd{r}\hldef{(}\hlkwa{function}\hldef{(}\hlkwc{file}\hldef{,} \hlkwc{temp}\hldef{)\{}
+    \hldef{out_file} \hlkwb{=} \hlkwd{sprintf}\hldef{(}\hlsng{"../CODE/%s"}\hldef{,} \hlkwd{gsub}\hldef{(}\hlsng{".Rnw"}\hldef{,} \hlsng{".R"}\hldef{, file))}
+    \hldef{knitr}\hlopt{::}\hlkwd{purl}\hldef{(file,} \hlkwc{output} \hldef{= out_file,} \hlkwc{documentation} \hldef{=} \hlnum{1}\hldef{)}
+  \hldef{\},} \hlkwc{args} \hldef{=} \hlkwd{list}\hldef{(file))}
+\hldef{\}}
+\hlkwd{rmd_chunks_to_r_temp}\hldef{(}\hlsng{"basic-computational-analysis-2-simulations.Rnw"}\hldef{)}
+\end{alltt}
+\begin{verbatim}
+## [1] "../CODE/basic-computational-analysis-2-simulations.R"
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{About that \code{R} file}
+Source the file \code{basic-computational-analysis-2-simulations.R} (in the \code{CODE} directory) in \code{R} to reproduce all the results in these slides
+\vfill
+Some small changes are required; for instance, when sourcing (instead of knitting or interactively), \code{ggplot} figures are created but not printed, so in the \code{R} file, you need to print them ``manually''
+\vfill
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hldef{pp} \hlkwb{=} \hlkwd{ggplot}\hldef{(...)}
+\hlkwd{print}\hldef{(pp)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+\end{frame}
+
+\end{document}
