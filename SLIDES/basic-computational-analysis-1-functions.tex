@@ -1394,13 +1394,13 @@ Call the function with arguments for the number of samples and the number of par
 \hlkwd{head}\hldef{(params.lhs)}
 \end{alltt}
 \begin{verbatim}
-##       delta          p     gamma       eta      beta
-## 1 0.8071189 0.82593010 0.7240572 0.1682574 0.4777269
-## 2 0.5592378 0.02339682 0.1671804 0.7311842 0.1715592
-## 3 0.5878560 0.72620811 0.3368387 0.4749755 0.8139687
-## 4 0.6416634 0.71584999 0.2499241 0.3093368 0.5962585
-## 5 0.6691014 0.12847221 0.1019496 0.1287732 0.8552293
-## 6 0.3453870 0.85983830 0.8939880 0.4173159 0.1367271
+##       delta          p      gamma       eta      beta
+## 1 0.2196281 0.65674325 0.47224889 0.6055470 0.4467295
+## 2 0.3923825 0.70044379 0.18594261 0.3877079 0.6882853
+## 3 0.1343409 0.23472237 0.40297181 0.6030566 0.9984018
+## 4 0.9139961 0.09964145 0.05388207 0.9800108 0.7528688
+## 5 0.5624563 0.42259898 0.19264973 0.6475799 0.9647556
+## 6 0.3854645 0.68503310 0.40032684 0.9348806 0.3037644
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -1472,11 +1472,11 @@ x = x_{\min} + \xi (x_{\max} - x_{\min})
 \toprule
   & Grid 1 & Grid 2 & Sobol & LHS\\
 \midrule
-delta & 0.379 & 0.389 & 0.413 & 0.416\\
-p & 0.646 & 0.663 & 0.702 & 0.703\\
-gamma & -0.593 & -0.614 & -0.658 & -0.659\\
-eta & -0.362 & -0.370 & -0.389 & -0.388\\
-beta & 0.878 & 0.885 & 0.900 & 0.899\\
+delta & 0.379 & 0.389 & 0.413 & 0.409\\
+p & 0.646 & 0.663 & 0.702 & 0.704\\
+gamma & -0.593 & -0.614 & -0.658 & -0.660\\
+eta & -0.362 & -0.370 & -0.389 & -0.390\\
+beta & 0.878 & 0.885 & 0.900 & 0.900\\
 \bottomrule
 \end{tabular}
 
@@ -1604,14 +1604,14 @@ To run your code in parallel using \code{parLapply}, you need several steps:
 \hldef{tictoc}\hlopt{::}\hlkwd{toc}\hldef{()}
 \end{alltt}
 \begin{verbatim}
-## parLapply: 0.722 sec elapsed
+## parLapply: 0.751 sec elapsed
 \end{verbatim}
 \begin{alltt}
 \hldef{parallel}\hlopt{::}\hlkwd{stopCluster}\hldef{(cl)}
 \hldef{tictoc}\hlopt{::}\hlkwd{toc}\hldef{()}
 \end{alltt}
 \begin{verbatim}
-## whole parallel phase: 1.117 sec elapsed
+## whole parallel phase: 1.133 sec elapsed
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -1627,7 +1627,7 @@ To run your code in parallel using \code{parLapply}, you need several steps:
 \hldef{tictoc}\hlopt{::}\hlkwd{toc}\hldef{()}
 \end{alltt}
 \begin{verbatim}
-## lapply: 0.988 sec elapsed
+## lapply: 1.031 sec elapsed
 \end{verbatim}
 \begin{alltt}
 \hldef{tictoc}\hlopt{::}\hlkwd{tic}\hldef{(}\hlsng{"vectorised"}\hldef{)}
@@ -1635,7 +1635,7 @@ To run your code in parallel using \code{parLapply}, you need several steps:
 \hldef{tictoc}\hlopt{::}\hlkwd{toc}\hldef{()}
 \end{alltt}
 \begin{verbatim}
-## vectorised: 0.003 sec elapsed
+## vectorised: 0.002 sec elapsed
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -1669,21 +1669,6 @@ That post also explains how to set up a cluster using multiple machines
 %%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%
-\section{Using simulations of the ODE}
-\newSectionSlide{FIGS/Gemini_Generated_Image_1vpyz1vpyz1vpyz1.jpeg}
-
-
-\begin{frame}
-In all we have done so far, $\varepsilon$ and $f$ have not been used
-\vfill
-Indeed, they do not play a role in the computation of the basic reproduction number $\R_0$ given by \eqref{eq:R0-SLIAR} or the final size relation given by \eqref{eq:final-size}
-\vfill
-$\varepsilon$ does play a role in determining the ``speed'' of the system, but we have not considered this aspect in our analysis so far
-\vfill
-$f$ helps determine how many individuals die of the disease and won't be discussed here
-\end{frame}
-
-
 \begin{frame}[fragile]\frametitle{\textsc{Can I have this wrapped up to go?}}
 To finish, we use the command \code{purl} to generate an \code{R} file (\code{basic-computational-analysis.R}) in the CODE directory with all the code chunks in this \code{Rnw} file
 \vfill
@@ -1707,7 +1692,7 @@ To finish, we use the command \code{purl} to generate an \code{R} file (\code{ba
 \end{frame}
 
 \begin{frame}[fragile]\frametitle{About that \code{R} file}
-Source the file \code{CODE/basic-computational-analysis.R} in \code{R} to reproduce all the results in these slides
+Source the file \code{basic-computational-analysis-1-functions.R} (in the \code{CODE} directory) in \code{R} to reproduce all the results in these slides
 \vfill
 Some small changes are required; for instance, when sourcing (instead of knitting or interactively), \code{ggplot} figures are created but not printed, so in the \code{R} file, you need to print them ``manually''
 \vfill

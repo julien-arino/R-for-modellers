@@ -44,7 +44,7 @@ When present, the YouTube logo points to the video of the vignette. Those vignet
 
 I have started preparing some lectures that take a transversal approach, digging into one topic in detail using a variety of techniques illustrated in the vignettes above. For the time being, there is a single such lecture here, but I aim to make others. (If you have a request for a topic, feel free to get in touch.)
 
-- [Basic computational analysis of a model](https://julien-arino.github.io/R-for-modellers/SLIDES/basic-computational-analysis.pdf). Note that this is work in progress.
+- [Basic computational analysis of a model](https://julien-arino.github.io/R-for-modellers/SLIDES/basic-computational-analysis-1-functions.pdf). Note that this is work in progress.
 
 
 ## Note pour les étudiants francophones

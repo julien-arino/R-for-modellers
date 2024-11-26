@@ -40,10 +40,6 @@ if (plot_blackBG) {
 cat(input_setup)
 
 
-## ----echo=FALSE---------------------------------------------------------------
-# Just to make sure RStudio highlights properly until the next code chunk
-
-
 ## ----convert-Rnw-to-R,warning=FALSE,message=FALSE-----------------------------
 # From https://stackoverflow.com/questions/36868287/purl-within-knit-duplicate-label-error
 rmd_chunks_to_r_temp <- function(file){

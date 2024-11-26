@@ -1430,21 +1430,6 @@ That post also explains how to set up a cluster using multiple machines
 %%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%
-\section{Using simulations of the ODE}
-\newSectionSlide{FIGS/Gemini_Generated_Image_1vpyz1vpyz1vpyz1.jpeg}
-
-
-\begin{frame}
-In all we have done so far, $\varepsilon$ and $f$ have not been used
-\vfill
-Indeed, they do not play a role in the computation of the basic reproduction number $\R_0$ given by \eqref{eq:R0-SLIAR} or the final size relation given by \eqref{eq:final-size}
-\vfill
-$\varepsilon$ does play a role in determining the ``speed'' of the system, but we have not considered this aspect in our analysis so far
-\vfill
-$f$ helps determine how many individuals die of the disease and won't be discussed here
-\end{frame}
-
-
 \begin{frame}[fragile]\frametitle{\textsc{Can I have this wrapped up to go?}}
 To finish, we use the command \code{purl} to generate an \code{R} file (\code{basic-computational-analysis.R}) in the CODE directory with all the code chunks in this \code{Rnw} file
 \vfill
