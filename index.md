@@ -1,3 +1,7 @@
+---
+title: "R for Modellers: An Introduction for Modellers"
+---
+
 # R for modellers
 
 These small snapshots ("vignettes") illustrate techniques in `R`.
