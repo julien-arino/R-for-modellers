@@ -2,7 +2,10 @@
 vignette-nb: "13"
 title: RStudio
 long-title: Vignette 13 - RStudio
-description-meta: Julien Arino - R for modellers - Vignette 13 - RStudio
+include-in-header:
+  text: |
+    <meta name="description" content="Julien Arino - R for modellers - Vignette 13 - RStudio" />
+
 author: Julien Arino
 institute: University of Manitoba*
 format: 

@@ -2,7 +2,10 @@
 vignette-nb: "23"
 title: Sensitivity analysis in R
 long-title: Vignette 23 - Sensitivity analysis in R
-description-meta: Julien Arino - R for modellers - Vignette 23 - Sensitivity analysis in R
+include-in-header:
+  text: |
+    <meta name="description" content="Julien Arino - R for modellers - Vignette 23 - Sensitivity analysis in R" />
+
 author: Julien Arino
 institute: University of Manitoba*
 format:

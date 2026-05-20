@@ -2,7 +2,10 @@
 vignette-nb: "09"
 title: Data wrangling
 long-title: Vignette 09 - Data wrangling
-description-meta: Julien Arino - R for modellers - Vignette 09 - Data wrangling
+include-in-header:
+  text: |
+    <meta name="description" content="Julien Arino - R for modellers - Vignette 09 - Data wrangling" />
+
 author: Julien Arino
 institute: University of Manitoba*
 format: 

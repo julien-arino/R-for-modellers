@@ -2,7 +2,10 @@
 vignette-nb: "24"
 title: R from the command line
 long-title: Vignette 24 - R from the command line
-description-meta: Julien Arino - R for modellers - Vignette 24 - R from the command line
+include-in-header:
+  text: |
+    <meta name="description" content="Julien Arino - R for modellers - Vignette 24 - R from the command line" />
+
 author: Julien Arino
 institute: University of Manitoba*
 format: 

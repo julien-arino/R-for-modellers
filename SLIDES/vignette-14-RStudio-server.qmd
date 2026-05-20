@@ -2,7 +2,10 @@
 vignette-nb: "14"
 title: RStudio server
 long-title: Vignette 14 - RStudio server
-description-meta: Julien Arino - R for modellers - Vignette 14 - RStudio server
+include-in-header:
+  text: |
+    <meta name="description" content="Julien Arino - R for modellers - Vignette 14 - RStudio server" />
+
 author: Julien Arino
 institute: University of Manitoba*
 format: 

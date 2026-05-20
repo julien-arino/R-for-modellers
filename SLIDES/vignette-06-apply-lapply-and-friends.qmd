@@ -2,7 +2,10 @@
 vignette-nb: "06"
 title: apply, lapply and friends
 long-title: Vignette 06 - apply, lapply and friends
-description-meta: Julien Arino - R for modellers - Vignette 06 - apply, lapply and friends.
+include-in-header:
+  text: |
+    <meta name="description" content="Julien Arino - R for modellers - Vignette 06 - apply, lapply and friends." />
+
 author: Julien Arino
 institute: University of Manitoba*
 format: 

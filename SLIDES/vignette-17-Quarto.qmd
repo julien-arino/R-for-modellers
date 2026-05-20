@@ -2,7 +2,10 @@
 vignette-nb: "17"
 title: Quarto
 long-title: Vignette 17 - Quarto
-description-meta: Julien Arino - R for modellers - Vignette 17 - Quarto
+include-in-header:
+  text: |
+    <meta name="description" content="Julien Arino - R for modellers - Vignette 17 - Quarto" />
+
 author: Julien Arino
 institute: University of Manitoba*
 format: 

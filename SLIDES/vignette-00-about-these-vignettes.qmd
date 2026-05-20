@@ -2,7 +2,9 @@
 vignette-nb: "00"
 title: About these "vignettes"
 long-title: Vignette 00 - About these "vignettes"
-description-meta: Julien Arino - R for modellers - Vignette 00 - About these "vignettes"
+include-in-header:
+  text: |
+    <meta name="description" content="Julien Arino - R for modellers - Vignette 00 - About these 'vignettes'" />
 author: Julien Arino
 institute: University of Manitoba*
 youtube: https://youtu.be/gsRSLK4PZbQ

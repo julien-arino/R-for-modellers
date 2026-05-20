@@ -2,7 +2,10 @@
 vignette-nb: "16"
 title: Sweave
 long-title: Vignette 16 - Sweave
-description-meta: Julien Arino - R for modellers - Vignette 16 - Sweave
+include-in-header:
+  text: |
+    <meta name="description" content="Julien Arino - R for modellers - Vignette 16 - Sweave" />
+
 author: Julien Arino
 institute: University of Manitoba*
 format: 

@@ -2,7 +2,10 @@
 vignette-nb: "18"
 title: Shiny
 long-title: Vignette 18 - Shiny
-description-meta: Julien Arino - R for modellers - Vignette 18 - Shiny
+include-in-header:
+  text: |
+    <meta name="description" content="Julien Arino - R for modellers - Vignette 18 - Shiny" />
+
 author: Julien Arino
 institute: University of Manitoba*
 format: 

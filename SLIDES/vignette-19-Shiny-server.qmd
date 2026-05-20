@@ -2,7 +2,10 @@
 vignette-nb: "19"
 title: Shiny-server
 long-title: Vignette 19 - Shiny-server
-description-meta: Julien Arino - R for modellers - Vignette 19 - Shiny-server
+include-in-header:
+  text: |
+    <meta name="description" content="Julien Arino - R for modellers - Vignette 19 - Shiny-server" />
+
 author: Julien Arino
 institute: University of Manitoba*
 format: 
