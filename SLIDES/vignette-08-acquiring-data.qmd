@@ -1,6 +1,6 @@
 ---
 vignette-nb: "08"
-title: Acquiring data
+title: "Acquiring and Importing Data in R"
 long-title: Vignette 08 - Acquiring data
 include-in-header:
   text: |

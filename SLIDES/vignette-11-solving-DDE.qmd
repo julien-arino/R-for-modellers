@@ -1,6 +1,6 @@
 ---
 vignette-nb: "11"
-title: Solving DDE in R
+title: "Solving Delay Differential Equations (DDEs) in R"
 long-title: Vignette 11 - Solving DDE in R
 include-in-header:
   text: |

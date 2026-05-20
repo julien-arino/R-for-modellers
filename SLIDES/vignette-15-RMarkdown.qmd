@@ -1,6 +1,6 @@
 ---
 vignette-nb: "15"
-title: RMarkdown
+title: "RMarkdown: Dynamic Documents With R"
 long-title: Vignette 15 - RMarkdown
 include-in-header:
   text: |
