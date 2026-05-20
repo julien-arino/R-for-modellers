@@ -1,6 +1,6 @@
 ---
 vignette-nb: "17"
-title: "Quarto: Next-Generation Scientific Publishing"
+title: "Quarto: next-generation scientific publishing"
 long-title: Vignette 17 - Quarto
 include-in-header:
   text: |

@@ -1,6 +1,6 @@
 ---
 vignette-nb: "10"
-title: "Solving ODEs in R: Numerical Methods and Examples"
+title: "Solving ODEs in R: numerical methods and examples"
 long-title: Vignette 10 - Solving ODE in R
 include-in-header:
   text: |

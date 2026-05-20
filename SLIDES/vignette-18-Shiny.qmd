@@ -1,6 +1,6 @@
 ---
 vignette-nb: "18"
-title: "Shiny: Interactive Web Apps With R"
+title: "Shiny: interactive web apps with R"
 long-title: Vignette 18 - Shiny
 include-in-header:
   text: |

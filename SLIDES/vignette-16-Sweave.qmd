@@ -1,6 +1,6 @@
 ---
 vignette-nb: "16"
-title: "Sweave: Reproducible Research With LaTeX and R"
+title: "Sweave: reproducible research with LaTeX and R"
 long-title: Vignette 16 - Sweave
 include-in-header:
   text: |

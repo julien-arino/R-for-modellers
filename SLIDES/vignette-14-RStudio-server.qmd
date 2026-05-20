@@ -1,6 +1,6 @@
 ---
 vignette-nb: "14"
-title: "RStudio Server: Remote R Environments"
+title: "RStudio server: remote R environments"
 long-title: Vignette 14 - RStudio server
 include-in-header:
   text: |

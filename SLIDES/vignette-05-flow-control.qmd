@@ -1,6 +1,6 @@
 ---
 vignette-nb: "05"
-title: "Flow Control in R: Loops and Conditionals"
+title: "Flow control in R: loops and conditionals"
 long-title: Vignette 05 - Flow control
 include-in-header:
   text: |

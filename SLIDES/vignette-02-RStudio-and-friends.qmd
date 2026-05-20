@@ -1,6 +1,6 @@
 ---
 vignette-nb: "02"
-title: "RStudio and Friends: Integrated Development Environments"
+title: "RStudio and friends: integrated development environments"
 long-title: Vignette 02 - RStudio and friends
 include-in-header:
   text: |
